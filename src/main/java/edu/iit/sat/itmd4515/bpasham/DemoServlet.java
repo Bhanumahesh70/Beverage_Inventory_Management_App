@@ -11,6 +11,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.logging.Logger;
 
 /**
  *
@@ -18,6 +19,10 @@ import jakarta.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "DemoServlet", urlPatterns = {"/DemoServlet","/demo"})
 public class DemoServlet extends HttpServlet {
+
+    private static final Logger LOG = Logger.getLogger(DemoServlet.class.getName());
+    
+    
 
     
     /**
@@ -31,6 +36,7 @@ public class DemoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+         LOG.info("Demo servelt inside doget");
          response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
@@ -58,7 +64,8 @@ public class DemoServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+      LOG.info("Demo servelt inside dopost");
+      LOG.info("Received Pram1: "+request.getParameter("param99"));
     }
 
     /**
