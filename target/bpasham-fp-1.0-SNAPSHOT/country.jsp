@@ -4,6 +4,7 @@
     Author     : bhanu
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,9 +13,9 @@
         <title>Country</title>
     </head>
     <body>
-        <h1>Create a new Sakila database Country</h1>
+        <h1>Create a new world database Country</h1>
         
-        <c:if test="${not empty violations}">
+    <c:if test="${not empty violations}">
             <h2>Constraint Violations</h2>
             <table border=1>
                 <tr>
@@ -30,7 +31,6 @@
             </table>
         </c:if>
         
-        
         <form method = "post" action="/bpasham-fp/country">
             
             <div>
@@ -42,11 +42,8 @@
                 <label for='countryNameId'>Country Name:</label>
             <input type ='text' id ='countryNameId' name='countryName' value="${requestScope.country.name}"/>
             </div>
+          
             
-            <div>
-                <label for='continentId'>Continent:</label>
-            <input type ='text' id ='continentId' name='continent' value="${requestScope.country.continent}"/>
-            </div>
             
             <div>
                 <label for='independentYearId'>Independent Year:</label>

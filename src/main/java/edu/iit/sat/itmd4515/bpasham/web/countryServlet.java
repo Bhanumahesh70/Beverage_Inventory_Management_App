@@ -14,8 +14,13 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validator;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.Set;
+import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.sql.DataSource;
 
 /**
  *
@@ -26,7 +31,9 @@ public class CountryServlet extends HttpServlet{
     
     @Resource
     Validator validator;
-
+    
+@Resource(name = "java:app/jdbc/itmd4515DS")
+    DataSource ds;
     private static final Logger LOG = Logger.getLogger(CountryServlet.class.getName());
 
     @Override
@@ -34,14 +41,14 @@ public class CountryServlet extends HttpServlet{
          LOG.info("CountryServlet in doPost");
          String countryCodeParameter = req.getParameter("countryCode");
          String countryNameParameter = req.getParameter("countryName");
-         String continentParameter = req.getParameter("continent");
+        // String continentParameter = req.getParameter("continent");
          String independentYearParameter = req.getParameter("independentYear");
          String populationParameter = req.getParameter("population");
          String capitalParameter = req.getParameter("capital");
          
          LOG.info("countryCodeParameter\t\t"+countryCodeParameter );
           LOG.info(" countryNameParameter\t\t"+countryNameParameter );
-           LOG.info("continentParameter\t\t"+ continentParameter);
+           //LOG.info("continentParameter\t\t"+ continentParameter);
             LOG.info(" independentYearParameter\t\t"+independentYearParameter );
             LOG.info(" populationParameter\t\t"+populationParameter );
             LOG.info(" capitalParameter\t\t"+capitalParameter );
@@ -72,11 +79,11 @@ public class CountryServlet extends HttpServlet{
             }
             
             //Building country POJO
-            Country c= new Country(countryCodeParameter,countryNameParameter,continentParameter,independentYear,population,capital);
-        Set<ConstraintViolation<Country>> violations = validator.validate(c);
-        for(ConstraintViolation<Country> violation : violations){
-            LOG.info(violation.toString());
-        }
+            Country c= new Country(countryCodeParameter,countryNameParameter,independentYear,population,capital);
+        
+            Set<ConstraintViolation<Country>> violations = validator.validate(c);
+        
+     
         if (violations.size() > 0) {
             // invalid
 
@@ -95,8 +102,12 @@ public class CountryServlet extends HttpServlet{
             // valid
             LOG.info("The entered country database values PASSED validation");
 
-            // create a customer in database if passes validation
-            //createACustomer(c);
+             try {
+                 // create a customer in database if passes validation
+                 insertCountry(c);
+             } catch (SQLException ex) {
+                 Logger.getLogger(CountryServlet.class.getName()).log(Level.SEVERE, null, ex);
+             }
             
             req.setAttribute("country", c);
             RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/views/confirmation.jsp");
@@ -106,6 +117,28 @@ public class CountryServlet extends HttpServlet{
             LOG.info("Country POJO data feilds after conversion"+c.toString());
     }
 
+    private void insertCountry(Country country) throws SQLException {
+        String query = "INSERT INTO country "
+                + "(code, name, IndepYear, Population, Capital) "
+                + "VALUES (?, ?, ?, ?, ?)";
+
+        try (
+               Connection con = ds.getConnection(); PreparedStatement ps = con.prepareStatement(query);) {
+
+            ps.setString(1, country.getCode());
+            ps.setString(2, country.getName());
+            //ps.setString(3, country.getContinent());
+            ps.setInt(3, country.getIndepYear());
+            ps.setInt(4, country.getPopulation());
+            ps.setInt(5, country.getCapital());
+
+            ps.executeUpdate();
+        }catch (SQLException ex) {
+            LOG.log(Level.SEVERE, null, ex);
+                    }
+        
+        
+    }
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     LOG.info("CountryServlet in doGet");

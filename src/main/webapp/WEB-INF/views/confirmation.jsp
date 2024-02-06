@@ -17,7 +17,6 @@
         <ul>
             <li>${requestScope.country.code}</li>
             <li>${requestScope.country.name}</li>
-            <li>${requestScope.country.continent}</li>
             <li>${requestScope.country.indepYear}</li>
             <li>${requestScope.country.population}</li>
             <li>${requestScope.country.capital}</li>

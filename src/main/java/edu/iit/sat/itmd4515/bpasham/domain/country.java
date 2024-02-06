@@ -22,7 +22,7 @@ public class Country {
      private String name;
      
      @NotNull
-     private String Continent;
+    // private String Continent;
      
      @NotNull
      @Positive
@@ -33,12 +33,13 @@ public class Country {
      private int Population;
      
      @NotNull
+     @Positive
      private int Capital;
     
-     public Country(String Code,String Name, String Continent, int IndepYear, int Population, int Capital){
+     public Country(String Code,String Name, int IndepYear, int Population, int Capital){
          this.code = Code;
          this.name = Name;
-         this.Continent = Continent;
+         //this.Continent = Continent;
          this.IndepYear = IndepYear;
          this.Population = Population;
          this.Capital = Capital;
@@ -63,6 +64,7 @@ public class Country {
         this.name = name;
     }
 
+    /**
     public String getContinent() {
         return Continent;
     }
@@ -70,6 +72,7 @@ public class Country {
     public void setContinent(String Continent) {
         this.Continent = Continent;
     }
+    */
 
     public int getIndepYear() {
         return IndepYear;
@@ -95,9 +98,16 @@ public class Country {
         this.Capital = Capital;
     }
 
-    @Override
+    
+    /**@Override
     public String toString() {
         return "Country{" + "code=" + code + ", name=" + name + ", Continent=" + Continent + ", IndepYear=" + IndepYear + ", Population=" + Population + ", Capital=" + Capital + '}';
+    }
+    * */
+    
+    @Override
+    public String toString() {
+        return "Country{" + "code=" + code + ", name=" + name + ", IndepYear=" + IndepYear + ", Population=" + Population + ", Capital=" + Capital + '}';
     }
     
     
