@@ -12,7 +12,7 @@ import jakarta.validation.constraints.Positive;
  *
  * @author bhanu
  */
-public class country {
+public class Country {
     
     @NotNull
     @NotBlank
@@ -35,7 +35,7 @@ public class country {
      @NotNull
      private int Capital;
     
-     public country(String Code,String Name, String Continent, int IndepYear, int Population, int Capital){
+     public Country(String Code,String Name, String Continent, int IndepYear, int Population, int Capital){
          this.code = Code;
          this.name = Name;
          this.Continent = Continent;
@@ -44,7 +44,7 @@ public class country {
          this.Capital = Capital;
      }
      
-     public country(){
+     public Country(){
          
      }
      public String getCode() {
@@ -94,4 +94,11 @@ public class country {
     public void setCapital(int Capital) {
         this.Capital = Capital;
     }
+
+    @Override
+    public String toString() {
+        return "Country{" + "code=" + code + ", name=" + name + ", Continent=" + Continent + ", IndepYear=" + IndepYear + ", Population=" + Population + ", Capital=" + Capital + '}';
+    }
+    
+    
 }
