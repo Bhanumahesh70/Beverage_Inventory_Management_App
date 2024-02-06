@@ -1,13 +1,14 @@
 
 **Form before valid submission:**
 
-![image](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/6b7b00aa-96be-41ec-a6ad-32132ec1f573)
+![image](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/f71432aa-4986-40de-bfad-a24f9331344c)
+
 
 
 
 **Confirmation page after valid submission:**
 
-![image](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/79a8867b-c1f1-4a3b-9fc1-1e6e12ada86e)
+![image](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/a56e7d4c-af57-4ae0-8fb5-78d9adb0ee6f)
 
 
 **Payars Serve console output or valid submission**
@@ -18,13 +19,13 @@
 
 **Form beore bad input submission**
 
-![image](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/991c9555-98ac-4423-afb0-a4bbb64009c5)
+![image](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/f279c483-62f2-4107-b8f8-ed796a547e07)
 
 
 
 **Form after bad input submission displaying error messages**
 
-![image](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/a0158385-0f02-49da-b148-8b02232b96e7)
+![image](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/99cd98f4-74d3-441f-a622-1870801c3a2d)
 
 
 
