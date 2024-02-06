@@ -11,13 +11,13 @@
 ![image](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/a56e7d4c-af57-4ae0-8fb5-78d9adb0ee6f)
 
 
-**Payars Serve console output or valid submission**
+**Payars Serve console output for valid submission**
 
 ![image](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/07eac57f-2607-4dc8-8041-2d1195db58d8)
 
 
 
-**Form beore bad input submission**
+**Form before bad input submission**
 
 ![image](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/f279c483-62f2-4107-b8f8-ed796a547e07)
 
@@ -46,5 +46,7 @@ Developers must provide their own unique validation logic inside the application
 
 **3) How do you think this approach would scale to a real application with 100's of entities?**
 Scalability issues could arise if hundreds of entities in a real application had specific validation logic implemented. Errors, redundant code, and complicated maintenance are increased when validations are created and managed manually for every entity. The effort needed to maintain efficient and consistent validation across several entities increases significantly as the program grows. By offering a uniform and declarative approach, easing the load of manual validation implementation, and improving maintainability in large-scale applications, a standardized validation API—like the Bean Validation API—offers a more scalable alternative.
-4) Why didn't we need to include any additional dependencies (i.e. Bean Validation, JDBC) in this project?
+
+
+**4) Why didn't we need to include any additional dependencies (i.e. Bean Validation, JDBC) in this project?**
 It doesn't provide the exact project context, but it offers some options if you didn't want extra requirements like JDBC or Bean Validation. First off, since it doesn't call for in-depth validation or direct database interfaces, the project might be rather straightforward. As an alternative, it's possible that the project is making use of a platform or framework that manages some functions by default, reducing the need for explicit dependencies. The lack of further dependencies could also point to a purposeful design decision, like depending on language characteristics or specially made implementations that meet the demands of the project. In general, the objectives and nature of the project determine if external dependencies are required.
