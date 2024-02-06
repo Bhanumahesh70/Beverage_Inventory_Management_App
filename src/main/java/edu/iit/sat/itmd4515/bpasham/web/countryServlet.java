@@ -5,13 +5,16 @@
 package edu.iit.sat.itmd4515.bpasham.web;
 import edu.iit.sat.itmd4515.bpasham.domain.*;
 import jakarta.annotation.Resource;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validator;
 import java.io.IOException;
+import java.util.Set;
 import java.util.logging.Logger;
 
 /**
@@ -46,8 +49,7 @@ public class CountryServlet extends HttpServlet{
            
             
              int independentYear =0;
-            int population;
-        population = 0;
+            int population=0;
             int capital=0;
             
             if(independentYearParameter!=null && !independentYearParameter.isBlank()){
@@ -71,6 +73,36 @@ public class CountryServlet extends HttpServlet{
             
             //Building country POJO
             Country c= new Country(countryCodeParameter,countryNameParameter,continentParameter,independentYear,population,capital);
+        Set<ConstraintViolation<Country>> violations = validator.validate(c);
+        for(ConstraintViolation<Country> violation : violations){
+            LOG.info(violation.toString());
+        }
+        if (violations.size() > 0) {
+            // invalid
+
+            LOG.info("The entered country database has FAILED validation.  These are the violations:");
+            
+            for (ConstraintViolation<Country> violation : violations) {
+                LOG.info(violation.toString());
+            }
+
+            req.setAttribute("country", c);
+            req.setAttribute("violations", violations);
+            RequestDispatcher rd = req.getRequestDispatcher("country.jsp");
+            rd.forward(req, resp);
+
+        } else {
+            // valid
+            LOG.info("The entered country database values PASSED validation");
+
+            // create a customer in database if passes validation
+            //createACustomer(c);
+            
+            req.setAttribute("country", c);
+            RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/views/confirmation.jsp");
+            rd.forward(req, resp);
+        }
+
             LOG.info("Country POJO data feilds after conversion"+c.toString());
     }
 
