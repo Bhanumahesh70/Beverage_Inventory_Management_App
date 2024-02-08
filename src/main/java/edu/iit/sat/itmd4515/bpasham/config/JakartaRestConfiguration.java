@@ -1,4 +1,4 @@
-package edu.iit.sat.itmd4515.bpasham;
+package edu.iit.sat.itmd4515.bpasham.config;
 
 import jakarta.ws.rs.ApplicationPath;
 import jakarta.ws.rs.core.Application;
