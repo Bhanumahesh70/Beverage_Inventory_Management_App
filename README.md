@@ -1,3 +1,27 @@
+Lab3 lab4 readme file
+
+..........................................................................................
+**lab4**
+
+**1. Paragraph that describes the business domain you have chosen to work with, and why?**
+
+The domain I have chosen to work with is managing beverage inventory. I have chosen this domain as it can be a part of a large inventory managing system in a store, where we can tackle the beverages sales, and beverage types, and can distinguish between alcohol and non-alcohol beverages. Furthermore, the domain of choice may correspond with business prospects in the food and beverage sector, where effective inventory and sales management can result in lower costs and higher levels of customer satisfaction.
+
+**2. Write a second paragraph answering the following questions: There is only one entity required for Lab 4, but what other entities from your business domain can you think of? How might they relate to one another? You can answer this in narrative form, or you can answer it with a database diagram.**
+
+The beverage business domain may also include the Supplier, Customer, Order, and Inventory entities in addition to the Beverage entity. There would be a variety of relationships between these entities like a supplier can offer a variety of beverage types, the relationship between the Supplier and Beverage entities, for instance, would be one to many. Similar to this, since customers can buy various kinds of beverages and multiple customers can buy beverages, there may be a many-to-many relationship between the Customer and Beverage entities. Customers' purchases would be connected to the Order entity, which would stand in for the beverage-related transactions. Furthermore, because it would monitor each drink's stock levels, the Inventory entity and the Beverage entity could have a one-to-one or one-to-many relationship.
+
+**OutPut Screenshots**
+
+Bean Validation and JPA test was done. In bean Vaildation test the bean constraints set as not null for data types Beverge name, isAlcoholic, Beverage type, expiry data was tested. Additionaly, the boolean datatype isNonAlcoholic beverage which was constrained to have only true|false as data types entry was tested.
+![Screenshot (1649)](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/03fdd928-ab9a-46fd-9a9c-0f0cf8677c51)
+
+**Maven Terminal output**
+![Screenshot (1650)](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/4154f9f1-2b99-45d4-bcd8-1712f28cfba0)
+
+...............................................................................................................................................................................................................................
+
+**Lab3:**
 
 **Form before valid submission:**
 
