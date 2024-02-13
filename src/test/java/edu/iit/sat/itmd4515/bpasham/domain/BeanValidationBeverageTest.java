@@ -1,9 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package edu.iit.sat.itmd4515.bpasham.domain;
-import edu.iit.sat.itmd4515.bpasham.domain.Beverage;
+
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
@@ -11,15 +8,13 @@ import jakarta.validation.ValidatorFactory;
 import java.time.LocalDate;
 import java.util.Set;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 /**
  *
  * @author bhanu
  */
-public class BeanValidationTestForBeverage {
+public class BeanValidationBeverageTest {
     private static Validator validator;
 
     @BeforeAll
@@ -60,5 +55,18 @@ public class BeanValidationTestForBeverage {
         Beverage beverage = new Beverage("Coca Cola", LocalDate.of(2025, 3, 5), "true", BeverageType.SODA);
         Set<ConstraintViolation<Beverage>> violations = validator.validate(beverage);
         assertEquals(0, violations.size(), "Expected no violations for valid beverage");
+    }
+    private Beverage createBeverage(String name, LocalDate expiryDate, String isNonAlcoholic, BeverageType beverageType) {
+        return new Beverage(name, expiryDate, isNonAlcoholic, beverageType);
+    }
+
+    private void assertConstraintViolation(Beverage beverage, int expectedViolationCount, String message) {
+        Set<ConstraintViolation<Beverage>> violations = validator.validate(beverage);
+        assertEquals(expectedViolationCount, violations.size(), message);
+    }
+
+    private void assertNoConstraintViolation(Beverage beverage, String message) {
+        Set<ConstraintViolation<Beverage>> violations = validator.validate(beverage);
+        assertEquals(0, violations.size(), message);
     }
 }
