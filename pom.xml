@@ -37,14 +37,20 @@
             <scope>test</scope>
         </dependency>
         
-         <dependency>
+        <dependency>
             <groupId>org.eclipse.persistence</groupId>
             <artifactId>org.eclipse.persistence.jpa</artifactId>
             <version>4.0.2</version>  
-            <scope>compile</scope>
+            <scope>test</scope>
                
         </dependency>
-        
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>8.0.1.Final</version>
+            <scope>test</scope>
+            
+        </dependency>
         <dependency>
             <groupId>org.glassfish.expressly</groupId>
             <artifactId>expressly</artifactId>
