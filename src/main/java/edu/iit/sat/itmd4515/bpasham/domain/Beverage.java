@@ -13,6 +13,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -33,33 +35,18 @@ public class Beverage {
     @Column(name = "BEVERAGE_NAME", nullable=false,unique=true)
     private String name;
 
+    @NotNull
     @Column(name = "BEVERAGE_EXPIRYDATE")
     private LocalDate expiryDate;
 
-    @NotBlank
+    @NotNull
+    @Pattern(regexp = "^(true|false)$", message = "The boolean variable must be either true or false")
     @Column(name = "IS_NON_ALCOHOLIC")
     private String isNonAlcoholic;
     
+    @NotNull
     @Enumerated(EnumType.STRING)
         private BeverageType type;
-
-    /**
-     * Get the value of type
-     *
-     * @return the value of type
-     */
-    public BeverageType getType() {
-        return type;
-    }
-
-    /**
-     * Set the value of type
-     *
-     * @param type new value of type
-     */
-    public void setType(BeverageType type) {
-        this.type = type;
-    }
 
     public Beverage(String name, LocalDate expiryDate, String isNonAlcoholic, BeverageType type) {
         this.name = name;
@@ -103,6 +90,23 @@ public class Beverage {
     
     // Getter and setter Methods
 
+    /**
+     * Get the value of type
+     *
+     * @return the value of type
+     */
+    public BeverageType getType() {
+        return type;
+    }
+
+    /**
+     * Set the value of type
+     *
+     * @param type new value of type
+     */
+    public void setType(BeverageType type) {
+        this.type = type;
+    }
     /**
      * Get the value of isNonAlcoholic
      *
