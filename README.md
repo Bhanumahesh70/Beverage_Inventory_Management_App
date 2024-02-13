@@ -14,6 +14,16 @@ The beverage business domain may also include the Supplier, Customer, Order, and
 **OutPut Screenshots**
 
 Bean Validation and JPA test was done. In bean Vaildation test the bean constraints set as not null for data types Beverge name, isAlcoholic, Beverage type, expiry data was tested. Additionaly, the boolean datatype isNonAlcoholic beverage which was constrained to have only true|false as data types entry was tested.
+validateNameNotBlank() :verifies whether the validator finds a breach in the event that the beverage name is left blank.
+
+When the expiry date is null, validateExpiryDateNotNull() confirms that the validator has found a violation.
+
+validateIsNonAlcoholicPattern(): Verifies whether the isNonAlcoholic attribute violates the specified pattern when the validator finds a violation.
+
+When the beverage type is null, the validateBeverageTypeNotNull() function makes sure the validator notices the infraction.
+
+validateValidBeverage(): Confirms that when all of the beverage object's attributes are valid, the validator does not report any violations.
+
 ![Screenshot (1649)](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/03fdd928-ab9a-46fd-9a9c-0f0cf8677c51)
 
 **Maven Terminal output**
