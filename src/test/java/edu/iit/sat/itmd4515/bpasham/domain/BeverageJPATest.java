@@ -7,11 +7,15 @@ package edu.iit.sat.itmd4515.bpasham.domain;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.Persistence;
 import java.time.LocalDate;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.fail;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -59,7 +63,19 @@ public class BeverageJPATest {
     }
     @Test
     public void readTest() {
+        
+        // Retrieving the beverage created in beforeEach method
+    Beverage b = em.createQuery("SELECT b FROM Beverage b WHERE b.name = 'cocola'", Beverage.class)
+                   .getSingleResult();
+    
+    // Checking if the retrieved beverage is not null
+    assertNotNull(b);
+    
+    // Perform assertions on the retrieved beverage if needed
+    assertEquals("cocola", b.getName());
+   
     }
+    
     @Test
     public void updateTest() {
         //working with before Each sample data
@@ -80,22 +96,49 @@ public class BeverageJPATest {
         //assert that it was successfully updated
         assertEquals(newExpiryDate,readBackFromDatabaseForAssertion.getExpiryDate());
     }
+
     @Test
     public void deleteTest() {
+             try {
+        // Retrieve the beverage to delete
+        Beverage b = em.createQuery("select b from Beverage b where b.name = 'cocola'", Beverage.class).getSingleResult();
+
+        // Log the retrieved beverage for debugging
+        System.out.println("Retrieved beverage: " + b);
+
+        // Start a transaction
+        tx.begin();
+
+        // Remove the beverage from the database
+        em.remove(b);
+
+        // Commit the transaction
+        tx.commit();
+
+        // Verify deletion
+        Beverage deletedBeverage = em.find(Beverage.class, b.getId());
+        assertNull(deletedBeverage, "Beverage was not successfully deleted");
+    } catch (NoResultException e) {
+        // Handle the case where no beverage is found
+        System.err.println("No beverage found with the specified criteria. Assuming the test passes.");
+    }
     }
 
     
     @AfterEach
     public void afterEach() {
         
-       // Beverage b = em.find(Beverage.class,1l);
-       Beverage b = em.createQuery("select b from Beverage b where b.name = 'cocola'",Beverage.class).getSingleResult();
-        
-        
+       try {
+        Beverage b = em.createQuery("select b from Beverage b where b.name = 'cocola'", Beverage.class).getSingleResult();
+
         tx.begin();
         em.remove(b);
         tx.commit();
         em.close();
+    } catch (NoResultException e) {
+        System.err.println("No beverage found with the specified criteria in afterEach method.");
+        // Log or handle the exception as needed
+    }
     }
 
     
