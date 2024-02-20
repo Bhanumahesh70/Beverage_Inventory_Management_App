@@ -4,6 +4,7 @@
  */
 package edu.iit.sat.itmd4515.bpasham.domain;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -12,6 +13,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -62,6 +64,9 @@ public class Beverage {
     
     @OneToMany(mappedBy = "beverage")
     private List<Supplier> suppliers = new ArrayList<>();
+    
+    @OneToOne(mappedBy = "beverage")
+    private Inventory inventory;
 
     /**
      * Get the value of suppliers
