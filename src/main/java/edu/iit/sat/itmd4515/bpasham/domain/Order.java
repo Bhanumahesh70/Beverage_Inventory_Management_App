@@ -4,11 +4,13 @@
  */
 package edu.iit.sat.itmd4515.bpasham.domain;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
@@ -19,6 +21,8 @@ import java.util.Objects;
  *
  * @author bhanu
  */
+@Entity
+@Table(name = "ORDER")
 public class Order {
      @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,19 +37,23 @@ public class Order {
     @ManyToOne
     private Customer customer;
 
-    @ManyToMany(mappedBy = "orders")
+    /*@ManyToMany(mappedBy = "orders")
+    */
+    
     private List<Beverage> beverages;
+
 
     public Order() {
     }
 
-    public Order(Long orderId, LocalDate orderDate, Integer quantity, Customer customer, List<Beverage> beverages) {
-        this.orderId = orderId;
+    public Order(LocalDate orderDate, Integer quantity, Customer customer, List<Beverage> beverages) {
         this.orderDate = orderDate;
         this.quantity = quantity;
         this.customer = customer;
         this.beverages = beverages;
     }
+
+     
 
     @Override
     public int hashCode() {
@@ -68,8 +76,10 @@ public class Order {
         final Order other = (Order) obj;
         if(this.orderId==null || other.orderId==null){
             return false;
-        }
-        return Objects.equals(this.orderId, other.orderId);
+        } 
+         return Objects.equals(this.orderId, other.orderId);
+        
+       
     }
 
     public Long getOrderId() {
@@ -110,6 +120,11 @@ public class Order {
 
     public void setBeverages(List<Beverage> beverages) {
         this.beverages = beverages;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" + "orderId=" + orderId + ", orderDate=" + orderDate + ", quantity=" + quantity + ", customer=" + customer + ", beverages=" + beverages + '}';
     }
     
     

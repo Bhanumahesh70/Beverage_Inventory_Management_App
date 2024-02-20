@@ -4,12 +4,14 @@
  */
 package edu.iit.sat.itmd4515.bpasham.domain;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.Table;
 import jakarta.persistence.criteria.Order;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -22,6 +24,8 @@ import java.util.Objects;
  *
  * @author bhanu
  */
+@Entity
+@Table(name = "CUSTOMER")
 public class Customer {
       @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,22 +40,24 @@ public class Customer {
     @NotNull
     private LocalDate createdAt;
 
-    @ManyToMany
+    /**@ManyToMany
     @JoinTable(name = "customer_order",
                joinColumns = @JoinColumn(name = "customer_id"),
                inverseJoinColumns = @JoinColumn(name = "order_id"))
+    **/
     private List<Order> orders;
 
     public Customer() {
     }
 
-    public Customer(Long customerId, String name, String email, LocalDate createdAt, List<Order> orders) {
-        this.customerId = customerId;
+    public Customer(String name, String email, LocalDate createdAt, List<Order> orders) {
         this.name = name;
         this.email = email;
         this.createdAt = createdAt;
         this.orders = orders;
     }
+
+    
 
     @Override
     public int hashCode() {
@@ -116,6 +122,11 @@ public class Customer {
 
     public void setOrders(List<Order> orders) {
         this.orders = orders;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" + "customerId=" + customerId + ", name=" + name + ", email=" + email + ", createdAt=" + createdAt + ", orders=" + orders + '}';
     }
 
 }

@@ -32,7 +32,9 @@ public class Inventory {
     @NotNull
     private LocalDateTime lastUpdated;
 
+    /*
     @OneToOne(mappedBy = "inventory")
+*/
     private Beverage beverage;
 
     public Inventory() {

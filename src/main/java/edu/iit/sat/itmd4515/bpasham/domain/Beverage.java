@@ -23,7 +23,7 @@ import java.util.Objects;
  * @author bhanu
  */
 @Entity
-@Table(name = "BEVERAGES")
+@Table(name = "BEVERAGE")
 public class Beverage {
 
     @Id

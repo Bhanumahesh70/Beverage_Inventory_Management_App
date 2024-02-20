@@ -1,18 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="3.0" xmlns="https://jakarta.ee/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd">
-  <!-- Define Persistence Unit -->
-  <persistence-unit name="itmd4515testPU" transaction-type="RESOURCE_LOCAL">
+    <!-- Define Persistence Unit -->
+    <persistence-unit name="itmd4515testPU" transaction-type="RESOURCE_LOCAL">
     
-      <class>edu.iit.sat.itmd4515.bpasham.domain.Beverage</class>
+        <class>edu.iit.sat.itmd4515.bpasham.domain.Beverage</class>
+        <class>edu.iit.sat.itmd4515.bpasham.domain.Customer </class>
+        <class>edu.iit.sat.itmd4515.bpasham.domain.Inventory </class>
+        <class>edu.iit.sat.itmd4515.bpasham.domain.Order </class>
+        <class> suedu.iit.sat.itmd4515.bpasham.domain.Supplier</class>
+      
     <properties>
         <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.MysqlDataSource"></property>
         <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/itmd4515?zeroDateTimeBehavior=CONVERT_TO_NULL"></property>
         <property name="jakarta.persistence.jdbc.user" value="itmd4515"></property>
-    <property name="jakarta.persistence.jdbc.password" value="itmd4515"></property>
+        <property name="jakarta.persistence.jdbc.password" value="itmd4515"></property>
     
     
-      <property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create"/>
+        <property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create"/>
     </properties>
     
-  </persistence-unit>
+</persistence-unit>
 </persistence>

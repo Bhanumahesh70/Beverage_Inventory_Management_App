@@ -62,19 +62,21 @@ public class Supplier {
     @NotNull
     private LocalDate createdAt;
 
+    /*
     @OneToMany(mappedBy = "supplier")
+*/
     private List<Beverage> beverages;
-
     public Supplier() {
     }
 
-    public Supplier(Long supplierId, String name, String contactNumber, LocalDate createdAt, List<Beverage> beverages) {
-        this.supplierId = supplierId;
+    public Supplier(String name, String contactNumber, LocalDate createdAt, List<Beverage> beverages) {
         this.name = name;
         this.contactNumber = contactNumber;
         this.createdAt = createdAt;
         this.beverages = beverages;
     }
+
+    
 
     public Long getSupplierId() {
         return supplierId;
