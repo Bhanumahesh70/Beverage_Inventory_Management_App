@@ -113,5 +113,16 @@ public class Order {
     public String toString() {
         return "Order{" + "orderId=" + orderId + ", orderDate=" + orderDate + ", quantity=" + quantity + '}';
     }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    
+
     
 }

@@ -124,7 +124,35 @@ public class BeverageJPATest {
     }
     }
 
-    
+    @Test
+    public void createOrderWithCustomerTest() {
+        try {
+        tx.begin();
+
+        // Create a new customer
+        Customer customer = new Customer("John Doe", "john@example.com", LocalDate.now());
+        em.persist(customer);
+
+        // Create a new order associated with the customer
+        Order order = new Order(LocalDate.now(), 2);
+        order.setCustomer(customer);
+        em.persist(order);
+
+        tx.commit();
+
+        // Retrieve the order from the database and verify the association with the customer
+        Order savedOrder = em.find(Order.class, order.getOrderId());
+        assertNotNull(savedOrder);
+        assertNotNull(savedOrder.getCustomer());
+        assertEquals(customer.getCustomerId(), savedOrder.getCustomer().getCustomerId());
+    } catch (Exception e) {
+        if (tx.isActive()) {
+            tx.rollback();
+        }
+        fail("Exception occurred: " + e.getMessage());
+    }
+    }
+
     @AfterEach
     public void afterEach() {
         
