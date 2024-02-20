@@ -122,6 +122,14 @@ public class Order {
         this.customer = customer;
     }
 
+    public List<Beverage> getBeverages() {
+        return beverages;
+    }
+
+    public void setBeverages(List<Beverage> beverages) {
+        this.beverages = beverages;
+    }
+
     
 
     

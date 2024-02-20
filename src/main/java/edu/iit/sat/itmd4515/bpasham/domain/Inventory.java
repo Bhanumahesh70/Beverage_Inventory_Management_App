@@ -102,5 +102,13 @@ public class Inventory {
         return "Inventory{" + "inventoryId=" + inventoryId + ", quantity=" + quantity + ", lastUpdated=" + lastUpdated + '}';
     }
 
+    public Beverage getBeverage() {
+        return beverage;
+    }
+
+    public void setBeverage(Beverage beverage) {
+        this.beverage = beverage;
+    }
+
     
 }
