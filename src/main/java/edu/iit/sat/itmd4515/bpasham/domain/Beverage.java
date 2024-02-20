@@ -12,6 +12,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -53,7 +54,8 @@ public class Beverage {
     @Enumerated(EnumType.STRING)
         private BeverageType type;
 
-    
+    @ManyToMany(mappedBy = "beverages")
+    private List<Order> orders;
     
     public Beverage(String name, LocalDate expiryDate, String isNonAlcoholic, BeverageType type) {
         this.name = name;

@@ -48,9 +48,9 @@ public class Customer {
     private LocalDate createdAt;
 
     
-   @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Order> orders = new ArrayList<>();
-   
+//   @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    private List<Order> orders = new ArrayList<>();
+//   
     public Customer() {
     }
 
