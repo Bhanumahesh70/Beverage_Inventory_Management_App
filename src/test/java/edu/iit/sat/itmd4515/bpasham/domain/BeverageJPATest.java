@@ -30,180 +30,178 @@ public class BeverageJPATest {
     /**
      *
      */
-    
-    private static EntityManagerFactory emf ;
+    private static EntityManagerFactory emf;
     private EntityManager em;
     private EntityTransaction tx;
+
     @BeforeAll
     public static void beforeAll() {
         emf = Persistence.createEntityManagerFactory("itmd4515testPU");
     }
 
-    
     @BeforeEach
     public void beforeEach() {
         em = emf.createEntityManager();
-        tx = em.getTransaction(); 
-         Beverage b1 = new Beverage("cocola", LocalDate.of(2025, 3, 5), "true",BeverageType.SODA);
+        tx = em.getTransaction();
+        Beverage b1 = new Beverage("cocola", LocalDate.of(2025, 3, 5), "true", BeverageType.SODA);
 
         tx.begin();
         em.persist(b1);
         tx.commit();
     }
 
-    
     @Test
     public void createTest() {
-        Beverage b2 = new Beverage("pepsi", LocalDate.of(2025, 9, 5), "true",BeverageType.SODA);
+        Beverage b2 = new Beverage("pepsi", LocalDate.of(2025, 9, 5), "true", BeverageType.SODA);
 
         tx.begin();
         em.persist(b2);
         tx.commit();
-        Beverage readBackFromDatabaseForAssertion = em.find(Beverage.class,b2.getId());
-        assertEquals(b2.getId(),readBackFromDatabaseForAssertion.getId());
+        Beverage readBackFromDatabaseForAssertion = em.find(Beverage.class, b2.getId());
+        assertEquals(b2.getId(), readBackFromDatabaseForAssertion.getId());
     }
+
     @Test
     public void readTest() {
-        
+
         // Retrieving the beverage created in beforeEach method
-    Beverage b = em.createQuery("SELECT b FROM Beverage b WHERE b.name = 'cocola'", Beverage.class)
-                   .getSingleResult();
-    
-    // Checking if the retrieved beverage is not null
-    assertNotNull(b);
-    
-    // Perform assertions on the retrieved beverage if needed
-    assertEquals("cocola", b.getName());
-   
+        Beverage b = em.createQuery("SELECT b FROM Beverage b WHERE b.name = 'cocola'", Beverage.class)
+                .getSingleResult();
+
+        // Checking if the retrieved beverage is not null
+        assertNotNull(b);
+
+        // Perform assertions on the retrieved beverage if needed
+        assertEquals("cocola", b.getName());
+
     }
-    
+
     @Test
     public void updateTest() {
         //working with before Each sample data
         Beverage b = em.createQuery("select b from Beverage b where b.name = 'cocola'",
                 Beverage.class).getSingleResult();
-                
-                LocalDate newExpiryDate =LocalDate.of(2026,5,7); 
+
+        LocalDate newExpiryDate = LocalDate.of(2026, 5, 7);
         //update something
         //write it back to database
         //using set methods in a trasaction updates database for a managed entity
         tx.begin();
         b.setExpiryDate(newExpiryDate);
         tx.commit();
-        
+
         //read it back from database
-        Beverage readBackFromDatabaseForAssertion = em.find(Beverage.class,b.getId());
-        
+        Beverage readBackFromDatabaseForAssertion = em.find(Beverage.class, b.getId());
+
         //assert that it was successfully updated
-        assertEquals(newExpiryDate,readBackFromDatabaseForAssertion.getExpiryDate());
+        assertEquals(newExpiryDate, readBackFromDatabaseForAssertion.getExpiryDate());
     }
 
     @Test
     public void deleteTest() {
-             try {
-        // Retrieve the beverage to delete
-        Beverage b = em.createQuery("select b from Beverage b where b.name = 'cocola'", Beverage.class).getSingleResult();
+        try {
+            // Retrieve the beverage to delete
+            Beverage b = em.createQuery("select b from Beverage b where b.name = 'cocola'", Beverage.class).getSingleResult();
 
-        // Log the retrieved beverage for debugging
-        System.out.println("Retrieved beverage: " + b);
+            // Log the retrieved beverage for debugging
+            System.out.println("Retrieved beverage: " + b);
 
-        // Start a transaction
-        tx.begin();
+            // Start a transaction
+            tx.begin();
 
-        // Remove the beverage from the database
-        em.remove(b);
+            // Remove the beverage from the database
+            em.remove(b);
 
-        // Commit the transaction
-        tx.commit();
+            // Commit the transaction
+            tx.commit();
 
-        // Verify deletion
-        Beverage deletedBeverage = em.find(Beverage.class, b.getId());
-        assertNull(deletedBeverage, "Beverage was not successfully deleted");
-    } catch (NoResultException e) {
-        // Handle the case where no beverage is found
-        System.err.println("No beverage found with the specified criteria. Assuming the test passes.");
+            // Verify deletion
+            Beverage deletedBeverage = em.find(Beverage.class, b.getId());
+            assertNull(deletedBeverage, "Beverage was not successfully deleted");
+        } catch (NoResultException e) {
+            // Handle the case where no beverage is found
+            System.err.println("No beverage found with the specified criteria. Assuming the test passes.");
+        }
     }
-    }
 
+    //Unidirectional Many to one test method
     @Test
     public void createOrderWithCustomerTest() {
         try {
-        tx.begin();
+            tx.begin();
 
-        // Create a new customer
-        Customer customer = new Customer("John Doe", "john@example.com", LocalDate.now());
-        em.persist(customer);
+            // Create a new customer
+            Customer customer = new Customer("John Doe", "john@example.com", LocalDate.now());
+            em.persist(customer);
 
-        // Create a new order associated with the customer
-        Order order = new Order(LocalDate.now(), 2);
-        order.setCustomer(customer);
-        em.persist(order);
+            // Create a new order associated with the customer
+            Order order = new Order(LocalDate.now(), 2);
+            order.setCustomer(customer);
+            em.persist(order);
 
-        tx.commit();
+            tx.commit();
 
-        // Retrieve the order from the database and verify the association with the customer
-        Order savedOrder = em.find(Order.class, order.getOrderId());
-        assertNotNull(savedOrder);
-        assertNotNull(savedOrder.getCustomer());
-        assertEquals(customer.getCustomerId(), savedOrder.getCustomer().getCustomerId());
-    } catch (Exception e) {
-        if (tx.isActive()) {
-            tx.rollback();
+            // Retrieve the order from the database and verify the association with the customer
+            Order savedOrder = em.find(Order.class, order.getOrderId());
+            assertNotNull(savedOrder);
+            assertNotNull(savedOrder.getCustomer());
+            assertEquals(customer.getCustomerId(), savedOrder.getCustomer().getCustomerId());
+        } catch (Exception e) {
+            if (tx.isActive()) {
+                tx.rollback();
+            }
+            fail("Exception occurred: " + e.getMessage());
         }
-        fail("Exception occurred: " + e.getMessage());
-    }
-    }
-
-    @AfterEach
-    public void afterEach() {
-        
-       try {
-        Beverage b = em.createQuery("select b from Beverage b where b.name = 'cocola'", Beverage.class).getSingleResult();
-
-        tx.begin();
-        em.remove(b);
-        tx.commit();
-        em.close();
-    } catch (NoResultException e) {
-        System.err.println("No beverage found with the specified criteria in afterEach method.");
-        // Log or handle the exception as needed
-    }
     }
 
     //Bidirectional one to one relationship test
     @Test
-public void createBeverageWithInventoryTest() {
-    // Create a new beverage
-    Beverage beverage = new Beverage("Coca-Cola", LocalDate.of(2025, 3, 5), "true", BeverageType.SODA);
-    em.persist(beverage);
+    public void createBeverageWithInventoryTest() {
+        // Create a new beverage
+        Beverage beverage = new Beverage("Coca-Cola", LocalDate.of(2025, 3, 5), "true", BeverageType.SODA);
+        em.persist(beverage);
 
-    // Create a new inventory
-    Inventory inventory = new Inventory(100, LocalDateTime.now());
-    em.persist(inventory);
+        // Create a new inventory
+        Inventory inventory = new Inventory(100, LocalDateTime.now());
+        em.persist(inventory);
 
-    // Associate the beverage with the inventory
-    beverage.setInventory(inventory);
-    inventory.setBeverage(beverage);
+        // Associate the beverage with the inventory
+        beverage.setInventory(inventory);
+        inventory.setBeverage(beverage);
 
-    tx.begin();
-    em.flush(); // Ensure that the changes are synchronized with the database
-    tx.commit();
+        tx.begin();
+        em.flush(); // Ensure that the changes are synchronized with the database
+        tx.commit();
 
-    // Retrieve the beverage and inventory from the database
-    Beverage savedBeverage = em.find(Beverage.class, beverage.getId());
-    Inventory savedInventory = em.find(Inventory.class, inventory.getInventoryId());
+        // Retrieve the beverage and inventory from the database
+        Beverage savedBeverage = em.find(Beverage.class, beverage.getId());
+        Inventory savedInventory = em.find(Inventory.class, inventory.getInventoryId());
 
-    // Check if the association is established correctly
-    assertNotNull(savedBeverage);
-    assertNotNull(savedBeverage.getInventory());
-    assertEquals(savedBeverage, savedInventory.getBeverage());
-}
+        // Check if the association is established correctly
+        assertNotNull(savedBeverage);
+        assertNotNull(savedBeverage.getInventory());
+        assertEquals(savedBeverage, savedInventory.getBeverage());
+    }
 
-    
+    @AfterEach
+    public void afterEach() {
+
+        try {
+            Beverage b = em.createQuery("select b from Beverage b where b.name = 'cocola'", Beverage.class).getSingleResult();
+
+            tx.begin();
+            em.remove(b);
+            tx.commit();
+            em.close();
+        } catch (NoResultException e) {
+            System.err.println("No beverage found with the specified criteria in afterEach method.");
+            // Log or handle the exception as needed
+        }
+    }
+
     @AfterAll
     public static void afterAll() {
         emf.close();
     }
-
 
 }

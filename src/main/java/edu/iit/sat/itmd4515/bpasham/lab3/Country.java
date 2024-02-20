@@ -4,6 +4,8 @@
  */
 package edu.iit.sat.itmd4515.bpasham.lab3;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
@@ -12,8 +14,10 @@ import jakarta.validation.constraints.Positive;
  *
  * @author bhanu
  */
+@Entity
 public class Country {
     
+    @Id
     @NotNull
     @NotBlank
     private String code;

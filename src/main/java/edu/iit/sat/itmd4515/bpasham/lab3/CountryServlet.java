@@ -4,12 +4,20 @@
  */
 package edu.iit.sat.itmd4515.bpasham.lab3;
 import jakarta.annotation.Resource;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.transaction.HeuristicMixedException;
+import jakarta.transaction.HeuristicRollbackException;
+import jakarta.transaction.NotSupportedException;
+import jakarta.transaction.RollbackException;
+import jakarta.transaction.SystemException;
+import jakarta.transaction.UserTransaction;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validator;
 import java.io.IOException;
@@ -35,6 +43,12 @@ public class CountryServlet extends HttpServlet{
     DataSource ds;
     private static final Logger LOG = Logger.getLogger(CountryServlet.class.getName());
 
+    @PersistenceContext(name = "itmd4515PU")
+    EntityManager em;
+    
+    @Resource
+    UserTransaction tx;
+    
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
          LOG.info("CountryServlet in doPost");
@@ -101,12 +115,9 @@ public class CountryServlet extends HttpServlet{
             // valid
             LOG.info("The entered country database values PASSED validation");
 
-             try {
-                 // create a customer in database if passes validation
-                 insertCountry(c);
-             } catch (SQLException ex) {
-                 Logger.getLogger(CountryServlet.class.getName()).log(Level.SEVERE, null, ex);
-             }
+            // create a customer in database if passes validation
+            //insertJDBCCountry(c);
+            insertJPACountry(c);
             
             req.setAttribute("country", c);
             RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/views/confirmation.jsp");
@@ -116,7 +127,31 @@ public class CountryServlet extends HttpServlet{
             LOG.info("Country POJO data feilds after conversion"+c.toString());
     }
 
-    private void insertCountry(Country country) throws SQLException {
+    private void insertJPACountry(Country country){
+       
+        try {
+            tx.begin();
+            
+            em.persist(country);
+            tx.commit();
+        } catch (NotSupportedException ex) {
+            Logger.getLogger(CountryServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SystemException ex) {
+            Logger.getLogger(CountryServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (RollbackException ex) {
+            Logger.getLogger(CountryServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (HeuristicMixedException ex) {
+            Logger.getLogger(CountryServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (HeuristicRollbackException ex) {
+            Logger.getLogger(CountryServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SecurityException ex) {
+            Logger.getLogger(CountryServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalStateException ex) {
+            Logger.getLogger(CountryServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+    private void insertJDBCCountry(Country country) throws SQLException {
         String query = "INSERT INTO country "
                 + "(code, name, IndepYear, Population, Capital) "
                 + "VALUES (?, ?, ?, ?, ?)";
