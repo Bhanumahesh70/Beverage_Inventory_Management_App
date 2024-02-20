@@ -8,6 +8,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
@@ -106,6 +107,9 @@ public class Supplier {
         this.createdAt = createdAt;
     }
 
+    @ManyToOne
+    private Beverage beverages;
+    
     @Override
     public String toString() {
         return "Supplier{" + "supplierId=" + supplierId + ", name=" + name + ", contactNumber=" + contactNumber + ", createdAt=" + createdAt + '}';

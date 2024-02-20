@@ -22,7 +22,7 @@ import java.util.Objects;
  * @author bhanu
  */
 @Entity
-@Table(name = "ORDER")
+@Table(name = "ORDERS")
 public class Order {
      @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

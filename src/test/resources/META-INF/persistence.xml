@@ -7,7 +7,7 @@
         <class>edu.iit.sat.itmd4515.bpasham.domain.Customer </class>
         <class>edu.iit.sat.itmd4515.bpasham.domain.Inventory </class>
         <class>edu.iit.sat.itmd4515.bpasham.domain.Order </class>
-        <class> suedu.iit.sat.itmd4515.bpasham.domain.Supplier</class>
+        <class>edu.iit.sat.itmd4515.bpasham.domain.Supplier</class>
       
     <properties>
         <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.MysqlDataSource"></property>
