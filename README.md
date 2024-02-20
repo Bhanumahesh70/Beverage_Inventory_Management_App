@@ -1,4 +1,9 @@
-Lab3 lab4 readme file
+Lab3 lab4 lab5 readme file
+
+..............................................................................
+**Lab5 Screenshot**
+Screenshot of passing all test cases:
+![Screenshot (1651)](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/86c7d2a0-64ca-4dd2-8131-51b3e28a1276)
 
 ..........................................................................................
 **lab4**
