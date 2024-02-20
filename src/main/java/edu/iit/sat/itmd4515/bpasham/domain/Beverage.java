@@ -11,11 +11,14 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -48,12 +51,36 @@ public class Beverage {
     @Enumerated(EnumType.STRING)
         private BeverageType type;
 
+    
+    
     public Beverage(String name, LocalDate expiryDate, String isNonAlcoholic, BeverageType type) {
         this.name = name;
         this.expiryDate = expiryDate;
         this.isNonAlcoholic = isNonAlcoholic;
         this.type = type;
     }
+    
+    @OneToMany(mappedBy = "beverage")
+    private List<Supplier> suppliers = new ArrayList<>();
+
+    /**
+     * Get the value of suppliers
+     *
+     * @return the value of suppliers
+     */
+    public List<Supplier> getSuppliers() {
+        return suppliers;
+    }
+
+    /**
+     * Set the value of suppliers
+     *
+     * @param suppliers new value of suppliers
+     */
+    public void setSuppliers(List<Supplier> suppliers) {
+        this.suppliers = suppliers;
+    }
+
 
     
 
