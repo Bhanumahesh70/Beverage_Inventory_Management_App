@@ -33,26 +33,17 @@ public class Order {
 
     @Min(1)
     private Integer quantity;
-
-    @ManyToOne
-    private Customer customer;
-
-    /*@ManyToMany(mappedBy = "orders")
-    */
     
-    private List<Beverage> beverages;
-
-
     public Order() {
     }
 
-    public Order(LocalDate orderDate, Integer quantity, Customer customer, List<Beverage> beverages) {
+    public Order(LocalDate orderDate, Integer quantity) {
         this.orderDate = orderDate;
         this.quantity = quantity;
-        this.customer = customer;
-        this.beverages = beverages;
     }
 
+    
+    
      
 
     @Override
@@ -106,26 +97,9 @@ public class Order {
         this.quantity = quantity;
     }
 
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
-    public List<Beverage> getBeverages() {
-        return beverages;
-    }
-
-    public void setBeverages(List<Beverage> beverages) {
-        this.beverages = beverages;
-    }
-
     @Override
     public String toString() {
-        return "Order{" + "orderId=" + orderId + ", orderDate=" + orderDate + ", quantity=" + quantity + ", customer=" + customer + ", beverages=" + beverages + '}';
+        return "Order{" + "orderId=" + orderId + ", orderDate=" + orderDate + ", quantity=" + quantity + '}';
     }
-    
     
 }

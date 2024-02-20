@@ -40,22 +40,17 @@ public class Customer {
     @NotNull
     private LocalDate createdAt;
 
-    /**@ManyToMany
-    @JoinTable(name = "customer_order",
-               joinColumns = @JoinColumn(name = "customer_id"),
-               inverseJoinColumns = @JoinColumn(name = "order_id"))
-    **/
-    private List<Order> orders;
-
+   
     public Customer() {
     }
 
-    public Customer(String name, String email, LocalDate createdAt, List<Order> orders) {
+    public Customer(String name, String email, LocalDate createdAt) {
         this.name = name;
         this.email = email;
         this.createdAt = createdAt;
-        this.orders = orders;
     }
+
+    
 
     
 
@@ -116,17 +111,10 @@ public class Customer {
         this.createdAt = createdAt;
     }
 
-    public List<Order> getOrders() {
-        return orders;
-    }
-
-    public void setOrders(List<Order> orders) {
-        this.orders = orders;
-    }
-
     @Override
     public String toString() {
-        return "Customer{" + "customerId=" + customerId + ", name=" + name + ", email=" + email + ", createdAt=" + createdAt + ", orders=" + orders + '}';
+        return "Customer{" + "customerId=" + customerId + ", name=" + name + ", email=" + email + ", createdAt=" + createdAt + '}';
     }
+
 
 }

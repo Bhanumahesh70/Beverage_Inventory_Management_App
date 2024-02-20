@@ -62,20 +62,16 @@ public class Supplier {
     @NotNull
     private LocalDate createdAt;
 
-    /*
-    @OneToMany(mappedBy = "supplier")
-*/
-    private List<Beverage> beverages;
     public Supplier() {
     }
 
-    public Supplier(String name, String contactNumber, LocalDate createdAt, List<Beverage> beverages) {
+    public Supplier(String name, String contactNumber, LocalDate createdAt) {
         this.name = name;
         this.contactNumber = contactNumber;
         this.createdAt = createdAt;
-        this.beverages = beverages;
     }
 
+   
     
 
     public Long getSupplierId() {
@@ -110,17 +106,10 @@ public class Supplier {
         this.createdAt = createdAt;
     }
 
-    public List<Beverage> getBeverages() {
-        return beverages;
-    }
-
-    public void setBeverages(List<Beverage> beverages) {
-        this.beverages = beverages;
-    }
-
     @Override
     public String toString() {
-        return "Supplier{" + "supplierId=" + supplierId + ", name=" + name + ", contactNumber=" + contactNumber + ", createdAt=" + createdAt + ", beverages=" + beverages + '}';
+        return "Supplier{" + "supplierId=" + supplierId + ", name=" + name + ", contactNumber=" + contactNumber + ", createdAt=" + createdAt + '}';
     }
 
+    
 }

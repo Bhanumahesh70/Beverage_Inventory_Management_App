@@ -32,19 +32,16 @@ public class Inventory {
     @NotNull
     private LocalDateTime lastUpdated;
 
-    /*
-    @OneToOne(mappedBy = "inventory")
-*/
-    private Beverage beverage;
 
     public Inventory() {
     }
 
-    public Inventory(Integer quantity, LocalDateTime lastUpdated, Beverage beverage) {
+    public Inventory(Integer quantity, LocalDateTime lastUpdated) {
         this.quantity = quantity;
         this.lastUpdated = lastUpdated;
-        this.beverage = beverage;
     }
+
+   
 
     @Override
     public int hashCode() {
@@ -95,17 +92,10 @@ public class Inventory {
         this.lastUpdated = lastUpdated;
     }
 
-    public Beverage getBeverage() {
-        return beverage;
-    }
-
-    public void setBeverage(Beverage beverage) {
-        this.beverage = beverage;
-    }
-
     @Override
     public String toString() {
-        return "Inventory{" + "inventoryId=" + inventoryId + ", quantity=" + quantity + ", lastUpdated=" + lastUpdated + ", beverage=" + beverage + '}';
+        return "Inventory{" + "inventoryId=" + inventoryId + ", quantity=" + quantity + ", lastUpdated=" + lastUpdated + '}';
     }
+
     
 }
