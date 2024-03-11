@@ -10,6 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
@@ -23,6 +24,7 @@ import java.util.Objects;
  * @author bhanu
  */
 @Entity
+@NamedQuery(name ="Supplier.findAll ", query = "select s from Supplier s")
 @Table(name = "SUPPLIER")
 public class Supplier extends AbstractEntity{
    
