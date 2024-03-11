@@ -9,6 +9,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Version;
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -32,6 +34,19 @@ public class AbstractEntity {
 
     private LocalDateTime modifiedTimeStamp;
 
+    @PrePersist
+    public void initializeCreatedtimestamp(){
+        
+        this.createdTimeStamp = LocalDateTime.now();
+    }
+    
+    @PreUpdate
+    public void initializeModifiedTimestamp(){
+        this.modifiedTimeStamp= LocalDateTime.now();
+    }
+    
+    
+    
     /**
      * Get the value of modifiedTimeStamp
      *
