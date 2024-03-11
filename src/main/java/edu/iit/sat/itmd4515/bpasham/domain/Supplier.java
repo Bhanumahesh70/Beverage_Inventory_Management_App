@@ -35,18 +35,15 @@ public class Supplier extends AbstractEntity{
     @NotBlank
     private String contactNumber;
 
-    @NotNull
-    private LocalDate createdAt;
-
+   
     public Supplier() {
     }
 
-    public Supplier(String name, String contactNumber, LocalDate createdAt) {
+    public Supplier(String name, String contactNumber) {
         this.name = name;
         this.contactNumber = contactNumber;
-        this.createdAt = createdAt;
+       
     }
-
    
   
     public String getName() {
@@ -65,13 +62,7 @@ public class Supplier extends AbstractEntity{
         this.contactNumber = contactNumber;
     }
 
-    public LocalDate getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDate createdAt) {
-        this.createdAt = createdAt;
-    }
+    
 
     @ManyToOne
     @JoinColumn(name="Beverage_ID")
@@ -79,7 +70,7 @@ public class Supplier extends AbstractEntity{
     
     @Override
     public String toString() {
-        return "Supplier{" + "supplierId=" + id + ", name=" + name + ", contactNumber=" + contactNumber + ", createdAt=" + createdAt + '}';
+        return "Supplier{" + "supplierId=" + id + ", name=" + name + ", contactNumber=" + contactNumber + '}';
     }
 
     

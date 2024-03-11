@@ -8,7 +8,7 @@ import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import java.util.List;
-import java.util.function.Supplier;
+import edu.iit.sat.itmd4515.bpasham.domain.Supplier;
 
 /**
  *
