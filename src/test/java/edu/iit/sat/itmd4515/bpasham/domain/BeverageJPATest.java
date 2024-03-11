@@ -142,10 +142,10 @@ public class BeverageJPATest {
             tx.commit();
 
             // Retrieve the order from the database and verify the association with the customer
-            Order savedOrder = em.find(Order.class, order.getOrderId());
+            Order savedOrder = em.find(Order.class, order.getId());
             assertNotNull(savedOrder);
             assertNotNull(savedOrder.getCustomer());
-            assertEquals(customer.getCustomerId(), savedOrder.getCustomer().getCustomerId());
+            assertEquals(customer.getId(), savedOrder.getCustomer().getId());
         } catch (Exception e) {
             if (tx.isActive()) {
                 tx.rollback();
@@ -175,7 +175,7 @@ public class BeverageJPATest {
 
         // Retrieve the beverage and inventory from the database
         Beverage savedBeverage = em.find(Beverage.class, beverage.getId());
-        Inventory savedInventory = em.find(Inventory.class, inventory.getInventoryId());
+        Inventory savedInventory = em.find(Inventory.class, inventory.getId());
 
         // Check if the association is established correctly
         assertNotNull(savedBeverage);

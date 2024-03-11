@@ -22,11 +22,8 @@ import java.util.Objects;
  */
 @Entity
 @Table(name = "INVENTORY")
-public class Inventory {
-     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long inventoryId;
-
+public class Inventory extends AbstractEntity{
+     
     @Min(value = 0, message = "Quantity must be positive")
     private Integer quantity;
 
@@ -45,42 +42,7 @@ public class Inventory {
         this.quantity = quantity;
         this.lastUpdated = lastUpdated;
     }
-
-   
-
-    @Override
-    public int hashCode() {
-        int hash = 5;
-        hash = 29 * hash + Objects.hashCode(this.inventoryId);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Inventory other = (Inventory) obj;
-        if(this.inventoryId==null || other.inventoryId==null){
-            return false;
-        }
-        return Objects.equals(this.inventoryId, other.inventoryId);
-    }
-
-    public Long getInventoryId() {
-        return inventoryId;
-    }
-
-    public void setInventoryId(Long inventoryId) {
-        this.inventoryId = inventoryId;
-    }
-
+    
     public Integer getQuantity() {
         return quantity;
     }
@@ -99,7 +61,7 @@ public class Inventory {
 
     @Override
     public String toString() {
-        return "Inventory{" + "inventoryId=" + inventoryId + ", quantity=" + quantity + ", lastUpdated=" + lastUpdated + '}';
+        return "Inventory{" + "inventoryId=" + id + ", quantity=" + quantity + ", lastUpdated=" + lastUpdated + '}';
     }
 
     public Beverage getBeverage() {

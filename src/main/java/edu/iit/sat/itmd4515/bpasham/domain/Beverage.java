@@ -30,12 +30,8 @@ import java.util.Objects;
  */
 @Entity
 @Table(name = "BEVERAGE")
-public class Beverage {
+public class Beverage extends AbstractEntity{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "BEVERAGE_ID")
-    private Long id;
 
     @NotBlank
     @Column(name = "BEVERAGE_NAME", nullable=false,unique=true)
@@ -95,30 +91,7 @@ public class Beverage {
     }
 
     
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 53 * hash + Objects.hashCode(this.id);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Beverage other = (Beverage) obj;
-        if(this.id==null || other.id==null){
-            return false;
-        }
-        return Objects.equals(this.id, other.id);
-    }
+  
 
     
     
@@ -201,18 +174,7 @@ public class Beverage {
      *
      * @return the value of id
      */
-    public Long getId() {
-        return id;
-    }
-
-    /**
-     * Set the value of id
-     *
-     * @param id new value of id
-     */
-    public void setId(Long id) {
-        this.id = id;
-    }
+    
 
     @Override
     public String toString() {

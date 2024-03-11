@@ -25,10 +25,8 @@ import java.util.Objects;
  */
 @Entity
 @Table(name = "ORDERS")
-public class Order {
-     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long orderId;
+public class Order extends AbstractEntity {
+    
 
     @NotNull
     private LocalDate orderDate;
@@ -54,45 +52,6 @@ public class Order {
         this.quantity = quantity;
     }
 
-    
-    
-     
-
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 97 * hash + Objects.hashCode(this.orderId);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Order other = (Order) obj;
-        if(this.orderId==null || other.orderId==null){
-            return false;
-        } 
-         return Objects.equals(this.orderId, other.orderId);
-        
-       
-    }
-
-    public Long getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(Long orderId) {
-        this.orderId = orderId;
-    }
-
     public LocalDate getOrderDate() {
         return orderDate;
     }
@@ -111,7 +70,7 @@ public class Order {
 
     @Override
     public String toString() {
-        return "Order{" + "orderId=" + orderId + ", orderDate=" + orderDate + ", quantity=" + quantity + '}';
+        return "Order{" + "orderId=" + id + ", orderDate=" + orderDate + ", quantity=" + quantity + '}';
     }
 
     public Customer getCustomer() {

@@ -31,12 +31,8 @@ import java.util.Objects;
  */
 @Entity
 @Table(name = "CUSTOMER")
-public class Customer {
-      @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class Customer extends AbstractEntity{
       
-      @Column(name = "customer_id")
-    private Long customerId;
 
     @NotBlank
     private String name;
@@ -58,43 +54,6 @@ public class Customer {
         this.name = name;
         this.email = email;
         this.createdAt = createdAt;
-    }
-
-    
-
-    
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 43 * hash + Objects.hashCode(this.customerId);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Customer other = (Customer) obj;
-        if(this.customerId==null || other.customerId==null){
-            return false;
-        }
-        return Objects.equals(this.customerId, other.customerId);
-    }
-
-    public Long getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(Long customerId) {
-        this.customerId = customerId;
     }
 
     public String getName() {
@@ -123,7 +82,7 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "Customer{" + "customerId=" + customerId + ", name=" + name + ", email=" + email + ", createdAt=" + createdAt + '}';
+        return "Customer{" + "customerId=" + id + ", name=" + name + ", email=" + email + ", createdAt=" + createdAt + '}';
     }
 
 

@@ -24,36 +24,8 @@ import java.util.Objects;
  */
 @Entity
 @Table(name = "SUPPLIER")
-public class Supplier {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long supplierId;
-
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 97 * hash + Objects.hashCode(this.supplierId);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Supplier other = (Supplier) obj;
-        
-        if(this.supplierId==null || other.supplierId==null){
-            return false;
-        }
-        return Objects.equals(this.supplierId, other.supplierId);
-    }
+public class Supplier extends AbstractEntity{
+   
 
     @NotBlank
     private String name;
@@ -74,16 +46,7 @@ public class Supplier {
     }
 
    
-    
-
-    public Long getSupplierId() {
-        return supplierId;
-    }
-
-    public void setSupplierId(Long supplierId) {
-        this.supplierId = supplierId;
-    }
-
+  
     public String getName() {
         return name;
     }
@@ -114,7 +77,7 @@ public class Supplier {
     
     @Override
     public String toString() {
-        return "Supplier{" + "supplierId=" + supplierId + ", name=" + name + ", contactNumber=" + contactNumber + ", createdAt=" + createdAt + '}';
+        return "Supplier{" + "supplierId=" + id + ", name=" + name + ", contactNumber=" + contactNumber + ", createdAt=" + createdAt + '}';
     }
 
     
