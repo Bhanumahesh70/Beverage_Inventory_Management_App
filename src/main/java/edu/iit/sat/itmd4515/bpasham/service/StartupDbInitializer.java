@@ -12,6 +12,7 @@ import java.lang.System.Logger;
 import edu.iit.sat.itmd4515.bpasham.domain.Supplier;
 import edu.iit.sat.itmd4515.bpasham.domain.Beverage;
 import edu.iit.sat.itmd4515.bpasham.domain.BeverageType;
+import edu.iit.sat.itmd4515.bpasham.domain.Customer;
 import java.time.LocalDate;
 
 /**
@@ -27,6 +28,7 @@ public class StartupDbInitializer {
     
     @EJB SupplierService supplierService;
     @EJB BeverageService BeverageSvc;
+    @EJB CustomerService Customersvc;
     public StartupDbInitializer(){
         
     }
@@ -40,9 +42,11 @@ public class StartupDbInitializer {
         
         Beverage b1 = new Beverage("pure", LocalDate.of(2025,2,4),"no",BeverageType.WATER);
         Beverage b2 = new Beverage("life", LocalDate.of(2030,2,4),"no",BeverageType.WATER);
-        BeverageSvc.create(b1);
-        BeverageSvc.create(b2);
+        //BeverageSvc.create(b1);
+        //BeverageSvc.create(b2);
         
+        Customer c1 = new Customer("marry","MaaryMe@gmail.com",LocalDate.of(2020,2,4));
+        Customersvc.create(c1);
     }
    
 }
