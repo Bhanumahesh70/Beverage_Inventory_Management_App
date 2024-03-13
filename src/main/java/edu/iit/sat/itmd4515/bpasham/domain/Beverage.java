@@ -13,6 +13,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -30,6 +31,7 @@ import java.util.Objects;
  */
 @Entity
 @Table(name = "BEVERAGE")
+@NamedQuery(name="Beverage.findAll",query="select b from Beverage b")
 public class Beverage extends AbstractEntity{
 
 
