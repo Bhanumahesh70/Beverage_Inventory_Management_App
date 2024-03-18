@@ -12,6 +12,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
@@ -25,6 +26,7 @@ import java.util.Objects;
  */
 @Entity
 @Table(name = "ORDERS")
+@NamedQuery(name="Order.findAll",query="select o from Order o")
 public class Order extends AbstractEntity {
     
 

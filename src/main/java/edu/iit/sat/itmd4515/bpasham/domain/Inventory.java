@@ -9,6 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Min;
@@ -22,6 +23,7 @@ import java.util.Objects;
  */
 @Entity
 @Table(name = "INVENTORY")
+@NamedQuery(name="Inventory.findAll",query="select i from Inventory i")
 public class Inventory extends AbstractEntity{
      
     @Min(value = 0, message = "Quantity must be positive")
