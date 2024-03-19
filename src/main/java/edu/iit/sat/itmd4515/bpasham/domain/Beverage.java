@@ -20,6 +20,8 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
+import jakarta.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.annotation.XmlTransient;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +32,7 @@ import java.util.Objects;
  * @author bhanu
  */
 @Entity
+@XmlRootElement
 @Table(name = "BEVERAGE")
 @NamedQuery(name="Beverage.findAll",query="select b from Beverage b")
 public class Beverage extends AbstractEntity{
@@ -53,6 +56,7 @@ public class Beverage extends AbstractEntity{
         private BeverageType type;
 
     @ManyToMany(mappedBy = "beverages")
+    @XmlTransient
     private List<Order> orders;
     
     public Beverage(String name, LocalDate expiryDate, String isNonAlcoholic, BeverageType type) {

@@ -17,6 +17,8 @@ import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
+import jakarta.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.annotation.XmlTransient;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +29,7 @@ import java.util.Objects;
  * @author bhanu
  */
 @Entity
+//@XmlRootElement
 @Table(name = "ORDERS")
 @NamedQuery(name="Order.findAll",query="select o from Order o")
 public class Order extends AbstractEntity {
@@ -44,6 +47,7 @@ public class Order extends AbstractEntity {
     
      @ManyToMany
      @JsonbTransient
+     //@XmlTransient
     @JoinTable(name = "order_beverage",
                joinColumns = @JoinColumn(name = "order_id"),
                inverseJoinColumns = @JoinColumn(name = "beverage_id"))
