@@ -36,6 +36,10 @@ public class Supplier extends AbstractEntity{
     private String contactNumber;
 
    
+    @ManyToOne
+    @JoinColumn(name="Beverage_ID")
+    private Beverage beverage;
+    
     public Supplier() {
     }
 
@@ -45,7 +49,6 @@ public class Supplier extends AbstractEntity{
        
     }
    
-  
     public String getName() {
         return name;
     }
@@ -61,12 +64,14 @@ public class Supplier extends AbstractEntity{
     public void setContactNumber(String contactNumber) {
         this.contactNumber = contactNumber;
     }
+    public Beverage getBeverage() {
+        return beverage;
+    }
 
-    
-
-    @ManyToOne
-    @JoinColumn(name="Beverage_ID")
-    private Beverage beverage;
+    public void setBeverage(Beverage beverage) {
+        this.beverage = beverage;
+    }
+   
     
     @Override
     public String toString() {

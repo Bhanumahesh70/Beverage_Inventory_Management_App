@@ -29,7 +29,7 @@ public class StartupDbInitializer {
 
     private static final java.util.logging.Logger LOG = java.util.logging.Logger.getLogger(StartupDbInitializer.class.getName());
     
-    @EJB SupplierService supplierService;
+    @EJB SupplierService supplierServic;
     @EJB BeverageService BeverageSvc;
     @EJB CustomerService CustomerSvc;
     
@@ -44,16 +44,21 @@ public class StartupDbInitializer {
     private void postConstruct(){
         LOG.info("StartupDbInitializer.postConstruct");
         
-        Supplier s1 = new Supplier("supplier one","yoyo");
-        supplierService.create(s1);
-         Customer c1 = new Customer("marry","MaaryMe@gmail.com",LocalDate.of(2020,2,4));
-        CustomerSvc.create(c1);
+       
         
-        //not working
+        
         Beverage b1 = new Beverage("pure", LocalDate.of(2025,2,4),"false",BeverageType.WATER);
         Beverage b2 = new Beverage("life", LocalDate.of(2030,2,4),"false",BeverageType.WATER);
         BeverageSvc.create(b1);
         BeverageSvc.create(b2);
+        
+         Supplier s1 = new Supplier("supplier one","yoyo");
+         supplierServic.create(s1);
+         s1.setBeverage(b1);
+        
+        
+         Customer c1 = new Customer("marry","MaaryMe@gmail.com",LocalDate.of(2020,2,4));
+        CustomerSvc.create(c1);
         
         Inventory i1 = new Inventory(2,LocalDateTime.now());
         i1.setBeverage(b1);
@@ -64,9 +69,11 @@ public class StartupDbInitializer {
         
        Order o1 = new Order(LocalDate.of(2024,2,4),5);
        o1.addBeverage(b1);
+       o1.setCustomer(c1);
        
        Order o2 = new Order(LocalDate.of(2024,2,5),10);
        o2.addBeverage(b2);
+       o2.setCustomer(c1);
       
        OrderSvc.create(o1);
        OrderSvc.create(o2);
