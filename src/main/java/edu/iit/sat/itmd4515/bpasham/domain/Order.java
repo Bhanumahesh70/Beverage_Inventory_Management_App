@@ -4,6 +4,7 @@
  */
 package edu.iit.sat.itmd4515.bpasham.domain;
 
+import jakarta.json.bind.annotation.JsonbTransient;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -42,6 +43,7 @@ public class Order extends AbstractEntity {
     private Customer customer;
     
      @ManyToMany
+     @JsonbTransient
     @JoinTable(name = "order_beverage",
                joinColumns = @JoinColumn(name = "order_id"),
                inverseJoinColumns = @JoinColumn(name = "beverage_id"))
