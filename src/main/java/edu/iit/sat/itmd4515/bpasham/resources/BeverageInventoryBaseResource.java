@@ -17,4 +17,12 @@ public class BeverageInventoryBaseResource {
                 .ok("ping Jakarta EE")
                 .build();
     }
+    
+    @GET
+    @Path("/version")
+    public Response version(){
+        return Response
+                .ok("v1")
+                .build();
+    }
 }
