@@ -19,6 +19,7 @@ public class SupplierService {
     
     @PersistenceContext(name = "itmd4515PU")
     private EntityManager em;
+    protected Class<Supplier> entityClass;
     
     public SupplierService(){
         
@@ -42,5 +43,6 @@ public class SupplierService {
     public List<Supplier> findAll(){
         
         return em.createNamedQuery("Supplier.findAll",Supplier.class).getResultList();
+         //return em.createNamedQuery(namedQueryName,entityClass).getResultList();
     }
 }

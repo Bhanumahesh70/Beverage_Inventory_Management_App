@@ -70,12 +70,6 @@ public class Beverage extends AbstractEntity{
 
     public Beverage() {
     }
-
-    
-  
-
-    
-    
     // Getter and setter Methods
 
     /**
