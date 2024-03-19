@@ -17,6 +17,7 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -92,12 +93,23 @@ public class Order extends AbstractEntity {
     }
 
     public void addBeverage(Beverage b){
-        if(!this.beverages.contains(b)){
-            this.beverages.add(b);
-        }
-         if(!b.getOrders().contains(this)){
-            b.getOrders().add(this);
-        }
+        // Check if beverages list is null, initialize it if necessary
+    if (this.beverages == null) {
+        this.beverages = new ArrayList<>();
+    }
+
+    if(!this.beverages.contains(b)){
+        this.beverages.add(b);
+    }
+
+    // Check if b's orders list is null, initialize it if necessary
+    if (b.getOrders() == null) {
+        b.setOrders(new ArrayList<>());
+    }
+
+    if(!b.getOrders().contains(this)){
+        b.getOrders().add(this);
+    }
         
     }
     public void removeBeverage(Beverage b){
