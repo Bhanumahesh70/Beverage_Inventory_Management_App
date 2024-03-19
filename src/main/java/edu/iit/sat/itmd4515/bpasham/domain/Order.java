@@ -91,7 +91,24 @@ public class Order extends AbstractEntity {
         this.beverages = beverages;
     }
 
-    
+    public void addBeverage(Beverage b){
+        if(!this.beverages.contains(b)){
+            this.beverages.add(b);
+        }
+         if(!b.getOrders().contains(this)){
+            b.getOrders().add(this);
+        }
+        
+    }
+    public void removeBeverage(Beverage b){
+        if(!this.beverages.contains(b)){
+            this.beverages.remove(b);
+        }
+         if(!b.getOrders().contains(this)){
+            b.getOrders().remove(this);
+        }
+        
+    }
 
     
 }

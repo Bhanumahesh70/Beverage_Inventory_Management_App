@@ -13,7 +13,10 @@ import edu.iit.sat.itmd4515.bpasham.domain.Supplier;
 import edu.iit.sat.itmd4515.bpasham.domain.Beverage;
 import edu.iit.sat.itmd4515.bpasham.domain.BeverageType;
 import edu.iit.sat.itmd4515.bpasham.domain.Customer;
+import edu.iit.sat.itmd4515.bpasham.domain.Inventory;
+import edu.iit.sat.itmd4515.bpasham.domain.Order;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  *
@@ -28,7 +31,11 @@ public class StartupDbInitializer {
     
     @EJB SupplierService supplierService;
     @EJB BeverageService BeverageSvc;
-    @EJB CustomerService Customersvc;
+    @EJB CustomerService CustomerSvc;
+    
+    //Owns Relations
+    @EJB InventoryService InventorySvc;
+    @EJB OrderService OrderSvc;
     public StartupDbInitializer(){
         
     }
@@ -39,14 +46,34 @@ public class StartupDbInitializer {
         
         Supplier s1 = new Supplier("supplier one","yoyo");
         supplierService.create(s1);
+         Customer c1 = new Customer("marry","MaaryMe@gmail.com",LocalDate.of(2020,2,4));
+        CustomerSvc.create(c1);
         
-        Beverage b1 = new Beverage("pure", LocalDate.of(2025,2,4),"no",BeverageType.WATER);
-        Beverage b2 = new Beverage("life", LocalDate.of(2030,2,4),"no",BeverageType.WATER);
-        //BeverageSvc.create(b1);
-        //BeverageSvc.create(b2);
+        //not working
+        Beverage b1 = new Beverage("pure", LocalDate.of(2025,2,4),"false",BeverageType.WATER);
+        Beverage b2 = new Beverage("life", LocalDate.of(2030,2,4),"false",BeverageType.WATER);
+        BeverageSvc.create(b1);
+        BeverageSvc.create(b2);
         
-        Customer c1 = new Customer("marry","MaaryMe@gmail.com",LocalDate.of(2020,2,4));
-        Customersvc.create(c1);
+        Inventory i1 = new Inventory(2,LocalDateTime.now());
+        i1.setBeverage(b1);
+        Inventory i2 = new Inventory(10,LocalDateTime.now());
+        i2.setBeverage(b2);
+       InventorySvc.create(i1);
+       InventorySvc.create(i2);
+        
+       Order o1 = new Order(LocalDate.of(2024,2,4),5);
+       o1.addBeverage(b1);
+       
+       Order o2 = new Order(LocalDate.of(2024,2,5),10);
+       o2.addBeverage(b2);
+      
+       OrderSvc.create(o1);
+       OrderSvc.create(o2);
+       
+       
+        
+        
     }
    
 }

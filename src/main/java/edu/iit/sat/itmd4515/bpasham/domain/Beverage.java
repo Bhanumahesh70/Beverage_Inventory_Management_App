@@ -68,27 +68,6 @@ public class Beverage extends AbstractEntity{
     @OneToOne(mappedBy = "beverage")
     private Inventory inventory;
 
-    /**
-     * Get the value of suppliers
-     *
-     * @return the value of suppliers
-     */
-    public List<Supplier> getSuppliers() {
-        return suppliers;
-    }
-
-    /**
-     * Set the value of suppliers
-     *
-     * @param suppliers new value of suppliers
-     */
-    public void setSuppliers(List<Supplier> suppliers) {
-        this.suppliers = suppliers;
-    }
-
-
-    
-
     public Beverage() {
     }
 
@@ -198,5 +177,21 @@ public class Beverage extends AbstractEntity{
     public void setInventory(Inventory inventory) {
         this.inventory = inventory;
     }
+/**
+     * Get the value of suppliers
+     *
+     * @return the value of suppliers
+     */
+    public List<Supplier> getSuppliers() {
+        return suppliers;
+    }
 
+    /**
+     * Set the value of suppliers
+     *
+     * @param suppliers new value of suppliers
+     */
+    public void setSuppliers(List<Supplier> suppliers) {
+        this.suppliers = suppliers;
+    }
 }
