@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="jakarta.faces.passthrough"
+      xmlns:h="jakarta.faces.html">
+    <h:head>
+        <title>Create a new Beverage JSF Form</title>
+    </h:head>
+    <h:body>
+        <h1> Create a new Beverage with JSF</h1>
+        
+        <h:form>
+            <h:panelGroup layout="block">
+                <h:outputLabel value="Beverage Name" for="beverageName"/>
+                <h:inputText id="beverageName" />     
+            </h:panelGroup>
+            
+            <div>
+                <h:outputLabel value="Expiry Date" for="expiryDate"/>
+                <h:inputText p:type="date" id="expiryDate" />
+            </div>
+            
+        </h:form>
+        
+        
+    </h:body>
+</html>
