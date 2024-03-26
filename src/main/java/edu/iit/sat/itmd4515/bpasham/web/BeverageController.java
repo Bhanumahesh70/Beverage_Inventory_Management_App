@@ -5,6 +5,7 @@
 package edu.iit.sat.itmd4515.bpasham.web;
 
 import edu.iit.sat.itmd4515.bpasham.domain.Beverage;
+import edu.iit.sat.itmd4515.bpasham.domain.BeverageType;
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Named;
@@ -38,6 +39,10 @@ public class BeverageController {
          return "confirmation.xhtml";
     }
     
+    //helper methods
+    public BeverageType[] getAllBeverageTypesForForm(){
+        return BeverageType.values();                         
+    }
        
 
     /**

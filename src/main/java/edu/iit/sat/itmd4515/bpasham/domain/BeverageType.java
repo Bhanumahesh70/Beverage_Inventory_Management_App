@@ -9,5 +9,21 @@ package edu.iit.sat.itmd4515.bpasham.domain;
  * @author bhanu
  */
 public enum BeverageType {
-    SODA,WATER,WINE,LIQOUR,JUICE
+    SODA("Cool Soda"),
+    WATER("Chill Water"),
+    WINE("Old Wine"),
+    LIQOUR("Hard Liqour"),
+    JUICE("Tasty Juice");
+    
+    private String label;
+
+    private BeverageType(String label) {
+        this.label=label;
+    }
+    
+    
+    
+    public String getLabel(){
+        return label;
+    }
 }

@@ -37,11 +37,12 @@
                 <h:panelGroup>
                     <h:outputLabel value="Beverage Type" for="beverageType" />
                     <h:selectOneMenu id="beverageType" value="#{beverageController.beverage.type}">
-                        <f:selectItem itemValue="SODA" itemDescription="Soda" />
-                        <f:selectItem itemValue="WATER" itemDescription="Water" />
-                        <f:selectItem itemValue="WINE" itemDescription="Wine" />
-                        <f:selectItem itemValue="LIQOUR" itemDescription="Liqour" />
-                        <f:selectItem itemValue="JUICE" itemDescription="Juice" />
+        
+                        <f:selectItems var="beverageType" 
+                                       value="#{beverageController.allBeverageTypesForForm}"
+                                       itemLabel="#{beverageType.label}"
+                                       itemValue="#{beverageType}" />
+                                       
                     </h:selectOneMenu>
                 </h:panelGroup>
             </p>
