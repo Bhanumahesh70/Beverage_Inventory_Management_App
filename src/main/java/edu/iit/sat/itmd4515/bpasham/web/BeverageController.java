@@ -46,7 +46,7 @@ public class BeverageController {
      public String saveBeverage(){
         LOG.info("saveBeverage has been invoked with model: " + this.beverage.toString());
         beverageSvc.create(beverage);
-        LOG.info("saveBeverage after callin service layer: " + this.beverage.toString());
+        LOG.info("saveBeverage after calling service layer: " + this.beverage.toString());
          return "confirmation.xhtml";
     }
     
