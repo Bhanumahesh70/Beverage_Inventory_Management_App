@@ -14,7 +14,8 @@
             <p>
                 <h:panelGroup layout="block">
                     <h:outputLabel value="Beverage Name" for="beverageName" />
-                    <h:inputText id="beverageName" value="#{beverageController.beverage.name}" />     
+                    <h:inputText id="beverageName" value="#{beverageController.beverage.name}" />   
+                    <h:message for="beverageName" errorStyle="color:red" infoStyle="color:green" />
                 </h:panelGroup>
             </p>
             
@@ -24,13 +25,15 @@
                     <h:inputText p:type="date" id="expiryDate" value="#{beverageController.beverage.expiryDate}" > 
                         <f:convertDateTime type="localDate" pattern="yyyy-MM-dd" />
                     </h:inputText>
+                    <h:message for="expiryDate" errorStyle="color:red" infoStyle="color:green"/>
                 </h:panelGroup>
             </p>
             
             <p>
                 <h:panelGroup>
-                    <h:outputLabel value="Is Alcoholic(True/False" for="isAlcoholic" />
+                    <h:outputLabel value="Is Alcoholic(true/false" for="isAlcoholic" />
                     <h:inputText id="isAlcoholic" value="#{beverageController.beverage.isNonAlcoholic}" /> 
+                    <h:message for="isAlcoholic" errorStyle="color:red" infoStyle="color:green" />
                 </h:panelGroup>
             </p>
             <p>
@@ -47,7 +50,7 @@
                 </h:panelGroup>
             </p>
             
-            <h:commandButton value="Create a New Beverage" action="#{beverageController.demoAction()}" />
+            <h:commandButton value="Create a New Beverage" action="#{beverageController.saveBeverage()}" />
 
         </h:form>
 
