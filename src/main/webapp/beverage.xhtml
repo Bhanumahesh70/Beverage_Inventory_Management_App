@@ -2,26 +2,54 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:p="jakarta.faces.passthrough"
-      xmlns:h="jakarta.faces.html">
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core">
     <h:head>
         <title>Create a new Beverage JSF Form</title>
     </h:head>
     <h:body>
         <h1> Create a new Beverage with JSF</h1>
-        
+
         <h:form>
-            <h:panelGroup layout="block">
-                <h:outputLabel value="Beverage Name" for="beverageName"/>
-                <h:inputText id="beverageName" />     
-            </h:panelGroup>
+            <p>
+                <h:panelGroup layout="block">
+                    <h:outputLabel value="Beverage Name" for="beverageName" />
+                    <h:inputText id="beverageName" value="#{beverageController.beverage.name}" />     
+                </h:panelGroup>
+            </p>
             
-            <div>
-                <h:outputLabel value="Expiry Date" for="expiryDate"/>
-                <h:inputText p:type="date" id="expiryDate" />
-            </div>
+            <p>
+                <h:panelGroup>
+                    <h:outputLabel value="Expiry Date" for="expiryDate" />
+                    <h:inputText p:type="date" id="expiryDate" value="#{beverageController.beverage.expiryDate}" > 
+                        <f:convertDateTime type="localDate" pattern="yyyy-MM-dd" />
+                    </h:inputText>
+                </h:panelGroup>
+            </p>
             
+            <p>
+                <h:panelGroup>
+                    <h:outputLabel value="Is Alcoholic(True/False" for="isAlcoholic" />
+                    <h:inputText id="isAlcoholic" value="#{beverageController.beverage.isNonAlcoholic}" /> 
+                </h:panelGroup>
+            </p>
+            <p>
+                <h:panelGroup>
+                    <h:outputLabel value="Beverage Type" for="beverageType" />
+                    <h:selectOneMenu id="beverageType" value="#{beverageController.beverage.type}">
+                        <f:selectItem itemValue="SODA" itemDescription="Soda" />
+                        <f:selectItem itemValue="WATER" itemDescription="Water" />
+                        <f:selectItem itemValue="WINE" itemDescription="Wine" />
+                        <f:selectItem itemValue="LIQOUR" itemDescription="Liqour" />
+                        <f:selectItem itemValue="JUICE" itemDescription="Juice" />
+                    </h:selectOneMenu>
+                </h:panelGroup>
+            </p>
+            
+            <h:commandButton value="Create a New Beverage" action="#{beverageController.demoAction()}" />
+
         </h:form>
-        
-        
+
+
     </h:body>
 </html>
