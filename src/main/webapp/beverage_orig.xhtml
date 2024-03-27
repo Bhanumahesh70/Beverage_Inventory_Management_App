@@ -1,18 +1,17 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="./WEB-INF/templates/demoTemplate.xhtml"
-                xmlns:p="jakarta.faces.passthrough"
-                xmlns:h="jakarta.faces.html"
-                xmlns:f="jakarta.faces.core">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="jakarta.faces.passthrough"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core">
+    <h:head>
+        <title>Create a new Beverage JSF Form</title>
+       
+    </h:head>
+    <h:body>
+        <h1> Create a new Beverage with JSF</h1>
 
-    <ui:define name="title">
-        Create a New Beverage
-    </ui:define>
-
-    <ui:define name="content">
-         <h:form>
+        <h:form>
             <p>
                 <h:panelGroup layout="block">
                     <h:outputLabel value="Beverage Name" for="beverageName" />
@@ -55,6 +54,7 @@
             <h:commandButton value="Create a New Beverage" action="#{beverageController.saveBeverage()}" />
 
         </h:form>
-    </ui:define>
 
-</ui:composition>
+        
+    </h:body>
+</html>

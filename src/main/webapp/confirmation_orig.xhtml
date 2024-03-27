@@ -1,15 +1,12 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="./WEB-INF/templates/demoTemplate.xhtml">
-
-    <ui:define name="title">
-       New Beverage Confirmation Page
-    </ui:define>
-
-    <ui:define name="content">
-        <h2>Confirmed!!</h2>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html">
+    <h:head>
+        <title>Confirmation Page</title>
+    </h:head>
+    <h:body>
+        <h1>Confirmed!!</h1>
         
         <ul>
             <li>#{beverageController.beverage.name}</li>
@@ -20,6 +17,5 @@
             <li>#{beverageController.beverage.modifiedTimeStamp}</li>
             
         </ul>
-    </ui:define>
-
-</ui:composition>
+    </h:body>
+</html>
