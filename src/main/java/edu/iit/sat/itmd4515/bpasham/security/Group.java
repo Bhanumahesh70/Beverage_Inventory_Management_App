@@ -8,6 +8,7 @@ import edu.iit.sat.itmd4515.bpasham.security.User;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,13 +18,23 @@ import java.util.List;
  * @author bhanu
  */
 @Entity
-@Table(name = "SEC_TABLE")
+@Table(name = "SEC_GROUP")
+@NamedQuery(name="Group.findAll", query="select g from Group g")
 public class Group {
 
     @Id
     private String groupName;
 
     private String groupDescription;
+
+    public Group() {
+    }
+
+    public Group(String groupName, String groupDescription) {
+        this.groupName = groupName;
+        this.groupDescription = groupDescription;
+    }
+    
     
     @ManyToMany(mappedBy = "groups")
     private List<User> users= new ArrayList<>();

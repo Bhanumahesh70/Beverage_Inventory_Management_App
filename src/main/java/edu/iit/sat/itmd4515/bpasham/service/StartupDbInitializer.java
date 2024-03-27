@@ -4,6 +4,10 @@
  */
 package edu.iit.sat.itmd4515.bpasham.service;
 
+import edu.iit.sat.itmd4515.bpasham.security.Group;
+import edu.iit.sat.itmd4515.bpasham.security.User;
+import edu.iit.sat.itmd4515.bpasham.security.GroupService;
+import edu.iit.sat.itmd4515.bpasham.security.UserService;
 import jakarta.annotation.PostConstruct;
 import jakarta.ejb.EJB;
 import jakarta.ejb.Singleton;
@@ -42,6 +46,12 @@ public class StartupDbInitializer {
     @EJB
     OrderService OrderSvc;
 
+    //Security realm srvices
+    @EJB
+    UserService userSvc;
+    @EJB
+    GroupService groupSvc;
+
     public StartupDbInitializer() {
 
     }
@@ -49,6 +59,40 @@ public class StartupDbInitializer {
     @PostConstruct
     private void postConstruct() {
         LOG.info("StartupDbInitializer.postConstruct");
+
+        //Security Realm intialization first
+        Group adminGroup = new Group("ADMIN_GROUP", "Group for administartive users");
+        Group inventoryManagerGroup = new Group("INVENTORYMANAGER_GROUP", "Group for inventory managers");
+        Group salesManagerGroup = new Group("SALESMANAGER_GROUP", "Group for sales managers");
+        groupSvc.create(adminGroup);
+        groupSvc.create(inventoryManagerGroup);
+        groupSvc.create(salesManagerGroup);
+
+        User admin1 = new User("admin1", "admin1");
+        admin1.addGroup(adminGroup);
+        userSvc.create(admin1);
+
+        User admin2 = new User("admin2", "admin2");
+        admin2.addGroup(adminGroup);
+        userSvc.create(admin2);
+
+        User invManager1 = new User("inventoryManager1", "inventoryManager1");
+        invManager1.addGroup(inventoryManagerGroup);
+        invManager1.addGroup(adminGroup);
+        userSvc.create(invManager1);
+
+        User invManager2 = new User("inventoryManager2", "inventoryManager2");
+        invManager2.addGroup(inventoryManagerGroup);
+        userSvc.create(invManager2);
+        
+        User salesManager1 = new User("salesManager1", "salesManager1");
+        salesManager1.addGroup(salesManagerGroup);
+        userSvc.create(salesManager1);
+
+        User salesManager2 = new User("salesManager2", "salesManager2");
+        salesManager2.addGroup(salesManagerGroup);
+        userSvc.create(salesManager2);
+        // End Security Realm intialization
 
         Beverage b1 = new Beverage("pure", LocalDate.of(2025, 2, 4), "false", BeverageType.WATER);
         Beverage b2 = new Beverage("life", LocalDate.of(2030, 2, 4), "false", BeverageType.WATER);
@@ -103,13 +147,12 @@ public class StartupDbInitializer {
                 LOG.info("\tNo suppliers found for Beverage: " + b.getId());
             }
         }
-        */
-        
+         */
         //order relationships
         for (Order o : OrderSvc.findAll()) {
-             LOG.info("=====================================================================\n");
+            LOG.info("=====================================================================\n");
             LOG.info(o.toString());
-            
+
             LOG.info("\t============= Unidirectional M:1 with Customer =============== ");
             Customer customer = o.getCustomer();
             if (customer != null) {
@@ -118,12 +161,12 @@ public class StartupDbInitializer {
                 LOG.info("\tCustomer is null for Beverage: " + o.getId());
             }
         }
-        
+
         //Inventory relationships
         for (Inventory i : InventorySvc.findAll()) {
-             LOG.info("=====================================================================\n");
+            LOG.info("=====================================================================\n");
             LOG.info(i.toString());
-            
+
             LOG.info("\t============= Unidirectional 1:1 with Beverage =============== ");
             Beverage beverage = i.getBeverage();
             if (beverage != null) {
@@ -132,7 +175,7 @@ public class StartupDbInitializer {
                 LOG.info("\tBeverage is null for Inventory: " + i.getId());
             }
         }
-        
+
         /*
         //Supplier relationships
         for (Supplier s : supplierServic.findAll()) {
@@ -147,7 +190,7 @@ public class StartupDbInitializer {
                 LOG.info("\tBeverage is null for Supplier: " + s.getId());
             }
         }
-*/
+         */
     }
 
 }

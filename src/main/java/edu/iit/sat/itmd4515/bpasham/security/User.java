@@ -10,6 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,12 +21,22 @@ import java.util.List;
  */
 @Entity
 @Table(name = "SEC_USER")
+@NamedQuery(name="User.findAll", query="select u from User u")
 public class User {
 
     @Id
     private String userName;
 
     private String password;
+
+    public User() {
+    }
+
+    public User(String userName, String password) {
+        this.userName = userName;
+        this.password = password;
+    }
+    
     
     @ManyToMany
     @JoinTable(name="SEC_USER_GROUPS",
