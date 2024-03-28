@@ -4,6 +4,7 @@
  */
 package edu.iit.sat.itmd4515.bpasham.domain;
 
+import edu.iit.sat.itmd4515.bpasham.security.User;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -16,6 +17,7 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.criteria.Order;
 import jakarta.validation.constraints.Email;
@@ -44,6 +46,13 @@ public class Customer extends AbstractEntity{
 
     @NotNull
     private LocalDate createdAt;
+    
+    @OneToOne
+    @JoinColumn(name="USERNAME")
+    private User user;
+
+    
+
 
     
 //   @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -81,7 +90,26 @@ public class Customer extends AbstractEntity{
     public void setCreatedAt(LocalDate createdAt) {
         this.createdAt = createdAt;
     }
-
+/**
+     * Get the value of user
+     *
+     * @return the value of user
+     */
+    
+    public User getUser() {
+        return user;
+    }
+ 
+    /**
+     * Set the value of user
+     *
+     * @param user new value of user
+     */
+    
+    public void setUser(User user) {
+        this.user = user;
+    }
+   
     @Override
     public String toString() {
         return "Customer{" + "customerId=" + id + ", name=" + name + ", email=" + email + ", createdAt=" + createdAt + '}';

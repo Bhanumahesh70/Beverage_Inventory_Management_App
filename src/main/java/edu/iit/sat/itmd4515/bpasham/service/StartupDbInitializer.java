@@ -64,9 +64,12 @@ public class StartupDbInitializer {
         Group adminGroup = new Group("ADMIN_GROUP", "Group for administartive users");
         Group inventoryManagerGroup = new Group("INVENTORYMANAGER_GROUP", "Group for inventory managers");
         Group salesManagerGroup = new Group("SALESMANAGER_GROUP", "Group for sales managers");
+        Group customerGroup = new Group("CUSTOMER_GROUP","Group for Customers");
         groupSvc.create(adminGroup);
         groupSvc.create(inventoryManagerGroup);
         groupSvc.create(salesManagerGroup);
+        groupSvc.create(customerGroup);
+        
 
         User admin1 = new User("admin1", "admin1");
         admin1.addGroup(adminGroup);
@@ -92,19 +95,40 @@ public class StartupDbInitializer {
         User salesManager2 = new User("salesManager2", "salesManager2");
         salesManager2.addGroup(salesManagerGroup);
         userSvc.create(salesManager2);
+        
+         User customer1 = new User("customer1", "customer1");
+        invManager1.addGroup(customerGroup);
+        userSvc.create(customer1);
+
+        User customer2 = new User("customer2", "customer2");
+        invManager2.addGroup(customerGroup);
+        userSvc.create(customer2);
         // End Security Realm intialization
 
+        
+        
         Beverage b1 = new Beverage("pure", LocalDate.of(2025, 2, 4), "false", BeverageType.WATER);
         Beverage b2 = new Beverage("life", LocalDate.of(2030, 2, 4), "false", BeverageType.WATER);
         BeverageSvc.create(b1);
         BeverageSvc.create(b2);
 
         Supplier s1 = new Supplier("supplier one", "yoyo");
+        s1.setUser(salesManager1);
         supplierServic.create(s1);
         s1.setBeverage(b1);
+        
+          Supplier s2 = new Supplier("supplier Two", "yesss");
+        s2.setUser(salesManager2);
+        supplierServic.create(s2);
+        s2.setBeverage(b2);
 
         Customer c1 = new Customer("marry", "MaaryMe@gmail.com", LocalDate.of(2020, 2, 4));
+        c1.setUser(customer1);
         CustomerSvc.create(c1);
+        
+        Customer c2 = new Customer("John", "Johnlly@gmail.com", LocalDate.of(2022, 6, 4));
+        c2.setUser(customer2);
+        CustomerSvc.create(c2);
 
         Inventory i1 = new Inventory(2, LocalDateTime.now());
         i1.setBeverage(b1);
