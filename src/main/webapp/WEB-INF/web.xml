@@ -20,9 +20,50 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>faces/index.xhtml</welcome-file>
-        <welcome-file>
-            index.html
-        </welcome-file>
+        <welcome-file>welcome.xhtml</welcome-file>   
     </welcome-file-list>
+    
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Admin App Content</web-resource-name>
+            <url-pattern>/admin/*</url-pattern>
+            <url-pattern>/welcome.xhtml</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>ADMIN_ROLE</role-name>
+        </auth-constraint>
+    </security-constraint>
+    
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Inventory Manager App Content</web-resource-name>
+            <url-pattern>/inventorymanager/*</url-pattern>
+            <url-pattern>/welcome.xhtml</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>INVENTORY_MANAGER_ROLE</role-name>
+        </auth-constraint>
+    </security-constraint>
+    
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Customer App Content</web-resource-name>
+            <url-pattern>/customer/*</url-pattern>
+            <url-pattern>/welcome.xhtml</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>CUSTOMER_ROLE</role-name>
+        </auth-constraint>
+    </security-constraint>
+    
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Supplier App Content</web-resource-name>
+            <url-pattern>/supplier/*</url-pattern>
+            <url-pattern>/welcome.xhtml</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>SUPPLIER_ROLE</role-name>
+        </auth-constraint>
+    </security-constraint>
 </web-app>
