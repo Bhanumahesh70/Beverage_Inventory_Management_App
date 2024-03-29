@@ -12,6 +12,7 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,8 +26,10 @@ import java.util.List;
 public class User {
 
     @Id
+    @NotBlank(message="Please enter a User Name")
     private String userName;
 
+    @NotBlank(message="Please enter a Password")
     private String password;
 
     public User() {

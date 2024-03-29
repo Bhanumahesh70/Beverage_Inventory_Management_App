@@ -15,19 +15,19 @@
             <p>
                 <h:panelGroup layout="block">
                     <h:outputLabel value="User Name" for="userName" />
-                    <h:inputText id="userName" value="#{}" />   
+                    <h:inputText id="userName" value="#{loginController.user.userName}" />   
                     <h:message for="userName" errorStyle="color:red" infoStyle="color:green" />
                 </h:panelGroup>
             </p>
              <p>
                 <h:panelGroup layout="block">
                     <h:outputLabel value="Password" for="password" />
-                    <h:inputSecret id="password" value="#{}" />   
+                    <h:inputSecret id="password" value="#{loginController.user.password}" />   
                     <h:message for="password" errorStyle="color:red" infoStyle="color:green" />
                 </h:panelGroup>
             </p>
              <p>
-                 <h:commandButton value="Login" action="#{}" />
+                 <h:commandButton value="Login" action="#{loginController.doLogin()}" />
              </p>
           </h:form>
     </ui:define>
