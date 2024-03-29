@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="./WEB-INF/templates/publicTemplate.xhtml">
+                template="./WEB-INF/templates/publicTemplate.xhtml"
+                xmlns:h="jakarta.faces.html">
 
     <ui:define name="title">
         Login Page
@@ -10,6 +11,25 @@
 
     <ui:define name="content">
         Login form goes here
+         <h:form>
+            <p>
+                <h:panelGroup layout="block">
+                    <h:outputLabel value="User Name" for="userName" />
+                    <h:inputText id="userName" value="#{}" />   
+                    <h:message for="userName" errorStyle="color:red" infoStyle="color:green" />
+                </h:panelGroup>
+            </p>
+             <p>
+                <h:panelGroup layout="block">
+                    <h:outputLabel value="Password" for="password" />
+                    <h:inputSecret id="password" value="#{}" />   
+                    <h:message for="password" errorStyle="color:red" infoStyle="color:green" />
+                </h:panelGroup>
+            </p>
+             <p>
+                 <h:commandButton value="Login" action="#{}" />
+             </p>
+          </h:form>
     </ui:define>
 
 </ui:composition>
