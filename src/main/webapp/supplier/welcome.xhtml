@@ -11,10 +11,13 @@
 
     <ui:define name="content">
         Welcome #{loginController.authenticatedUser}!! to the Supplier section of the Beverage Inventory Application
-        <ul>
+        
+        <h:form>
+            <ul>
             <li><h:link outcome="/welcome.xhtml">Home</h:link> </li>
-           
+            <li><h:commandLink action="#{loginController.doLogout()}" value="Logout"/></li>
         </ul>
+        </h:form>
     </ui:define>
 
 </ui:composition>

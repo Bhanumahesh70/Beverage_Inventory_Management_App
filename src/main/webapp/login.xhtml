@@ -9,27 +9,42 @@
         Login Page
     </ui:define>
 
-    <ui:define name="content">
-        Login form goes here
-         <h:form>
-            <p>
-                <h:panelGroup layout="block">
-                    <h:outputLabel value="User Name" for="userName" />
-                    <h:inputText id="userName" value="#{loginController.user.userName}" />   
-                    <h:message for="userName" errorStyle="color:red" infoStyle="color:green" />
-                </h:panelGroup>
-            </p>
-             <p>
-                <h:panelGroup layout="block">
-                    <h:outputLabel value="Password" for="password" />
-                    <h:inputSecret id="password" value="#{loginController.user.password}" />   
-                    <h:message for="password" errorStyle="color:red" infoStyle="color:green" />
-                </h:panelGroup>
-            </p>
-             <p>
-                 <h:commandButton value="Login" action="#{loginController.doLogin()}" />
-             </p>
-          </h:form>
-    </ui:define>
 
+    <ui:define name="content">
+        <h:panelGroup class="container mt-5">
+            <h:panelGroup class="row d-flex justify-content-center">
+                <h:panelGroup>
+                  Login form goes here  
+                </h:panelGroup>
+                
+                <h:panelGroup class="col-md-6">
+                    <h:form class="card px-5 py-5" id="form1">
+                        <p>
+                            <h:panelGroup class="forms-inputs mb-4" layout="block">
+                                <h:outputLabel value="User Name " for="userName" />
+                                <h:inputText id="userName" value="#{loginController.user.userName}" />   
+                                <h:message for="userName" errorStyle="color:red" infoStyle="color:green" />
+                            </h:panelGroup>
+                        </p>
+                        <p>
+                            <h:panelGroup class="forms-inputs mb-4" layout="block">
+                                <h:outputLabel value="Password " for="password" />
+                                <h:inputSecret id="password" value="#{loginController.user.password}" />   
+                                <h:message for="password" errorStyle="color:red" infoStyle="color:green" />
+                            </h:panelGroup>
+                        </p>
+                        <p>
+                            <h:panelGroup class="mb-3">
+                                <h:commandButton class="btn btn-dark w-100" value="Login" action="#{loginController.doLogin()}" />
+                            </h:panelGroup>
+
+                        </p>
+                    </h:form>
+                </h:panelGroup>
+
+            </h:panelGroup>
+
+        </h:panelGroup>
+
+    </ui:define>
 </ui:composition>
