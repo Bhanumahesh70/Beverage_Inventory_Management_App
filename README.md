@@ -47,7 +47,7 @@ Lab3 lab4 lab5 lab 8 readme file
 
 **User names and Passwords**
 
-UserName: admin1 
+UserName: admin1
 Password: admin1 
 
 
@@ -81,12 +81,19 @@ Password: salesManager2
 **Users and access roles**
 
 admin1 has access to ADMIN_GROUP
+
 admin2 has access to ADMIN_GROUP
+
 inventoryManager1 has access to ADMIN_GROUP, CUSTOMER_GROUP, INVENTORYMANAGER_GROUP
+
 inventoryManager2 has access to CUSTOMER_GROUP,  INVENTORYMANAGER_GROUP
+
 salesManager1 has access to  SALESMANAGER_GROUP
+
 salesManager2 has access to  SALESMANAGER_GROUP
+
 customer1 has access to CUSTOMER_GROUP
+
 customer2 has access to CUSTOMER_GROUP
 
  
