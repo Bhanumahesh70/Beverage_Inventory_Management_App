@@ -6,6 +6,7 @@ package edu.iit.sat.itmd4515.bpasham.security;
 
 import edu.iit.sat.itmd4515.bpasham.security.Group;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
@@ -22,6 +23,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "SEC_USER")
+@EntityListeners(UserPasswordHash.class)
 @NamedQuery(name="User.findAll", query="select u from User u")
 public class User {
 
@@ -44,7 +46,7 @@ public class User {
     @ManyToMany
     @JoinTable(name="SEC_USER_GROUPS",
             joinColumns = @JoinColumn(name="USERNAME"),
-            inverseJoinColumns = @JoinColumn(name="GROPUNAME"))
+            inverseJoinColumns = @JoinColumn(name="GROUPNAME"))
        private List<Group> groups = new ArrayList<>();
     
     public void addGroup(Group g ){

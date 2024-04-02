@@ -18,7 +18,6 @@ import jakarta.security.enterprise.credential.Password;
 import jakarta.security.enterprise.credential.UsernamePasswordCredential;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import static jakarta.ws.rs.core.Response.status;
 import java.util.logging.Logger;
 
 /**
@@ -31,8 +30,11 @@ public class LoginController {
 
     private static final Logger LOG = Logger.getLogger(LoginController.class.getName());
 
-    @Inject SecurityContext securityContext;
-    @Inject FacesContext facesContext;
+    @Inject
+    SecurityContext securityContext;
+    @Inject
+    FacesContext facesContext;
+    
     public LoginController() {
     }
     
