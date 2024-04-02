@@ -51,6 +51,12 @@ public class LoginController {
         user = new User();
     }
     
+    //helper methods
+    public String getAuthenticatedUser(){
+        
+        return securityContext.getCallerPrincipal().getName();
+    }
+    
     //action methods
     public String doLogin(){
         LOG.info("LoginController.doLogin");
