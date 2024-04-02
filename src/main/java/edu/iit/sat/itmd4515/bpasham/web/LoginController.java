@@ -16,8 +16,10 @@ import jakarta.security.enterprise.authentication.mechanism.http.AuthenticationP
 import jakarta.security.enterprise.credential.Credential;
 import jakarta.security.enterprise.credential.Password;
 import jakarta.security.enterprise.credential.UsernamePasswordCredential;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -90,7 +92,15 @@ public class LoginController {
     
     public String doLogout(){
         LOG.info("LoginController.doLogout");
-        return "/login.xhtml";
+        try {
+            
+            HttpServletRequest request = (HttpServletRequest)facesContext.getExternalContext().getRequest();
+            request.logout();
+           
+        } catch (ServletException ex) {
+            LOG.log(Level.SEVERE, null, ex);
+        }
+         return "/login.xhtml?faces-redirect=true";
     }
     
     /**
