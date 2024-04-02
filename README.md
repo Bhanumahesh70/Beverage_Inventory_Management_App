@@ -46,26 +46,34 @@ Lab3 lab4 lab5 lab 8 readme file
 
 
 **User names and Passwords**
+
 UserName: admin1 
 Password: admin1 
+
 
 UserName: admin2
 Password: admin2
 
+
 UserName: customer1
 Password: customer1
+
 
 UserName: customer2
 Password: customer2
 
+
 UserName: inventoryManager1
 Password: inventoryManager1
+
 
 UserName: inventoryManager2
 Password: inventoryManager2
 
+
 UserName: salesManager1
 Password: salesManager1
+
 
 UserName: salesManager2
 Password: salesManager2
