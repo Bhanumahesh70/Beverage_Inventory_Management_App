@@ -23,6 +23,10 @@
         <welcome-file>login.xhtml</welcome-file>   
     </welcome-file-list>
     
+    <error-page>
+        <location>/errors/error.xhtml/</location>
+    </error-page>
+    
     <security-constraint>
         <web-resource-collection>
             <web-resource-name>Admin App Content</web-resource-name>
