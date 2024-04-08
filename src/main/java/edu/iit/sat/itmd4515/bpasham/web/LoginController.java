@@ -75,11 +75,11 @@ public class LoginController {
               
            case SEND_FAILURE:
                LOG.info("FAILURE!" + status.toString());
-               return "/error.xhtml";
+               return "/loginError.xhtml";
             
            case NOT_DONE:
                LOG.info("NOT DONE!" + status.toString());
-               return "/error.xhtml";
+               return "/loginError.xhtml";
                
            case SEND_CONTINUE:
                LOG.info(status.toString());

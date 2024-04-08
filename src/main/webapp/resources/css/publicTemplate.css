@@ -1,0 +1,50 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 08-Apr-2024, 5:45:04 pm
+    Author     : bhanu
+*/
+
+body{
+    background: #000
+}
+.card{
+    border: none;
+    height: 320px
+}
+
+.title{
+    color:white;
+}
+.forms-inputs{
+    position: relative
+}
+.forms-inputs span{
+    position: absolute;
+    top:-18px;
+    left: 10px;
+    background-color: #fff;
+    padding: 5px 10px;
+    font-size: 15px
+}
+.forms-inputs input{
+    height: 50px;
+    border: 2px solid #eee
+}
+.forms-inputs input:focus{
+    box-shadow: none;
+    outline: none;
+    border: 2px solid #000
+}
+.btn{
+    height: 50px
+}
+.success-data{
+    display: flex;
+    flex-direction: column
+}
+.bxs-badge-check{
+    font-size: 90px
+}
