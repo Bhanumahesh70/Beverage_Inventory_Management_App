@@ -21,7 +21,7 @@ import jakarta.security.enterprise.authentication.mechanism.http.LoginToContinue
         
         loginToContinue = @LoginToContinue(
         loginPage="/login.xhtml",
-        errorPage="//error.xhtml")
+        errorPage="/loginError.xhtml")
 )
 public class AppSecurityConfig {
     
