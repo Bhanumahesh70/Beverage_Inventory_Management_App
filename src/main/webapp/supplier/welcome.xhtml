@@ -3,7 +3,8 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 template="../WEB-INF/templates/authenticatedTemplate.xhtml"
-                xmlns:h="jakarta.faces.html">
+                xmlns:h="jakarta.faces.html"
+                xmlns:f="jakarta.faces.core">
 
     <ui:define name="title">
        Supplier
@@ -11,13 +12,54 @@
 
     <ui:define name="content">
         Welcome #{loginController.authenticatedUser}!! to the Supplier section of the Beverage Inventory Application
+       
+        <h:dataTable 
+            styleClass="table table-striped table-hover"
+            value="#{supplierWelcomeController.supplier.beverage}" var="beverage" >
+            <h:column>
+                <f:facet name="header">Beverage Id</f:facet>
+                <h:outputText value="#{beverage.id}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">Beverage Name</f:facet>
+                <h:outputText value="#{beverage.name}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">Beverage Type</f:facet>
+                <h:outputText value="#{beverage.type.label}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">Beverage ExpiryDate</f:facet>
+                <h:outputText value="#{beverage.expiryDate}" >
+                    <f:convertDateTime type="localDate" dateStyle="full" />
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Beverage isNonAlcoholic</f:facet>
+                <h:outputText value="#{beverage.isNonAlcoholic}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header"># Orders</f:facet>
+                <h:outputText value="#{beverage.orders.size()}" />
+            </h:column>
+            
+            <!-- comment
+            <h:column>
+                <f:facet name="header"># Suppliers</f:facet>
+                <h:outputText value="# {beverage.suppliers.size()}" />
+            </h:column>
+            -->
+            <!-- comment
+            <h:column>
+                <f:facet name="header"># Suppliers name</f:facet>
+                <ui:repeat value="{beverage.suppliers}" var="Supplier">
+                    <h:outputText value="{supplier.name}" />
+                    
+                </ui:repeat>
+            </h:column>
+             -->
+        </h:dataTable>
         
-        <h:form>
-            <ul>
-            <li><h:link outcome="/welcome.xhtml">Home</h:link> </li>
-            <li><h:commandLink action="#{loginController.doLogout()}" value="Logout"/></li>
-        </ul>
-        </h:form>
     </ui:define>
 
 </ui:composition>

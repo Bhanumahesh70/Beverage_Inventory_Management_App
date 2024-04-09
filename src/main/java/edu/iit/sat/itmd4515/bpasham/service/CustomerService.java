@@ -6,6 +6,7 @@ package edu.iit.sat.itmd4515.bpasham.service;
 
 import edu.iit.sat.itmd4515.bpasham.domain.Beverage;
 import edu.iit.sat.itmd4515.bpasham.domain.Customer;
+import edu.iit.sat.itmd4515.bpasham.domain.Supplier;
 import jakarta.ejb.Stateless;
 import java.util.List;
 
@@ -22,5 +23,10 @@ public class CustomerService extends AbstractService<Customer>{
     
     public List<Customer> findAll(){
         return super.findAll("Customer.findAll");
+    }
+    
+    public Customer findByUsername(String username){
+        
+        return em.createNamedQuery("Customer.findByUsername",Customer.class).setParameter("uname", username).getSingleResult();
     }
 }

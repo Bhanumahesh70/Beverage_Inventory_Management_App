@@ -35,6 +35,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "CUSTOMER")
 @NamedQuery(name="Customer.findAll",query="select c from Customer c")
+@NamedQuery(name = "Customer.findByUsername", query = "select c from Customer c where c.user.userName = :uname")
 public class Customer extends AbstractEntity{
       
 

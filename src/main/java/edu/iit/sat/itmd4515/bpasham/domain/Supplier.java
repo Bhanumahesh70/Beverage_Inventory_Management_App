@@ -27,6 +27,7 @@ import java.util.Objects;
  */
 @Entity
 @NamedQuery(name = "Supplier.findAll ", query = "select s from Supplier s")
+@NamedQuery(name = "Supplier.findByUsername", query = "select s from Supplier s where s.user.userName = :uname")
 @Table(name = "SUPPLIER")
 public class Supplier extends AbstractEntity {
 
@@ -42,7 +43,7 @@ public class Supplier extends AbstractEntity {
 
     @ManyToOne
     @JoinColumn(name = "Beverage_ID")
-    private Beverage beverage;
+    private Beverage s_beverage;
 
     public Supplier() {
     }
@@ -70,11 +71,11 @@ public class Supplier extends AbstractEntity {
     }
 
     public Beverage getBeverage() {
-        return beverage;
+        return s_beverage;
     }
 
     public void setBeverage(Beverage beverage) {
-        this.beverage = beverage;
+        this.s_beverage = beverage;
     }
 
     /**

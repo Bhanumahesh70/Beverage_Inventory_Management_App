@@ -45,4 +45,9 @@ public class SupplierService {
         return em.createNamedQuery("Supplier.findAll",Supplier.class).getResultList();
          //return em.createNamedQuery(namedQueryName,entityClass).getResultList();
     }
+    
+    public Supplier findByUsername(String username){
+        
+        return em.createNamedQuery("Supplier.findByUsername",Supplier.class).setParameter("uname", username).getSingleResult();
+    }
 }

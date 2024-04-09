@@ -66,7 +66,7 @@ public class Beverage extends AbstractEntity{
         this.type = type;
     }
     
-    @OneToMany(mappedBy = "beverage")
+    @OneToMany(mappedBy = "s_beverage")
     private List<Supplier> suppliers = new ArrayList<>();
     
     @OneToOne(mappedBy = "beverage")
