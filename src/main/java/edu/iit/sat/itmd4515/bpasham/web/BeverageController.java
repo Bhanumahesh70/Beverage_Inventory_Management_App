@@ -52,7 +52,7 @@ public class BeverageController {
         LOG.info("saveBeverage has been invoked with model: " + this.beverage.toString());
         
         //beverageSvc.create(beverage);
-        supplierSvc.createBeverageForSupplier(swc.getSupplier());
+        supplierSvc.createBeverageForSupplier(swc.getSupplier(),beverage);
         LOG.info("saveBeverage after calling service layer: " + this.beverage.toString());
          return "confirmation.xhtml";
     }

@@ -5,11 +5,14 @@
 package edu.iit.sat.itmd4515.bpasham.domain;
 
 import edu.iit.sat.itmd4515.bpasham.security.User;
+import jakarta.json.bind.annotation.JsonbTransient;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
@@ -18,6 +21,7 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -41,9 +45,13 @@ public class Supplier extends AbstractEntity {
     @JoinColumn(name="USERNAME")
     private User user;
 
-    @ManyToOne
-    @JoinColumn(name = "Beverage_ID")
-    private Beverage s_beverage;
+    @ManyToMany
+    @JsonbTransient
+     //@XmlTransient
+    @JoinTable(name = "supplier_beverage",
+               joinColumns = @JoinColumn(name = "supplier_id"),
+               inverseJoinColumns = @JoinColumn(name = "beverage_id"))
+    private List<Beverage> s_beverage;
 
     public Supplier() {
     }
@@ -70,41 +78,41 @@ public class Supplier extends AbstractEntity {
         this.contactNumber = contactNumber;
     }
 
-    public Beverage getBeverage() {
-        return s_beverage;
-    }
-
-    public void setBeverage(Beverage beverage) {
-        this.s_beverage = beverage;
-    }
-public void addBeverage(Beverage b){
+    public void addBeverage(Beverage b){
         // Check if beverages list is null, initialize it if necessary
-    if (this.beverages == null) {
-        this.beverages = new ArrayList<>();
+    if (this.s_beverage == null) {
+        this.s_beverage = new ArrayList<>();
     }
 
-    if(!this.beverages.contains(b)){
-        this.beverages.add(b);
+    if(!this.s_beverage.contains(b)){
+        this.s_beverage.add(b);
     }
 
     // Check if b's orders list is null, initialize it if necessary
-    if (b.getOrders() == null) {
-        b.setOrders(new ArrayList<>());
+    if (b.getSuppliers()== null) {
+        b.setSuppliers(new ArrayList<>());
     }
 
-    if(!b.getOrders().contains(this)){
-        b.getOrders().add(this);
+    if(!b.getSuppliers().contains(this)){
+        b.getSuppliers().add(this);
     }
         
     }
     public void removeBeverage(Beverage b){
-        if(!this.beverages.contains(b)){
-            this.beverages.remove(b);
+        if(!this.s_beverage.contains(b)){
+            this.s_beverage.remove(b);
         }
-         if(!b.getOrders().contains(this)){
-            b.getOrders().remove(this);
+         if(!b.getSuppliers().contains(this)){
+            b.getSuppliers().remove(this);
         }
         
+    }
+    public List<Beverage> getBeverage() {
+        return s_beverage;
+    }
+
+    public void setBeverage(List<Beverage> beverage) {
+        this.s_beverage = beverage;
     }
 
     /**

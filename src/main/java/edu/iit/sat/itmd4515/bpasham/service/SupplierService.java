@@ -54,6 +54,8 @@ public class SupplierService {
 
     public void createBeverageForSupplier(Supplier supplier, Beverage beverage) {
         //just like database initializer
-        //create non-owing entities irst
+        //create non-owing entities first
+        
+        em.persist(beverage);
   }
 }
