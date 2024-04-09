@@ -25,16 +25,22 @@
                         
                         <p>
                             <h:panelGroup styleClass="forms-inputs mb-4" layout="block">
-                                <h:outputLabel value="User Name " for="userName" />
-                                <h:inputText id="userName" value="#{loginController.user.userName}" />   
+                               
+                                <h:inputText binding="#{uname}"
+                                             styleClass="#{uname.valid ? 'form-control': 'form-control is-valid'}"
+                                             id="userName" value="#{loginController.user.userName}" />   
                                 <h:message for="userName" errorStyle="color:red" infoStyle="color:green" />
+                                 <h:outputLabel value="User Name " for="userName" />
                             </h:panelGroup>
                         </p>
                         <p>
                             <h:panelGroup styleClass="forms-inputs mb-4" layout="block">
-                                <h:outputLabel value="Password " for="password" />
-                                <h:inputSecret id="password" value="#{loginController.user.password}" />   
+                                
+                                <h:inputSecret binding="#{passwd}"
+                                               styleClass="#{passwd.valid ? 'form-control': 'form-control is-valid'}"
+                                                id="password" value="#{loginController.user.password}" />   
                                 <h:message for="password" errorStyle="color:red" infoStyle="color:green" />
+                                <h:outputLabel value="Password " for="password" />
                             </h:panelGroup>
                         </p>
                         <p>
