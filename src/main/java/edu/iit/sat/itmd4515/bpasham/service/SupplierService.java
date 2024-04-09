@@ -4,6 +4,7 @@
  */
 package edu.iit.sat.itmd4515.bpasham.service;
 
+import edu.iit.sat.itmd4515.bpasham.domain.Beverage;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -50,4 +51,9 @@ public class SupplierService {
         
         return em.createNamedQuery("Supplier.findByUsername",Supplier.class).setParameter("uname", username).getSingleResult();
     }
+
+    public void createBeverageForSupplier(Supplier supplier, Beverage beverage) {
+        //just like database initializer
+        //create non-owing entities irst
+  }
 }

@@ -6,10 +6,12 @@ package edu.iit.sat.itmd4515.bpasham.web;
 
 import edu.iit.sat.itmd4515.bpasham.domain.Beverage;
 import edu.iit.sat.itmd4515.bpasham.service.BeverageService;
+import edu.iit.sat.itmd4515.bpasham.service.SupplierService;
 import edu.iit.sat.itmd4515.bpasham.domain.BeverageType;
 import jakarta.annotation.PostConstruct;
 import jakarta.ejb.EJB;
 import jakarta.enterprise.context.RequestScoped;
+import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import java.util.logging.Logger;
 
@@ -24,6 +26,9 @@ public class BeverageController {
     private static final Logger LOG = Logger.getLogger(BeverageController.class.getName());
     
     @EJB BeverageService beverageSvc;
+    @EJB SupplierService supplierSvc;
+    @Inject SupplierWelcomeController swc;
+    
 
     private Beverage beverage;
     
@@ -45,7 +50,9 @@ public class BeverageController {
     
      public String saveBeverage(){
         LOG.info("saveBeverage has been invoked with model: " + this.beverage.toString());
-        beverageSvc.create(beverage);
+        
+        //beverageSvc.create(beverage);
+        supplierSvc.createBeverageForSupplier(swc.getSupplier());
         LOG.info("saveBeverage after calling service layer: " + this.beverage.toString());
          return "confirmation.xhtml";
     }
