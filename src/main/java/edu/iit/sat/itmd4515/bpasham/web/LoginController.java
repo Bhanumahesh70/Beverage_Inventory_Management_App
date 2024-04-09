@@ -66,10 +66,10 @@ public class LoginController {
         return securityContext.isCallerInRole("CUSTOMER_ROLE");
     }
     public boolean isSalesManager(){
-        return securityContext.isCallerInRole("SALESMANAGER_ROLE");
+        return securityContext.isCallerInRole("SUPPLIER_ROLE");
     }
     public boolean isInventoryManager(){
-        return securityContext.isCallerInRole("INVENTORYMANAGER_ROLE");
+        return securityContext.isCallerInRole("INVENTORY_MANAGER_ROLE");
     }
    
     //action methods

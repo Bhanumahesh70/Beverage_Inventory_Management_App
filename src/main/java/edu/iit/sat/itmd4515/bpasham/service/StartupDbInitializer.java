@@ -97,11 +97,11 @@ public class StartupDbInitializer {
         userSvc.create(salesManager2);
         
          User customer1 = new User("customer1", "customer1");
-        invManager1.addGroup(customerGroup);
+        customer1.addGroup(customerGroup);
         userSvc.create(customer1);
 
         User customer2 = new User("customer2", "customer2");
-        invManager2.addGroup(customerGroup);
+        customer2.addGroup(customerGroup);
         userSvc.create(customer2);
         // End Security Realm intialization
 
