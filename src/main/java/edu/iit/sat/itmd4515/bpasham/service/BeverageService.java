@@ -5,12 +5,14 @@
 package edu.iit.sat.itmd4515.bpasham.service;
 import edu.iit.sat.itmd4515.bpasham.domain.Beverage;
 import jakarta.ejb.Stateless;
+import jakarta.inject.Named;
 import java.util.List;
 
 /**
  *
  * @author bhanu
  */
+@Named
 @Stateless
 public class BeverageService extends AbstractService<Beverage>{
 
