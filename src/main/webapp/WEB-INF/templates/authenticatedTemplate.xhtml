@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="jakarta.faces.html"
-      xmlns:ui="jakarta.faces.facelets">
+      xmlns:ui="jakarta.faces.facelets"
+      xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions">
     <h:head>
         <title><ui:insert name="title">DEFAULT TITLE</ui:insert></title>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -14,20 +15,31 @@
 
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Fixed navbar</a>
+                <h:link styleClass="navbar-brand" outcome="/welcome.xhtml" value="Beverage Inventory"/>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav me-auto mb-2 mb-md-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            <h:link styleClass= "#{fn:startsWith(view.viewId, '/welcome') ?'nav-link active' : 'nav-link'}" 
+                                    outcome="/welcome.xhtml" value="Home"/>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
+                            <h:link styleClass="#{fn:startsWith(view.viewId, '/admin') ?'nav-link active' : 'nav-link'}"
+                                    outcome="/admin/welcome.xhtml" value="Admin"/>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                            <h:link styleClass="#{fn:startsWith(view.viewId, '/customer') ?'nav-link active' : 'nav-link'}"
+                                    outcome="/customer/welcome.xhtml" value="Customer"/>
+                        </li>
+                        <li class="nav-item">
+                            <h:link styleClass="#{fn:startsWith(view.viewId, '/inventoryManager') ?'nav-link active' : 'nav-link'}"
+                                    outcome="/inventoryManager/welcome.xhtml" value="Manager"/>
+                        </li>
+                        <li class="nav-item">
+                            <h:link styleClass="#{fn:startsWith(view.viewId, '/supplier') ?'nav-link active' : 'nav-link'}"
+                                    outcome="/supplier/welcome.xhtml" value="Supplier"/>
                         </li>
                     </ul>
                     <form class="d-flex" role="search">
@@ -37,15 +49,10 @@
                 </div>
             </div>
         </nav>
-
-        <h1><ui:insert name="title">DEFAULT TITLE</ui:insert></h1>
-        <ui:insert name="content">DEFAULT CONTENT BLOCK</ui:insert>
-
         <main class="container">
             <div class="bg-body-tertiary p-5 rounded">
-                <h1>Navbar example</h1>
-                <p class="lead">This example is a quick exercise to illustrate how fixed to top navbar works. As you scroll, it will remain fixed to the top of your browser’s viewport.</p>
-                <a class="btn btn-lg btn-primary" href="/docs/5.3/components/navbar/" role="button">View navbar docs &raquo;</a>
+                <h1><ui:insert name="title">DEFAULT TITLE</ui:insert></h1>
+                 <ui:insert name="content">DEFAULT CONTENT BLOCK</ui:insert>
             </div>
         </main>
 
