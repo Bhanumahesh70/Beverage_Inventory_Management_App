@@ -13,6 +13,7 @@
     <ui:define name="content">
         Welcome #{loginController.authenticatedUser}!! to the Supplier section of the Beverage Inventory Application
        
+        <h:link outcome="/supplier/createNewBeverage.xhtml">Create a New Beverage</h:link>
         <h:dataTable 
             styleClass="table table-striped table-hover"
             value="#{supplierWelcomeController.supplier.beverage}" var="beverage" >
