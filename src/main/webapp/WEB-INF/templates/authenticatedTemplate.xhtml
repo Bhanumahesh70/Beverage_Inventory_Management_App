@@ -25,22 +25,31 @@
                             <h:link styleClass= "#{fn:startsWith(view.viewId, '/welcome') ?'nav-link active' : 'nav-link'}" 
                                     outcome="/welcome.xhtml" value="Home"/>
                         </li>
-                        <li class="nav-item">
-                            <h:link styleClass="#{fn:startsWith(view.viewId, '/admin') ?'nav-link active' : 'nav-link'}"
-                                    outcome="/admin/welcome.xhtml" value="Admin"/>
-                        </li>
-                        <li class="nav-item">
-                            <h:link styleClass="#{fn:startsWith(view.viewId, '/customer') ?'nav-link active' : 'nav-link'}"
-                                    outcome="/customer/welcome.xhtml" value="Customer"/>
-                        </li>
-                        <li class="nav-item">
-                            <h:link styleClass="#{fn:startsWith(view.viewId, '/inventoryManager') ?'nav-link active' : 'nav-link'}"
-                                    outcome="/inventoryManager/welcome.xhtml" value="Manager"/>
-                        </li>
-                        <li class="nav-item">
-                            <h:link styleClass="#{fn:startsWith(view.viewId, '/supplier') ?'nav-link active' : 'nav-link'}"
-                                    outcome="/supplier/welcome.xhtml" value="Supplier"/>
-                        </li>
+                        <ui:fragment rendered="#{loginController.admin}">
+                            <li class="nav-item">
+                                <h:link styleClass="#{fn:startsWith(view.viewId, '/admin') ?'nav-link active' : 'nav-link'}"
+                                        outcome="/admin/welcome.xhtml" value="Admin"/>
+                            </li>
+                        </ui:fragment>
+
+                        <ui:fragment rendered="#{loginController.customer}">
+                            <li class="nav-item">
+                                <h:link styleClass="#{fn:startsWith(view.viewId, '/customer') ?'nav-link active' : 'nav-link'}"
+                                        outcome="/customer/welcome.xhtml" value="Customer"/>
+                            </li>
+                        </ui:fragment> 
+                        <ui:fragment rendered="#{loginController.inventoryManager}">
+                            <li class="nav-item">
+                                <h:link styleClass="#{fn:startsWith(view.viewId, '/inventoryManager') ?'nav-link active' : 'nav-link'}"
+                                        outcome="/inventoryManager/welcome.xhtml" value="Manager"/>
+                            </li>
+                        </ui:fragment>    
+                        <ui:fragment rendered="#{loginController.salesManager}">
+                            <li class="nav-item">
+                                <h:link styleClass="#{fn:startsWith(view.viewId, '/supplier') ?'nav-link active' : 'nav-link'}"
+                                        outcome="/supplier/welcome.xhtml" value="Supplier"/>
+                            </li>
+                        </ui:fragment>
                     </ul>
                     <form class="d-flex" role="search">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
@@ -52,7 +61,7 @@
         <main class="container">
             <div class="bg-body-tertiary p-5 rounded">
                 <h1><ui:insert name="title">DEFAULT TITLE</ui:insert></h1>
-                 <ui:insert name="content">DEFAULT CONTENT BLOCK</ui:insert>
+                <ui:insert name="content">DEFAULT CONTENT BLOCK</ui:insert>
             </div>
         </main>
 
