@@ -12,16 +12,6 @@
     <ui:define name="content">
         Welcome #{loginController.authenticatedUser}!!
         
-        <h:form>
-            <ul>
-            <li><h:link outcome="/welcome.xhtml">Home</h:link> </li>
-            <li><h:link outcome="/admin/welcome.xhtml">Admin Access</h:link> </li>
-            <li><h:link outcome="/customer/welcome.xhtml">Customer Access</h:link> </li>
-            <li><h:link outcome="/inventoryManager/welcome.xhtml">Inventory Manager Access</h:link> </li>
-            <li><h:link outcome="/supplier/welcome.xhtml">Supplier Access</h:link> </li>
-            <li><h:commandLink action="#{loginController.doLogout()}" value="Logout"/></li>
-        </ul>
-        </h:form>
     </ui:define>
 
 </ui:composition>

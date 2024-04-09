@@ -73,10 +73,13 @@ public class StartupDbInitializer {
 
         User admin1 = new User("admin1", "admin1");
         admin1.addGroup(adminGroup);
+        admin1.addGroup(inventoryManagerGroup );
+        admin1.addGroup(customerGroup);
         userSvc.create(admin1);
 
         User admin2 = new User("admin2", "admin2");
         admin2.addGroup(adminGroup);
+        admin2.addGroup(inventoryManagerGroup );
         userSvc.create(admin2);
 
         User invManager1 = new User("inventoryManager1", "inventoryManager1");
