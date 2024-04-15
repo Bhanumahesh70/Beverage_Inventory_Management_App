@@ -43,13 +43,37 @@ public class SupplierBeverageController {
     }
     
     //action method
-    public String demoAction(){
-        LOG.info("demoAction has been invoked with model: " + this.beverage.toString());
-         return "confirmation.xhtml";
+    /**
+     * MVC Style Naviation Method for viewing a beverage in read-only mode
+     *Step-1 Accepting the click and set the model, with any associated parameter to the action method
+     *step-2 Navigating the user to the appropriate JS view to complete their operation
+     * Step-3 If applicable,is invoking the action/application (in JS life cycle terminology),
+     * and likely return the user some other view as final result
+     * 
+     */
+    public String displayViewBeveragePage(Beverage b){
+        //step-1
+        this.beverage = b;
+        LOG.info("Inside displayViewBeveragePage with model "+b.toString());
+        
+        //step-2
+        return "/supplier/viewBeverage.xhtml";
     }
-    public String demoAction(Beverage b){
-        LOG.info("demoAction has been invoked with model: " + b.toString());
-         return "confirmation.xhtml";
+    public String displayEditBeveragePage(Beverage b){
+        //step-1
+        this.beverage = b;
+        LOG.info("Inside displayEditBeveragePage with model "+b.toString());
+        
+        //step-2
+        return "/supplier/editBeverage.xhtml";
+    }
+    public String displayDeleteBeveragePage(Beverage b){
+        //step-1
+        this.beverage = b;
+        LOG.info("Inside displayDeleteBeveragePage with model "+b.toString());
+        
+        //step-2
+        return "/supplier/deleteBeverage.xhtml";
     }
     
      public String saveBeverage(){
