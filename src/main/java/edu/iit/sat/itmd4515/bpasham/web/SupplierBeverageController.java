@@ -21,9 +21,9 @@ import java.util.logging.Logger;
  */
 @Named
 @RequestScoped
-public class BeverageController {
+public class SupplierBeverageController {
 
-    private static final Logger LOG = Logger.getLogger(BeverageController.class.getName());
+    private static final Logger LOG = Logger.getLogger(SupplierBeverageController.class.getName());
     
     @EJB BeverageService beverageSvc;
     @EJB SupplierService supplierSvc;
@@ -32,7 +32,7 @@ public class BeverageController {
 
     private Beverage beverage;
     
-    public BeverageController() {
+    public SupplierBeverageController() {
     }
     
     
@@ -45,6 +45,10 @@ public class BeverageController {
     //action method
     public String demoAction(){
         LOG.info("demoAction has been invoked with model: " + this.beverage.toString());
+         return "confirmation.xhtml";
+    }
+    public String demoAction(Beverage b){
+        LOG.info("demoAction has been invoked with model: " + b.toString());
          return "confirmation.xhtml";
     }
     

@@ -59,6 +59,14 @@
                 </ui:repeat>
             </h:column>
             
+            <h:column>
+                <h:form>
+                    <h:commandButton value="view" action="#{SupplierBeverageController.demoAction(beverage)}" />
+                    <h:commandButton value="edit" action="#{SupplierBeverageController.demoAction(beverage)}" />
+                    <h:commandButton value="delete" action="#{SupplierBeverageController.demoAction(beverage)}" />
+                </h:form>
+            </h:column>
+            
         </h:dataTable>
         
     </ui:define>
