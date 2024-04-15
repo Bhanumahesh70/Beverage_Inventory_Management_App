@@ -8,17 +8,18 @@
 
     <!-- INTERFACE -->
     <cc:interface>
-        <cc:attribute name="demoAttribute" required="false" type="java.lang.String" />
+        <cc:attribute name="operation" required="true" type="java.lang.String" />
+        <cc:attribute name="beverage" required="true" type="edu.iit.sat.itmd4515.bpasham.domain.Beverage" />
+        <cc:attribute name="action" required="false" method-signature="java.lang.String action()" />
     </cc:interface>
 
     <!-- IMPLEMENTATION -->
     <cc:implementation>
-        <h2>#{cc.attrs.demoAttribute}</h2> 
         <h:form>
             <p>
                 <h:panelGroup layout="block">
                     <h:outputLabel value="Beverage Name" for="beverageName" />
-                    <h:inputText id="beverageName" value="#{supplierBeverageController.beverage.name}" />   
+                    <h:inputText id="beverageName" value="#{cc.attrs.beverage.name}" />   
                     <h:message for="beverageName" errorStyle="color:red" infoStyle="color:green" />
                 </h:panelGroup>
             </p>
@@ -26,7 +27,7 @@
             <p>
                 <h:panelGroup>
                     <h:outputLabel value="Expiry Date" for="expiryDate" />
-                    <h:inputText p:type="date" id="expiryDate" value="#{supplierBeverageController.beverage.expiryDate}" > 
+                    <h:inputText p:type="date" id="expiryDate" value="#{cc.attrs.beverage.expiryDate}" > 
                         <f:convertDateTime type="localDate" pattern="yyyy-MM-dd" />
                     </h:inputText>
                     <h:message for="expiryDate" errorStyle="color:red" infoStyle="color:green"/>
@@ -36,14 +37,14 @@
             <p>
                 <h:panelGroup>
                     <h:outputLabel value="Is Alcoholic(true/false)" for="isAlcoholic" />
-                    <h:inputText id="isAlcoholic" value="#{supplierBeverageController.beverage.isNonAlcoholic}" /> 
+                    <h:inputText id="isAlcoholic" value="#{cc.attrs.beverage.isNonAlcoholic}" /> 
                     <h:message for="isAlcoholic" errorStyle="color:red" infoStyle="color:green" />
                 </h:panelGroup>
             </p>
             <p>
                 <h:panelGroup>
                     <h:outputLabel value="Beverage Type" for="beverageType" />
-                    <h:selectOneMenu id="beverageType" value="#{supplierBeverageController.beverage.type}">
+                    <h:selectOneMenu id="beverageType" value="#{cc.attrs.beverage.type}">
 
                         <f:selectItems var="beverageType" 
                                        value="#{supplierBeverageController.allBeverageTypesForForm}"
@@ -54,7 +55,18 @@
                 </h:panelGroup>
             </p>
 
-            <h:commandButton value="Create a New Beverage" action="#{supplierBeverageController.saveBeverage()}" />
+            <h:commandButton 
+                rendered="#{cc.attrs.operation.equalsIgnoreCase('create')}"
+                value="Create a New Beverage" 
+                action="#{cc.attrs.action}" />
+            <h:commandButton 
+                rendered="#{cc.attrs.operation.equalsIgnoreCase('edit')}"
+                value="Edit Beverage" 
+                action="#{cc.attrs.action}" />
+            <h:commandButton 
+                rendered="#{cc.attrs.operation.equalsIgnoreCase('delete')}"
+                value="Delete Beverage" 
+                action="#{cc.attrs.action}" />
 
         </h:form>
     </cc:implementation>

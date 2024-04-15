@@ -13,7 +13,10 @@
     </ui:define>
 
     <ui:define name="content">
-        <ezcomp:beverage demoAttribute="This is demo of an attribute of an composite component" />
+        <ezcomp:beverage 
+            beverage="#{supplierBeverageController.beverage}"
+            operation="create"
+            action="#{supplierBeverageController.saveBeverage()}"/>
     </ui:define>
 
 </ui:composition>

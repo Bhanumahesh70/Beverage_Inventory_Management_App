@@ -49,6 +49,8 @@ public class SupplierBeverageController {
      *step-2 Navigating the user to the appropriate JS view to complete their operation
      * Step-3 If applicable,is invoking the action/application (in JS life cycle terminology),
      * and likely return the user some other view as final result
+     * This is would effectively mean handling the click from the JSF view in step 2, in order to perform the operation
+     * the user is trying to accomplish
      * 
      */
     public String displayViewBeveragePage(Beverage b){
