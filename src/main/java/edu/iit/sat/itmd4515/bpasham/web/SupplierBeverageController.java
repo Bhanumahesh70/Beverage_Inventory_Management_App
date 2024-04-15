@@ -78,6 +78,13 @@ public class SupplierBeverageController {
         return "/supplier/deleteBeverage.xhtml";
     }
     
+    /**
+     * These are the MVC style step 3 methods
+     * If there was an action associated with JSF view step2 one of these methods would be action of the form
+     * or composite componentent on that page
+     * In other words these methods handle the action click
+     * @return 
+     */
      public String saveBeverage(){
         LOG.info("saveBeverage has been invoked with model: " + this.beverage.toString());
         
@@ -85,6 +92,14 @@ public class SupplierBeverageController {
         supplierSvc.createBeverageForSupplier(swc.getSupplier(),beverage);
         LOG.info("saveBeverage after calling service layer: " + this.beverage.toString());
          return "confirmation.xhtml";
+    }
+    public String editBeverage(){
+        LOG.info("editBeverage has been invoked with model: " + this.beverage.toString());
+        return "/supplier/welcome.xhtml";
+    }
+    public String deleteBeverage(){
+        LOG.info("deleteBeverage has been invoked with model: " + this.beverage.toString());
+        return "/supplier/welcome.xhtml";
     }
     
     //helper methods

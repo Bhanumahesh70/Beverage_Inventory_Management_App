@@ -29,12 +29,12 @@ public class JSFPhaseListener implements PhaseListener{
         if(event.getPhaseId()==PhaseId.RESTORE_VIEW){
             LOG.info("######################### NEW JSF Request is Starting #########################");
         }
-        LOG.info("Before JSF Phase >>>>>>>>>>>>>>>"+ event.getPhaseId());
+        LOG.info("___________Before JSF Phase >>>>>>>>>>>>>>>"+ event.getPhaseId());
     }
 
     @Override
     public void afterPhase(PhaseEvent event) {
-    LOG.info("After JSF Phase"+ event.getPhaseId());
+    LOG.info("___________After JSF Phase"+ event.getPhaseId());
     
     if(event.getPhaseId()==PhaseId.RENDER_RESPONSE){
             LOG.info("######################### JSF Request is Done #########################");
