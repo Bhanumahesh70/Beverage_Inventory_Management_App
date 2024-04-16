@@ -16,10 +16,22 @@
     <!-- IMPLEMENTATION -->
     <cc:implementation>
         <h:form>
+            
+            <p>
+                <h:panelGroup layout="block" rendered="#{not cc.attrs.operation.equalsIgnoreCase('create')}">
+                    <h:outputLabel value="Beverage Id #{cc.attrs.beverage.id}" for="beverageId" />
+                    <h:inputHidden id="beverageId" value="#{cc.attrs.beverage.id}" />   
+                    <h:message for="beverageId" errorStyle="color:red" infoStyle="color:green" />
+                </h:panelGroup>
+            </p>
+            
             <p>
                 <h:panelGroup layout="block">
                     <h:outputLabel value="Beverage Name" for="beverageName" />
-                    <h:inputText id="beverageName" value="#{cc.attrs.beverage.name}" />   
+                    <h:inputText
+                        rendered="#{cc.attrs.operation.equalsIgnoreCase('create') or cc.attrs.operation.equalsIgnoreCase('edit')}"
+                        readonly="#{cc.attrs.operation.equalsIgnoreCase('view')or cc.attrs.operation.equalsIgnoreCase('delete')}"
+                        id="beverageName" value="#{cc.attrs.beverage.name}" />   
                     <h:message for="beverageName" errorStyle="color:red" infoStyle="color:green" />
                 </h:panelGroup>
             </p>
@@ -27,7 +39,9 @@
             <p>
                 <h:panelGroup>
                     <h:outputLabel value="Expiry Date" for="expiryDate" />
-                    <h:inputText p:type="date" id="expiryDate" value="#{cc.attrs.beverage.expiryDate}" > 
+                    <h:inputText
+                        readonly="#{cc.attrs.operation.equalsIgnoreCase('view')or cc.attrs.operation.equalsIgnoreCase('delete')}"
+                        p:type="date" id="expiryDate" value="#{cc.attrs.beverage.expiryDate}" > 
                         <f:convertDateTime type="localDate" pattern="yyyy-MM-dd" />
                     </h:inputText>
                     <h:message for="expiryDate" errorStyle="color:red" infoStyle="color:green"/>
@@ -37,14 +51,19 @@
             <p>
                 <h:panelGroup>
                     <h:outputLabel value="Is Alcoholic(true/false)" for="isAlcoholic" />
-                    <h:inputText id="isAlcoholic" value="#{cc.attrs.beverage.isNonAlcoholic}" /> 
+                    <h:inputText 
+                        readonly="#{cc.attrs.operation.equalsIgnoreCase('view')or cc.attrs.operation.equalsIgnoreCase('delete')}"
+                        id="isAlcoholic" value="#{cc.attrs.beverage.isNonAlcoholic}" /> 
                     <h:message for="isAlcoholic" errorStyle="color:red" infoStyle="color:green" />
                 </h:panelGroup>
             </p>
             <p>
                 <h:panelGroup>
                     <h:outputLabel value="Beverage Type" for="beverageType" />
-                    <h:selectOneMenu id="beverageType" value="#{cc.attrs.beverage.type}">
+                    <h:selectOneMenu 
+                        readonly="#{cc.attrs.operation.equalsIgnoreCase('view')or cc.attrs.operation.equalsIgnoreCase('delete')}"
+                        disabled="#{cc.attrs.operation.equalsIgnoreCase('view')or cc.attrs.operation.equalsIgnoreCase('delete')}"
+                        id="beverageType" value="#{cc.attrs.beverage.type}">
 
                         <f:selectItems var="beverageType" 
                                        value="#{supplierBeverageController.allBeverageTypesForForm}"
