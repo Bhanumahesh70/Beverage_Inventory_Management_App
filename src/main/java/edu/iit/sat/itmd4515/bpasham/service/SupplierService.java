@@ -57,5 +57,12 @@ public class SupplierService {
         //create non-owing entities first
         
         em.persist(beverage);
+        
+        //we can also do this with em.merge, but we need to be careful because merge
+        //will als update the database if anythin is different in parameter
+        //this is a little safer
+        Supplier supplierRef= em.getReference(Supplier.class, supplier.getId());
+        supplierRef.addBeverage(beverage);
+        em.merge(supplierRef);
   }
 }

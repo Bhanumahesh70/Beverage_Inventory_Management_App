@@ -43,6 +43,10 @@ public class SupplierWelcomeController {
          LOG.info("SupplierWelcomeController.postConstruct: "+ supplier.toString());
     }
     
+    //utility or helper methods
+    public void refreshSupplierModel(){
+        supplier = supplierSvc.findByUsername(loginController.getAuthenticatedUser());
+    }
     /**
      * Get the value of supplier
      *

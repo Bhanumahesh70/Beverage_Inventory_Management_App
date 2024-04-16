@@ -91,7 +91,8 @@ public class SupplierBeverageController {
         //beverageSvc.create(beverage);
         supplierSvc.createBeverageForSupplier(swc.getSupplier(),beverage);
         LOG.info("saveBeverage after calling service layer: " + this.beverage.toString());
-         return "confirmation.xhtml";
+        swc.refreshSupplierModel();
+         return "/supplier/welcome.xhtml";
     }
     public String editBeverage(){
         LOG.info("editBeverage has been invoked with model: " + this.beverage.toString());
