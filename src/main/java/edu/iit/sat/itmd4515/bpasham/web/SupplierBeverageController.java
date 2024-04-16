@@ -96,6 +96,8 @@ public class SupplierBeverageController {
     }
     public String editBeverage(){
         LOG.info("editBeverage has been invoked with model: " + this.beverage.toString());
+        beverageSvc.editBeverageForExistingSupplier(beverage);
+        swc.refreshSupplierModel();
         return "/supplier/welcome.xhtml";
     }
     public String deleteBeverage(){
