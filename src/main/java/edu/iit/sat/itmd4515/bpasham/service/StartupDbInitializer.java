@@ -75,6 +75,7 @@ public class StartupDbInitializer {
         admin1.addGroup(adminGroup);
         admin1.addGroup(inventoryManagerGroup );
         admin1.addGroup(customerGroup);
+         //admin1.addGroup(salesManagerGroup);
         userSvc.create(admin1);
 
         User admin2 = new User("admin2", "admin2");
