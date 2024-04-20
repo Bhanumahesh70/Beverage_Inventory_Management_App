@@ -130,6 +130,7 @@ public class StartupDbInitializer {
         c1.setUser(customer1);
         CustomerSvc.create(c1);
         
+        
         Customer c2 = new Customer("John", "Johnlly@gmail.com", LocalDate.of(2022, 6, 4));
         c2.setUser(customer2);
         CustomerSvc.create(c2);
@@ -144,7 +145,8 @@ public class StartupDbInitializer {
         Order o1 = new Order(LocalDate.of(2024, 2, 4), 5);
         o1.addBeverage(b1);
         o1.setCustomer(c1);
-
+        //CustomerSvc.create(c1);
+        
         Order o2 = new Order(LocalDate.of(2024, 2, 5), 10);
         o2.addBeverage(b2);
         o2.setCustomer(c1);

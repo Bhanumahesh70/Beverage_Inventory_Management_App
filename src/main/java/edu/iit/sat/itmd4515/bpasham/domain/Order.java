@@ -86,9 +86,11 @@ public class Order extends AbstractEntity {
         return customer;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
+   public void setCustomer(Customer customer) {
+    this.customer = customer;
+        customer.addOrder(this);
+    
+}
 
     public List<Beverage> getBeverages() {
         return beverages;

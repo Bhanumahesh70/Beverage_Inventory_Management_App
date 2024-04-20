@@ -5,6 +5,7 @@
 package edu.iit.sat.itmd4515.bpasham.domain;
 
 import edu.iit.sat.itmd4515.bpasham.security.User;
+import edu.iit.sat.itmd4515.bpasham.domain.Order;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -19,7 +20,6 @@ import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import jakarta.persistence.criteria.Order;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -27,6 +27,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.logging.Logger;
 
 /**
  *
@@ -34,10 +35,9 @@ import java.util.Objects;
  */
 @Entity
 @Table(name = "CUSTOMER")
-@NamedQuery(name="Customer.findAll",query="select c from Customer c")
+@NamedQuery(name = "Customer.findAll", query = "select c from Customer c")
 @NamedQuery(name = "Customer.findByUsername", query = "select c from Customer c where c.user.userName = :uname")
-public class Customer extends AbstractEntity{
-      
+public class Customer extends AbstractEntity {
 
     @NotBlank
     private String name;
@@ -47,18 +47,16 @@ public class Customer extends AbstractEntity{
 
     @NotNull
     private LocalDate createdAt;
-    
+
     @OneToOne
-    @JoinColumn(name="USERNAME")
+    @JoinColumn(name = "USERNAME")
     private User user;
 
-    
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Order> orders = new ArrayList<>();
 
+    private static final Logger LOG = Logger.getLogger(Customer.class.getName());
 
-    
-//   @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    private List<Order> orders = new ArrayList<>();
-//   
     public Customer() {
     }
 
@@ -91,30 +89,53 @@ public class Customer extends AbstractEntity{
     public void setCreatedAt(LocalDate createdAt) {
         this.createdAt = createdAt;
     }
-/**
+
+    /**
      * Get the value of user
      *
      * @return the value of user
      */
-    
+
     public User getUser() {
         return user;
     }
- 
+
     /**
      * Set the value of user
      *
      * @param user new value of user
      */
-    
     public void setUser(User user) {
         this.user = user;
     }
-   
-    @Override
-    public String toString() {
-        return "Customer{" + "customerId=" + id + ", name=" + name + ", email=" + email + ", createdAt=" + createdAt + '}';
+
+    public void addOrder(Order order) {
+        LOG.info("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%orders before added: "+orders) ;
+        orders.add(order);
+        LOG.info("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%orders before added: "+orders) ;
     }
 
+    /**
+     * Get the value of orders
+     *
+     * @return the value of orders
+     */
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    /**
+     * Set the value of orders
+     *
+     * @param orders new value of orders
+     */
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" + "customerId=" + id + ", name=" + name + ", email=" + email + ", createdAt=" + createdAt + "orders" + orders + '}';
+    }
 
 }
