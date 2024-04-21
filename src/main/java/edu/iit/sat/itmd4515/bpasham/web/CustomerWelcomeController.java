@@ -22,32 +22,45 @@ import java.util.logging.Logger;
 public class CustomerWelcomeController {
 
     private static final Logger LOG = Logger.getLogger(CustomerWelcomeController.class.getName());
-    
-    @EJB CustomerService customerSvc;
-     @Inject LoginController loginController;
-     
-     //the model
-         private Customer customer;
 
-   
+    @EJB
+    CustomerService customerSvc;
+    @Inject
+    LoginController loginController;
+
+    //the model
+    private Customer customer;
+
     public CustomerWelcomeController() {
     }
-@PostConstruct
-    private void postConstruct(){
-        
+
+    @PostConstruct
+    private void postConstruct() {
+
         LOG.info("CustomerWelcomeController.postConstruct");
         //initialize our model, not with a new customer, but with finding the customer correlated with the currently authenticated user
-        
-        customer = customerSvc.findByUsername(loginController.getAuthenticatedUser());
-         LOG.info("CustomerWelcomeController.postConstruct: "+ customer.toString());
+
+        // Get the authenticated user's username
+        String authenticatedUser = loginController.getAuthenticatedUser();
+
+        // Check if the authenticated user is an admin
+        if (loginController.isAdmin()) {
+            // Initialize admin model
+           // admin = adminSvc.findByUsername(authenticatedUser);
+            LOG.info("AdminWelcomeController.postConstruct: ");
+        } else {
+            // Initialize customer model
+            customer = customerSvc.findByUsername(authenticatedUser);
+            LOG.info("CustomerWelcomeController.postConstruct: " + customer.toString());
+        }
     }
-    
+
     //utility or helper methods
-    public void refreshCustomerModel(){
+    public void refreshCustomerModel() {
         customer = customerSvc.findByUsername(loginController.getAuthenticatedUser());
     }
-    
-     /**
+
+    /**
      * Get the value of customer
      *
      * @return the value of customer
