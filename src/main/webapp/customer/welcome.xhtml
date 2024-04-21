@@ -7,12 +7,12 @@
                 xmlns:f="jakarta.faces.core">
 
     <ui:define name="title">
-       Customer
+        Customer
     </ui:define>
 
     <ui:define name="content">
         Welcome #{loginController.authenticatedUser}!! to the Customer section of the Beverage Inventory Application
-        
+
         <h:link outcome="/supplier/createNewBeverage.xhtml">Create a New Beverage</h:link>
         <h:dataTable
             styleClass="table table-striped table-hover"
@@ -29,16 +29,16 @@
                 <f:facet name="header">Order Id</f:facet>
                 <h:outputText value="#{orders.orderDate}" />
             </h:column>
-            
-        </h:dataTable>
-         <h:column>
+
+
+            <h:column>
                 <h:form>
-                    <h:commandButton value="view" action="#{customerOrderController.displayViewOrderPage(order)}" />
-                    <h:commandButton value="edit" action="#{customerOrderController.displayEditOrderPage(order)}" />
-                    <h:commandButton value="delete" action="#{customerOrderController.displayDeleteOrderPage(order)}" />
+                    <h:commandButton value="view" action="#{customerOrderController.displayViewOrderPage(orders)}" />
+                    <h:commandButton value="edit" action="#{customerOrderController.displayEditOrderPage(orders)}" />
+                    <h:commandButton value="delete" action="#{customerOrderController.displayDeleteOrderPage(orders)}" />
                 </h:form>
             </h:column>
-        
+        </h:dataTable>
     </ui:define>
 
 </ui:composition>

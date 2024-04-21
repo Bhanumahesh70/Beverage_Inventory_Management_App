@@ -22,9 +22,9 @@ import java.util.logging.Logger;
 @RequestScoped
 public class CustomerOrderController {
     
-      private static final Logger LOG = Logger.getLogger(SupplierBeverageController.class.getName());
+      private static final Logger LOG = Logger.getLogger(CustomerOrderController.class.getName());
       
-      @EJB OrderService orderSvc;
+    @EJB OrderService orderSvc;
     @EJB CustomerService customerSvc;
     @Inject CustomerWelcomeController cwc;
     

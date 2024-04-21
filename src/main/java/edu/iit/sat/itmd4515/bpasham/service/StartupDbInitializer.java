@@ -113,13 +113,19 @@ public class StartupDbInitializer {
         
         Beverage b1 = new Beverage("pure", LocalDate.of(2025, 2, 4), "false", BeverageType.WATER);
         Beverage b2 = new Beverage("life", LocalDate.of(2030, 2, 4), "false", BeverageType.WATER);
+        Beverage b3 = new Beverage("Jose", LocalDate.of(2025, 2, 4), "false", BeverageType.WINE);
+        Beverage b4 = new Beverage("Bacardi", LocalDate.of(2030, 2, 4), "false", BeverageType.LIQOUR);
         BeverageSvc.create(b1);
         BeverageSvc.create(b2);
+         BeverageSvc.create(b3);
+        BeverageSvc.create(b4);
 
         Supplier s1 = new Supplier("supplier one", "yoyo");
         s1.setUser(salesManager1);
         supplierServic.create(s1);
         s1.addBeverage(b1);
+         s1.addBeverage(b3);
+          s1.addBeverage(b4);
         
           Supplier s2 = new Supplier("supplier Two", "yesss");
         s2.setUser(salesManager2);
