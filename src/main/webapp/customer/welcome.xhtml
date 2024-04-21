@@ -3,7 +3,8 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 template="../WEB-INF/templates/authenticatedTemplate.xhtml"
-                xmlns:h="jakarta.faces.html">
+                xmlns:h="jakarta.faces.html"
+                xmlns:f="jakarta.faces.core">
 
     <ui:define name="title">
        Customer
@@ -12,7 +13,32 @@
     <ui:define name="content">
         Welcome #{loginController.authenticatedUser}!! to the Customer section of the Beverage Inventory Application
         
-       
+        <h:link outcome="/supplier/createNewBeverage.xhtml">Create a New Beverage</h:link>
+        <h:dataTable
+            styleClass="table table-striped table-hover"
+            value="#{customerWelcomeController.customer.orders}" var="orders" >
+            <h:column>
+                <f:facet name="header">Order Id</f:facet>
+                <h:outputText value="#{orders.id}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">Order Id</f:facet>
+                <h:outputText value="#{orders.quantity}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">Order Id</f:facet>
+                <h:outputText value="#{orders.orderDate}" />
+            </h:column>
+            
+        </h:dataTable>
+         <h:column>
+                <h:form>
+                    <h:commandButton value="view" action="#{customerOrderController.displayViewOrderPage(order)}" />
+                    <h:commandButton value="edit" action="#{customerOrderController.displayEditOrderPage(order)}" />
+                    <h:commandButton value="delete" action="#{customerOrderController.displayDeleteOrderPage(order)}" />
+                </h:form>
+            </h:column>
+        
     </ui:define>
 
 </ui:composition>

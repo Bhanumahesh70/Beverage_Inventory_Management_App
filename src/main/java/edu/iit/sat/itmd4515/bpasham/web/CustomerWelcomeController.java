@@ -43,7 +43,7 @@ public class CustomerWelcomeController {
     }
     
     //utility or helper methods
-    public void refreshSupplierModel(){
+    public void refreshCustomerModel(){
         customer = customerSvc.findByUsername(loginController.getAuthenticatedUser());
     }
     

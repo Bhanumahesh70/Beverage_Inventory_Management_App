@@ -5,6 +5,7 @@
 package edu.iit.sat.itmd4515.bpasham.service;
 import edu.iit.sat.itmd4515.bpasham.domain.Order;
 import jakarta.ejb.Stateless;
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -21,4 +22,22 @@ public class OrderService extends AbstractService<Order>{
     public List<Order> findAll(){
         return super.findAll("Order.findAll");
     }
+    
+    public void editOrderForExistingCustomer(Order o){
+       /**
+        * step-1 make sure we have a managed entity to work with
+        */
+       Order managedRef = em.getReference(Order.class, o.getId());
+       /**
+        * step-2 the method parameter contains the fields that might be updated
+        * we know what fields we allow to be updated via the form
+        * as a developer,we are in control of that
+        */
+       managedRef.setOrderDate(o.getOrderDate());
+       managedRef.setQuantity(o.getQuantity());
+       /**
+        * step-3 use em.merge on the managedRef, not on the parameter
+        */
+       em.merge(managedRef);
+   }
 }
