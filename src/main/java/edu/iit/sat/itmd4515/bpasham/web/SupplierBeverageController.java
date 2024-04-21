@@ -39,7 +39,7 @@ public class SupplierBeverageController {
     @PostConstruct
     private void postConstruct(){
         beverage= new Beverage();
-        LOG.info("BeverageController.postConstruct");
+        LOG.info("SupplierBeverageController.postConstruct");
     }
     
     //action method

@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+      xmlns:h="jakarta.faces.html"
+     xmlns:p="jakarta.faces.passthrough"
+     
+      xmlns:f="jakarta.faces.core">
+
+    <!-- INTERFACE -->
+    <cc:interface>
+         <cc:attribute name="operation" required="true" type="java.lang.String" />
+        <cc:attribute name="order" required="true" type="edu.iit.sat.itmd4515.bpasham.domain.Order" />
+        <cc:attribute name="action" required="false" method-signature="java.lang.String action()" />
+    </cc:interface>
+
+    <!-- IMPLEMENTATION -->
+    <cc:implementation>
+        <h:form>
+            
+            <p>
+                <h:panelGroup layout="block" rendered="#{not cc.attrs.operation.equalsIgnoreCase('create')}">
+                    <h:outputLabel value="Order Id #{cc.attrs.order.id}" for="orderId" />
+                    <h:inputHidden id="orderId" value="#{cc.attrs.order.id}" />   
+                    <h:message for="orderId" errorStyle="color:red" infoStyle="color:green" />
+                </h:panelGroup>
+            </p>
+            
+            <p>
+                <h:panelGroup layout="block" rendered="#{not cc.attrs.operation.equalsIgnoreCase('create')}">
+                    <h:outputLabel value="Order Name #{cc.attrs.order.name}" for="orderId" />
+                    <h:inputText
+                        rendered="#{cc.attrs.operation.equalsIgnoreCase('create') or cc.attrs.operation.equalsIgnoreCase('edit')}"
+                        readonly="#{cc.attrs.operation.equalsIgnoreCase('view')or cc.attrs.operation.equalsIgnoreCase('delete')}"
+                        id="orderName" value="#{cc.attrs.order.name}" /> 
+                    <h:message for="orderName" errorStyle="color:red" infoStyle="color:green" />
+                </h:panelGroup>
+            </p>
+            
+            <p>
+                <h:panelGroup>
+                    <h:outputLabel value="Order Date" for="orderDate" />
+                    <h:inputText
+                        readonly="#{cc.attrs.operation.equalsIgnoreCase('view')or cc.attrs.operation.equalsIgnoreCase('delete')}"
+                        p:type="date" id="orderDate" value="#{cc.attrs.order.orderDate}" > 
+                        <f:convertDateTime type="localDate" pattern="yyyy-MM-dd" />
+                    </h:inputText>
+                    <h:message for="orderDate" errorStyle="color:red" infoStyle="color:green"/>
+                </h:panelGroup>
+            </p>
+            
+            <p>
+                <h:panelGroup>
+                    <h:outputLabel value="Quantity" for="quantity" />
+                    <h:inputText 
+                        readonly="#{cc.attrs.operation.equalsIgnoreCase('view')or cc.attrs.operation.equalsIgnoreCase('delete')}"
+                        id="quantity" value="#{cc.attrs.order.quantity}" /> 
+                    <h:message for="quantity" errorStyle="color:red" infoStyle="color:green" />
+                </h:panelGroup>
+            </p>
+            <h:commandButton 
+                rendered="#{cc.attrs.operation.equalsIgnoreCase('create')}"
+                value="Create a New Order" 
+                action="#{cc.attrs.action}" />
+            <h:commandButton 
+                rendered="#{cc.attrs.operation.equalsIgnoreCase('edit')}"
+                value="Edit Order" 
+                action="#{cc.attrs.action}" />
+            <h:commandButton 
+                rendered="#{cc.attrs.operation.equalsIgnoreCase('delete')}"
+                value="Delete View" 
+                action="#{cc.attrs.action}" />
+        </h:form>
+    </cc:implementation>
+</html>
