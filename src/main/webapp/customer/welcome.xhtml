@@ -13,7 +13,8 @@
     <ui:define name="content">
         Welcome #{loginController.authenticatedUser}!! to the Customer section of the Beverage Inventory Application
 
-        <h:link outcome="/customer/createOrder.xhtml">Create a New Order</h:link>
+        <h:link outcome="/customer/createOrder.xhtml">create a new Order</h:link>
+        <h:link outcome="/customer/placeOrder.xhtml">Place a new Order</h:link>
         <h:dataTable
             styleClass="table table-striped table-hover"
             value="#{customerWelcomeController.customer.orders}" var="orders" >
@@ -22,11 +23,11 @@
                 <h:outputText value="#{orders.id}" />
             </h:column>
             <h:column>
-                <f:facet name="header">Order Id</f:facet>
+                <f:facet name="header">Order quantity</f:facet>
                 <h:outputText value="#{orders.quantity}" />
             </h:column>
             <h:column>
-                <f:facet name="header">Order Id</f:facet>
+                <f:facet name="header">Order date</f:facet>
                 <h:outputText value="#{orders.orderDate}" />
             </h:column>
 
