@@ -52,6 +52,11 @@ public class PlaceOrderController {
     public void postConstruct() {
 
         LOG.info("In PlaceOrderController.postConstruct");
+        
+        //Initializing the model
+       
+        
+        
         quantityMap = new HashMap<>();
         availableBeverages = beverageService.findAll();
         for (Beverage beverage : availableBeverages) {
@@ -60,7 +65,7 @@ public class PlaceOrderController {
     }
 
     public String placeOrder() {
-    Order order = new Order();
+     Order order = new Order();
     order.setOrderDate(LocalDate.now());
     for (Map.Entry<Beverage, Integer> entry : quantityMap.entrySet()) {
         Beverage beverage = entry.getKey();

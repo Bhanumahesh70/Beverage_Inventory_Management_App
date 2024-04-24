@@ -100,6 +100,23 @@ public class Order extends AbstractEntity {
         }
 
     }
+    
+    //helper methods to manage JPA relationships
+    public void placeOrder(Customer c, List<Beverage> b, Supplier s){
+        this.customer=c;
+        this.beverages=b;
+        this.supplier =s;
+        
+        //handle the bidirectional relationships
+        if(!c.getOrders().contains(this)){
+            c.getOrders().add(this);
+        }
+        
+        if(!s.getOrders().contains(this)){
+            s.getOrders().add(this);
+        }
+        
+    }
 
     //Getter and Setter Methods
     public LocalDate getOrderDate() {

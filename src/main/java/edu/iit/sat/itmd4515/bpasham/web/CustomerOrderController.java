@@ -39,7 +39,7 @@ public class CustomerOrderController {
     @PostConstruct
     private void postConstruct(){
         order = new Order();
-        LOG.info("CustomerOrderController.postConstruct");
+        LOG.info("Inside CustomerOrderController.postConstruct");
     }
     
     //action method

@@ -22,7 +22,18 @@ public class OrderService extends AbstractService<Order>{
     public List<Order> findAll(){
         return super.findAll("Order.findAll");
     }
-    
+    /*
+    public void placeNewOrder(Order order){ 
+        order.setOrderDate(LocalDate.now());
+        
+        Order newOrder = new Order(order.getOrderDate(),order.getQuantity());
+        
+        newOrder.placeOrder(
+                //em.getReference(Customer.class, order.getCustomer().getId()),
+                //em.getReference(Beverage.class, order.getBeverages().),
+               // em.getReference(Supplier.class, order.getSupplier().getId()));
+    }
+    */
     public void editOrderForExistingCustomer(Order o){
        /**
         * step-1 make sure we have a managed entity to work with
