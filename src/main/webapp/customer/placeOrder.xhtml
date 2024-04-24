@@ -19,7 +19,12 @@
                 <h:selectOneMenu 
                     converter="supplierConverter"
                     value="#{placeOrderController.selectedSupplier}">
-                    <f:selectItems value="#{placeOrderController.availableSuppliers}" />
+                    <f:selectItems 
+                        var="s"
+                        value="#{placeOrderController.availableSuppliers}"
+                        itemLabel="#{s.name}"
+                        itemValue="#{s}"
+                        />
                 </h:selectOneMenu>
                 <ui:repeat value="#{placeOrderController.beveragesByType}" var="typeEntry">
                     <h:outputText value="#{typeEntry.key}" />
