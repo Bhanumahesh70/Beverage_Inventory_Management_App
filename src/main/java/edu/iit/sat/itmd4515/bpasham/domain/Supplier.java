@@ -6,7 +6,9 @@ package edu.iit.sat.itmd4515.bpasham.domain;
 
 import edu.iit.sat.itmd4515.bpasham.security.User;
 import jakarta.json.bind.annotation.JsonbTransient;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -42,15 +44,18 @@ public class Supplier extends AbstractEntity {
     private String contactNumber;
 
     @OneToOne
-    @JoinColumn(name="USERNAME")
+    @JoinColumn(name = "USERNAME")
     private User user;
+
+    @OneToMany(mappedBy = "supplier", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Order> orders;
 
     @ManyToMany
     @JsonbTransient
-     //@XmlTransient
+    //@XmlTransient
     @JoinTable(name = "supplier_beverage",
-               joinColumns = @JoinColumn(name = "supplier_id"),
-               inverseJoinColumns = @JoinColumn(name = "beverage_id"))
+            joinColumns = @JoinColumn(name = "supplier_id"),
+            inverseJoinColumns = @JoinColumn(name = "beverage_id"))
     private List<Beverage> s_beverage;
 
     public Supplier() {
@@ -62,6 +67,59 @@ public class Supplier extends AbstractEntity {
 
     }
 
+    //helper methods
+    public void addBeverage(Beverage b) {
+        // Check if beverages list is null, initialize it if necessary
+        if (this.s_beverage == null) {
+            this.s_beverage = new ArrayList<>();
+        }
+
+        if (!this.s_beverage.contains(b)) {
+            this.s_beverage.add(b);
+        }
+
+        // Check if b's orders list is null, initialize it if necessary
+        if (b.getSuppliers() == null) {
+            b.setSuppliers(new ArrayList<>());
+        }
+
+        if (!b.getSuppliers().contains(this)) {
+            b.getSuppliers().add(this);
+        }
+
+    }
+
+    public void removeBeverage(Beverage b) {
+        if (this.s_beverage.contains(b)) {
+            this.s_beverage.remove(b);
+        }
+        if (!b.getSuppliers().contains(this)) {
+            b.getSuppliers().remove(this);
+        }
+
+    }
+
+    public void addOrder(Order o) {
+        // Check if orderss list is null, initialize it if necessary
+        if (this.orders == null) {
+            this.orders = new ArrayList<>();
+        }
+
+        if (!this.orders.contains(o)) {
+            this.orders.add(o);
+             o.setSupplier(this);
+        }
+       
+    }
+
+    public void removeOrder(Order o) {
+        if (this.orders.contains(o)) {
+            this.orders.remove(o);
+        }
+        ////should remove supplier in order?
+    }
+
+    //Getter and Setter Methods
     public String getName() {
         return name;
     }
@@ -78,35 +136,6 @@ public class Supplier extends AbstractEntity {
         this.contactNumber = contactNumber;
     }
 
-    public void addBeverage(Beverage b){
-        // Check if beverages list is null, initialize it if necessary
-    if (this.s_beverage == null) {
-        this.s_beverage = new ArrayList<>();
-    }
-
-    if(!this.s_beverage.contains(b)){
-        this.s_beverage.add(b);
-    }
-
-    // Check if b's orders list is null, initialize it if necessary
-    if (b.getSuppliers()== null) {
-        b.setSuppliers(new ArrayList<>());
-    }
-
-    if(!b.getSuppliers().contains(this)){
-        b.getSuppliers().add(this);
-    }
-        
-    }
-    public void removeBeverage(Beverage b){
-        if(!this.s_beverage.contains(b)){
-            this.s_beverage.remove(b);
-        }
-         if(!b.getSuppliers().contains(this)){
-            b.getSuppliers().remove(this);
-        }
-        
-    }
     public List<Beverage> getBeverage() {
         return s_beverage;
     }
@@ -131,6 +160,24 @@ public class Supplier extends AbstractEntity {
      */
     public void setUser(User user) {
         this.user = user;
+    }
+
+    /**
+     * Get the value of orders
+     *
+     * @return the value of orders
+     */
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    /**
+     * Set the value of orders
+     *
+     * @param orders new value of orders
+     */
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 
     @Override

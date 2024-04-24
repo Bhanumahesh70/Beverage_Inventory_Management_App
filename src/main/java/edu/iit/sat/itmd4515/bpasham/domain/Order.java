@@ -31,28 +31,31 @@ import java.util.Objects;
 @Entity
 //@XmlRootElement
 @Table(name = "ORDERS")
-@NamedQuery(name="Order.findAll",query="select o from Order o")
+@NamedQuery(name = "Order.findAll", query = "select o from Order o")
 public class Order extends AbstractEntity {
-    
 
     @NotNull
     private LocalDate orderDate;
 
     @Min(1)
     private Integer quantity;
-    
+
     @ManyToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;
-    
-     @ManyToMany
-     @JsonbTransient
-     //@XmlTransient
+
+    @ManyToOne
+    @JoinColumn(name = "supplier_id")
+    private Supplier supplier;
+
+    @ManyToMany
+    @JsonbTransient
+    //@XmlTransient
     @JoinTable(name = "order_beverage",
-               joinColumns = @JoinColumn(name = "order_id"),
-               inverseJoinColumns = @JoinColumn(name = "beverage_id"))
+            joinColumns = @JoinColumn(name = "order_id"),
+            inverseJoinColumns = @JoinColumn(name = "beverage_id"))
     private List<Beverage> beverages;
-    
+
     public Order() {
     }
 
@@ -61,6 +64,44 @@ public class Order extends AbstractEntity {
         this.quantity = quantity;
     }
 
+    //helper methods to manage jpa relationships
+    public void placeOrder(Customer c, Beverage b, Supplier s) {
+        this.customer = c;
+
+    }
+
+    public void addBeverage(Beverage b) {
+        // Check if beverages list is null, initialize it if necessary
+        if (this.beverages == null) {
+            this.beverages = new ArrayList<>();
+        }
+
+        if (!this.beverages.contains(b)) {
+            this.beverages.add(b);
+        }
+
+        // Check if b's orders list is null, initialize it if necessary
+        if (b.getOrders() == null) {
+            b.setOrders(new ArrayList<>());
+        }
+
+        if (!b.getOrders().contains(this)) {
+            b.getOrders().add(this);
+        }
+
+    }
+
+    public void removeBeverage(Beverage b) {
+        if (!this.beverages.contains(b)) {
+            this.beverages.remove(b);
+        }
+        if (!b.getOrders().contains(this)) {
+            b.getOrders().remove(this);
+        }
+
+    }
+
+    //Getter and Setter Methods
     public LocalDate getOrderDate() {
         return orderDate;
     }
@@ -77,20 +118,20 @@ public class Order extends AbstractEntity {
         this.quantity = quantity;
     }
 
-    @Override
-    public String toString() {
-        return "Order{" + "orderId=" + id + ", orderDate=" + orderDate + ", quantity=" + quantity + '}';
-    }
-
     public Customer getCustomer() {
         return customer;
     }
 
-   public void setCustomer(Customer customer) {
-    this.customer = customer;
-        customer.addOrder(this);
-    
-}
+    public void setCustomer(Customer customer) {
+        // Only set the customer if it's different from the current one
+        if (this.customer != customer) {
+            this.customer = customer;
+            if (customer != null) {
+                customer.addOrder(this);
+            }
+        }
+
+    }
 
     public List<Beverage> getBeverages() {
         return beverages;
@@ -100,35 +141,33 @@ public class Order extends AbstractEntity {
         this.beverages = beverages;
     }
 
-    public void addBeverage(Beverage b){
-        // Check if beverages list is null, initialize it if necessary
-    if (this.beverages == null) {
-        this.beverages = new ArrayList<>();
+    /**
+     * Get the value of supplier
+     *
+     * @return the value of supplier
+     */
+    public Supplier getSupplier() {
+        return supplier;
     }
 
-    if(!this.beverages.contains(b)){
-        this.beverages.add(b);
-    }
-
-    // Check if b's orders list is null, initialize it if necessary
-    if (b.getOrders() == null) {
-        b.setOrders(new ArrayList<>());
-    }
-
-    if(!b.getOrders().contains(this)){
-        b.getOrders().add(this);
-    }
-        
-    }
-    public void removeBeverage(Beverage b){
-        if(!this.beverages.contains(b)){
-            this.beverages.remove(b);
+    /**
+     * Set the value of supplier
+     *
+     * @param supplier new value of supplier
+     */
+    public void setSupplier(Supplier supplier) {
+        // Only set the supplier if it's different from the current one
+        if (this.supplier != supplier) {
+            this.supplier = supplier;
+            if (supplier != null) {
+                supplier.addOrder(this);
+            }
         }
-         if(!b.getOrders().contains(this)){
-            b.getOrders().remove(this);
-        }
-        
     }
 
-    
+    @Override
+    public String toString() {
+        return "Order{" + "orderId=" + id + ", orderDate=" + orderDate + ", quantity=" + quantity + '}';
+    }
+
 }

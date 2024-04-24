@@ -74,6 +74,8 @@ public class Beverage extends AbstractEntity{
 
     public Beverage() {
     }
+    
+    
     // Getter and setter Methods
 
     /**
@@ -147,19 +149,7 @@ public class Beverage extends AbstractEntity{
     public void setExpiryDate(LocalDate expiryDate) {
         this.expiryDate = expiryDate;
     }
-
-    /**
-     * Get the value of id
-     *
-     * @return the value of id
-     */
     
-
-    @Override
-    public String toString() {
-        return "Beverage{" + "id=" + id + ", name=" + name + ", expiryDate=" + expiryDate + ", isNonAlcoholic=" + isNonAlcoholic + ", type=" + type + '}';
-    }
-
     public List<Order> getOrders() {
         return orders;
     }
@@ -192,4 +182,11 @@ public class Beverage extends AbstractEntity{
     public void setSuppliers(List<Supplier> suppliers) {
         this.suppliers = suppliers;
     }
+    
+    //To String Method
+    @Override
+    public String toString() {
+        return "Beverage{" + "id=" + id + ", name=" + name + ", expiryDate=" + expiryDate + ", isNonAlcoholic=" + isNonAlcoholic + ", type=" + type + '}';
+    }
+
 }

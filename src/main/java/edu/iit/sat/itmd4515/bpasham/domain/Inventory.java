@@ -61,11 +61,6 @@ public class Inventory extends AbstractEntity{
         this.lastUpdated = lastUpdated;
     }
 
-    @Override
-    public String toString() {
-        return "Inventory{" + "inventoryId=" + id + ", quantity=" + quantity + ", lastUpdated=" + lastUpdated + '}';
-    }
-
     public Beverage getBeverage() {
         return beverage;
     }
@@ -74,5 +69,8 @@ public class Inventory extends AbstractEntity{
         this.beverage = beverage;
     }
 
-    
+    @Override
+    public String toString() {
+        return "Inventory{" + "inventoryId=" + id + ", quantity=" + quantity + ", lastUpdated=" + lastUpdated + '}';
+    }
 }

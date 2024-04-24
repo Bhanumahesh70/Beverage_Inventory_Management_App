@@ -66,6 +66,21 @@ public class Customer extends AbstractEntity {
         this.createdAt = createdAt;
     }
 
+    public void addOrder(Order o) {
+        LOG.info("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%orders before added: " + orders);
+        // Check if orders list is null, initialize it if necessary
+        if (this.orders == null) {
+            this.orders = new ArrayList<>();
+        }
+
+        if (!this.orders.contains(o)) {
+            this.orders.add(o);
+            o.setCustomer(this); // Ensure bidirectional consistency
+        }
+        LOG.info("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%orders before added: " + orders);
+    }
+
+    //Getter and Setter Methods
     public String getName() {
         return name;
     }
@@ -95,7 +110,6 @@ public class Customer extends AbstractEntity {
      *
      * @return the value of user
      */
-
     public User getUser() {
         return user;
     }
@@ -107,12 +121,6 @@ public class Customer extends AbstractEntity {
      */
     public void setUser(User user) {
         this.user = user;
-    }
-
-    public void addOrder(Order order) {
-        LOG.info("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%orders before added: "+orders) ;
-        orders.add(order);
-        LOG.info("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%orders before added: "+orders) ;
     }
 
     /**

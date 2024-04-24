@@ -101,7 +101,7 @@ public class AbstractEntity {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Beverage other = (Beverage) obj;
+        final AbstractEntity other = (AbstractEntity) obj;
         if (this.id == null || other.id == null) {
             return false;
         }

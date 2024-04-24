@@ -151,11 +151,13 @@ public class StartupDbInitializer {
         Order o1 = new Order(LocalDate.of(2024, 2, 4), 5);
         o1.addBeverage(b1);
         o1.setCustomer(c1);
+        o1.setSupplier(s1);
         //CustomerSvc.create(c1);
         
         Order o2 = new Order(LocalDate.of(2024, 2, 5), 10);
         o2.addBeverage(b2);
         o2.setCustomer(c1);
+        o2.setSupplier(s1);
 
         OrderSvc.create(o1);
         OrderSvc.create(o2);
