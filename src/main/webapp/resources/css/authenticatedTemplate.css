@@ -12,3 +12,86 @@ body {
   min-height: 75rem;
   padding-top: 4.5rem;
 }
+/* Styles for the title */
+#title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Styles for the content area */
+#content {
+    margin-top: 20px;
+}
+
+/* Styles for the panel grid */
+.panelGrid {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+/* Styles for labels */
+.label {
+    font-weight: bold;
+}
+
+/* Styles for type headings */
+.typeHeading {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 20px; /* Add some gap between supplier and beverages */
+    color: #007bff; /* Blue color for beverage type headings */
+}
+
+/* Styles for data tables */
+.dataTable {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.dataTable td, .dataTable th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.dataTable th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #f2f2f2;
+}
+
+/* Styles for beverage names */
+.beverageName {
+    font-weight: bold;
+}
+
+/* Styles for quantity inputs */
+.quantityInput {
+    width: 50px;
+}
+
+/* Styles for the submit button */
+.submitButton {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.submitButton:hover {
+    background-color: #45a049;
+}
+
+/* Hover effect for beverages */
+.dataTable tr:hover {
+    background-color: #f5f5f5;
+}
+
+/* Alternating row colors for beverages */
+.dataTable tr:nth-child(even) {
+    background-color: #fff;
+}

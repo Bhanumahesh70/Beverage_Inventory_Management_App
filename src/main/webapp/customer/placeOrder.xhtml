@@ -8,17 +8,18 @@
                 xmlns:f="jakarta.faces.core"
                 xmlns:ezcomp="jakarta.faces.composite/ezcomp">
 
-    <ui:define name="title">
+    <ui:define name="title" id="title">
         Place a New Order
     </ui:define>
 
-    <ui:define name="content">
-        <h:form>
-            <h:panelGrid columns="2">
-                <h:outputText value="Supplier" />
+    <ui:define name="content" id="content">
+        <h:form id="orderForm">
+            <h:panelGrid columns="2" class="panelGrid">
+                <h:outputText value="Supplier" class="label" />
                 <h:selectOneMenu 
                     converter="supplierConverter"
-                    value="#{placeOrderController.selectedSupplier}">
+                    value="#{placeOrderController.selectedSupplier}"
+                    class="selectMenu">
                     <f:selectItems 
                         var="s"
                         value="#{placeOrderController.availableSuppliers}"
@@ -26,22 +27,24 @@
                         itemValue="#{s}"
                         />
                 </h:selectOneMenu>
-                <ui:repeat value="#{placeOrderController.beveragesByType}" var="typeEntry">
-                    <h:outputText value="#{typeEntry.key}" />
-                    <h:dataTable value="#{typeEntry.value}" var="beverage">
+                <ui:repeat value="#{placeOrderController.beveragesByType}" var="typeEntry" class="beverageType">
+                    <h:outputText value="#{typeEntry.key}" class="typeHeading" />
+                    <h:dataTable value="#{typeEntry.value}" var="beverage" class="dataTable">
                         <h:column>
-                            <h:outputText value="#{beverage.name}" />
+                            <h:outputText value="#{beverage.name}" class="beverageName" />
                         </h:column>
                         <h:column>
                             <h:inputText 
                                 converter="integerConverter"
-                                value="#{placeOrderController.quantityMap[beverage]}" />
+                                value="#{placeOrderController.quantityMap[beverage]}"
+                                class="quantityInput" />
                         </h:column>
                     </h:dataTable>
                 </ui:repeat>
             </h:panelGrid>
 
-            <h:commandButton value="Place Order" action="#{placeOrderController.placeOrder}" />
+            <h:commandButton value="Place Order" action="#{placeOrderController.placeOrder}" class="submitButton" />
         </h:form>
     </ui:define>
+
 </ui:composition>
