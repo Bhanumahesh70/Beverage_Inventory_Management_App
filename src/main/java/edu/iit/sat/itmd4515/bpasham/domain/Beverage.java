@@ -55,9 +55,15 @@ public class Beverage extends AbstractEntity{
     @Enumerated(EnumType.STRING)
         private BeverageType type;
 
+    @OneToMany(mappedBy = "beverage", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<OrderBeverageDetail> orderBeverageDetails;
+    
     @ManyToMany(mappedBy = "beverages")
     @XmlTransient
     private List<Order> orders;
+    
+    
+
     
     public Beverage(String name, LocalDate expiryDate, String isNonAlcoholic, BeverageType type) {
         this.name = name;
@@ -181,6 +187,23 @@ public class Beverage extends AbstractEntity{
      */
     public void setSuppliers(List<Supplier> suppliers) {
         this.suppliers = suppliers;
+    }
+    /**
+     * Get the value of orderBeverageDetails
+     *
+     * @return the value of orderBeverageDetails
+     */
+    public List<OrderBeverageDetail> getOrderBeverageDetails() {
+        return orderBeverageDetails;
+    }
+
+    /**
+     * Set the value of orderBeverageDetails
+     *
+     * @param orderBeverageDetails new value of orderBeverageDetails
+     */
+    public void setOrderBeverageDetails(List<OrderBeverageDetail> orderBeverageDetails) {
+        this.orderBeverageDetails = orderBeverageDetails;
     }
     
     //To String Method

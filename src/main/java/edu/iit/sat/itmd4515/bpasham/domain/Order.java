@@ -5,6 +5,7 @@
 package edu.iit.sat.itmd4515.bpasham.domain;
 
 import jakarta.json.bind.annotation.JsonbTransient;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,6 +15,7 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedQuery;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
@@ -48,6 +50,9 @@ public class Order extends AbstractEntity {
     @JoinColumn(name = "supplier_id")
     private Supplier supplier;
 
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<OrderBeverageDetail> orderBeverageDetails= new ArrayList<>();
+    
     @ManyToMany
     @JsonbTransient
     //@XmlTransient
@@ -55,6 +60,9 @@ public class Order extends AbstractEntity {
             joinColumns = @JoinColumn(name = "order_id"),
             inverseJoinColumns = @JoinColumn(name = "beverage_id"))
     private List<Beverage> beverages;
+    
+    
+
 
     public Order() {
     }
@@ -111,6 +119,22 @@ public class Order extends AbstractEntity {
         c.addOrder(this);
         s.addOrder(this);
         
+    }
+    
+    public void addOrderBeverageDetails(Beverage beverage, Integer quantity) {
+        OrderBeverageDetail orderBeverage = new OrderBeverageDetail();
+        orderBeverage.setOrder(this);
+        orderBeverage.setBeverage(beverage);
+        orderBeverage.setQuantity(quantity);
+        orderBeverageDetails.add(orderBeverage);
+        beverage.getOrderBeverageDetails().add(orderBeverage);
+    }
+
+    public void removeOrderBeverage(OrderBeverageDetail orderBeverage) {
+        orderBeverageDetails.remove(orderBeverage);
+        orderBeverage.getBeverage().getOrderBeverageDetails().remove(orderBeverage);
+        orderBeverage.setOrder(null);
+        orderBeverage.setBeverage(null);
     }
 
     //Getter and Setter Methods
@@ -175,6 +199,23 @@ public class Order extends AbstractEntity {
                 supplier.addOrder(this);
             }
         }
+    }
+    /**
+     * Get the value of orderBeverageDetail
+     *
+     * @return the value of orderBeverageDetail
+     */
+    public List<OrderBeverageDetail> getOrderBeverageDetails() {
+        return orderBeverageDetails;
+    }
+
+    /**
+     * Set the value of orderBeverageDetail
+     *
+     * @param orderBeverageDetail new value of orderBeverageDetail
+     */
+    public void setOrderBeverageDetails(List<OrderBeverageDetail> orderBeverageDetails) {
+        this.orderBeverageDetails = orderBeverageDetails;
     }
 
     @Override

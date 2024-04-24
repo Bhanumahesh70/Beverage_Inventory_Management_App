@@ -8,6 +8,7 @@
         <class>edu.iit.sat.itmd4515.bpasham.domain.Inventory </class>
         <class>edu.iit.sat.itmd4515.bpasham.domain.Order </class>
         <class>edu.iit.sat.itmd4515.bpasham.domain.Supplier</class>
+        <class>edu.iit.sat.itmd4515.bpasham.domain.OrderBeverageDetail</class>
         <class>edu.iit.sat.itmd4515.bpasham.security.Group</class>
         <class>edu.iit.sat.itmd4515.bpasham.security.User</class>
       
