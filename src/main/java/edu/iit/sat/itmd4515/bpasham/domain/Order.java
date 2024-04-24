@@ -108,13 +108,8 @@ public class Order extends AbstractEntity {
         this.supplier =s;
         
         //handle the bidirectional relationships
-        if(!c.getOrders().contains(this)){
-            c.getOrders().add(this);
-        }
-        
-        if(!s.getOrders().contains(this)){
-            s.getOrders().add(this);
-        }
+        c.addOrder(this);
+        s.addOrder(this);
         
     }
 

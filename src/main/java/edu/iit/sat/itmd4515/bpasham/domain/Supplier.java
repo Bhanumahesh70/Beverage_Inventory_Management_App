@@ -32,7 +32,7 @@ import java.util.Objects;
  * @author bhanu
  */
 @Entity
-@NamedQuery(name = "Supplier.findAll ", query = "select s from Supplier s")
+@NamedQuery(name = "Supplier.findAll", query = "select s from Supplier s")
 @NamedQuery(name = "Supplier.findByUsername", query = "select s from Supplier s where s.user.userName = :uname")
 @Table(name = "SUPPLIER")
 public class Supplier extends AbstractEntity {

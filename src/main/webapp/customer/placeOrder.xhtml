@@ -14,20 +14,29 @@
 
     <ui:define name="content">
         <h:form>
-            <h:dataTable value="#{placeOrderController.availableBeverages}" var="beverage">
-                <h:column>
-                    <h:outputText value="#{beverage.name}" />
-                </h:column>
-                <h:column>
-                    <h:inputText 
-                        converter="integerConverter"
-                        value="#{placeOrderController.quantityMap[beverage]}" />
-                </h:column>
-            </h:dataTable>
+            <h:panelGrid columns="2">
+                <h:outputText value="Supplier" />
+                <h:selectOneMenu 
+                    converter="supplierConverter"
+                    value="#{placeOrderController.selectedSupplier}">
+                    <f:selectItems value="#{placeOrderController.availableSuppliers}" />
+                </h:selectOneMenu>
+                <ui:repeat value="#{placeOrderController.beveragesByType}" var="typeEntry">
+                    <h:outputText value="#{typeEntry.key}" />
+                    <h:dataTable value="#{typeEntry.value}" var="beverage">
+                        <h:column>
+                            <h:outputText value="#{beverage.name}" />
+                        </h:column>
+                        <h:column>
+                            <h:inputText 
+                                converter="integerConverter"
+                                value="#{placeOrderController.quantityMap[beverage]}" />
+                        </h:column>
+                    </h:dataTable>
+                </ui:repeat>
+            </h:panelGrid>
 
             <h:commandButton value="Place Order" action="#{placeOrderController.placeOrder}" />
         </h:form>
-
     </ui:define>
-
 </ui:composition>
