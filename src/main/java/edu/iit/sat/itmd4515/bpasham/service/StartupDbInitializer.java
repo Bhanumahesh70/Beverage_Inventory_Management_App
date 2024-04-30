@@ -152,15 +152,21 @@ public class StartupDbInitializer {
         o1.addBeverage(b1);
         o1.setCustomer(c1);
         o1.setSupplier(s1);
+        OrderSvc.create(o1);
         //CustomerSvc.create(c1);
         
         Order o2 = new Order(LocalDate.of(2024, 2, 5), 10);
         o2.addBeverage(b2);
         o2.setCustomer(c1);
         o2.setSupplier(s1);
-
-        OrderSvc.create(o1);
         OrderSvc.create(o2);
+
+        Order o3 = new Order(LocalDate.of(2024, 2, 5), 5);
+        o3.addOrderBeverageDetails(b4,2);
+        o3.addOrderBeverageDetails(b1,5);
+        o3.setCustomer(c1);
+        o3.setSupplier(s1);
+        OrderSvc.create(o3);
 
         /*
         for (Beverage b : BeverageSvc.findAll()) {

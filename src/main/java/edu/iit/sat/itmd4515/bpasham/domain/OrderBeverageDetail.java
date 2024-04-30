@@ -29,6 +29,10 @@ public class OrderBeverageDetail extends AbstractEntity {
     @JoinColumn(name = "beverage_id")
     private Beverage beverage;
 
+    public OrderBeverageDetail() {
+    }
+
+    
     /**
      * Get the value of beverage
      *

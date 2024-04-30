@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+      xmlns:p="jakarta.faces.passthrough"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core"
+      xmlns:ui="jakarta.faces.facelets">
+
+    <!-- INTERFACE -->
+    <cc:interface>
+        <cc:attribute name="operation" required="true" type="java.lang.String" />
+        <cc:attribute name="orderBeverageDetail" required="true" type="edu.iit.sat.itmd4515.bpasham.domain.OrderBeverageDetail" />
+        <cc:attribute name="action" required="false" method-signature="java.lang.String action()" />
+    </cc:interface>
+
+    <!-- IMPLEMENTATION -->
+    <cc:implementation>
+        <h:form>
+            <!-- Beverage Detail ID -->
+            <p>
+                <h:panelGroup layout="block" rendered="#{not cc.attrs.operation.equalsIgnoreCase('create')}">
+                    <h:outputLabel value="Detail ID: #{cc.attrs.orderBeverageDetail.id}" for="detailId" />
+                    <h:inputHidden id="detailId" value="#{cc.attrs.orderBeverageDetail.id}" />   
+                    <h:message for="detailId" errorStyle="color:red" infoStyle="color:green" />
+                </h:panelGroup>
+            </p>
+            
+            <!-- Order -->
+            <p>
+                <h:panelGroup layout="block">
+                    <h:outputLabel value="Order ID" for="orderId" />
+                    <h:inputText id="orderId" value="#{cc.attrs.orderBeverageDetail.order.id}" disabled="true"/>
+                </h:panelGroup>
+            </p>
+
+            <!-- Beverage -->
+            <p>
+                <h:panelGroup layout="block">
+                    <h:outputLabel value="Beverage" for="beverage" />
+                    <h:selectOneMenu 
+                        converter="beverageConverter"
+                        value="#{cc.attrs.orderBeverageDetail.beverage}"
+                        id="beverage">
+                        <f:selectItems 
+                            var="b"
+                            value="#{beverageController.availableBeverages}"
+                            itemLabel="#{b.name}"
+                            itemValue="#{b}"
+                            />
+                    </h:selectOneMenu>
+                </h:panelGroup>
+            </p>
+
+            <!-- Quantity -->
+            <p>
+                <h:panelGroup layout="block">
+                    <h:outputLabel value="Quantity" for="quantity" />
+                    <h:inputText id="quantity" value="#{cc.attrs.orderBeverageDetail.quantity}" />
+                </h:panelGroup>
+            </p>
+
+            <!-- Action Buttons -->
+            <h:commandButton 
+                rendered="#{cc.attrs.operation.equalsIgnoreCase('create')}"
+                value="Add Detail" 
+                action="#{cc.attrs.action}" />
+            <h:commandButton 
+                rendered="#{cc.attrs.operation.equalsIgnoreCase('edit')}"
+                value="Update Detail" 
+                action="#{cc.attrs.action}" />
+            <h:commandButton 
+                rendered="#{cc.attrs.operation.equalsIgnoreCase('delete')}"
+                value="Remove Detail" 
+                action="#{cc.attrs.action}" />
+            <h:commandButton 
+                rendered="#{cc.attrs.operation.equalsIgnoreCase('view')}"
+                value="View Detail" 
+                action="#{cc.attrs.action}" />
+
+        </h:form>
+    </cc:implementation>
+</html>

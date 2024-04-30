@@ -62,25 +62,26 @@ public class Beverage extends AbstractEntity{
     @XmlTransient
     private List<Order> orders;
     
-    
-
-    
-    public Beverage(String name, LocalDate expiryDate, String isNonAlcoholic, BeverageType type) {
-        this.name = name;
-        this.expiryDate = expiryDate;
-        this.isNonAlcoholic = isNonAlcoholic;
-        this.type = type;
-    }
+   
     
     @ManyToMany(mappedBy = "s_beverage")
     private List<Supplier> suppliers = new ArrayList<>();
     
     @OneToOne(mappedBy = "beverage")
     private Inventory inventory;
+    
+    @OneToMany(mappedBy = "beverage", cascade = CascadeType.ALL, orphanRemoval = true)
+        private List<SupplierInventory> inventoryList = new ArrayList<>();
 
+    
     public Beverage() {
     }
-    
+      public Beverage(String name, LocalDate expiryDate, String isNonAlcoholic, BeverageType type) {
+        this.name = name;
+        this.expiryDate = expiryDate;
+        this.isNonAlcoholic = isNonAlcoholic;
+        this.type = type;
+    }
     
     // Getter and setter Methods
 
@@ -205,7 +206,25 @@ public class Beverage extends AbstractEntity{
     public void setOrderBeverageDetails(List<OrderBeverageDetail> orderBeverageDetails) {
         this.orderBeverageDetails = orderBeverageDetails;
     }
-    
+    /**
+     * Get the value of inventoryList
+     *
+     * @return the value of inventoryList
+     */
+    public List<SupplierInventory> getInventoryList() {
+        return inventoryList;
+    }
+
+    /**
+     * Set the value of inventoryList
+     *
+     * @param inventoryList new value of inventoryList
+     */
+    public void setInventoryList(List<SupplierInventory> inventoryList) {
+        this.inventoryList = inventoryList;
+    }
+
+
     //To String Method
     @Override
     public String toString() {
