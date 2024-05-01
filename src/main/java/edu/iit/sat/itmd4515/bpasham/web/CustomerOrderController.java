@@ -15,6 +15,7 @@ import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import jakarta.transaction.Transactional;
 import java.lang.System.Logger.Level;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -100,27 +101,30 @@ public class CustomerOrderController {
         cwc.refreshCustomerModel();
         return "/customer/welcome.xhtml?faces-redirect=true";
     }
-    public String updateOrder() {
     
-    LOG.info("Inside PlaceOrderController.updateOrder");
-    LOG.log(java.util.logging.Level.INFO, "Updating order with ID: '{'0'}'{0}", this.order.getId());
+    @Transactional
+    public String updateOrder() {
+        LOG.info("Inside updateOrder with Order ID: {}"+ order.getId());
 
-    if (this.order == null || this.order.getId() == null) {
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Invalid order data."));
-        return null; // Stay on the same page to correct data
+        if (order == null || order.getId() == null) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Invalid order data."));
+            return null; // Stay on the same page to correct data
+        }
+        try {
+            boolean isOrderUpdated = orderSvc.updateOrder(order);
+            if (isOrderUpdated) {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Success", "Order successfully updated."));
+                return "orderUpdatedConfirmation"; // Navigate to confirmation page
+            } else {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Failure", "Order could not be updated"));
+                return null; // Stay on the same page
+            }
+        } catch (Exception e) {
+            LOG.info("Error updating order: {}"+ e.getMessage());
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error updating order", e.getMessage()));
+            return null; // Stay on the same page
+        }
     }
-    try {
-        // Validate the order details if necessary
-        orderSvc.updateOrder(this.order, this.order.getOrderBeverageDetails()); // Assume an update method in your service
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Order successfully updated."));
-        return "orderUpdatedConfirmation"; // Navigate to confirmation page
-    } catch (Exception e) {
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error updating order", e.getMessage()));
-        LOG.info(e.getMessage());
-        return null; // Stay on the same page
-    }
-}
-
 
     public String deleteOrder() {
         orderSvc.deleteOrder(order.getId());

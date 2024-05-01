@@ -93,26 +93,22 @@ private static final Logger LOG = Logger.getLogger(OrderService.class.getName())
         em.merge(managedOrder);
     }
     */
-    public void updateOrder(Order order, List<OrderBeverageDetail> details) {
+    
+ @Transactional
+    public boolean updateOrder(Order order) {
         if (order == null || order.getId() == null) {
             throw new IllegalArgumentException("Order or Order ID must not be null");
         }
         try {
-            
             Order managedOrder = em.getReference(Order.class, order.getId());
             if (managedOrder == null) {
-                throw new IllegalArgumentException("Order not found");
+                throw new EntityNotFoundException("Order with ID " + order.getId() + " not found");
             }
-            if (managedOrder == null) {
-            throw new EntityNotFoundException("Order with ID " + order.getId() + " not found");
-        }
 
-            // Update fields in the managed order entity
-            managedOrder.setSupplier(em.getReference(Supplier.class, order.getSupplier().getId())); // Re-link supplier
+            managedOrder.setSupplier(em.getReference(Supplier.class, order.getSupplier().getId())); // Update supplier reference
 
-            // Clear existing details and add new ones
-            managedOrder.getOrderBeverageDetails().clear();
-            for (OrderBeverageDetail detail : details) {
+            managedOrder.getOrderBeverageDetails().clear(); // Clear existing details
+            for (OrderBeverageDetail detail : order.getOrderBeverageDetails()) {
                 Beverage beverage = em.getReference(Beverage.class, detail.getBeverage().getId());
                 if (beverage != null) {
                     detail.setOrder(managedOrder);
@@ -120,15 +116,15 @@ private static final Logger LOG = Logger.getLogger(OrderService.class.getName())
                     em.persist(detail);
                 }
             }
-            managedOrder.getOrderBeverageDetails().addAll(details);
+            managedOrder.getOrderBeverageDetails().addAll(order.getOrderBeverageDetails());
 
-            // Assume all transaction handling is done automatically or explicitly
             em.merge(managedOrder);
+            return true;
         } catch (Exception e) {
-            throw new RuntimeException("Error updating order", e);
+            LOG.info("Error updating order: {}"+ e.getMessage());
+            return false;
         }
     }
-
 
     public void deleteOrder(Long orderId) {
         Order orderToDelete = em.find(Order.class, orderId);
