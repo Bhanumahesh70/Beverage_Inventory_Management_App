@@ -15,12 +15,9 @@
     <ui:define name="content" id="content">
         <h:form>
             <h3>Place a New Order</h3>
-            
-            <h:outputLabel for="customer" value="Customer: " />
-            <h:selectOneMenu id="customer" value="#{placeOrderController.selectedCustomer}" converter="customerConverter">
-                <f:selectItems value="#{placeOrderController.customers}" var="c"
-                               itemValue="#{c}" itemLabel="#{c.name}"/>
-            </h:selectOneMenu><br/>
+
+            <h:outputLabel for="customerName" value="Customer:  " />
+            <h:outputText id="customerName" value="#{placeOrderController.customer.name}" /><br/>
 
             <h:outputLabel for="supplier" value="Supplier: " />
             <h:selectOneMenu id="supplier" value="#{placeOrderController.selectedSupplier}" converter="supplierConverter">
@@ -35,11 +32,11 @@
                 </h:column>
                 <h:column>
                     <f:facet name="header">Beverage</f:facet>
-                    #{b.name}
+                        #{b.name}
                 </h:column>
                 <h:column>
                     <f:facet name="header">Type</f:facet>
-                    #{b.type}
+                        #{b.type}
                 </h:column>
                 <h:column>
                     <f:facet name="header">Quantity</f:facet>

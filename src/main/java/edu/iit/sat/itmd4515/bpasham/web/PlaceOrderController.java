@@ -64,6 +64,11 @@ public class PlaceOrderController {
     private List<Customer> customers;
     private List<Supplier> suppliers;
     private List<Beverage> beverages;
+    
+    private Customer customer;
+
+   
+
 
     @PostConstruct
     public void init() {
@@ -72,6 +77,7 @@ public class PlaceOrderController {
         beverages = beverageService.findAll();
         suppliers = supplierService.findAll();
         customers = customerService.findAll();
+        customer = cwc.getCustomer();
     }
 
     public String placeOrder() {
@@ -109,6 +115,24 @@ public class PlaceOrderController {
         }
     }
 
+    
+     /**
+     * Get the value of customer
+     *
+     * @return the value of customer
+     */
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    /**
+     * Set the value of customer
+     *
+     * @param customer new value of customer
+     */
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
     // Customer-related fields
     public Customer getSelectedCustomer() {
         return selectedCustomer;
