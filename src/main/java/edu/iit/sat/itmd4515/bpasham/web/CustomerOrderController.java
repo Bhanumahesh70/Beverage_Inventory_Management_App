@@ -5,6 +5,7 @@
 package edu.iit.sat.itmd4515.bpasham.web;
 
 import edu.iit.sat.itmd4515.bpasham.domain.Order;
+import edu.iit.sat.itmd4515.bpasham.domain.OrderBeverageDetail;
 import edu.iit.sat.itmd4515.bpasham.service.CustomerService;
 import edu.iit.sat.itmd4515.bpasham.service.OrderService;
 import jakarta.annotation.PostConstruct;
@@ -12,6 +13,7 @@ import jakarta.ejb.EJB;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import java.util.List;
 import java.util.logging.Logger;
 
 /**
@@ -28,7 +30,9 @@ public class CustomerOrderController {
     @EJB CustomerService customerSvc;
     @Inject CustomerWelcomeController cwc;
     
-        private Order order;
+        private Order order;        
+            private List<OrderBeverageDetail> orderDetails;
+
 
     
 
@@ -75,6 +79,31 @@ public class CustomerOrderController {
      * In other words these methods handle the action click
      * @return 
      */
+    
+    public String createOrder() {
+        orderSvc.createOrder(order,orderDetails);
+        cwc.refreshCustomerModel();
+        return "/customer/welcome.xhtml?faces-redirect=true";
+    }
+
+    public String editOrder() {
+        orderSvc.updateOrder(order);
+        cwc.refreshCustomerModel();
+        return "/customer/welcome.xhtml?faces-redirect=true";
+    }
+
+    public String deleteOrder() {
+        orderSvc.deleteOrder(order.getId());
+        cwc.refreshCustomerModel();
+        return "/customer/welcome.xhtml?faces-redirect=true";
+    }
+    
+    
+    /*commenting below methods
+    *
+    *
+    */
+    /*
      public String saveOrder(){
         LOG.info("saveOrder has been invoked with model: " + this.order.toString());
         
@@ -94,7 +123,7 @@ public class CustomerOrderController {
         LOG.info("deleteOrder has been invoked with model: " + this.order.toString());
         return "/customer/welcome.xhtml";
     }
-    
+    */
     
     
     
@@ -114,5 +143,22 @@ public class CustomerOrderController {
      */
     public void setOrder(Order order) {
         this.order = order;
+    }
+    /**
+     * Get the value of orderDetails
+     *
+     * @return the value of orderDetails
+     */
+    public List<OrderBeverageDetail> getOrderDetails() {
+        return orderDetails;
+    }
+
+    /**
+     * Set the value of orderDetails
+     *
+     * @param orderDetails new value of orderDetails
+     */
+    public void setOrderDetails(List<OrderBeverageDetail> orderDetails) {
+        this.orderDetails = orderDetails;
     }
 }
