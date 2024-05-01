@@ -13,37 +13,41 @@
     </ui:define>
 
     <ui:define name="content" id="content">
-        <h:form id="orderForm">
-            <h:panelGrid columns="2" class="panelGrid">
-                <h:outputText value="Supplier" class="label" />
-                <h:selectOneMenu 
-                    converter="supplierConverter"
-                    value="#{placeOrderController.selectedSupplier}"
-                    class="selectMenu">
-                    <f:selectItems 
-                        var="s"
-                        value="#{placeOrderController.availableSuppliers}"
-                        itemLabel="#{s.name}"
-                        itemValue="#{s}"
-                        />
-                </h:selectOneMenu>
-                <ui:repeat value="#{placeOrderController.beveragesByType}" var="typeEntry" class="beverageType">
-                    <h:outputText value="#{typeEntry.key}" class="typeHeading" />
-                    <h:dataTable value="#{typeEntry.value}" var="beverage" class="dataTable">
-                        <h:column>
-                            <h:outputText value="#{beverage.name}" class="beverageName" />
-                        </h:column>
-                        <h:column>
-                            <h:inputText 
-                                converter="integerConverter"
-                                value="#{placeOrderController.quantityMap[beverage]}"
-                                class="quantityInput" />
-                        </h:column>
-                    </h:dataTable>
-                </ui:repeat>
-            </h:panelGrid>
+        <h:form>
+            <h3>Place a New Order</h3>
+            
+            <h:outputLabel for="customer" value="Customer: " />
+            <h:selectOneMenu id="customer" value="#{placeOrderController.selectedCustomer}" converter="customerConverter">
+                <f:selectItems value="#{placeOrderController.customers}" var="c"
+                               itemValue="#{c}" itemLabel="#{c.name}"/>
+            </h:selectOneMenu><br/>
 
-            <h:commandButton value="Place Order" action="#{placeOrderController.placeOrder}" class="submitButton" />
+            <h:outputLabel for="supplier" value="Supplier: " />
+            <h:selectOneMenu id="supplier" value="#{placeOrderController.selectedSupplier}" converter="supplierConverter">
+                <f:selectItems value="#{placeOrderController.suppliers}" var="s"
+                               itemValue="#{s}" itemLabel="#{s.name}"/>
+            </h:selectOneMenu><br/>
+
+            <h:dataTable value="#{placeOrderController.beverages}" var="b" style="width:100%">
+                <h:column>
+                    <f:facet name="header">Select</f:facet>
+                    <h:selectBooleanCheckbox value="#{placeOrderController.selectedBeverages[b]}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Beverage</f:facet>
+                    #{b.name}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Type</f:facet>
+                    #{b.type}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Quantity</f:facet>
+                    <h:inputText value="#{placeOrderController.beverageQuantities[b]}"/>
+                </h:column>
+            </h:dataTable><br/>
+
+            <h:commandButton value="Submit Order" action="#{placeOrderController.placeOrder}"/>
         </h:form>
     </ui:define>
 

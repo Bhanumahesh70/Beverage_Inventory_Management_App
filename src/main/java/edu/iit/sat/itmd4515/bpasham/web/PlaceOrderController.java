@@ -4,10 +4,16 @@
  */
 package edu.iit.sat.itmd4515.bpasham.web;
 
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.faces.application.FacesMessage;
+import jakarta.inject.Named;
+import jakarta.faces.context.FacesContext;
 import jakarta.ejb.EJB;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Named;
 import edu.iit.sat.itmd4515.bpasham.domain.Order;
+import edu.iit.sat.itmd4515.bpasham.domain.Customer;
+import edu.iit.sat.itmd4515.bpasham.domain.OrderBeverageDetail;
 import edu.iit.sat.itmd4515.bpasham.domain.Beverage;
 import edu.iit.sat.itmd4515.bpasham.domain.BeverageType;
 import edu.iit.sat.itmd4515.bpasham.domain.Supplier;
@@ -15,6 +21,7 @@ import edu.iit.sat.itmd4515.bpasham.service.BeverageService;
 import edu.iit.sat.itmd4515.bpasham.service.CustomerService;
 import edu.iit.sat.itmd4515.bpasham.service.OrderService;
 import edu.iit.sat.itmd4515.bpasham.service.SupplierService;
+import edu.iit.sat.itmd4515.bpasham.web.CustomerWelcomeController;
 import jakarta.annotation.PostConstruct;
 import jakarta.inject.Inject;
 import java.time.LocalDate;
@@ -34,6 +41,7 @@ import java.util.logging.Logger;
 @RequestScoped
 public class PlaceOrderController {
 
+    private static final Logger LOG = Logger.getLogger(PlaceOrderController.class.getName());
     @EJB
     private OrderService orderService;
 
@@ -49,159 +57,115 @@ public class PlaceOrderController {
     @Inject
     CustomerWelcomeController cwc;
 
-    private Map<Beverage, Integer> quantityMap;
-
-    private List<Beverage> availableBeverages;
-
-    private List<Supplier> availableSuppliers;
-
-    //private Map<BeverageType, List<Beverage>> beveragesByType;
-    private Map<BeverageType, List<Beverage>> beveragesByType;
-
+    private Customer selectedCustomer;
     private Supplier selectedSupplier;
-
-    private static final Logger LOG = Logger.getLogger(PlaceOrderController.class.getName());
+    private Map<Beverage, Boolean> selectedBeverages = new HashMap<>();
+    private Map<Beverage, Integer> beverageQuantities = new HashMap<>();
+    private List<Customer> customers;
+    private List<Supplier> suppliers;
+    private List<Beverage> beverages;
 
     @PostConstruct
-    public void postConstruct() {
-
+    public void init() {
         LOG.info("Inside PlaceOrderController.postConstruct");
-        quantityMap = new HashMap<>();
-        beveragesByType = new LinkedHashMap<>();
-        availableBeverages = beverageService.findAll();
-        availableSuppliers = supplierService.findAll();
-        for (Beverage beverage : availableBeverages) {
-            quantityMap.put(beverage, 0); // Initialize quantities to 0
-            BeverageType type = beverage.getType();
-            beveragesByType.computeIfAbsent(type, k -> new ArrayList<>()).add(beverage);
-        }
+        // Initialize customers, suppliers, and beverages list from database
+        beverages = beverageService.findAll();
+        suppliers = supplierService.findAll();
+        customers = customerService.findAll();
     }
-    
-    
 
     public String placeOrder() {
-        Order order = new Order();
-        order.setOrderDate(LocalDate.now());
-        order.setSupplier(selectedSupplier);
-        order.setCustomer(cwc.getCustomer());
-        List<Beverage> selectedBeverages = new ArrayList<>();
-        int totalQuantity = 0;
+        LOG.info("Inside PlaceOrderController.placeOrder");
+        try {
+            Order order = new Order();
+            order.setOrderDate(LocalDate.now());
+            order.setCustomer(selectedCustomer);
+            order.setSupplier(selectedSupplier);
 
-        for (Map.Entry<Beverage, Integer> entry : quantityMap.entrySet()) {
-            Beverage beverage = entry.getKey();
-            Integer quantity = entry.getValue();
-            if (quantity != null && quantity > 0) {
-
-                LOG.info("hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii selected beverage is: " + beverage.toString());
-
-                totalQuantity += quantity;
-                order.addOrderBeverageDetails(beverage, quantity);
-                //order.addBeverage(beverage);
-                selectedBeverages.add(beverage);
+            int totalQuantity = 0;
+            List<OrderBeverageDetail> details = new ArrayList<>();
+            for (Beverage b : selectedBeverages.keySet()) {
+                if (selectedBeverages.get(b)) {
+                    int quantity = beverageQuantities.get(b);
+                    totalQuantity += quantity;
+                    OrderBeverageDetail detail = new OrderBeverageDetail();
+                    detail.setOrder(order);
+                    detail.setBeverage(b);
+                    detail.setQuantity(quantity);
+                    details.add(detail);
+                }
             }
+            order.setQuantity(totalQuantity);
+            order.setOrderBeverageDetails(details);
+
+            // Assume a service layer to handle persistence
+            orderService.createOrder(order, details);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Order successfully placed."));
+            return "orderConfirmation"; // Navigate to confirmation page
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error placing order", e.getMessage()));
+            LOG.info(e.getMessage());
+            return null; // Stay on the same page
         }
-        order.setQuantity(totalQuantity);
-        // Save the order
-        LOG.log(Level.INFO, "saveOrder has been invoked with model: {0}", order.toString());
-        // orderService.placeOrder(order);
-        //orderService.placeNewOrder(order, cwc.getCustomer(), selectedBeverages);     
-        //customerService.createOrderForCustomer(cwc.getCustomer(), order);
-        // orderService.placeNewOrder(order);
-        orderService.placeNewOrder(order, selectedBeverages);
-        LOG.info("saveOrder after calling service layer: " + order.toString());
-
-        cwc.refreshCustomerModel();
-        return "/customer/welcome.xhtml";
     }
 
-    /**
-     * Get the value of availableBeverages
-     *
-     * @return the value of availableBeverages
-     */
-    public List<Beverage> getAvailableBeverages() {
-        return availableBeverages;
+    // Customer-related fields
+    public Customer getSelectedCustomer() {
+        return selectedCustomer;
     }
 
-    /**
-     * Set the value of availableBeverages
-     *
-     * @param availableBeverages new value of availableBeverages
-     */
-    public void setAvailableBeverages(List<Beverage> availableBeverages) {
-        this.availableBeverages = availableBeverages;
+    public void setSelectedCustomer(Customer selectedCustomer) {
+        this.selectedCustomer = selectedCustomer;
     }
 
-    /**
-     * Get the value of quantityMap
-     *
-     * @return the value of quantityMap
-     */
-    public Map<Beverage, Integer> getQuantityMap() {
-        return quantityMap;
+    public List<Customer> getCustomers() {
+        return customers;
     }
 
-    /**
-     * Set the value of quantityMap
-     *
-     * @param quantityMap new value of quantityMap
-     */
-    public void setQuantityMap(Map<Beverage, Integer> quantityMap) {
-        this.quantityMap = quantityMap;
+    public void setCustomers(List<Customer> customers) {
+        this.customers = customers;
     }
 
-    /**
-     * Get the value of availableSuppliers
-     *
-     * @return the value of availableSuppliers
-     */
-    public List<Supplier> getAvailableSuppliers() {
-        return availableSuppliers;
-    }
-
-    /**
-     * Set the value of availableSuppliers
-     *
-     * @param availableSuppliers new value of availableSuppliers
-     */
-    public void setAvailableSuppliers(List<Supplier> availableSuppliers) {
-        this.availableSuppliers = availableSuppliers;
-    }
-
-    /**
-     * Get the value of selectedSupplier
-     *
-     * @return the value of selectedSupplier
-     */
+// Supplier-related fields
     public Supplier getSelectedSupplier() {
         return selectedSupplier;
     }
 
-    /**
-     * Set the value of selectedSupplier
-     *
-     * @param selectedSupplier new value of selectedSupplier
-     */
     public void setSelectedSupplier(Supplier selectedSupplier) {
         this.selectedSupplier = selectedSupplier;
     }
 
-    /**
-     * Get the value of beveragesByType
-     *
-     * @return the value of beveragesByType
-     */
-    public Map<BeverageType, List<Beverage>> getBeveragesByType() {
-        return beveragesByType;
+    public List<Supplier> getSuppliers() {
+        return suppliers;
     }
 
-    /**
-     * Set the value of beveragesByType
-     *
-     * @param beveragesByType new value of beveragesByType
-     */
-    public void setBeveragesByType(Map<BeverageType, List<Beverage>> beveragesByType) {
-        this.beveragesByType = beveragesByType;
+    public void setSuppliers(List<Supplier> suppliers) {
+        this.suppliers = suppliers;
+    }
+
+// Beverage-related fields
+    public Map<Beverage, Boolean> getSelectedBeverages() {
+        return selectedBeverages;
+    }
+
+    public void setSelectedBeverages(Map<Beverage, Boolean> selectedBeverages) {
+        this.selectedBeverages = selectedBeverages;
+    }
+
+    public Map<Beverage, Integer> getBeverageQuantities() {
+        return beverageQuantities;
+    }
+
+    public void setBeverageQuantities(Map<Beverage, Integer> beverageQuantities) {
+        this.beverageQuantities = beverageQuantities;
+    }
+
+    public List<Beverage> getBeverages() {
+        return beverages;
+    }
+
+    public void setBeverages(List<Beverage> beverages) {
+        this.beverages = beverages;
     }
 
 }
