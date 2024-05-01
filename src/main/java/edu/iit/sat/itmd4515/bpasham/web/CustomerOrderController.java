@@ -13,6 +13,8 @@ import jakarta.ejb.EJB;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -43,6 +45,7 @@ public class CustomerOrderController {
     @PostConstruct
     private void postConstruct(){
         order = new Order();
+        orderDetails = new ArrayList<>();
         LOG.info("Inside CustomerOrderController.postConstruct");
     }
     
@@ -81,6 +84,7 @@ public class CustomerOrderController {
      */
     
     public String createOrder() {
+        order.setOrderDate(LocalDate.now());
         orderSvc.createOrder(order,orderDetails);
         cwc.refreshCustomerModel();
         return "/customer/welcome.xhtml?faces-redirect=true";
@@ -97,7 +101,16 @@ public class CustomerOrderController {
         cwc.refreshCustomerModel();
         return "/customer/welcome.xhtml?faces-redirect=true";
     }
-    
+    public void addBeverageToOrder() {
+        OrderBeverageDetail detail = new OrderBeverageDetail();
+        detail.setOrder(order);
+        detail.setQuantity(1); // Default quantity
+        orderDetails.add(detail);
+    }
+
+    public void removeBeverage(OrderBeverageDetail detail) {
+        orderDetails.remove(detail);
+    }
     
     /*commenting below methods
     *

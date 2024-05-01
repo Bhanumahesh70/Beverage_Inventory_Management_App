@@ -76,6 +76,8 @@ public class PlaceOrderController {
             beveragesByType.computeIfAbsent(type, k -> new ArrayList<>()).add(beverage);
         }
     }
+    
+    
 
     public String placeOrder() {
         Order order = new Order();
@@ -93,6 +95,7 @@ public class PlaceOrderController {
                 LOG.info("hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii selected beverage is: " + beverage.toString());
 
                 totalQuantity += quantity;
+                order.addOrderBeverageDetails(beverage, quantity);
                 //order.addBeverage(beverage);
                 selectedBeverages.add(beverage);
             }

@@ -10,6 +10,7 @@ import edu.iit.sat.itmd4515.bpasham.domain.Supplier;
 import edu.iit.sat.itmd4515.bpasham.domain.Customer;
 import edu.iit.sat.itmd4515.bpasham.domain.Beverage;
 import jakarta.ejb.Stateless;
+import jakarta.persistence.EntityNotFoundException;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -29,26 +30,42 @@ public class OrderService extends AbstractService<Order> {
     }
 
     public void createOrder(Order order, List<OrderBeverageDetail> details) {
-        Customer customer = em.find(Customer.class, order.getCustomer().getId());
-        Supplier supplier = em.find(Supplier.class, order.getSupplier().getId());
+        try {
+            Customer customer = em.find(Customer.class, order.getCustomer().getId());
+            Supplier supplier = em.find(Supplier.class, order.getSupplier().getId());
+            if (customer == null || supplier == null) {
+                throw new IllegalArgumentException("Customer or Supplier not found");
+            }
 
-        order.setCustomer(customer);
-        order.setSupplier(supplier);
+            order.setCustomer(customer);
+            order.setSupplier(supplier);
 
-        // Handle the beverages within the order
-        for (OrderBeverageDetail detail : details) {
-            detail.setOrder(order);
-            Beverage beverage = em.find(Beverage.class, detail.getBeverage().getId());
-            detail.setBeverage(beverage);
-            order.getOrderBeverageDetails().add(detail);
-            em.persist(detail);
+            for (OrderBeverageDetail detail : details) {
+                Beverage beverage = em.find(Beverage.class, detail.getBeverage().getId());
+                if (beverage == null) {
+                    continue;  // or handle error
+                }
+                detail.setOrder(order);
+                detail.setBeverage(beverage);
+                order.getOrderBeverageDetails().add(detail);
+                em.persist(detail);
+            }
+
+            em.persist(order);
+        } catch (Exception e) {
+            // Handle exception, possibly rethrow as a custom exception
+            throw new RuntimeException("Error creating order", e);
         }
-
-        em.persist(order);
     }
 
     public void updateOrder(Order order) {
-        Order managedOrder = em.find(Order.class, order.getId());
+        if (order == null || order.getId() == null) {
+            throw new IllegalArgumentException("Order or Order ID must not be null");
+        }
+        Order managedOrder = em.getReference(Order.class, order.getId());
+        if (managedOrder == null) {
+            throw new EntityNotFoundException("Order with ID " + order.getId() + " not found");
+        }
         managedOrder.setOrderDate(order.getOrderDate());
         managedOrder.setQuantity(order.getQuantity());
 
@@ -73,7 +90,22 @@ public class OrderService extends AbstractService<Order> {
             em.remove(orderToDelete);
         }
     }
-    
+
+    ///////////////////////
+    /////////////////////////
+    //////////////
+    public void placeNewOrder(Order order, List<Beverage> selectedBeverages) {
+        // Create a new order entity
+        Order newOrder = new Order(order.getOrderDate(), order.getQuantity());
+        // Set the customer and supplier
+        newOrder.setCustomer(em.getReference(Customer.class, order.getCustomer().getId()));
+        newOrder.setSupplier(em.getReference(Supplier.class, order.getSupplier().getId()));
+
+        // Set the selected beverages
+        newOrder.setBeverages(selectedBeverages);
+        // Persist the new order
+        em.persist(newOrder);
+    }
     /*
                     *Commenting the methods below
                     *
@@ -89,17 +121,7 @@ public class OrderService extends AbstractService<Order> {
                         em.persist(newOrder);
                     }
                      ////*88888
-                    public void placeNewOrder(Order order, List<Beverage> selectedBeverages) {
-                        // Create a new order entity
-                        Order newOrder = new Order(order.getOrderDate(), order.getQuantity());
-                        // Set the customer and supplier
-                        newOrder.setCustomer(em.getReference(Customer.class, order.getCustomer().getId()));
-                        newOrder.setSupplier(em.getReference(Supplier.class, order.getSupplier().getId()));
-                        // Set the selected beverages
-                        newOrder.setBeverages(selectedBeverages);
-                        // Persist the new order
-                        em.persist(newOrder);
-                    }
+                    
 
                     public void editOrderForExistingCustomer(Order o) {
                         /**
@@ -119,6 +141,6 @@ public class OrderService extends AbstractService<Order> {
                         em.merge(managedRef);
                     }
                     
-    */
-    
+     */
+
 }

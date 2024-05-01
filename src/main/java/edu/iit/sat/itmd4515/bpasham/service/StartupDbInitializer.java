@@ -161,7 +161,7 @@ public class StartupDbInitializer {
         o2.setSupplier(s1);
         OrderSvc.create(o2);
 
-        Order o3 = new Order(LocalDate.of(2024, 2, 5), 5);
+        Order o3 = new Order(LocalDate.of(2024, 2, 5),3);
         o3.addOrderBeverageDetails(b4,2);
         o3.addOrderBeverageDetails(b1,5);
         o3.setCustomer(c1);
