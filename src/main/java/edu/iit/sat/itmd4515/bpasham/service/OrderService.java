@@ -9,11 +9,14 @@ import edu.iit.sat.itmd4515.bpasham.domain.OrderBeverageDetail;
 import edu.iit.sat.itmd4515.bpasham.domain.Supplier;
 import edu.iit.sat.itmd4515.bpasham.domain.Customer;
 import edu.iit.sat.itmd4515.bpasham.domain.Beverage;
+import edu.iit.sat.itmd4515.bpasham.web.PlaceOrderController;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  *
@@ -21,7 +24,7 @@ import java.util.List;
  */
 @Stateless
 public class OrderService extends AbstractService<Order> {
-
+private static final Logger LOG = Logger.getLogger(OrderService.class.getName());
     public OrderService() {
         super(Order.class);
     }
@@ -30,7 +33,8 @@ public class OrderService extends AbstractService<Order> {
         return super.findAll("Order.findAll");
     }
 
-    public void createOrder(Order order, List<OrderBeverageDetail> details) {
+    @Transactional
+    public boolean createOrder(Order order) {
         try {
             Customer customer = em.find(Customer.class, order.getCustomer().getId());
             Supplier supplier = em.find(Supplier.class, order.getSupplier().getId());
@@ -42,25 +46,27 @@ public class OrderService extends AbstractService<Order> {
             order.setSupplier(supplier);
 
             List<OrderBeverageDetail> newDetails = new ArrayList<>();
-            for (OrderBeverageDetail detail : details) {
+            for (OrderBeverageDetail detail : order.getOrderBeverageDetails()) {
                 Beverage beverage = em.find(Beverage.class, detail.getBeverage().getId());
                 if (beverage == null) {
-                    continue;  // or handle error
+                    LOG.info("Beverage not found with ID: {}"+detail.getBeverage().getId());
+                    continue; // Skipping this detail
                 }
-                detail.setOrder(order);
                 detail.setBeverage(beverage);
                 newDetails.add(detail);
                 em.persist(detail);
             }
+            order.getOrderBeverageDetails().clear();
             order.getOrderBeverageDetails().addAll(newDetails);
 
             em.persist(order);
+            return true;
         } catch (Exception e) {
-            // Handle exception, possibly rethrow as a custom exception
-            throw new RuntimeException("Error creating order", e);
+            LOG.info("Error creating order: {}"+ e.getMessage());
+            return false;
         }
     }
-
+    /*
     public void updateOrder(Order order) {
         if (order == null || order.getId() == null) {
             throw new IllegalArgumentException("Order or Order ID must not be null");
@@ -86,6 +92,43 @@ public class OrderService extends AbstractService<Order> {
 
         em.merge(managedOrder);
     }
+    */
+    public void updateOrder(Order order, List<OrderBeverageDetail> details) {
+        if (order == null || order.getId() == null) {
+            throw new IllegalArgumentException("Order or Order ID must not be null");
+        }
+        try {
+            
+            Order managedOrder = em.getReference(Order.class, order.getId());
+            if (managedOrder == null) {
+                throw new IllegalArgumentException("Order not found");
+            }
+            if (managedOrder == null) {
+            throw new EntityNotFoundException("Order with ID " + order.getId() + " not found");
+        }
+
+            // Update fields in the managed order entity
+            managedOrder.setSupplier(em.getReference(Supplier.class, order.getSupplier().getId())); // Re-link supplier
+
+            // Clear existing details and add new ones
+            managedOrder.getOrderBeverageDetails().clear();
+            for (OrderBeverageDetail detail : details) {
+                Beverage beverage = em.getReference(Beverage.class, detail.getBeverage().getId());
+                if (beverage != null) {
+                    detail.setOrder(managedOrder);
+                    detail.setBeverage(beverage);
+                    em.persist(detail);
+                }
+            }
+            managedOrder.getOrderBeverageDetails().addAll(details);
+
+            // Assume all transaction handling is done automatically or explicitly
+            em.merge(managedOrder);
+        } catch (Exception e) {
+            throw new RuntimeException("Error updating order", e);
+        }
+    }
+
 
     public void deleteOrder(Long orderId) {
         Order orderToDelete = em.find(Order.class, orderId);

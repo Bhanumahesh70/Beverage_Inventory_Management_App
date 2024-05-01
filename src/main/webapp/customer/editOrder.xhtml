@@ -1,41 +1,35 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="jakarta.faces.html"
+                xmlns:f="jakarta.faces.core"
+                template="../WEB-INF/templates/authenticatedTemplate.xhtml">
 
-    <h:head>
-        <title>Edit Order</title>
-    </h:head>
-    <h:body>
+    <ui:define name="content">
         <h:form>
-            <h:panelGrid columns="2">
-                <h:inputHidden value="#{customerOrderController.order.id}" />
-                <h:outputLabel for="orderDate" value="Order Date:" />
-                <h:inputText id="orderDate" value="#{customerOrderController.order.orderDate}">
-                    <f:converter converterId="dateConverter" />
-                </h:inputText>
+            <h3>Edit Order</h3>
 
+            <h:inputHidden value="#{customerOrderController.order.id}" />
+            <h:outputLabel value="Customer:" />
+            <h:outputText value="#{customerOrderController.order.customer.name}" /><br/>
 
+            <h:outputLabel value="Supplier:" />
+            <h:selectOneMenu value="#{customerOrderController.order.supplier}" converter="supplierConverter">
+                <f:selectItems value="#{placeOrderController.suppliers}" var="s"
+                               itemValue="#{s}" itemLabel="#{s.name}"/>
+            </h:selectOneMenu><br/>
 
-                <!-- Editable list of beverages -->
-                <h:outputLabel value="Edit Beverages:" />
-                <h:dataTable value="#{customerOrderController.order.orderBeverageDetails}" var="detail">
-                    <h:column>
-                        <f:facet name="header">Beverage</f:facet>
-                        <h:selectOneMenu value="#{detail.beverage}">
-                            <f:selectItems value="#{beverageManagedBean.availableBeverages}" var="beverage"
-                                           itemLabel="#{beverage.name}" itemValue="#{beverage}" />
-                        </h:selectOneMenu>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Quantity</f:facet>
-                        <h:inputText value="#{detail.quantity}" />
-                    </h:column>
-                </h:dataTable>
-            </h:panelGrid>
+            <h:dataTable value="#{customerOrderController.order.orderBeverageDetails}" var="detail" style="width:100%">
+                <h:column>
+                    <f:facet name="header">Beverage</f:facet>
+                    #{detail.beverage.name}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Quantity</f:facet>
+                    <h:inputText value="#{detail.quantity}" converter="jakarta.faces.Integer"/>
+                </h:column>
+            </h:dataTable><br/>
 
-            <h:commandButton value="Save Changes" action="#{customerOrderController.editOrder()}" />
+            <h:commandButton value="Update Order" action="#{customerOrderController.updateOrder}"/>
         </h:form>
-    </h:body>
-</html>
+    </ui:define>
+</ui:composition>

@@ -98,7 +98,7 @@ public class OrderManagedBean {
             order.setOrderBeverageDetails(details);
 
             // Assume a service layer to handle persistence
-            orderService.createOrder(order, details);
+            orderService.createOrder(order);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Order successfully placed."));
             return "orderConfirmation"; // Navigate to confirmation page
         } catch (Exception e) {

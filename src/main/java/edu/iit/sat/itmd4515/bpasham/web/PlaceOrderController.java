@@ -24,6 +24,7 @@ import edu.iit.sat.itmd4515.bpasham.service.SupplierService;
 import edu.iit.sat.itmd4515.bpasham.web.CustomerWelcomeController;
 import jakarta.annotation.PostConstruct;
 import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -80,12 +81,13 @@ public class PlaceOrderController {
         customer = cwc.getCustomer();
     }
 
+    @Transactional
     public String placeOrder() {
-        LOG.info("Inside PlaceOrderController.placeOrder");
+        LOG.info("Starting to place an order");
         try {
             Order order = new Order();
             order.setOrderDate(LocalDate.now());
-            order.setCustomer(selectedCustomer);
+            order.setCustomer(customer);
             order.setSupplier(selectedSupplier);
 
             int totalQuantity = 0;
@@ -104,13 +106,17 @@ public class PlaceOrderController {
             order.setQuantity(totalQuantity);
             order.setOrderBeverageDetails(details);
 
-            // Assume a service layer to handle persistence
-            orderService.createOrder(order, details);
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Order successfully placed."));
-            return "orderConfirmation"; // Navigate to confirmation page
+            boolean isOrderCreated = orderService.createOrder(order);
+            if (isOrderCreated) {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Success", "Order successfully placed."));
+                return "orderConfirmation"; // Navigate to confirmation page
+            } else {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Failure", "Order could not be placed"));
+                return null; // Stay on the same page
+            }
         } catch (Exception e) {
+            LOG.info("Error placing order: {}"+e.getMessage());
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error placing order", e.getMessage()));
-            LOG.info(e.getMessage());
             return null; // Stay on the same page
         }
     }
