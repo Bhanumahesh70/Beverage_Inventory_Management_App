@@ -43,7 +43,7 @@
                 </h:column>
                 <h:column>
                     <f:facet name="header">Quantity</f:facet>
-                    <h:inputText value="#{placeOrderController.beverageQuantities[b]}"/>
+                    <h:inputText value="#{placeOrderController.beverageQuantities[b]}" converter="jakarta.faces.Integer"/>
                 </h:column>
             </h:dataTable><br/>
 

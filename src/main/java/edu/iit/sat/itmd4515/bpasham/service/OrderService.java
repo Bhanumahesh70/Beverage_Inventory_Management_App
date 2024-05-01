@@ -12,6 +12,7 @@ import edu.iit.sat.itmd4515.bpasham.domain.Beverage;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityNotFoundException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -40,6 +41,7 @@ public class OrderService extends AbstractService<Order> {
             order.setCustomer(customer);
             order.setSupplier(supplier);
 
+            List<OrderBeverageDetail> newDetails = new ArrayList<>();
             for (OrderBeverageDetail detail : details) {
                 Beverage beverage = em.find(Beverage.class, detail.getBeverage().getId());
                 if (beverage == null) {
@@ -47,9 +49,10 @@ public class OrderService extends AbstractService<Order> {
                 }
                 detail.setOrder(order);
                 detail.setBeverage(beverage);
-                order.getOrderBeverageDetails().add(detail);
+                newDetails.add(detail);
                 em.persist(detail);
             }
+            order.getOrderBeverageDetails().addAll(newDetails);
 
             em.persist(order);
         } catch (Exception e) {
