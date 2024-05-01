@@ -1,33 +1,36 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="jakarta.faces.core">
 
-<h:head>
-    <title>View Order</title>
-</h:head>
-<h:body>
-    <h:form>
-        <h:outputText value="Order ID: " />
-        <h:outputText value="#{customerOrderController.order.id}" />
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="jakarta.faces.html"
+                xmlns:f="jakarta.faces.core"
+                template="../WEB-INF/templates/authenticatedTemplate.xhtml">
 
-        <h:outputText value="Order Date: " />
-        <h:outputText value="#{customerOrderController.order.orderDate}" />
+    <ui:define name="title" id="title">
+        View Order
+    </ui:define>
 
-        <!-- List Order Beverage Details -->
-        <h:dataTable value="#{customerOrderController.order.orderBeverageDetails}" var="detail">
-            <h:column>
-                <f:facet name="header">Beverage</f:facet>
-                #{detail.beverage.name}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Quantity</f:facet>
-                #{detail.quantity}
-            </h:column>
-        </h:dataTable>
-
-        <h:commandButton value="Back to Orders" action="/customer/welcome.xhtml?faces-redirect=true" />
-    </h:form>
-</h:body>
-</html>
+    <ui:define name="content">
+        <h:form>
+            <h:dataTable value="#{customerOrderController.order}" var="order" style="width:100%">
+                <h:column>
+                    <f:facet name="header">Customer Name</f:facet>
+                        #{order.customer.name}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Supplier</f:facet>
+                        #{order.supplier.name}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Beverages</f:facet>
+                    <ul>
+                        <ui:repeat value="#{order.orderBeverageDetails}" var="detail">
+                            <li>#{detail.beverage.name} - Quantity: #{detail.quantity}</li>
+                        </ui:repeat>
+                    </ul>
+                </h:column>
+            </h:dataTable>
+        </h:form>
+    </ui:define>
+</ui:composition>
