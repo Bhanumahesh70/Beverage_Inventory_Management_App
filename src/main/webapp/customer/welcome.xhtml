@@ -29,11 +29,12 @@
                 <f:facet name="header">Order date</f:facet>
                 <h:outputText value="#{orders.orderDate}" />
             </h:column>
+            
 
 
             <h:column>
                 <h:form>
-                    <h:commandButton value="view" action="#{customerOrderController.displayViewOrderPage(orders)}" />
+                    <h:commandButton value="view" action="#{placeOrderController.displayViewOrderPage(orders)}" />
                     <h:commandButton value="edit" action="#{customerOrderController.displayEditOrderPage(orders)}" />
                     <h:commandButton value="delete" action="#{customerOrderController.displayDeleteOrderPage(orders)}" />
                 </h:form>

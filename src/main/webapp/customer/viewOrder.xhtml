@@ -13,11 +13,16 @@
 
     <ui:define name="content">
         <h:form>
-            <h:dataTable value="#{customerOrderController.order}" var="order" style="width:100%">
+            <h:dataTable value="#{placeOrderController.order}" var="order" style="width:100%">
+                <h:column>
+                    <f:facet name="header">Order ID</f:facet>
+                        #{order.id}
+                </h:column>
                 <h:column>
                     <f:facet name="header">Customer Name</f:facet>
                         #{order.customer.name}
                 </h:column>
+                
                 <h:column>
                     <f:facet name="header">Supplier</f:facet>
                         #{order.supplier.name}

@@ -29,66 +29,79 @@ import java.util.logging.Logger;
 @Named
 @RequestScoped
 public class CustomerOrderController {
-    
-      private static final Logger LOG = Logger.getLogger(CustomerOrderController.class.getName());
-      
-    @EJB OrderService orderSvc;
-    @EJB CustomerService customerSvc;
-    @Inject CustomerWelcomeController cwc;
-    
-        private Order order;        
-            private List<OrderBeverageDetail> orderDetails;
 
+    private static final Logger LOG = Logger.getLogger(CustomerOrderController.class.getName());
 
-    
+    @EJB
+    OrderService orderSvc;
+    @EJB
+    CustomerService customerSvc;
+    @Inject
+    CustomerWelcomeController cwc;
 
+    private Order order;
+    private List<OrderBeverageDetail> orderDetails;
 
     public CustomerOrderController() {
     }
-    
+
     @PostConstruct
-    private void postConstruct(){
+    private void postConstruct() {
         order = new Order();
         orderDetails = new ArrayList<>();
         LOG.info("Inside CustomerOrderController.postConstruct");
     }
-    
+
     //action method
-    public String displayViewOrderPage(Order o){
+    public String displayViewOrderPage(Order o) {
         //step-1
         this.order = o;
-        LOG.info("Inside displayViewOrderPage with model "+o.toString());
-        LOG.log(java.util.logging.Level.INFO, "Displaying Beverages {0}", o.getBeverages());
-        LOG.info("Displaying orderBeverageDetails "+ o.getOrderBeverageDetails());
+        LOG.info("Inside CustomerOrderController.displayEditOrderPage with model " + o.toString());
+        LOG.info("Order in displayEditOrderPage: " + order.toString());
+        LOG.log(java.util.logging.Level.INFO, "Oder OrderBeverageDetails: {0}", order.getOrderBeverageDetails().toString());
+        LOG.log(java.util.logging.Level.INFO, "Oder(o) OrderBeverageDetails: {0}", o.getOrderBeverageDetails().toString());
+        LOG.info("Order.getCustomer(): "+order.getCustomer());
+        //LOG.info("customer: "+customer);
+        LOG.info("Order.supplier: "+order.getSupplier());
         
+        LOG.info("Inside displayViewOrderPage with model " + o.toString());
+        LOG.log(java.util.logging.Level.INFO, "Displaying Beverages {0}", o.getBeverages());
+        LOG.info("Displaying orderBeverageDetails " + o.getOrderBeverageDetails());
+
         //step-2
         return "/customer/viewOrder.xhtml";
     }
-    public String displayEditOrderPage(Order o){
+
+    public String displayEditOrderPage(Order o) {
         //step-1
-         this.order = o;
-        LOG.info("Inside displayEditOrderPage with model "+o.toString());
+        this.order = o;
+
+        LOG.info("Inside displayEditOrderPage with model " + o.toString());
+        LOG.info("Order in displayEditOrderPage: " + order.toString());
+        LOG.log(java.util.logging.Level.INFO, "Oder OrderBevergaeDetail: {0}", order.getOrderBeverageDetails().toString());
         
+
         //step-2
         return "/customer/editOrder.xhtml";
     }
-    public String displayDeleteOrderPage(Order o){
+
+    public String displayDeleteOrderPage(Order o) {
         //step-1
         this.order = o;
-        LOG.info("Inside displayDeleteOrderPage with model "+o.toString());
-        
+        LOG.info("Inside displayDeleteOrderPage with model " + o.toString());
+
         //step-2
         return "/customer/deleteOrder.xhtml";
     }
-    
+
     /**
-     * These are the MVC style step 3 methods
-     * If there was an action associated with JSF view step2 one of these methods would be action of the form
-     * or composite component on that page
-     * In other words these methods handle the action click
-     * @return 
+     * These are the MVC style step 3 methods If there was an action associated
+     * with JSF view step2 one of these methods would be action of the form or
+     * composite component on that page In other words these methods handle the
+     * action click
+     *
+     * @return
      */
-    
     public String createOrder() {
         order.setOrderDate(LocalDate.now());
         //orderSvc.createOrder(order,orderDetails);
@@ -97,30 +110,39 @@ public class CustomerOrderController {
     }
 
     public String editOrder() {
-      //  orderSvc.updateOrder(order);
+        //  orderSvc.updateOrder(order);
         cwc.refreshCustomerModel();
         return "/customer/welcome.xhtml?faces-redirect=true";
     }
-    
+
     @Transactional
     public String updateOrder() {
-        LOG.info("Inside updateOrder with Order ID: {}"+ order.getId());
+        LOG.info("Inside CustomerOrderController.updateOrder with Order ID: {}" + order.getId());
+        LOG.info("Order in customerOrderController.updateOrder: " + order.toString());
+        LOG.info("getOrderBeverageDetailstoString()"+order.getOrderBeverageDetailstoString());
+        LOG.log(java.util.logging.Level.INFO, "Oder OrderBevergaeDetail: {0}", order.getOrderBeverageDetails().toString());
 
         if (order == null || order.getId() == null) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Invalid order data."));
             return null; // Stay on the same page to correct data
         }
         try {
+
             boolean isOrderUpdated = orderSvc.updateOrder(order);
             if (isOrderUpdated) {
+                LOG.info("CustomerOrderController After Update");
+                LOG.info("Order: "+order.toString());
+                LOG.info("getOrderBeverageDetailstoString()"+order.getOrderBeverageDetailstoString());
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Success", "Order successfully updated."));
-                return "orderUpdatedConfirmation"; // Navigate to confirmation page
+                cwc.refreshCustomerModel();
+                return "/customer/welcome.xhtml?faces-redirect=true";
+
             } else {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Failure", "Order could not be updated"));
                 return null; // Stay on the same page
             }
         } catch (Exception e) {
-            LOG.info("Error updating order: {}"+ e.getMessage());
+            LOG.info("Error updating order: {}" + e.getMessage());
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error updating order", e.getMessage()));
             return null; // Stay on the same page
         }
@@ -131,6 +153,7 @@ public class CustomerOrderController {
         cwc.refreshCustomerModel();
         return "/customer/welcome.xhtml?faces-redirect=true";
     }
+
     public void addBeverageToOrder() {
         OrderBeverageDetail detail = new OrderBeverageDetail();
         detail.setOrder(order);
@@ -141,12 +164,12 @@ public class CustomerOrderController {
     public void removeBeverage(OrderBeverageDetail detail) {
         orderDetails.remove(detail);
     }
-    
+
     /*commenting below methods
     *
     *
-    */
-    /*
+     */
+ /*
      public String saveOrder(){
         LOG.info("saveOrder has been invoked with model: " + this.order.toString());
         
@@ -166,10 +189,7 @@ public class CustomerOrderController {
         LOG.info("deleteOrder has been invoked with model: " + this.order.toString());
         return "/customer/welcome.xhtml";
     }
-    */
-    
-    
-    
+     */
     /**
      * Get the value of order
      *
@@ -187,6 +207,7 @@ public class CustomerOrderController {
     public void setOrder(Order order) {
         this.order = order;
     }
+
     /**
      * Get the value of orderDetails
      *

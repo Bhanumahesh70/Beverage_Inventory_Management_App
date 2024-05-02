@@ -222,5 +222,8 @@ public class Order extends AbstractEntity {
     public String toString() {
         return "Order{" + "orderId=" + id + ", orderDate=" + orderDate + ", quantity=" + quantity + '}';
     }
-
+    
+    public String getOrderBeverageDetailstoString() {
+        return "getOrderBeverageDetails: "+orderBeverageDetails;
+}
 }

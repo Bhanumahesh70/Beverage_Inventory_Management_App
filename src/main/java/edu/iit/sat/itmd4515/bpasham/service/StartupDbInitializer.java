@@ -150,23 +150,42 @@ public class StartupDbInitializer {
 
         Order o1 = new Order(LocalDate.of(2024, 2, 4), 5);
         o1.addBeverage(b1);
+        o1.addOrderBeverageDetails(b1,5);
         o1.setCustomer(c1);
         o1.setSupplier(s1);
         OrderSvc.create(o1);
         //CustomerSvc.create(c1);
         
-        Order o2 = new Order(LocalDate.of(2024, 2, 5), 10);
+        Order o2 = new Order(LocalDate.of(2024, 2, 5), 6);
+        o2.addOrderBeverageDetails(b2,6);
         o2.addBeverage(b2);
-        o2.setCustomer(c1);
+        o2.setCustomer(c2);
         o2.setSupplier(s1);
         OrderSvc.create(o2);
 
-        Order o3 = new Order(LocalDate.of(2024, 2, 5),3);
+        Order o3 = new Order(LocalDate.of(2024, 2, 7),7);
         o3.addOrderBeverageDetails(b4,2);
         o3.addOrderBeverageDetails(b1,5);
+        o3.addBeverage(b4);
+        o3.addBeverage(b1);
+        
         o3.setCustomer(c1);
         o3.setSupplier(s1);
         OrderSvc.create(o3);
+        
+        Order o4 = new Order(LocalDate.of(2024, 6, 10),10);
+        o4.addOrderBeverageDetails(b1,1);
+        o4.addOrderBeverageDetails(b2,2);
+        o4.addOrderBeverageDetails(b3,3);
+        o4.addOrderBeverageDetails(b4,4);
+        o4.addBeverage(b1);
+        o4.addBeverage(b2);
+        o4.addBeverage(b3);
+        o4.addBeverage(b4);
+        
+        o4.setCustomer(c2);
+        o4.setSupplier(s2);
+        OrderSvc.create(o4);
 
         /*
         for (Beverage b : BeverageSvc.findAll()) {

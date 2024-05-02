@@ -7,6 +7,7 @@ package edu.iit.sat.itmd4515.bpasham.domain;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Min;
 
@@ -16,6 +17,7 @@ import jakarta.validation.constraints.Min;
  */
 @Entity
 @Table(name = "OrderBeverageDetail")
+@NamedQuery(name="OrderBeverageDetail.findAll",query="select o from Inventory o")
 public class OrderBeverageDetail extends AbstractEntity {
 
     @Min(1)

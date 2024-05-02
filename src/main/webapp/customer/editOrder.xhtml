@@ -7,13 +7,13 @@
     <ui:define name="content">
         <h:form>
             <h3>Edit Order</h3>
-
-            <h:inputHidden value="#{customerOrderController.order.id}" />
+            <h:outputLabel value="OrderId:" />
+            <h:outputText value="#{customerOrderController.order.id}" /><br/>
             <h:outputLabel value="Customer:" />
-            <h:outputText value="#{customerOrderController.order.customer.name}" /><br/>
+            <h:outputText value="#{customerController.order.customer.name}" /><br/>
 
             <h:outputLabel value="Supplier:" />
-            <h:selectOneMenu value="#{customerOrderController.order.supplier}" converter="supplierConverter">
+            <h:selectOneMenu value="#{customerController.order.supplier}" converter="supplierConverter">
                 <f:selectItems value="#{placeOrderController.suppliers}" var="s"
                                itemValue="#{s}" itemLabel="#{s.name}"/>
             </h:selectOneMenu><br/>

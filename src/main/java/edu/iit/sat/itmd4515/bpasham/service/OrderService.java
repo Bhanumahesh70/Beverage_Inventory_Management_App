@@ -58,7 +58,10 @@ private static final Logger LOG = Logger.getLogger(OrderService.class.getName())
             }
             order.getOrderBeverageDetails().clear();
             order.getOrderBeverageDetails().addAll(newDetails);
-
+            LOG.info("OrderService.CreateOrder: Order Before Persist");
+            LOG.info("Order before Persists: "+order.toString());
+            LOG.info("Oder OrderBevergaeDetail: "+order.getOrderBeverageDetails().toString());
+            LOG.info("getOrderBeverageDetailstoString()"+order.getOrderBeverageDetailstoString());
             em.persist(order);
             return true;
         } catch (Exception e) {
@@ -96,6 +99,7 @@ private static final Logger LOG = Logger.getLogger(OrderService.class.getName())
     
  @Transactional
     public boolean updateOrder(Order order) {
+        LOG.info("Inside OrderService.updateOrder");
         if (order == null || order.getId() == null) {
             throw new IllegalArgumentException("Order or Order ID must not be null");
         }
@@ -108,16 +112,24 @@ private static final Logger LOG = Logger.getLogger(OrderService.class.getName())
             managedOrder.setSupplier(em.getReference(Supplier.class, order.getSupplier().getId())); // Update supplier reference
 
             managedOrder.getOrderBeverageDetails().clear(); // Clear existing details
+            List<OrderBeverageDetail> newDetails = new ArrayList<>();
             for (OrderBeverageDetail detail : order.getOrderBeverageDetails()) {
                 Beverage beverage = em.getReference(Beverage.class, detail.getBeverage().getId());
+                if (beverage == null) {
+                    LOG.info("Beverage not found with ID: {}"+ detail.getBeverage().getId());
+                    continue; // Skipping this detail
+                }
                 if (beverage != null) {
                     detail.setOrder(managedOrder);
                     detail.setBeverage(beverage);
-                    em.persist(detail);
+                    newDetails.add(detail);
+                    em.persist(newDetails);
                 }
             }
-            managedOrder.getOrderBeverageDetails().addAll(order.getOrderBeverageDetails());
-
+            managedOrder.getOrderBeverageDetails().addAll(newDetails);
+            LOG.info("Order before mergin: "+managedOrder.toString());
+            LOG.info("Oder OrderBevergaeDetail: "+managedOrder.getOrderBeverageDetails().toString());
+            LOG.info("getOrderBeverageDetailstoString()"+managedOrder.getOrderBeverageDetailstoString());
             em.merge(managedOrder);
             return true;
         } catch (Exception e) {

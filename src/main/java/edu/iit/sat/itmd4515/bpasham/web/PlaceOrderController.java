@@ -68,7 +68,17 @@ public class PlaceOrderController {
     
     private Customer customer;
 
-   
+        private Order order;
+        
+    private List<OrderBeverageDetail> orderBeverageDetail;
+
+    
+        
+
+    
+
+   //private Order order;
+   //List<OrderBeverageDetail> details = new ArrayList<>();
 
 
     @PostConstruct
@@ -80,18 +90,52 @@ public class PlaceOrderController {
         customers = customerService.findAll();
         customer = cwc.getCustomer();
     }
+public String displayViewOrderPage(Order o) {
+        //step-1
+        this.order = o;
+        LOG.info("Inside PlaceOrderController.displayEditOrderPage with model " + o.toString());
+        LOG.info("Order in displayEditOrderPage: " + order.toString());
+        LOG.log(java.util.logging.Level.INFO, "Oder OrderBeverageDetails: {0}", order.getOrderBeverageDetails().toString());
+        LOG.log(java.util.logging.Level.INFO, "Oder(o) OrderBeverageDetails: {0}", o.getOrderBeverageDetails().toString());
+        LOG.info("Order.getCustomer(): "+order.getCustomer());
+        //LOG.info("customer: "+customer);
+        LOG.info("Order.supplier: "+order.getSupplier());
+        
+        LOG.info("Inside displayViewOrderPage with model " + o.toString());
+        LOG.log(java.util.logging.Level.INFO, "Displaying Beverages {0}", o.getBeverages());
+        LOG.info("Displaying orderBeverageDetails " + o.getOrderBeverageDetails());
 
+        //step-2
+        return "/customer/viewOrder.xhtml";
+    }
+
+    public String displayEditOrderPage(Order o) {
+        //step-1
+        this.order = o;
+
+        LOG.info("Inside PlaceOrderController.displayEditOrderPage with model " + o.toString());
+        LOG.info("Order in displayEditOrderPage: " + order.toString());
+        LOG.log(java.util.logging.Level.INFO, "Oder OrderBevergaeDetail: {0}", order.getOrderBeverageDetails().toString());
+        LOG.info("Order.getCustomer(): "+order.getCustomer());
+        LOG.info("customer: "+customer);
+        LOG.info("Order.supplier: "+order.getSupplier());
+        
+        
+
+        //step-2
+        return "/customer/editOrder.xhtml";
+    }
     @Transactional
     public String placeOrder() {
         LOG.info("Starting to place an order");
         try {
-            Order order = new Order();
+            order = new Order();
             order.setOrderDate(LocalDate.now());
             order.setCustomer(customer);
             order.setSupplier(selectedSupplier);
 
             int totalQuantity = 0;
-            List<OrderBeverageDetail> details = new ArrayList<>();
+           orderBeverageDetail = new ArrayList<>();
             for (Beverage b : selectedBeverages.keySet()) {
                 if (selectedBeverages.get(b)) {
                     int quantity = beverageQuantities.get(b);
@@ -100,14 +144,19 @@ public class PlaceOrderController {
                     detail.setOrder(order);
                     detail.setBeverage(b);
                     detail.setQuantity(quantity);
-                    details.add(detail);
+                    orderBeverageDetail.add(detail);
                 }
             }
             order.setQuantity(totalQuantity);
-            order.setOrderBeverageDetails(details);
+            order.setOrderBeverageDetails(orderBeverageDetail);
 
             boolean isOrderCreated = orderService.createOrder(order);
             if (isOrderCreated) {
+                LOG.info("Order is created Successfully");
+                LOG.info("PlaceOrderontroller.placeOrder: Order After Persist");
+            LOG.info("Order after Persists: "+order.toString());
+            LOG.info("Oder OrderBevergaeDetail: "+order.getOrderBeverageDetails().toString());
+            LOG.info("getOrderBeverageDetailstoString()"+order.getOrderBeverageDetailstoString());
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Success", "Order successfully placed."));
                 return "orderConfirmation"; // Navigate to confirmation page
             } else {
@@ -120,8 +169,74 @@ public class PlaceOrderController {
             return null; // Stay on the same page
         }
     }
+@Transactional
+    public String updateOrder() {
+        LOG.info("Inside CustomerOrderController.updateOrder with Order ID: {}" + order.getId());
+        LOG.info("Order in customerOrderController.updateOrder: " + order.toString());
+        LOG.info("getOrderBeverageDetailstoString()"+order.getOrderBeverageDetailstoString());
+        LOG.log(java.util.logging.Level.INFO, "Oder OrderBevergaeDetail: {0}", order.getOrderBeverageDetails().toString());
 
+        if (order == null || order.getId() == null) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Invalid order data."));
+            return null; // Stay on the same page to correct data
+        }
+        try {
+
+            boolean isOrderUpdated = orderService.updateOrder(order);
+            if (isOrderUpdated) {
+                LOG.info("PlaceOrderController After Update");
+                LOG.info("Order: "+order.toString());
+                LOG.info("getOrderBeverageDetailstoString()"+order.getOrderBeverageDetailstoString());
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Success", "Order successfully updated."));
+                cwc.refreshCustomerModel();
+                return "/customer/welcome.xhtml?faces-redirect=true";
+
+            } else {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Failure", "Order could not be updated"));
+                return null; // Stay on the same page
+            }
+        } catch (Exception e) {
+            LOG.info("Error updating order: {}" + e.getMessage());
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error updating order", e.getMessage()));
+            return null; // Stay on the same page
+        }
+    }
     
+    /**
+     * Get the value of order
+     *
+     * @return the value of order
+     */
+    public Order getOrder() {
+        return order;
+    }
+
+    /**
+     * Set the value of order
+     *
+     * @param order new value of order
+     */
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+    /**
+     * Get the value of orderBeverageDetail
+     *
+     * @return the value of orderBeverageDetail
+     */
+    public List<OrderBeverageDetail> getOrderBeverageDetail() {
+        return orderBeverageDetail;
+    }
+
+    /**
+     * Set the value of orderBeverageDetail
+     *
+     * @param orderBeverageDetail new value of orderBeverageDetail
+     */
+    public void setOrderBeverageDetail(List<OrderBeverageDetail> orderBeverageDetail) {
+        this.orderBeverageDetail = orderBeverageDetail;
+    }
+
      /**
      * Get the value of customer
      *
