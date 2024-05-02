@@ -7,12 +7,12 @@
                 xmlns:f="jakarta.faces.core">
 
     <ui:define name="title">
-       Supplier
+        Supplier
     </ui:define>
 
     <ui:define name="content">
         Welcome #{loginController.authenticatedUser}!! to the Supplier section of the Beverage Inventory Application
-       
+
         <h:link outcome="/supplier/createNewBeverage.xhtml">Create a New Beverage</h:link>
         <h:dataTable 
             styleClass="table table-striped table-hover"
@@ -43,32 +43,57 @@
                 <f:facet name="header"># Orders</f:facet>
                 <h:outputText value="#{beverage.orders.size()}" />
             </h:column>
-            
-            
+
+
             <h:column>
                 <f:facet name="header"># Suppliers</f:facet>
                 <h:outputText value="#{beverage.suppliers.size()}" />
             </h:column>
-            
-            
+
+
             <h:column>
                 <f:facet name="header">#Suppliers name</f:facet>
                 <ui:repeat value="#{beverage.suppliers}" var="supplier">
                     <h:outputText value="#{supplier.name}" />
-                    
+
                 </ui:repeat>
             </h:column>
-            
+
             <h:column>
                 <h:form>
                     <h:commandButton value="view" action="#{supplierBeverageController.displayViewBeveragePage(beverage)}" />
                     <h:commandButton value="edit" action="#{supplierBeverageController.displayEditBeveragePage(beverage)}" />
                     <h:commandButton value="delete" action="#{supplierBeverageController.displayDeleteBeveragePage(beverage)}" />
                 </h:form>
-            </h:column>
-            
+            </h:column> 
+
         </h:dataTable>
-        
+
+        <!-- Section for Order Details -->
+        <h2>Orders Associated with Supplier</h2>
+        <h:dataTable styleClass="table table-striped"
+                     value="#{supplierWelcomeController.supplier.orders}" var="order">
+            <h:column>
+                <f:facet name="header">Order ID</f:facet>
+                <h:outputText value="#{order.id}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">Order Date</f:facet>
+                <h:outputText value="#{order.orderDate}">
+                    <f:converter converterId="dateConverter" />
+                </h:outputText>
+
+            </h:column>
+            <h:column>
+                <f:facet name="header">Customer Name</f:facet>
+                <h:outputText value="#{order.customer.name}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">Quantity</f:facet>
+                <h:outputText value="#{order.quantity}" />
+            </h:column>
+        </h:dataTable>
+
     </ui:define>
 
 </ui:composition>
