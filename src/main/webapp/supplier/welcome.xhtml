@@ -99,13 +99,15 @@
             <h:column>
                 <f:facet name="header">Status</f:facet>
                 <h:outputText value="#{order.status}" />
-                    
+
             </h:column>
             <h:column>
                 <h:form>
                     <h:commandButton value="view" action="#{supplierBeverageController.displayViewOrderPage(order)}" />
-                    <h:commandButton value="Complete" action="#{supplierBeverageController.completeOrder(order)}" /> 
-                    <h:commandButton value="Cancel" action="#{supplierBeverageController.cancelOrder(order.id)}" /> 
+                    <h:commandButton value="Complete" action="#{supplierBeverageController.completeOrder(order)}" 
+                                     rendered="#{order.status eq 'Placed'}" />
+                    <h:commandButton value="Cancel" action="#{supplierBeverageController.cancelOrder(order.id)}" 
+                                     rendered="#{order.status eq 'Placed'}" />
                 </h:form>
             </h:column> 
         </h:dataTable>
