@@ -115,6 +115,8 @@ public class SupplierBeverageController {
     }
     public String deleteBeverage(){
         LOG.info("deleteBeverage has been invoked with model: " + this.beverage.toString());
+        beverageSvc.markBeverageAsDeletedNonDeleted(beverage);
+        swc.refreshSupplierModel();
         return "/supplier/welcome.xhtml";
     }
     

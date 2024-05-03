@@ -16,7 +16,7 @@
     <!-- IMPLEMENTATION -->
     <cc:implementation>
         <h:form>
-            
+
             <p>
                 <h:panelGroup layout="block" rendered="#{not cc.attrs.operation.equalsIgnoreCase('create')}">
                     <h:outputLabel value="Beverage Id #{cc.attrs.beverage.id}" for="beverageId" />
@@ -24,7 +24,7 @@
                     <h:message for="beverageId" errorStyle="color:red" infoStyle="color:green" />
                 </h:panelGroup>
             </p>
-            
+
             <p>
                 <h:panelGroup layout="block">
                     <h:outputLabel value="Beverage Name" for="beverageName" />
@@ -59,6 +59,13 @@
             </p>
             <p>
                 <h:panelGroup>
+                    <h:outputLabel value="Deleted Status: " for="isDeletedStatus" />
+                    <h:outputText id="isDeletedStatus" value="#{cc.attrs.beverage.isDeleted ? 'Yes' : 'No'}" />
+                    <h:message for="isDeletedStatus" errorStyle="color:red" infoStyle="color:green" />
+                </h:panelGroup>
+            </p>
+            <p>
+                <h:panelGroup>
                     <h:outputLabel value="Beverage Type" for="beverageType" />
                     <h:selectOneMenu 
                         readonly="#{cc.attrs.operation.equalsIgnoreCase('view')or cc.attrs.operation.equalsIgnoreCase('delete')}"
@@ -84,7 +91,7 @@
                 action="#{cc.attrs.action}" />
             <h:commandButton 
                 rendered="#{cc.attrs.operation.equalsIgnoreCase('delete')}"
-                value="Delete Beverage" 
+                value="Delete/Add Beverage" 
                 action="#{cc.attrs.action}" />
 
         </h:form>

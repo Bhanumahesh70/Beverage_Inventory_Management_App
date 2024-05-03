@@ -4,6 +4,8 @@
  */
 package edu.iit.sat.itmd4515.bpasham.service;
 import edu.iit.sat.itmd4515.bpasham.domain.Beverage;
+import edu.iit.sat.itmd4515.bpasham.domain.OrderBeverageDetail;
+import edu.iit.sat.itmd4515.bpasham.domain.Supplier;
 import jakarta.ejb.Stateless;
 import jakarta.inject.Named;
 import java.time.LocalDate;
@@ -46,5 +48,26 @@ public class BeverageService extends AbstractService<Beverage>{
         */
        em.merge(managedRef);
    }
+    
+    public void markBeverageAsDeletedNonDeleted(Beverage b) {
+        Beverage beverage = em.find(Beverage.class, b.getId());
+        if (beverage != null) {
+            if(!beverage.isIsDeleted()){
+                beverage.setDeleted(true);
+            }else{
+                beverage.setDeleted(false);
+            }
+            
+            em.merge(beverage);
+        } else {
+            throw new IllegalArgumentException("Beverage with ID " +b.getId()+ " not found");
+        }
+    }
+
+    public List<Beverage> findAllNonDeleted() {
+        return em.createQuery("SELECT b FROM Beverage b WHERE b.isDeleted = false", Beverage.class)
+                 .getResultList();
+    }
+    
     
 }

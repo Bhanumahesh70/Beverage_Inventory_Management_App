@@ -50,6 +50,26 @@ public class Beverage extends AbstractEntity{
     @Pattern(regexp = "^(true|false)$", message = "The boolean variable must be either true or false")
     @Column(name = "IS_NON_ALCOHOLIC")
     private String isNonAlcoholic;
+   
+    @Column(name = "IS_DELETED")
+    private boolean isDeleted;
+
+    
+
+   
+
+    /**
+     * Get the value of isDeleted
+     *
+     * @return the value of isDeleted
+     */
+    
+
+
+    public void setDeleted(boolean isDeleted) {
+        this.isDeleted = isDeleted;
+    }
+    
     
     @NotNull
     @Enumerated(EnumType.STRING)
@@ -222,6 +242,23 @@ public class Beverage extends AbstractEntity{
      */
     public void setInventoryList(List<SupplierInventory> inventoryList) {
         this.inventoryList = inventoryList;
+    }
+    /**
+     * Get the value of isDeleted
+     *
+     * @return the value of isDeleted
+     */
+    public boolean isIsDeleted() {
+        return isDeleted;
+    }
+
+    /**
+     * Set the value of isDeleted
+     *
+     * @param isDeleted new value of isDeleted
+     */
+    public void setIsDeleted(boolean isDeleted) {
+        this.isDeleted = isDeleted;
     }
 
 

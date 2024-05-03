@@ -85,7 +85,8 @@ public class PlaceOrderController {
     public void init() {
         LOG.info("Inside PlaceOrderController.postConstruct");
         // Initialize customers, suppliers, and beverages list from database
-        beverages = beverageService.findAll();
+        //beverages = beverageService.findAll();
+         beverages = beverageService.findAllNonDeleted();
         suppliers = supplierService.findAll();
         customers = customerService.findAll();
         customer = cwc.getCustomer();
