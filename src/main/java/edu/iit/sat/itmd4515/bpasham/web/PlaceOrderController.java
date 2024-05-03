@@ -26,14 +26,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
+import jakarta.faces.view.ViewScoped;
+import java.io.Serializable;
 
 /**
  *
  * @author bhanu
  */
 @Named
-@RequestScoped
-public class PlaceOrderController {
+@ViewScoped
+public class PlaceOrderController implements Serializable {
 
     private static final Logger LOG = Logger.getLogger(PlaceOrderController.class.getName());
     @EJB
@@ -59,11 +61,14 @@ public class PlaceOrderController {
     private List<Supplier> suppliers;
     private List<Beverage> beverages;
 
-    private Customer customer;
+    //private Customer customer =cwc.getCustomer();;
 
     private Order order;
 
     private List<OrderBeverageDetail> orderBeverageDetail;
+
+    public PlaceOrderController() {
+    }
 
     @PostConstruct
     public void postConstruct() {
@@ -73,7 +78,8 @@ public class PlaceOrderController {
         beverages = beverageService.findAllNonDeleted();
         suppliers = supplierService.findAll();
         customers = customerService.findAll();
-        customer = cwc.getCustomer();
+       // customer = cwc.getCustomer();
+        order = new Order();
     }
 
     public String displayViewOrderPage(Order o) {
@@ -97,36 +103,38 @@ public class PlaceOrderController {
 
     public String displayEditOrderPage(Order o) {
         //step-1
+        LOG.info("Inside PlaceOrderController.displayEditPage with model o.toString() " + o.toString());
         this.order = o;
+        LOG.info("Inside PlaceOrderController.displayEditPage with model order.toString() " + o.toString());
 
         LOG.info("Inside PlaceOrderController.displayEditOrderPage with model " + o.toString());
         LOG.info("Order in displayEditOrderPage: " + order.toString());
         LOG.log(java.util.logging.Level.INFO, "Oder OrderBevergaeDetail: {0}", order.getOrderBeverageDetails().toString());
         LOG.info("Order.getCustomer(): " + order.getCustomer());
-        LOG.info("customer: " + customer);
+        //LOG.info("customer: " + customer);
         LOG.info("Order.supplier: " + order.getSupplier());
 
         //step-2
         return "/customer/editOrder.xhtml";
     }
 
- public String displayDeleteOrderPage(Order o) {
-    if (o == null || o.getId() == null) {
-        LOG.info("Attempted to navigate to delete page with invalid order data.");
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Navigation Error", "Cannot navigate to delete page, order data is incomplete."));
-        return null; // Navigate back or show an error message
+    public String displayDeleteOrderPage(Order o) {
+        if (o == null || o.getId() == null) {
+            LOG.info("Attempted to navigate to delete page with invalid order data.");
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Navigation Error", "Cannot navigate to delete page, order data is incomplete."));
+            return null; // Navigate back or show an error message
+        }
+        LOG.info("Inside PlaceOrderController.DeletePage with model o.toString() " + o.toString());
+        this.order = o;
+        LOG.info("Inside PlaceOrderController.DeletePage with model Order.toString()" + order.toString());
+        return "/customer/deleteOrder.xhtml";
     }
-    this.order = o;
-    return "/customer/deleteOrder.xhtml"; // Correct navigation
-}
-
 
     public String placeOrder() {
         LOG.info("Starting to place an order");
         try {
-            order = new Order();
             order.setOrderDate(LocalDate.now());
-            order.setCustomer(customer);
+            //order.setCustomer(customer);
             order.setSupplier(selectedSupplier);
 
             int totalQuantity = 0;
@@ -143,7 +151,10 @@ public class PlaceOrderController {
                 }
             }
             order.setQuantity(totalQuantity);
+            LOG.info("PlaceOorderController.placeOrder: orderBeverageDetail "+orderBeverageDetail);
             order.setOrderBeverageDetails(orderBeverageDetail);
+             LOG.info("PlaceOorderController.placeOrder: order.orderBeverageDetail.toString(): "+order.getOrderBeverageDetailstoString());
+            
 
             boolean isOrderCreated = orderService.createOrder(order);
             if (isOrderCreated) {
@@ -165,19 +176,21 @@ public class PlaceOrderController {
         }
     }
 
-    @Transactional
+
     public String updateOrder() {
-        LOG.info("Inside CustomerOrderController.updateOrder with Order ID: {}" + order.getId());
-        LOG.info("Order in customerOrderController.updateOrder: " + order.toString());
+        //order= orderService.findOrderById(orderID);
+        LOG.info("Inside PlaceOrderController.updateOrder with Order ID: {}" + order.getId());
+        LOG.info("Order in PlaceOrderController.updateOrder: " + order.toString());
         LOG.info("getOrderBeverageDetailstoString()" + order.getOrderBeverageDetailstoString());
         LOG.log(java.util.logging.Level.INFO, "Oder OrderBevergaeDetail: {0}", order.getOrderBeverageDetails().toString());
 
         if (order == null || order.getId() == null) {
+            LOG.info("PlaceOrderController.updateOrder: Order is null");
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Invalid order data."));
             return null; // Stay on the same page to correct data
         }
         try {
-
+            LOG.info("PlaceOrderController.updateOrder: "+order.toString());
             boolean isOrderUpdated = orderService.updateOrder(order);
             if (isOrderUpdated) {
                 LOG.info("PlaceOrderController After Update");
@@ -198,15 +211,17 @@ public class PlaceOrderController {
         }
     }
 
-    public String deleteOrder() {
+    public String deleteOrder(Long orderID) {
+        order= orderService.findOrderById(orderID);
         LOG.info("Inside PlaceOrderController.deleteOrder()");
         //LOG.info("Order: " + order.toString());
         if (order == null || order.getId() == null) {
-            LOG.info("Order is null");
+            LOG.info("PlaceOrderController.deleteOrder() Order is null");
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Invalid order data for deletion."));
             return null; // Optionally, return to a safe page or stay on the same page
         }
         try {
+            LOG.info("PlaceOrderController.deleteOrder() "+order.toString());
             orderService.deleteOrder(order.getId());
             cwc.refreshCustomerModel();
             return "/customer/welcome.xhtml?faces-redirect=true";
@@ -258,18 +273,21 @@ public class PlaceOrderController {
      *
      * @return the value of customer
      */
+    /*
     public Customer getCustomer() {
         return customer;
     }
+    */
 
     /**
      * Set the value of customer
      *
      * @param customer new value of customer
      */
+    /*
     public void setCustomer(Customer customer) {
         this.customer = customer;
-    }
+    }*/
 
     // Customer-related fields
     public Customer getSelectedCustomer() {

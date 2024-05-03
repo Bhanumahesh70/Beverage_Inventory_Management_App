@@ -45,6 +45,7 @@ public class SupplierWelcomeController {
     
     //utility or helper methods
     public void refreshSupplierModel(){
+        LOG.info("SupplierWelcomeController.refreshSupplierModel");
         supplier = supplierSvc.findByUsername(loginController.getAuthenticatedUser());
     }
     /**

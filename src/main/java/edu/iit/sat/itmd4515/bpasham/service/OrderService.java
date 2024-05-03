@@ -35,14 +35,26 @@ public class OrderService extends AbstractService<Order> {
         return super.findAll("Order.findAll");
     }
 
+    public Order findOrderById(Long orderId) {
+        LOG.info("Fetching order with ID: " + orderId);
+        try {
+            LOG.info("OrderService.findOrderById: ");
+            return em.find(Order.class, orderId);
+        } catch (Exception e) {
+            LOG.info("Error in OrderService.findOrderById: ");
+            LOG.info("Error fetching order with ID: " + orderId+" ,e: " +e);
+            return null;
+        }
+    }
+
     public void completeOrder(Order o) {
         Order order = em.find(Order.class, o.getId());
         LOG.info("OrderService.completeOrder");
         if (order != null && "Placed".equals(order.getStatus())) {
-            LOG.info("Order Before: "+order.toString());
+            LOG.info("Order Before: " + order.toString());
             order.setStatus("Complete");
             LOG.info("Order status is changed to compelete");
-            LOG.info("Order After: "+order.toString());
+            LOG.info("Order After: " + order.toString());
             em.merge(order);
         } else {
             throw new IllegalStateException("Order cannot be completed");
@@ -53,24 +65,24 @@ public class OrderService extends AbstractService<Order> {
         Order order = em.find(Order.class, orderId);
         LOG.info("OrderService.cancelOrder");
         if (order != null && !"Complete".equals(order.getStatus())) { // Can't cancel a completed order
-            LOG.info("Order Before: "+order.toString());
+            LOG.info("Order Before: " + order.toString());
             order.setStatus("Cancelled");
             LOG.info("Order status is changed to cancel");
-            LOG.info("Order After: "+order.toString());
+            LOG.info("Order After: " + order.toString());
             em.merge(order);
         } else {
             throw new IllegalStateException("Order cannot be cancelled");
         }
     }
-    
+
     public void deleteOrder(Long orderId) {
         Order order = em.find(Order.class, orderId);
         LOG.info("OrderService.deleteOrder");
-        if (order != null && "Placed".equals(order.getStatus() )) {
-            LOG.info("Order Before: "+order.toString());
+        if (order != null && "Placed".equals(order.getStatus())) {
+            LOG.info("Order Before: " + order.toString());
             order.setStatus("Deleted");
             LOG.info("Order status is changed to delete");
-            LOG.info("Order After: "+order.toString());
+            LOG.info("Order After: " + order.toString());
             em.merge(order);
         } else {
             throw new IllegalStateException("Order cannot be completed");
@@ -141,7 +153,6 @@ public class OrderService extends AbstractService<Order> {
         em.merge(managedOrder);
     }
      */
-
     @Transactional
     public boolean updateOrder(Order order) {
         LOG.info("Inside OrderService.updateOrder");
@@ -190,8 +201,7 @@ public class OrderService extends AbstractService<Order> {
             em.remove(orderToDelete);
         }
     }
-    */
-
+     */
     ///////////////////////
     /////////////////////////
     //////////////

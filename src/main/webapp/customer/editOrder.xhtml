@@ -8,17 +8,17 @@
         <h:form>
             <h3>Edit Order</h3>
             <h:outputLabel value="OrderId:" />
-            <h:outputText value="#{customerOrderController.order.id}" /><br/>
+            <h:outputText value="#{placeOrderController.order.id}" /><br/>
             <h:outputLabel value="Customer:" />
-            <h:outputText value="#{customerController.order.customer.name}" /><br/>
+            <h:outputText value="#{placeOrderController.order.customer.name}" /><br/>
 
             <h:outputLabel value="Supplier:" />
-            <h:selectOneMenu value="#{customerController.order.supplier}" converter="supplierConverter">
+            <h:selectOneMenu value="#{placeOrderController.order.supplier}" converter="supplierConverter">
                 <f:selectItems value="#{placeOrderController.suppliers}" var="s"
                                itemValue="#{s}" itemLabel="#{s.name}"/>
             </h:selectOneMenu><br/>
 
-            <h:dataTable value="#{customerOrderController.order.orderBeverageDetails}" var="detail" style="width:100%">
+            <h:dataTable value="#{placeOrderController.order.orderBeverageDetails}" var="detail" style="width:100%">
                 <h:column>
                     <f:facet name="header">Beverage</f:facet>
                     #{detail.beverage.name}
@@ -29,7 +29,7 @@
                 </h:column>
             </h:dataTable><br/>
 
-            <h:commandButton value="Update Order" action="#{customerOrderController.updateOrder}"/>
+            <h:commandButton value="Update Order" action="#{placeOrderController.updateOrder()}"/>
         </h:form>
     </ui:define>
 </ui:composition>

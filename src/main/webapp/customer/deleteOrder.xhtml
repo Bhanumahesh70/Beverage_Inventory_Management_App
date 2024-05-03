@@ -26,7 +26,7 @@
                         #{detail.quantity}
                 </h:column>
             </h:dataTable>
-            <h:commandButton value="Delete Order" action="#{placeOrderController.deleteOrder()}" />
+            <h:commandButton value="Delete Order" action="#{placeOrderController.deleteOrder(placeOrderController.order.id)}" />
             <h:commandButton value="Cancel" action="/customer/welcome.xhtml?faces-redirect=true" />
         </h:form>
     </ui:define>

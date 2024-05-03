@@ -57,6 +57,7 @@ public class CustomerWelcomeController {
 
     //utility or helper methods
     public void refreshCustomerModel() {
+        LOG.info("CustomerWelcomeController.refreshCustomerModel()");
         customer = customerSvc.findByUsername(loginController.getAuthenticatedUser());
     }
 

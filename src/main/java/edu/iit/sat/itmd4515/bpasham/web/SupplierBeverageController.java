@@ -109,7 +109,7 @@ public class SupplierBeverageController {
      * @return 
      */
      public String saveBeverage(){
-        LOG.info("saveBeverage has been invoked with model: " + this.beverage.toString());
+        LOG.info("SupplierBeverageController.saveBeverage() saveBeverage has been invoked with model: " + this.beverage.toString());
         
         //beverageSvc.create(beverage);
         supplierSvc.createBeverageForSupplier(swc.getSupplier(),beverage);
@@ -118,13 +118,13 @@ public class SupplierBeverageController {
          return "/supplier/welcome.xhtml";
     }
     public String editBeverage(){
-        LOG.info("editBeverage has been invoked with model: " + this.beverage.toString());
+        LOG.info("SupplierBeverageController.editBeverage() editBeverage has been invoked with model: " + this.beverage.toString());
         beverageSvc.editBeverageForExistingSupplier(beverage);
         swc.refreshSupplierModel();
         return "/supplier/welcome.xhtml";
     }
     public String deleteBeverage(){
-        LOG.info("deleteBeverage has been invoked with model: " + this.beverage.toString());
+        LOG.info("SupplierBeverageController.deleteBeverage() deleteBeverage has been invoked with model: " + this.beverage.toString());
         beverageSvc.markBeverageAsDeletedNonDeleted(beverage);
         swc.refreshSupplierModel();
         return "/supplier/welcome.xhtml";

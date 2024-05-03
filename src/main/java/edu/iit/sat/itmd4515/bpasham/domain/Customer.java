@@ -53,7 +53,7 @@ public class Customer extends AbstractEntity {
     private User user;
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Order> orders = new ArrayList<>();
+    private List<Order> orders;
 
     private static final Logger LOG = Logger.getLogger(Customer.class.getName());
 
