@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./WEB-INF/templates/publicTemplate.xhtml"
+                xmlns:h="jakarta.faces.html"
+                xmlns:f="jakarta.faces.core">
+
+    <ui:define name="title">
+        SignUp Page
+    </ui:define>
+
+    <ui:define name="content">
+        <h:form styleClass="form">
+            <h:panelGrid columns="2">
+                Username:
+                <h:inputText value="#{userController.newUser.userName}" required="true" requiredMessage="Username is required"/>
+
+                Password:
+                <h:inputSecret value="#{userController.newUser.password}" required="true" requiredMessage="Password is required"/>
+
+                Role:
+                <h:selectOneMenu value="#{userController.selectedRole}" converter="groupConverter">
+                    <f:selectItems value="#{userController.groups}" var="group" itemLabel="#{group.groupName}" itemValue="#{group}" />
+                </h:selectOneMenu>
+
+
+                <f:facet name="footer">
+                    <h:commandButton value="Signup" action="#{userController.register()}" styleClass="btn btn-primary"/>
+                </f:facet>
+            </h:panelGrid>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

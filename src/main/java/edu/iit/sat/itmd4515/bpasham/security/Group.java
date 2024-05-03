@@ -19,7 +19,8 @@ import java.util.List;
  */
 @Entity
 @Table(name = "SEC_GROUP")
-@NamedQuery(name="Group.findAll", query="select g from Group g")
+@NamedQuery(name = "Group.findAll", query = "select g from Group g")
+@NamedQuery(name = "Group.findByName", query = "select g from Group g where g.groupName = :groupName")
 public class Group {
 
     @Id
@@ -34,10 +35,26 @@ public class Group {
         this.groupName = groupName;
         this.groupDescription = groupDescription;
     }
-    
-    
+
     @ManyToMany(mappedBy = "groups")
-    private List<User> users= new ArrayList<>();
+    private List<User> users = new ArrayList<>();
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Group group = (Group) obj;
+        return groupName != null ? groupName.equals(group.groupName) : group.groupName == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return groupName != null ? groupName.hashCode() : 0;
+    }
 
     /**
      * Get the value of users
@@ -56,7 +73,6 @@ public class Group {
     public void setUsers(List<User> users) {
         this.users = users;
     }
-
 
     /**
      * Get the value of groupDescription
