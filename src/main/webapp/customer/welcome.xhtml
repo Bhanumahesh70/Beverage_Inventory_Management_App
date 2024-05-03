@@ -13,7 +13,6 @@
     <ui:define name="content">
         Welcome #{loginController.authenticatedUser}!! to the Customer section of the Beverage Inventory Application
         <h:link outcome="/customer/placeOrder.xhtml">Place a new Order</h:link>
-        <h:link outcome="/customer/createOrder.xhtml">create a new Order</h:link>
         <h:dataTable
             styleClass="table table-striped table-hover"
             value="#{customerWelcomeController.customer.orders}" var="orders" >
