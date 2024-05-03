@@ -8,6 +8,7 @@ import edu.iit.sat.itmd4515.bpasham.domain.Beverage;
 import edu.iit.sat.itmd4515.bpasham.domain.Order;
 import edu.iit.sat.itmd4515.bpasham.service.BeverageService;
 import edu.iit.sat.itmd4515.bpasham.service.SupplierService;
+import edu.iit.sat.itmd4515.bpasham.service.OrderService;
 import edu.iit.sat.itmd4515.bpasham.domain.BeverageType;
 import jakarta.annotation.PostConstruct;
 import jakarta.ejb.EJB;
@@ -28,6 +29,7 @@ public class SupplierBeverageController {
     
     @EJB BeverageService beverageSvc;
     @EJB SupplierService supplierSvc;
+     @EJB OrderService orderSvc;
     @Inject SupplierWelcomeController swc;
     
 
@@ -120,6 +122,18 @@ public class SupplierBeverageController {
         return "/supplier/welcome.xhtml";
     }
     
+    public String completeOrder(Order order){
+        
+        orderSvc.completeOrder(order);
+        swc.refreshSupplierModel();
+        return "/supplier/welcome.xhtml";
+    }
+    
+    public String cancelOrder(Order order){
+        orderSvc.cancelOrder(order);
+        swc.refreshSupplierModel();
+        return "/supplier/welcome.xhtml";
+    }
     //helper methods
     public BeverageType[] getAllBeverageTypesForForm(){
         return BeverageType.values();                         

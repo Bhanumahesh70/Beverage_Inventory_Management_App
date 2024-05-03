@@ -39,7 +39,7 @@
                 <f:facet name="header">Beverage isNonAlcoholic</f:facet>
                 <h:outputText value="#{beverage.isNonAlcoholic}" />
             </h:column>
-             <h:column>
+            <h:column>
                 <f:facet name="header">Beverage isDeleted</f:facet>
                 <h:outputText value="#{beverage.isDeleted}" />
             </h:column>
@@ -97,9 +97,18 @@
                 <h:outputText value="#{order.quantity}" />
             </h:column>
             <h:column>
+                <f:facet name="header">Status</f:facet>
+                <h:outputText value="#{order.status}" />
+                    
+            </h:column>
+            <h:column>
                 <h:form>
                     <h:commandButton value="view" action="#{supplierBeverageController.displayViewOrderPage(order)}" />
-                   
+                    <h:commandButton value="Complete Order" action="#{supplierBeverageController.displayCompleteOrderPage(order)}" />
+                    <h:commandButton value="Cancel Order" action="#{supplierBeverageController.displayCancelOrderPage(order)}" />
+
+
+
                 </h:form>
             </h:column> 
         </h:dataTable>

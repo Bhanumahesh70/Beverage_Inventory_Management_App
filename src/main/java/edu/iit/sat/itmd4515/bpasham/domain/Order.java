@@ -61,11 +61,16 @@ public class Order extends AbstractEntity {
             inverseJoinColumns = @JoinColumn(name = "beverage_id"))
     private List<Beverage> beverages;
     
+    @JoinColumn(name = "status")
+    private String status = "Placed";
     
 
 
     public Order() {
     }
+    
+
+    
 
     public Order(LocalDate orderDate, Integer quantity) {
         this.orderDate = orderDate;
@@ -217,10 +222,28 @@ public class Order extends AbstractEntity {
     public void setOrderBeverageDetails(List<OrderBeverageDetail> orderBeverageDetails) {
         this.orderBeverageDetails = orderBeverageDetails;
     }
+    /**
+     * Get the value of status
+     *
+     * @return the value of status
+     */
+    public String getStatus() {
+        return status;
+    }
+
+    /**
+     * Set the value of status
+     *
+     * @param status new value of status
+     */
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
 
     @Override
     public String toString() {
-        return "Order{" + "orderId=" + id + ", orderDate=" + orderDate + ", quantity=" + quantity + '}';
+        return "Order{" + "orderId=" + id + ", orderDate=" + orderDate + ", quantity=" + quantity + ", status= "+status+"}";
     }
     
     public String getOrderBeverageDetailstoString() {

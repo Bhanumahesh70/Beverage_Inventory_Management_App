@@ -24,13 +24,35 @@ import java.util.logging.Logger;
  */
 @Stateless
 public class OrderService extends AbstractService<Order> {
-private static final Logger LOG = Logger.getLogger(OrderService.class.getName());
+
+    private static final Logger LOG = Logger.getLogger(OrderService.class.getName());
+
     public OrderService() {
         super(Order.class);
     }
 
     public List<Order> findAll() {
         return super.findAll("Order.findAll");
+    }
+
+    public void completeOrder(Order o) {
+        Order order = em.find(Order.class, o.getId());
+        if (order != null && "Placed".equals(order.getStatus())) {
+            order.setStatus("Complete");
+            em.merge(order);
+        } else {
+            throw new IllegalStateException("Order cannot be completed");
+        }
+    }
+
+    public void cancelOrder(Order o) {
+        Order order = em.find(Order.class, o.getId());
+        if (order != null && !"Complete".equals(order.getStatus())) { // Can't cancel a completed order
+            order.setStatus("Cancelled");
+            em.merge(order);
+        } else {
+            throw new IllegalStateException("Order cannot be cancelled");
+        }
     }
 
     @Transactional
@@ -49,7 +71,7 @@ private static final Logger LOG = Logger.getLogger(OrderService.class.getName())
             for (OrderBeverageDetail detail : order.getOrderBeverageDetails()) {
                 Beverage beverage = em.find(Beverage.class, detail.getBeverage().getId());
                 if (beverage == null) {
-                    LOG.info("Beverage not found with ID: {}"+detail.getBeverage().getId());
+                    LOG.info("Beverage not found with ID: {}" + detail.getBeverage().getId());
                     continue; // Skipping this detail
                 }
                 detail.setBeverage(beverage);
@@ -59,16 +81,17 @@ private static final Logger LOG = Logger.getLogger(OrderService.class.getName())
             order.getOrderBeverageDetails().clear();
             order.getOrderBeverageDetails().addAll(newDetails);
             LOG.info("OrderService.CreateOrder: Order Before Persist");
-            LOG.info("Order before Persists: "+order.toString());
-            LOG.info("Oder OrderBevergaeDetail: "+order.getOrderBeverageDetails().toString());
-            LOG.info("getOrderBeverageDetailstoString()"+order.getOrderBeverageDetailstoString());
+            LOG.info("Order before Persists: " + order.toString());
+            LOG.info("Oder OrderBevergaeDetail: " + order.getOrderBeverageDetails().toString());
+            LOG.info("getOrderBeverageDetailstoString()" + order.getOrderBeverageDetailstoString());
             em.persist(order);
             return true;
         } catch (Exception e) {
-            LOG.info("Error creating order: {}"+ e.getMessage());
+            LOG.info("Error creating order: {}" + e.getMessage());
             return false;
         }
     }
+
     /*
     public void updateOrder(Order order) {
         if (order == null || order.getId() == null) {
@@ -95,9 +118,9 @@ private static final Logger LOG = Logger.getLogger(OrderService.class.getName())
 
         em.merge(managedOrder);
     }
-    */
-    
- @Transactional
+     */
+
+    @Transactional
     public boolean updateOrder(Order order) {
         LOG.info("Inside OrderService.updateOrder");
         if (order == null || order.getId() == null) {
@@ -116,7 +139,7 @@ private static final Logger LOG = Logger.getLogger(OrderService.class.getName())
             for (OrderBeverageDetail detail : order.getOrderBeverageDetails()) {
                 Beverage beverage = em.getReference(Beverage.class, detail.getBeverage().getId());
                 if (beverage == null) {
-                    LOG.info("Beverage not found with ID: {}"+ detail.getBeverage().getId());
+                    LOG.info("Beverage not found with ID: {}" + detail.getBeverage().getId());
                     continue; // Skipping this detail
                 }
                 if (beverage != null) {
@@ -127,13 +150,13 @@ private static final Logger LOG = Logger.getLogger(OrderService.class.getName())
                 }
             }
             managedOrder.getOrderBeverageDetails().addAll(newDetails);
-            LOG.info("Order before mergin: "+managedOrder.toString());
-            LOG.info("Oder OrderBevergaeDetail: "+managedOrder.getOrderBeverageDetails().toString());
-            LOG.info("getOrderBeverageDetailstoString()"+managedOrder.getOrderBeverageDetailstoString());
+            LOG.info("Order before mergin: " + managedOrder.toString());
+            LOG.info("Oder OrderBevergaeDetail: " + managedOrder.getOrderBeverageDetails().toString());
+            LOG.info("getOrderBeverageDetailstoString()" + managedOrder.getOrderBeverageDetailstoString());
             em.merge(managedOrder);
             return true;
         } catch (Exception e) {
-            LOG.info("Error updating order: {}"+ e.getMessage());
+            LOG.info("Error updating order: {}" + e.getMessage());
             return false;
         }
     }
