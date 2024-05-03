@@ -62,6 +62,20 @@ public class OrderService extends AbstractService<Order> {
             throw new IllegalStateException("Order cannot be cancelled");
         }
     }
+    
+    public void deleteOrder(Long orderId) {
+        Order order = em.find(Order.class, orderId);
+        LOG.info("OrderService.deleteOrder");
+        if (order != null && "Placed".equals(order.getStatus() )) {
+            LOG.info("Order Before: "+order.toString());
+            order.setStatus("Deleted");
+            LOG.info("Order status is changed to delete");
+            LOG.info("Order After: "+order.toString());
+            em.merge(order);
+        } else {
+            throw new IllegalStateException("Order cannot be completed");
+        }
+    }
 
     @Transactional
     public boolean createOrder(Order order) {
@@ -169,12 +183,14 @@ public class OrderService extends AbstractService<Order> {
         }
     }
 
+    /*
     public void deleteOrder(Long orderId) {
         Order orderToDelete = em.find(Order.class, orderId);
         if (orderToDelete != null) {
             em.remove(orderToDelete);
         }
     }
+    */
 
     ///////////////////////
     /////////////////////////

@@ -148,11 +148,23 @@ public class CustomerOrderController {
         }
     }
 
-    public String deleteOrder() {
+   public String deleteOrder() {
+       LOG.info("Inside CustomerOrderController.deleteOrder()");
+       LOG.info("Order: "+order.toString());
+    if (order == null || order.getId() == null) {
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Invalid order data for deletion."));
+        return null; // Optionally, return to a safe page or stay on the same page
+    }
+    try {
         orderSvc.deleteOrder(order.getId());
         cwc.refreshCustomerModel();
         return "/customer/welcome.xhtml?faces-redirect=true";
+    } catch (Exception e) {
+        LOG.info("Error deleting order: {}"+ e.getMessage()+",e: " +e);
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error deleting order", e.getMessage()));
+        return null; // Optionally, handle the return accordingly
     }
+}
 
     public void addBeverageToOrder() {
         OrderBeverageDetail detail = new OrderBeverageDetail();
