@@ -104,7 +104,8 @@
             <h:column>
                 <h:form>
                     <h:commandButton value="view" action="#{supplierBeverageController.displayViewOrderPage(order)}" />
-                    <h:commandButton value="Complete/Cancel Order" action="#{supplierBeverageController.displayCompleteOrCancelOrderPage(order)}" />
+                    <h:commandButton value="Complete" action="#{supplierBeverageController.completeOrder(order)}" /> 
+                    <h:commandButton value="Cancel" action="#{supplierBeverageController.cancelOrder(order.id)}" /> 
                 </h:form>
             </h:column> 
         </h:dataTable>

@@ -131,7 +131,7 @@ public class SupplierBeverageController {
     }
     
     public String completeOrder(Order order){
-        LOG.info("SuuplierBeverageController.completeOrder has been invoked with model: " + this.order.toString());
+        //LOG.info("SuuplierBeverageController.completeOrder has been invoked with model: " + this.order.toString());
         orderSvc.completeOrder(order);
         LOG.info("SupplierBeverageController.completeOrder is successfully");
         swc.refreshSupplierModel();
