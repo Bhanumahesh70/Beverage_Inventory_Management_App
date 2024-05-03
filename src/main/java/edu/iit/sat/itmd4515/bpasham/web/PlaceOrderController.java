@@ -34,8 +34,8 @@ import java.io.Serializable;
  * @author bhanu
  */
 @Named
-@ViewScoped
-public class PlaceOrderController implements Serializable {
+@RequestScoped
+public class PlaceOrderController{
 
     private static final Logger LOG = Logger.getLogger(PlaceOrderController.class.getName());
     @EJB
@@ -211,8 +211,8 @@ public class PlaceOrderController implements Serializable {
         }
     }
 
-    public String deleteOrder(Long orderID) {
-        order= orderService.findOrderById(orderID);
+    public String deleteOrder(Order order) {
+        //order= orderService.findOrderById(orderID);
         LOG.info("Inside PlaceOrderController.deleteOrder()");
         //LOG.info("Order: " + order.toString());
         if (order == null || order.getId() == null) {
