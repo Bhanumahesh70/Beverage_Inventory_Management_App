@@ -92,7 +92,15 @@ public class SupplierBeverageController {
         //step-2
         return "/supplier/viewOrder.xhtml";
     }
-    
+    public String displayCompleteOrCancelOrderPage(Order o){
+        //step-1
+        this.order = o;
+        LOG.info("Inside SupplierBeveragecontroller.displayCompleteOrCancelOrderPage with model "+o.toString());
+        
+        //step-2
+        return "/supplier/completeOrCancelOrder.xhtml";
+    }
+   
     /**
      * These are the MVC style step 3 methods
      * If there was an action associated with JSF view step2 one of these methods would be action of the form
@@ -123,14 +131,17 @@ public class SupplierBeverageController {
     }
     
     public String completeOrder(Order order){
-        
+        LOG.info("SuuplierBeverageController.completeOrder has been invoked with model: " + this.order.toString());
         orderSvc.completeOrder(order);
+        LOG.info("SupplierBeverageController.completeOrder is successfully");
         swc.refreshSupplierModel();
         return "/supplier/welcome.xhtml";
     }
     
-    public String cancelOrder(Order order){
-        orderSvc.cancelOrder(order);
+    public String cancelOrder(Long orderId){
+         //LOG.info("SuuplierBeverageController.cancelOrder has been invoked with model: " + this.order.toString());
+        orderSvc.cancelOrder(orderId);
+        LOG.info("SupplierBeverageController.cancelOrder is successfully");
         swc.refreshSupplierModel();
         return "/supplier/welcome.xhtml";
     }

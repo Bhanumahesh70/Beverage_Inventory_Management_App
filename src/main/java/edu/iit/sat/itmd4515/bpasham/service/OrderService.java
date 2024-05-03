@@ -37,18 +37,26 @@ public class OrderService extends AbstractService<Order> {
 
     public void completeOrder(Order o) {
         Order order = em.find(Order.class, o.getId());
+        LOG.info("OrderService.completeOrder");
         if (order != null && "Placed".equals(order.getStatus())) {
+            LOG.info("Order Before: "+order.toString());
             order.setStatus("Complete");
+            LOG.info("Order status is changed to compelete");
+            LOG.info("Order After: "+order.toString());
             em.merge(order);
         } else {
             throw new IllegalStateException("Order cannot be completed");
         }
     }
 
-    public void cancelOrder(Order o) {
-        Order order = em.find(Order.class, o.getId());
+    public void cancelOrder(Long orderId) {
+        Order order = em.find(Order.class, orderId);
+        LOG.info("OrderService.cancelOrder");
         if (order != null && !"Complete".equals(order.getStatus())) { // Can't cancel a completed order
+            LOG.info("Order Before: "+order.toString());
             order.setStatus("Cancelled");
+            LOG.info("Order status is changed to cancel");
+            LOG.info("Order After: "+order.toString());
             em.merge(order);
         } else {
             throw new IllegalStateException("Order cannot be cancelled");

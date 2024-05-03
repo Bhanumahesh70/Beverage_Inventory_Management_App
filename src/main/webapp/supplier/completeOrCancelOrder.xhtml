@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="jakarta.faces.html"
+                xmlns:f="jakarta.faces.core"
+                template="../WEB-INF/templates/authenticatedTemplate.xhtml">
+
+    <ui:define name="title" id="title">
+        Complete or Cancel Order
+    </ui:define>
+
+    <ui:define name="content">
+
+        <h:dataTable value="#{supplierBeverageController.order}" var="order" style="width:100%">
+            <h:column>
+                <f:facet name="header">Order ID</f:facet>
+                    #{order.id}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Customer Name</f:facet>
+                    #{order.customer.name}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Supplier</f:facet>
+                    #{order.supplier.name}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Beverages</f:facet>
+                <ul>
+                    <ui:repeat value="#{order.orderBeverageDetails}" var="detail">
+                        <li>#{detail.beverage.name} - Quantity: #{detail.quantity}</li>
+                    </ui:repeat>
+                </ul>
+            </h:column>
+
+            <h:column>
+                <h:form>
+                    <h:commandButton value="Complete" action="#{supplierBeverageController.completeOrder(order)}" /> 
+                    <h:commandButton value="Cancel" action="#{supplierBeverageController.cancelOrder(order.id)}" /> 
+                </h:form>
+            </h:column>
+
+        </h:dataTable>
+
+    </ui:define>
+</ui:composition>
