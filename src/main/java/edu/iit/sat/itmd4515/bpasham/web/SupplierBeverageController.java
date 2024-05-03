@@ -5,6 +5,7 @@
 package edu.iit.sat.itmd4515.bpasham.web;
 
 import edu.iit.sat.itmd4515.bpasham.domain.Beverage;
+import edu.iit.sat.itmd4515.bpasham.domain.Order;
 import edu.iit.sat.itmd4515.bpasham.service.BeverageService;
 import edu.iit.sat.itmd4515.bpasham.service.SupplierService;
 import edu.iit.sat.itmd4515.bpasham.domain.BeverageType;
@@ -31,6 +32,10 @@ public class SupplierBeverageController {
     
 
     private Beverage beverage;
+    
+    private Order order;
+
+   
     
     public SupplierBeverageController() {
     }
@@ -76,6 +81,14 @@ public class SupplierBeverageController {
         
         //step-2
         return "/supplier/deleteBeverage.xhtml";
+    }
+     public String displayViewOrderPage(Order o){
+        //step-1
+        this.order = o;
+        LOG.info("Inside SupplierBeveradisplayViewOrderPage with model "+o.toString());
+        
+        //step-2
+        return "/supplier/viewOrder.xhtml";
     }
     
     /**
@@ -127,6 +140,23 @@ public class SupplierBeverageController {
      */
     public void setBeverage(Beverage beverage) {
         this.beverage = beverage;
+    }
+ /**
+     * Get the value of order
+     *
+     * @return the value of order
+     */
+    public Order getOrder() {
+        return order;
+    }
+
+    /**
+     * Set the value of order
+     *
+     * @param order new value of order
+     */
+    public void setOrder(Order order) {
+        this.order = order;
     }
 
 }

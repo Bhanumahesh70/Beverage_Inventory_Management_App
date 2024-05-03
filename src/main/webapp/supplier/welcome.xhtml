@@ -92,6 +92,12 @@
                 <f:facet name="header">Quantity</f:facet>
                 <h:outputText value="#{order.quantity}" />
             </h:column>
+            <h:column>
+                <h:form>
+                    <h:commandButton value="view" action="#{supplierBeverageController.displayViewOrderPage(order)}" />
+                   
+                </h:form>
+            </h:column> 
         </h:dataTable>
 
     </ui:define>
