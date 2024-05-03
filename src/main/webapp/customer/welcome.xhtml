@@ -35,8 +35,8 @@
             <h:column>
                 <h:form>
                     <h:commandButton value="view" action="#{placeOrderController.displayViewOrderPage(orders)}" />
-                    <h:commandButton value="edit" action="#{placeOrderController.displayEditOrderPage(orders)}" />
-                    <h:commandButton value="delete" action="#{placeOrderController.deleteOrder(orders)}" />
+                     <h:commandButton value="delete" action="#{placeOrderController.deleteOrder(orders)}"
+                                     rendered="#{orders.status eq 'Placed'}" />
                 </h:form>
             </h:column>
         </h:dataTable>
