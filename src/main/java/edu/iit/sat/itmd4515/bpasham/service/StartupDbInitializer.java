@@ -196,7 +196,7 @@ public class StartupDbInitializer {
         o5.addBeverage(b2);
         o5.addBeverage(b3);
         o5.addBeverage(b4);
-        o5.setStatus("Delete");
+        o5.setStatus("Deleted");
         o5.setCustomer(c1);
         o5.setSupplier(s1);
         OrderSvc.create(o5);
@@ -208,7 +208,7 @@ public class StartupDbInitializer {
         o6.addBeverage(b2);
         o6.addBeverage(b3);
         o6.addBeverage(b4);
-        o6.setStatus("Complete");
+        o6.setStatus("Completed");
         o6.setCustomer(c1);
         o6.setSupplier(s1);
         OrderSvc.create(o6);

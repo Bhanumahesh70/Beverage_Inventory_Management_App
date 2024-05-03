@@ -61,7 +61,7 @@ public class PlaceOrderController{
     private List<Supplier> suppliers;
     private List<Beverage> beverages;
 
-    //private Customer customer =cwc.getCustomer();;
+    private Customer customer ;
 
     private Order order;
 
@@ -78,7 +78,7 @@ public class PlaceOrderController{
         beverages = beverageService.findAllNonDeleted();
         suppliers = supplierService.findAll();
         customers = customerService.findAll();
-       // customer = cwc.getCustomer();
+        customer = cwc.getCustomer();
         order = new Order();
     }
 
@@ -134,7 +134,7 @@ public class PlaceOrderController{
         LOG.info("Starting to place an order");
         try {
             order.setOrderDate(LocalDate.now());
-            //order.setCustomer(customer);
+            order.setCustomer(customer);
             order.setSupplier(selectedSupplier);
 
             int totalQuantity = 0;
@@ -273,21 +273,21 @@ public class PlaceOrderController{
      *
      * @return the value of customer
      */
-    /*
+    
     public Customer getCustomer() {
         return customer;
     }
-    */
+    
 
     /**
      * Set the value of customer
      *
      * @param customer new value of customer
      */
-    /*
+    
     public void setCustomer(Customer customer) {
         this.customer = customer;
-    }*/
+    }
 
     // Customer-related fields
     public Customer getSelectedCustomer() {
