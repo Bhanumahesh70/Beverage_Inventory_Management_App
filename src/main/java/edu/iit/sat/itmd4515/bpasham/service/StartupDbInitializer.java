@@ -120,24 +120,24 @@ public class StartupDbInitializer {
          BeverageSvc.create(b3);
         BeverageSvc.create(b4);
 
-        Supplier s1 = new Supplier("supplier one", "yoyo");
+        Supplier s1 = new Supplier("supplier one", "Supplier1@gmail.com");
         s1.setUser(salesManager1);
         supplierServic.create(s1);
         s1.addBeverage(b1);
          s1.addBeverage(b3);
           s1.addBeverage(b4);
         
-          Supplier s2 = new Supplier("supplier Two", "yesss");
+          Supplier s2 = new Supplier("supplier Two", "Supplier2@gmail.com");
         s2.setUser(salesManager2);
         supplierServic.create(s2);
        s2.addBeverage(b2);
 
-        Customer c1 = new Customer("marry", "MaaryMe@gmail.com", LocalDate.of(2020, 2, 4));
+        Customer c1 = new Customer("marry", "MaaryMe@gmail.com");
         c1.setUser(customer1);
         CustomerSvc.create(c1);
         
         
-        Customer c2 = new Customer("John", "Johnlly@gmail.com", LocalDate.of(2022, 6, 4));
+        Customer c2 = new Customer("John", "Johnlly@gmail.com");
         c2.setUser(customer2);
         CustomerSvc.create(c2);
 

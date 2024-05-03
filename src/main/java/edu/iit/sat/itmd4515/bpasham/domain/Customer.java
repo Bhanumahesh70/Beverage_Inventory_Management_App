@@ -45,9 +45,6 @@ public class Customer extends AbstractEntity {
     @Email
     private String email;
 
-    @NotNull
-    private LocalDate createdAt;
-
     @OneToOne
     @JoinColumn(name = "USERNAME")
     private User user;
@@ -60,10 +57,9 @@ public class Customer extends AbstractEntity {
     public Customer() {
     }
 
-    public Customer(String name, String email, LocalDate createdAt) {
+    public Customer(String name, String email) {
         this.name = name;
         this.email = email;
-        this.createdAt = createdAt;
     }
 
     public void addOrder(Order o) {
@@ -97,14 +93,7 @@ public class Customer extends AbstractEntity {
         this.email = email;
     }
 
-    public LocalDate getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDate createdAt) {
-        this.createdAt = createdAt;
-    }
-
+    
     /**
      * Get the value of user
      *
@@ -143,7 +132,7 @@ public class Customer extends AbstractEntity {
 
     @Override
     public String toString() {
-        return "Customer{" + "customerId=" + id + ", name=" + name + ", email=" + email + ", createdAt=" + createdAt + "orders" + orders + '}';
+        return "Customer{" + "customerId=" + id + ", name=" + name + ", email=" + email + ", " + "orders" + orders + '}';
     }
 
 }

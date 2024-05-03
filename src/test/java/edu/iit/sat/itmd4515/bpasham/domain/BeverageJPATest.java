@@ -131,7 +131,7 @@ public class BeverageJPATest {
             tx.begin();
 
             // Create a new customer
-            Customer customer = new Customer("John Doe", "john@example.com", LocalDate.now());
+            Customer customer = new Customer("John Doe", "john@example.com");
             em.persist(customer);
 
             // Create a new order associated with the customer

@@ -41,7 +41,7 @@ public class Supplier extends AbstractEntity {
     private String name;
 
     @NotBlank
-    private String contactNumber;
+    private String email;
 
     @OneToOne
     @JoinColumn(name = "USERNAME")
@@ -67,9 +67,9 @@ public class Supplier extends AbstractEntity {
     public Supplier() {
     }
 
-    public Supplier(String name, String contactNumber) {
+    public Supplier(String name, String email) {
         this.name = name;
-        this.contactNumber = contactNumber;
+        this.email = email;
 
     }
 
@@ -155,12 +155,12 @@ public class Supplier extends AbstractEntity {
         this.name = name;
     }
 
-    public String getContactNumber() {
-        return contactNumber;
+    public String getEmail() {
+        return email;
     }
 
-    public void setContactNumber(String contactNumber) {
-        this.contactNumber = contactNumber;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public List<Beverage> getBeverage() {
@@ -227,7 +227,7 @@ public class Supplier extends AbstractEntity {
 
     @Override
     public String toString() {
-        return "Supplier{" + "supplierId=" + id + ", name=" + name + ", contactNumber=" + contactNumber + '}';
+        return "Supplier{" + "supplierId=" + id + ", name=" + name + ", email=" + email + '}';
     }
 
 }
