@@ -186,6 +186,32 @@ public class StartupDbInitializer {
         o4.setCustomer(c2);
         o4.setSupplier(s2);
         OrderSvc.create(o4);
+        
+        Order o5 = new Order(LocalDate.of(2024, 6, 10),12);
+        o5.addOrderBeverageDetails(b1,4);
+        o5.addOrderBeverageDetails(b2,3);
+        o5.addOrderBeverageDetails(b3,2);
+        o5.addOrderBeverageDetails(b4,3);
+        o5.addBeverage(b1);
+        o5.addBeverage(b2);
+        o5.addBeverage(b3);
+        o5.addBeverage(b4);
+        o5.setStatus("Delete");
+        o5.setCustomer(c1);
+        o5.setSupplier(s1);
+        OrderSvc.create(o5);
+        
+        Order o6 = new Order(LocalDate.of(2024, 6, 10),11);
+        o6.addOrderBeverageDetails(b3,5);
+        o6.addOrderBeverageDetails(b4,6);
+        o6.addBeverage(b1);
+        o6.addBeverage(b2);
+        o6.addBeverage(b3);
+        o6.addBeverage(b4);
+        o6.setStatus("Complete");
+        o6.setCustomer(c1);
+        o6.setSupplier(s1);
+        OrderSvc.create(o6);
 
         /*
         for (Beverage b : BeverageSvc.findAll()) {

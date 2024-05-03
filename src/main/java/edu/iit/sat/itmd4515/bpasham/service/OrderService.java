@@ -52,7 +52,7 @@ public class OrderService extends AbstractService<Order> {
         LOG.info("OrderService.completeOrder");
         if (order != null && "Placed".equals(order.getStatus())) {
             LOG.info("Order Before: " + order.toString());
-            order.setStatus("Complete");
+            order.setStatus("Completed");
             LOG.info("Order status is changed to compelete");
             LOG.info("Order After: " + order.toString());
             em.merge(order);
