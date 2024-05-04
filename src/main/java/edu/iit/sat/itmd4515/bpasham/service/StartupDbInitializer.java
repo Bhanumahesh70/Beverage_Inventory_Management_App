@@ -141,14 +141,7 @@ public class StartupDbInitializer {
         c2.setUser(customer2);
         CustomerSvc.create(c2);
 
-        /*
-        Inventory i1 = new Inventory(2, LocalDateTime.now());
-        i1.setBeverage(b1);
-        Inventory i2 = new Inventory(10, LocalDateTime.now());
-        i2.setBeverage(b2);
-        InventorySvc.create(i1);
-        InventorySvc.create(i2);
-        */
+        
 
         Order o1 = new Order(LocalDate.of(2024, 2, 4), 5);
         o1.addBeverage(b1);
@@ -215,30 +208,7 @@ public class StartupDbInitializer {
         o6.setSupplier(s1);
         OrderSvc.create(o6);
 
-        /*
-        for (Beverage b : BeverageSvc.findAll()) {
-            LOG.info("=====================================================================\n");
-            LOG.info(b.toString());
-
-            LOG.info("\t============= Unidirectional 1:1 with Inventory =============== ");
-            Inventory inventory = b.getInventory();
-            if (inventory != null) {
-                LOG.info("\t" + inventory.toString());
-            } else {
-                LOG.info("\tInventory is null for Beverage: " + b.getId());
-            }
-
-            LOG.info("\t============= Bidirectional 1:M with Supplier =============== ");
-            List<Supplier> suppliers = b.getSuppliers();
-            if (suppliers != null) {
-                for (Supplier s : suppliers) {
-                    LOG.info("\t" + s.toString());
-                }
-            } else {
-                LOG.info("\tNo suppliers found for Beverage: " + b.getId());
-            }
-        }
-         */
+       
         //order relationships
         for (Order o : OrderSvc.findAll()) {
             LOG.info("=====================================================================\n");
@@ -252,37 +222,8 @@ public class StartupDbInitializer {
                 LOG.info("\tCustomer is null for Beverage: " + o.getId());
             }
         }
-/*
-        //Inventory relationships
-        for (Inventory i : InventorySvc.findAll()) {
-            LOG.info("=====================================================================\n");
-            LOG.info(i.toString());
 
-            LOG.info("\t============= Unidirectional 1:1 with Beverage =============== ");
-            Beverage beverage = i.getBeverage();
-            if (beverage != null) {
-                LOG.info("\t" + beverage.toString());
-            } else {
-                LOG.info("\tBeverage is null for Inventory: " + i.getId());
-            }
-        }
-        */
-
-        /*
-        //Supplier relationships
-        for (Supplier s : supplierServic.findAll()) {
-             LOG.info("=====================================================================\n");
-            LOG.info(s.toString());
-            
-            LOG.info("\t============= Unidirectional M:1 with Beverage =============== ");
-            Beverage beverage = s.getBeverage();
-            if (beverage != null) {
-                LOG.info("\t" + beverage.toString());
-            } else {
-                LOG.info("\tBeverage is null for Supplier: " + s.getId());
-            }
-        }
-         */
+       
     }
 
 }
