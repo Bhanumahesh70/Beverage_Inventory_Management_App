@@ -147,3 +147,85 @@ main {
 .shadow {
     box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15);
 }
+
+/* */
+/*css for view order*/
+/* */
+/* Container and Grid System */
+/* Container and Grid System */
+.container {
+    max-width: 960px; /* Adjust this as per your layout needs */
+    margin: auto; /* Center the container */
+}
+
+/* General Card Styling */
+.view-order-card {
+    margin-top: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Enhance shadow for better depth */
+    border: 1px solid #dee2e6; /* Subtle border for definition */
+}
+
+.view-order-card-header {
+    background-color: #e9ecef;
+    border-bottom: 1px solid #dee2e6;
+    font-size: 1.25rem;
+    color: #495057;
+}
+
+.view-order-card-body {
+    background-color: #ffffff;
+    padding: 20px;
+}
+
+/* Styling for Labels and Values */
+.view-order-detail-label {
+    font-weight: bold;
+    color: #343a40;
+    display: block; /* Full width for clarity */
+    margin-bottom: 0.5rem; /* Space between label and value */
+}
+
+.view-order-detail-value {
+    font-size: 16px;
+    color: #6c757d;
+    display: block; /* Separate line for values for clarity */
+}
+
+/* List Item Styling */
+.list-group-item {
+    background-color: #f8f9fa; /* Different background for items */
+    border: none;
+}
+
+/* Title Styling for better visual integration */
+.view-order-title {
+    text-align: center;
+    font-size: 1.75rem; /* Adjust size as necessary */
+    margin-bottom: 1rem; /* Space before the content starts */
+    color: #343a40; /* Styling to match other headers */
+}
+
+/* Responsive Adjustments for better mobile experience */
+@media (max-width: 768px) {
+    .container {
+        width: 100%; /* Full width on smaller screens */
+        padding: 15px; /* Padding to prevent sticking to the edges */
+    }
+    .view-order-card {
+        margin: 20px auto; /* Ensure margin on all sides in mobile */
+    }
+    .view-order-detail-label,
+    .view-order-detail-value {
+        display: block; /* Stack label on top of value on smaller screens */
+    }
+}
+.page-title {
+    text-align: center;
+    font-size: 2rem;
+    color: #333;
+    margin: 20px 0;
+    font-weight: bold;
+}
+/* */
+/*css for view order end*/
+/* */
