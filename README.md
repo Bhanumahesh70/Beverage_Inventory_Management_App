@@ -158,6 +158,10 @@ Once deployed, the application can be accessed via a web browser:
 User can signup as a customer but need to request for access to be a supplier
 ![image](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/70c25898-eb53-4f38-9e3d-b9059d19b485)
 
+## Admin Portal
+Admin can view the user requests for supplier access and can arrpove them
+![image](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/0939aab2-12bf-47d5-af88-e0a239bf7c58)
+
 
 ## Welcome Page for User
 This page includes a navigation bar for easy user navigation.
