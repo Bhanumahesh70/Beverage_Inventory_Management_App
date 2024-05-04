@@ -147,6 +147,10 @@ Once deployed, the application can be accessed via a web browser:
 - **Hibernate Validator:** 8.0.1.Final (for validation in testing)
 - **Expressly:** 5.0.0 (for testing)
 
+# Screen Captures
+
+Login Page:
+ 
 ## Enter User Credentials
 
 - **Username:** `customer1`
