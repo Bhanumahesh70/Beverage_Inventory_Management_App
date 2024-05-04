@@ -197,3 +197,62 @@ body{
 /* */
 /* */
 
+/* */
+/*Signup css */
+/* */
+//* Container for the form to ensure it's centered and visually distinct */
+.signup-container {
+    max-width: 500px; /* Limits the width of the form container */
+    padding: 20px; /* Padding around the form */
+    margin: 50px auto; /* Centers the form horizontally and adds vertical spacing */
+    background-color: #ffffff; /* White background for the form */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    border-radius: 8px; /* Rounded corners for a softer look */
+}
+
+.signup-form {
+    width: 100%; /* Ensures the form elements use the full width of the container */
+}
+
+/* Ensures all text input fields are styled consistently */
+.signup-form input[type="text"], 
+.signup-form input[type="password"],
+.signup-form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px; /* Adds space below each input */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Specific button styles for the signup page */
+.signup-form .btn-primary {
+    width: calc(50% - 2px); /* Half the container width minus 2px for the gap between buttons */
+    margin-right: 4px; /* Small gap between buttons */
+    float: left; /* Aligns button to the left */
+}
+
+.signup-form .btn-cancel {
+    width: calc(50% - 2px); /* Half the container width */
+    float: right; /* Aligns button to the right */
+    background-color: #6c757d; /* Stylish gray for cancel button */
+    border-color: #6c757d;
+}
+
+/* Clear float styles for following elements */
+.signup-form::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Enhance label visibility */
+.signup-form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+
+/* */
+/*signup css end */
+/* */

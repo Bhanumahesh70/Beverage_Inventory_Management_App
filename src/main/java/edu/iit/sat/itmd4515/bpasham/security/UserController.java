@@ -22,36 +22,35 @@ import java.util.logging.Logger;
 @Named
 @RequestScoped
 public class UserController {
-     private static final Logger LOG = Logger.getLogger(UserController.class.getName());
+
+    private static final Logger LOG = Logger.getLogger(UserController.class.getName());
     @EJB
     private UserService userService;
-    
-     @EJB
+
+    @EJB
     private CustomerService customerService;
-     
-     
+
     @EJB
     private SupplierService supplierService;
 
     @EJB
     private GroupService groupService;
 
-    private User newUser ;
+    private User newUser;
     private Group selectedRole;
-    
+
     private List<Group> groups;
 
     public UserController() {
     }
 
     @PostConstruct
-    private void postConstruct(){
-       LOG.info("UserController.postConstruct");
-       newUser= new User();
-       groups = groupService.findAll();
-        
-    }
+    private void postConstruct() {
+        LOG.info("UserController.postConstruct");
+        newUser = new User();
+        groups = groupService.findAll();
 
+    }
 
     public String register() {
         LOG.info("inside UserController.register()");
@@ -63,21 +62,23 @@ public class UserController {
             Customer customer = new Customer(newUser.getUserName(), newUser.getEmail());
             customer.setUser(newUser);
             customerService.create(customer);
-            LOG.info("UserController created customer "+customer.toString());
+            LOG.info("UserController created customer " + customer.toString());
         } else if ("SALESMANAGER_GROUP".equals(selectedRole.getGroupName())) {
             LOG.info("UserController.register creating supplier");
             Supplier supplier = new Supplier(newUser.getUserName(), newUser.getEmail());
             supplier.setUser(newUser);
             supplierService.create(supplier);
-             LOG.info("UserController.register() created supplier "+supplier.toString());
-        }
-        else{
+            LOG.info("UserController.register() created supplier " + supplier.toString());
+        } else {
             LOG.info("UserController.register() unable to createcustomer/supplier");
         }
         return "/login.xhtml?faces-redirect=true"; // Navigate to login after successful registration
     }
 
-    
+    public String cancel() {
+        return "/login.xhtml?faces-redirect=true";
+    }
+
     /**
      * Get the value of groups
      *
@@ -95,6 +96,7 @@ public class UserController {
     public void setGroups(List<Group> groups) {
         this.groups = groups;
     }
+
     // Getters and Setters
     public User getNewUser() {
         return newUser;

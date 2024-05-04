@@ -11,26 +11,32 @@
     </ui:define>
 
     <ui:define name="content">
-        <h:form styleClass="form">
-            <h:panelGrid columns="2">
-                Username:
-                <h:inputText value="#{userController.newUser.userName}" required="true" requiredMessage="Username is required"/>
+        <div class="signup-container">
+            <h:form styleClass="signup-form">
+                <h:panelGrid columns="2" columnClasses="form-label, form-input">
+                    <h:outputLabel value="Username:" for="username"/>
+                    <h:inputText id="username" value="#{userController.newUser.userName}" required="true" requiredMessage="Username is required"/>
 
-                Password:
-                <h:inputSecret value="#{userController.newUser.password}" required="true" requiredMessage="Password is required"/>
-                Email:
-                <h:inputText value="#{userController.newUser.email}" required="true" requiredMessage="Email is required"/>
-                Role:
-                <h:selectOneMenu value="#{userController.selectedRole}" converter="groupConverter">
-                    <f:selectItems value="#{userController.groups}" var="group" itemLabel="#{group.groupName}" itemValue="#{group}" />
-                </h:selectOneMenu>
+                    <h:outputLabel value="Password:" for="password"/>
+                    <h:inputSecret id="password" value="#{userController.newUser.password}" required="true" requiredMessage="Password is required"/>
 
+                    <h:outputLabel value="Email:" for="email"/>
+                    <h:inputText id="email" value="#{userController.newUser.email}" required="true" requiredMessage="Email is required"/>
 
-                <f:facet name="footer">
-                    <h:commandButton value="Signup" action="#{userController.register()}" styleClass="btn btn-primary"/>
-                </f:facet>
-            </h:panelGrid>
-        </h:form>
+                    <h:outputLabel value="Role:" for="role"/>
+                    <h:selectOneMenu id="role" value="#{userController.selectedRole}" converter="groupConverter">
+                        <f:selectItems value="#{userController.groups}" var="group" itemLabel="#{group.groupName}" itemValue="#{group}"/>                                    
+                    </h:selectOneMenu>
+
+                    <f:facet name="footer">
+                        <div class="footer">
+                            <h:commandButton value="Signup" action="#{userController.register()}" styleClass="btn btn-primary"/>
+                            <h:commandButton value="Cancel" action="#{userController.cancel}" immediate="true" styleClass="btn btn-cancel"/>
+                        </div>
+                    </f:facet>
+                </h:panelGrid>
+            </h:form>
+        </div>
     </ui:define>
 
 </ui:composition>
