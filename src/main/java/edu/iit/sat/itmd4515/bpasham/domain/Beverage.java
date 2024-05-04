@@ -87,8 +87,6 @@ public class Beverage extends AbstractEntity{
     @ManyToMany(mappedBy = "s_beverage")
     private List<Supplier> suppliers = new ArrayList<>();
     
-    @OneToOne(mappedBy = "beverage")
-    private Inventory inventory;
     
     
 
@@ -184,13 +182,7 @@ public class Beverage extends AbstractEntity{
         this.orders = orders;
     }
 
-    public Inventory getInventory() {
-        return inventory;
-    }
-
-    public void setInventory(Inventory inventory) {
-        this.inventory = inventory;
-    }
+    
 /**
      * Get the value of suppliers
      *

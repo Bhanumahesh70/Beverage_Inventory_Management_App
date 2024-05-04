@@ -141,12 +141,14 @@ public class StartupDbInitializer {
         c2.setUser(customer2);
         CustomerSvc.create(c2);
 
+        /*
         Inventory i1 = new Inventory(2, LocalDateTime.now());
         i1.setBeverage(b1);
         Inventory i2 = new Inventory(10, LocalDateTime.now());
         i2.setBeverage(b2);
         InventorySvc.create(i1);
         InventorySvc.create(i2);
+        */
 
         Order o1 = new Order(LocalDate.of(2024, 2, 4), 5);
         o1.addBeverage(b1);
@@ -250,7 +252,7 @@ public class StartupDbInitializer {
                 LOG.info("\tCustomer is null for Beverage: " + o.getId());
             }
         }
-
+/*
         //Inventory relationships
         for (Inventory i : InventorySvc.findAll()) {
             LOG.info("=====================================================================\n");
@@ -264,6 +266,7 @@ public class StartupDbInitializer {
                 LOG.info("\tBeverage is null for Inventory: " + i.getId());
             }
         }
+        */
 
         /*
         //Supplier relationships

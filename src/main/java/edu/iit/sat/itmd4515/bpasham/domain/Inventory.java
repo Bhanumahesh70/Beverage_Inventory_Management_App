@@ -32,9 +32,7 @@ public class Inventory extends AbstractEntity{
     @NotNull
     private LocalDateTime lastUpdated;
 
-    @OneToOne
-    @JoinColumn(name = "beverage_id")
-    private Beverage beverage;
+    
 
 
     public Inventory() {
@@ -61,14 +59,7 @@ public class Inventory extends AbstractEntity{
         this.lastUpdated = lastUpdated;
     }
 
-    public Beverage getBeverage() {
-        return beverage;
-    }
-
-    public void setBeverage(Beverage beverage) {
-        this.beverage = beverage;
-    }
-
+    
     @Override
     public String toString() {
         return "Inventory{" + "inventoryId=" + id + ", quantity=" + quantity + ", lastUpdated=" + lastUpdated + '}';
