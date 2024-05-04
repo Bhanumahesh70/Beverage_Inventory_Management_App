@@ -192,6 +192,9 @@ This page includes a navigation bar for easy user navigation.
 
 - **Username:** `salesManager2`
 - **Password:** `salesManager2`
+  
+- **Username:** `admin1`
+- **Password:** `admin1`
 
 # Key Findings in Development
 
