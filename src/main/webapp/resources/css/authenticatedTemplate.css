@@ -377,6 +377,25 @@ main {
     color: #17a2b8;
     font-size: 0.875em;
 }
+/* Button styling for Edit */
+.supplier-form .btn-edit {
+    background-color: #ffc107; /* Yellow color indicating caution or modification */
+    color: #333; /* Dark text for better readability */
+}
+
+.supplier-form .btn-edit:hover {
+    background-color: #e0a800; /* Darker shade of yellow on hover */
+}
+
+/* Button styling for Delete */
+.supplier-form .btn-delete {
+    background-color: #dc3545; /* Red color indicating a potentially irreversible action */
+    color: white;
+}
+
+.supplier-form .btn-delete:hover {
+    background-color: #c82333; /* Darker shade of red on hover */
+}
 
 /* */
 /* */
