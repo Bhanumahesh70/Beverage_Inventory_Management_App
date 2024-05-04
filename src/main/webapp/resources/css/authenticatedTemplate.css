@@ -234,61 +234,84 @@ main {
 /* */
 /*supplierWelcome Controller css*/
 /* */
-/* Overall Page Enhancements */
-.table-heading {
+/* Specific scope for Supplier Welcome to avoid conflicts */
+.supplier-welcome .table-heading {
     text-align: center;
     margin-top: 30px;
     color: #495057;
 }
 
-/* Styling for beverage details table */
-.beverage-details {
+/* Styling for tables within the supplier welcome scope */
+.supplier-welcome .beverage-details,
+.supplier-welcome .order-details {
+    width: 100%;
     margin-top: 20px;
-    background-color: #f8f9fa; /* Light grey background for distinction */
+    background-color: #f8f9fa;
     border: 1px solid #dee2e6;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.beverage-details th {
-    background-color: #e9ecef; /* Slightly darker header for contrast */
+.supplier-welcome .table th,
+.supplier-welcome .table td {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 12px;
+    background-color: #f2f2f2;
     color: #495057;
 }
 
-/* Styling for order details table */
-.order-details {
-    margin-top: 30px; /* More space from the previous table */
-    background-color: #ffffff; /* White background for clean contrast */
-    border: 1px solid #dee2e6;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.order-details th {
-    background-color: #007bff; /* Blue background for header */
+.supplier-welcome .order-details th {
+    background-color: #007bff;
     color: #ffffff;
 }
 
-/* Responsive adjustments for tables */
+/* Responsive table container */
+.supplier-welcome .table-responsive {
+    overflow-x: auto;
+    margin-bottom: 20px;
+    clear: both;
+}
+
+/* Button styling within the supplier welcome context */
+.supplier-welcome .btn {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    border-radius: 0.2rem;
+    margin-right: 5px;
+}
+
+.supplier-welcome .btn-view { background-color: #17a2b8; }
+.supplier-welcome .btn-edit { background-color: #ffc107; }
+.supplier-welcome .btn-delete { background-color: #dc3545; }
+.supplier-welcome .btn-add { background-color: #28a745; }
+
+.supplier-welcome .btn:hover {
+    filter: brightness(90%);
+}
+
+.supplier-welcome .btn:active {
+    transform: scale(0.98);
+}
+
+/* Adjustments for smaller devices */
 @media (max-width: 768px) {
-    .beverage-details, .order-details {
-        width: 100%;
+    .supplier-welcome .beverage-details,
+    .supplier-welcome .order-details {
         margin-top: 20px;
     }
 }
 
-/* Button enhancements for actions */
-.h-form .btn {
-    margin: 5px; /* Spacing between buttons */
-    width: auto; /* Adjust width to content */
+/* Hover effects for table rows */
+.supplier-welcome .dataTable tr:hover {
+    background-color: #f5f5f5;
 }
 
-.h-form .btn-primary, .h-form .btn-danger {
-    padding: 5px 10px;
+.supplier-welcome .dataTable tr:nth-child(even) {
+    background-color: #fff;
 }
 
-/* Confirm dialog styling */
-.h-form .btn-danger:active, .h-form .btn-primary:active {
-    box-shadow: none; /* Remove shadow when clicked for cleaner look */
-}
 
 /* */
 /*supplierWelcome Controller css */

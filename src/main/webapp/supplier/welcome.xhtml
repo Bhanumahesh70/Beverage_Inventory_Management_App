@@ -11,111 +11,117 @@
     </ui:define>
 
     <ui:define name="content">
-        Welcome #{loginController.authenticatedUser}!! to the Supplier section of the Beverage Inventory Application
+        <div class="supplier-welcome">
+            Welcome #{loginController.authenticatedUser}!! to the Supplier section of the Beverage Inventory Application
 
-        <h:link outcome="/supplier/createNewBeverage.xhtml">Create a New Beverage</h:link>
-        <h2 class="table-heading">Beverage Details</h2>
-        <h:dataTable 
-            styleClass="table table-striped table-hover beverage-details"
-            value="#{supplierWelcomeController.supplier.beverage}" var="beverage" >
-            <h:column>
-                <f:facet name="header">Beverage Id</f:facet>
-                <h:outputText value="#{beverage.id}" />
-            </h:column>
-            <h:column>
-                <f:facet name="header">Beverage Name</f:facet>
-                <h:outputText value="#{beverage.name}" />
-            </h:column>
-            <h:column>
-                <f:facet name="header">Beverage Type</f:facet>
-                <h:outputText value="#{beverage.type.label}" />
-            </h:column>
-            <h:column>
-                <f:facet name="header">Beverage ExpiryDate</f:facet>
-                <h:outputText value="#{beverage.expiryDate}" >
-                    <f:convertDateTime type="localDate" dateStyle="full" />
-                </h:outputText>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Beverage isNonAlcoholic</f:facet>
-                <h:outputText value="#{beverage.isNonAlcoholic}" />
-            </h:column>
-            <h:column>
-                <f:facet name="header">Beverage isDeleted</f:facet>
-                <h:outputText value="#{beverage.isDeleted}" />
-            </h:column>
-            <h:column>
-                <f:facet name="header"># Orders</f:facet>
-                <h:outputText value="#{beverage.orders.size()}" />
-            </h:column>
-
-
-            <h:column>
-                <f:facet name="header"># Suppliers</f:facet>
-                <h:outputText value="#{beverage.suppliers.size()}" />
-            </h:column>
+            <h:link outcome="/supplier/createNewBeverage.xhtml"  styleClass="btn btn-add">Create a New Beverage</h:link>
+            <h2 class="table-heading">Beverage Details</h2>
+            <div class="table-responsive">
+                <h:dataTable 
+                    styleClass="table table-striped table-hover beverage-details"
+                    value="#{supplierWelcomeController.supplier.beverage}" var="beverage" >
+                    <h:column>
+                        <f:facet name="header">Beverage Id</f:facet>
+                        <h:outputText value="#{beverage.id}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Beverage Name</f:facet>
+                        <h:outputText value="#{beverage.name}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Beverage Type</f:facet>
+                        <h:outputText value="#{beverage.type.label}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Beverage ExpiryDate</f:facet>
+                        <h:outputText value="#{beverage.expiryDate}" >
+                            <f:convertDateTime type="localDate" dateStyle="full" />
+                        </h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Beverage isNonAlcoholic</f:facet>
+                        <h:outputText value="#{beverage.isNonAlcoholic}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Beverage isDeleted</f:facet>
+                        <h:outputText value="#{beverage.isDeleted}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header"># Orders</f:facet>
+                        <h:outputText value="#{beverage.orders.size()}" />
+                    </h:column>
 
 
-            <h:column>
-                <f:facet name="header">#Suppliers name</f:facet>
-                <ui:repeat value="#{beverage.suppliers}" var="supplier">
-                    <h:outputText value="#{supplier.name}" />
+                    <h:column>
+                        <f:facet name="header"># Suppliers</f:facet>
+                        <h:outputText value="#{beverage.suppliers.size()}" />
+                    </h:column>
 
-                </ui:repeat>
-            </h:column>
 
-            <h:column>
-                <h:form>
-                    <h:commandButton value="view" action="#{supplierBeverageController.displayViewBeveragePage(beverage)}" />
-                    <h:commandButton value="edit" action="#{supplierBeverageController.displayEditBeveragePage(beverage)}" />
-                    <h:commandButton value="delete/add" action="#{supplierBeverageController.displayDeleteBeveragePage(beverage)}" />
-                </h:form>
-            </h:column> 
+                    <h:column>
+                        <f:facet name="header">#Suppliers name</f:facet>
+                        <ui:repeat value="#{beverage.suppliers}" var="supplier">
+                            <h:outputText value="#{supplier.name}" />
 
-        </h:dataTable>
+                        </ui:repeat>
+                    </h:column>
 
-        <!-- Section for Order Details -->
-        <h2>Orders Associated with Supplier</h2>
-        <h:dataTable styleClass="table table-striped"
-                     value="#{supplierWelcomeController.supplier.orders}" var="order">
-            <h:column>
-                <f:facet name="header">Order ID</f:facet>
-                <h:outputText value="#{order.id}" />
-            </h:column>
-            <h:column>
-                <f:facet name="header">Order Date</f:facet>
-                <h:outputText value="#{order.orderDate}">
-                    <f:converter converterId="dateConverter" />
-                </h:outputText>
+                    <h:column>
+                        <f:facet name="header">Actions</f:facet>
+                        <h:form>
+                            <h:commandButton styleClass="btn btn-view" value="view" action="#{supplierBeverageController.displayViewBeveragePage(beverage)}" />
+                            <h:commandButton styleClass="btn btn-edit" value="edit" action="#{supplierBeverageController.displayEditBeveragePage(beverage)}" />
+                            <h:commandButton styleClass="btn btn-delete" value="delete/add" action="#{supplierBeverageController.displayDeleteBeveragePage(beverage)}" />
+                        </h:form>
+                    </h:column> 
 
-            </h:column>
-            <h:column>
-                <f:facet name="header">Customer Name</f:facet>
-                <h:outputText value="#{order.customer.name}" />
-            </h:column>
-            <h:column>
-                <f:facet name="header">Quantity</f:facet>
-                <h:outputText value="#{order.quantity}" />
-            </h:column>
-            <h:column>
-                <f:facet name="header">Status</f:facet>
-                <h:outputText value="#{order.status}" />
 
-            </h:column>
-            <h:column>
-                <h:form>
-                    <h:commandButton value="view" action="#{supplierBeverageController.displayViewOrderPage(order)}" />
-                    <h:commandButton value="Complete" action="#{supplierBeverageController.completeOrder(order)}"
-                                     onclick="return confirm('Are you sure you want to complete this order?');" 
-                                     rendered="#{order.status eq 'Placed'}" />
-                    <h:commandButton value="Cancel" action="#{supplierBeverageController.cancelOrder(order.id)}"
-                                     onclick="return confirm('Are you sure you want to cancel this order?');" 
-                                     rendered="#{order.status eq 'Placed'}" />
+                </h:dataTable>
+            </div>
+            <!-- Section for Order Details -->
+            <h2>Orders Associated with Supplier</h2>
+            <div class="table-responsive">
+                <h:dataTable styleClass="table table-striped order-details"
+                             value="#{supplierWelcomeController.supplier.orders}" var="order">
+                    <h:column>
+                        <f:facet name="header">Order ID</f:facet>
+                        <h:outputText value="#{order.id}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Order Date</f:facet>
+                        <h:outputText value="#{order.orderDate}">
+                            <f:converter converterId="dateConverter" />
+                        </h:outputText>
 
-                </h:form>
-            </h:column> 
-        </h:dataTable>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Customer Name</f:facet>
+                        <h:outputText value="#{order.customer.name}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Quantity</f:facet>
+                        <h:outputText value="#{order.quantity}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Status</f:facet>
+                        <h:outputText value="#{order.status}" />
 
+                    </h:column>
+                    <h:column>
+                        <h:form>
+                            <h:commandButton styleClass="btn btn-view" value="view" action="#{supplierBeverageController.displayViewOrderPage(order)}" />
+                            <h:commandButton styleClass="btn btn-edit" value="Complete" action="#{supplierBeverageController.completeOrder(order)}"
+                                             onclick="return confirm('Are you sure you want to complete this order?');" 
+                                             rendered="#{order.status eq 'Placed'}" />
+                            <h:commandButton styleClass="btn btn-delete" value="Cancel" action="#{supplierBeverageController.cancelOrder(order.id)}"
+                                             onclick="return confirm('Are you sure you want to cancel this order?');" 
+                                             rendered="#{order.status eq 'Placed'}" />
+
+                        </h:form>
+                    </h:column> 
+                </h:dataTable>
+            </div>
+        </div>
     </ui:define>
 
 </ui:composition>
