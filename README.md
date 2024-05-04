@@ -8,6 +8,9 @@ Consumers can use the internet and peruse an extensive assortment of drinks divi
 ## For Suppliers:
 Suppliers are able to manage their beverage listings through a dedicated interface. This includes adding new drinks to the inventory, changing the details of already-existing drinks, and eliminating drinks as necessary. In order to fulfill or cancel orders depending on inventory levels or other operational factors, suppliers can monitor orders placed by customers that are linked to them. This direct communication with the orders guarantees customer pleasure and contributes to the upkeep of an effective supply chain.
 
+## For Admin:
+User can signup as a customer to the portal. But needs to request access to be a supplier. These requests will be directed to admin, who is the only user who can approve these requests.
+
 ## System Objectives:
 The BeverageInventory system's main objective is to simplify the beverage industry's order placement and fulfillment process by cutting complexity and improving user experience for suppliers and customers alike. Through its intuitive interface and instantaneous order status updates, the system fosters efficiency and transparency, resulting in enhanced customer satisfaction and service delivery. Strong data management and user-specific features supported by the system's design guarantee that both parties can perform efficiently and promote a responsive and dependable beverage transaction marketplace. The BeverageInventory system gives suppliers wishing to increase market share and improve operational efficiency—or customers searching for a quick and simple way to stock up on beverages—the resources they need to accomplish these goals precisely and easily.
 
@@ -150,6 +153,11 @@ Once deployed, the application can be accessed via a web browser:
 
 ## Login Page
 ![Login Page](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/4cfc09db-f4e9-479e-ab34-53199aea44ae)
+
+## Reister Page
+User can signup as a customer but need to request for access to be a supplier
+![image](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/70c25898-eb53-4f38-9e3d-b9059d19b485)
+
 
 ## Welcome Page for User
 This page includes a navigation bar for easy user navigation.
