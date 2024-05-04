@@ -150,6 +150,32 @@ Once deployed, the application can be accessed via a web browser:
 # Screen Captures
 
 Login Page:
+![image](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/4cfc09db-f4e9-479e-ab34-53199aea44ae)
+
+Welcome Page for user which has nav bar for easy user navigation:
+![image](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/a88cb223-a0b3-4265-ac61-291f10179c02)
+
+supplier Portal:
+![image](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/92d1e01a-a5bc-4771-9d75-a6be450b4b91)
+
+Create Beverage Form:
+![image](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/01ba8f38-5eaa-4928-a610-347670ed6e20)
+
+Orders Associated with the supplier:
+![image](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/6330e90b-adb1-40f4-a957-cbcb87515aa1)
+
+Customer Portal:
+![image](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/5e12c724-bfcb-46e0-95d5-dec245c6539d)
+
+
+
+
+
+
+
+
+
+
  
 ## Enter User Credentials
 
