@@ -35,7 +35,7 @@ import java.io.Serializable;
  */
 @Named
 @RequestScoped
-public class PlaceOrderController{
+public class PlaceOrderController {
 
     private static final Logger LOG = Logger.getLogger(PlaceOrderController.class.getName());
     @EJB
@@ -61,7 +61,7 @@ public class PlaceOrderController{
     private List<Supplier> suppliers;
     private List<Beverage> beverages;
 
-    private Customer customer ;
+    private Customer customer;
 
     private Order order;
 
@@ -151,10 +151,9 @@ public class PlaceOrderController{
                 }
             }
             order.setQuantity(totalQuantity);
-            LOG.info("PlaceOorderController.placeOrder: orderBeverageDetail "+orderBeverageDetail);
+            LOG.info("PlaceOorderController.placeOrder: orderBeverageDetail " + orderBeverageDetail);
             order.setOrderBeverageDetails(orderBeverageDetail);
-             LOG.info("PlaceOorderController.placeOrder: order.orderBeverageDetail.toString(): "+order.getOrderBeverageDetailstoString());
-            
+            LOG.info("PlaceOorderController.placeOrder: order.orderBeverageDetail.toString(): " + order.getOrderBeverageDetailstoString());
 
             boolean isOrderCreated = orderService.createOrder(order);
             if (isOrderCreated) {
@@ -164,18 +163,18 @@ public class PlaceOrderController{
                 LOG.info("Oder OrderBevergaeDetail: " + order.getOrderBeverageDetails().toString());
                 LOG.info("getOrderBeverageDetailstoString()" + order.getOrderBeverageDetailstoString());
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Success", "Order successfully placed."));
-                return "orderConfirmation"; // Navigate to confirmation page
+                cwc.refreshCustomerModel();
+                return "/customer/welcome.xhtml?faces-redirect=true";
             } else {
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Failure", "Order could not be placed"));
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Failure: select items and enter quantity to place an order ", "Order could not be placed"));
                 return null; // Stay on the same page
             }
         } catch (Exception e) {
             LOG.info("Error placing order: {}" + e.getMessage());
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error placing order", e.getMessage()));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error placing order. select items and enter quantity to place an order", e.getMessage()));
             return null; // Stay on the same page
         }
     }
-
 
     public String updateOrder() {
         //order= orderService.findOrderById(orderID);
@@ -190,7 +189,7 @@ public class PlaceOrderController{
             return null; // Stay on the same page to correct data
         }
         try {
-            LOG.info("PlaceOrderController.updateOrder: "+order.toString());
+            LOG.info("PlaceOrderController.updateOrder: " + order.toString());
             boolean isOrderUpdated = orderService.updateOrder(order);
             if (isOrderUpdated) {
                 LOG.info("PlaceOrderController After Update");
@@ -221,7 +220,7 @@ public class PlaceOrderController{
             return null; // Optionally, return to a safe page or stay on the same page
         }
         try {
-            LOG.info("PlaceOrderController.deleteOrder() "+order.toString());
+            LOG.info("PlaceOrderController.deleteOrder() " + order.toString());
             orderService.deleteOrder(order.getId());
             cwc.refreshCustomerModel();
             return "/customer/welcome.xhtml?faces-redirect=true";
@@ -273,18 +272,15 @@ public class PlaceOrderController{
      *
      * @return the value of customer
      */
-    
     public Customer getCustomer() {
         return customer;
     }
-    
 
     /**
      * Set the value of customer
      *
      * @param customer new value of customer
      */
-    
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
