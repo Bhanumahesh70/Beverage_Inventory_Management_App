@@ -80,8 +80,120 @@ The system is created to predict and handle possible mistakes. For instance, the
 
 
 .............................................................................
+# Requirements
+
+This section outlines the necessary steps to install, build, and run the BeverageInventory project. The project is built using Jakarta EE with Payara Server and connects to an SQL database.
+
+## Prerequisites
+
+Before you begin, ensure you have the following installed:
+- Java JDK 11 or higher
+- Maven 3.8.1 or higher
+- Payara Server 5 or higher
+- MySQL Server 8.0.33 or a compatible version
+
+## Installation and Setup
+
+### Step 1: Install Java Development Kit (JDK)
+- Download and install the Java JDK 11 from [Oracle's JDK Download Page](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html).
+- Set up the JAVA_HOME environment variable to point to your JDK installation.
+
+### Step 2: Install Apache Maven
+- Download Apache Maven from [Maven Official Website](https://maven.apache.org/download.cgi).
+- Extract the files and add the `bin` directory to your PATH environment variable.
+- Verify the installation by running `mvn -version` in your command prompt or terminal.
+
+### Step 3: Install Payara Server
+- Download Payara Server from [Payara Download Page](https://www.payara.fish/downloads/payara-platform-community-edition/).
+- Unzip the Payara Server package to a suitable location on your system.
+
+### Step 4: Set Up MySQL Database
+- Install MySQL Server if not already installed.
+- Create a new database for the project.
+- Ensure the MySQL service is running.
+
+## Building the Project
+
+1. Clone the repository or download the source code.
+2. Navigate to the project directory where the `pom.xml` file is located.
+3. Run the following command to build the project:
+   ```bash
+   mvn clean install
+4. The above command will compile the project and generate a `.war` file in the `target` directory.
+
+## Deploying to Payara Server
+
+1. Start the Payara Server if it is not already running.
+2. Open the Payara Admin Console (typically available at `http://localhost:4848`).
+3. Navigate to **Applications** in the left menu.
+4. Click **Deploy**, and select the `.war` file generated from the build process.
+5. Follow the on-screen instructions to deploy the application.
+
+## Running the Application
+
+Once deployed, the application can be accessed via a web browser:
+
+- Open your browser and navigate to `http://localhost:8080/bpasham-fp`.
+
+## Versions of Tools, Libraries, and APIs
+
+- **Java JDK:** 11
+- **Jakarta EE:** 10.0.0
+- **Maven:** 3.8.1
+- **Payara Server:** 5.x
+- **MySQL Connector/J:** 8.0.33
+- **JUnit Jupiter Engine:** 5.10.1 (for testing)
+- **EclipseLink JPA:** 4.0.2 (for testing)
+- **Hibernate Validator:** 8.0.1.Final (for validation in testing)
+- **Expressly:** 5.0.0 (for testing)
+
+## Enter User Credentials
+
+- **Username:** `customer1`
+- **Password:** `customer1`
 
 
+- **Username:** `customer2`
+- **Password:** `customer2`
+
+- **Username:** `salesManager1`
+- **Password:** `salesManager1`
+
+- **Username:** `salesManager2`
+- **Password:** `salesManager2`
+
+# Key Findings in Development
+
+This part provides a firsthand account of the evolution of the BeverageInventory system, covering important insights, potential areas for deeper investigation, and both rewarding and difficult aspects of the project.
+
+## Lessons I Gained
+
+- **Jakarta EE and Payara Server:** My comprehension of enterprise-level web development was enriched by getting practical experience with Jakarta EE and deploying applications on Payara Server.
+- **Enhanced Error Handling:** Utilizing JSF's `FacesContext` for comprehensive error handling offered a better approach in maintaining stability and enhancing the user experience.
+- **Managing Databases:** It was essential to work with SQL databases in order to ensure data integrity and persistence, particularly in grasping transactional operations and data consistency.
+
+## Topics to Explore Further
+
+- **Microservices Architecture:** I want to investigate restructuring the BeverageInventory system into a microservices architecture to enhance scalability and maintainability.
+- **Utilizing Docker for Containerization:** Deploying the application with Docker could simplify development and minimize differences between development and production setups.
+
+## Preferences and Aversions
+
+### The Things I Enjoyed
+
+- **User Interaction Feedback:** Including interactive feedback systems proved to be beneficial by enhancing user satisfaction and system usability.
+- **Developing User Interfaces:** Making user interfaces intuitive and responsive with JSF was extremely fun, providing instant visual feedback and a feeling of concrete advancement.
+
+### My Dislikes
+
+- **Complicated Error Management:** Despite being efficient, dealing with complex error handling situations could be difficult at times because of the detailed dependencies and the requirement for careful debugging.
+- **Improving Performance:** Difficulties in enhancing the system's performance, especially in terms of database interactions, were challenging and brought attention to areas requiring efficiency enhancements.
+
+## Conclusion
+
+The creation of the BeverageInventory system provided a thorough educational journey, encountering both difficulties and successes. It offered a hands-on use of theoretical knowledge and introduced me to new technologies and methodologies which will definitely help with my upcoming projects.
+
+.............................................................
 Lab3 lab4 lab5 lab 8 readme file
 
 .............................................................................
