@@ -58,37 +58,12 @@ public class StartupDbInitializer {
     private void postConstruct() {
         LOG.info("StartupDbInitializer.postConstruct");
 
-        //Security Realm intialization first
-        Group adminGroup = new Group("ADMIN_GROUP", "Group for administartive users");
-        Group inventoryManagerGroup = new Group("INVENTORYMANAGER_GROUP", "Group for inventory managers");
+        //Security Realm intialization 
+        
         Group salesManagerGroup = new Group("SALESMANAGER_GROUP", "Group for sales managers");
         Group customerGroup = new Group("CUSTOMER_GROUP","Group for Customers");
-        groupSvc.create(adminGroup);
-        groupSvc.create(inventoryManagerGroup);
         groupSvc.create(salesManagerGroup);
         groupSvc.create(customerGroup);
-        
-
-        User admin1 = new User("admin1", "admin1","admin1@gmail.com");
-        admin1.addGroup(adminGroup);
-        admin1.addGroup(inventoryManagerGroup );
-        admin1.addGroup(customerGroup);
-         //admin1.addGroup(salesManagerGroup);
-        userSvc.create(admin1);
-
-        User admin2 = new User("admin2", "admin2","admin2@gmail.com");
-        admin2.addGroup(adminGroup);
-        admin2.addGroup(inventoryManagerGroup );
-        userSvc.create(admin2);
-
-        User invManager1 = new User("inventoryManager1", "inventoryManager1","im1@gmail.com");
-        invManager1.addGroup(inventoryManagerGroup);
-        invManager1.addGroup(adminGroup);
-        userSvc.create(invManager1);
-
-        User invManager2 = new User("inventoryManager2", "inventoryManager2","im2@gmail.com");
-        invManager2.addGroup(inventoryManagerGroup);
-        userSvc.create(invManager2);
         
         User salesManager1 = new User("salesManager1", "salesManager1","salesManager1@gmail.com");
         salesManager1.addGroup(salesManagerGroup);
@@ -105,6 +80,38 @@ public class StartupDbInitializer {
         User customer2 = new User("customer2", "customer2","customer2@gmail.com");
         customer2.addGroup(customerGroup);
         userSvc.create(customer2);
+        
+        //Group adminGroup = new Group("ADMIN_GROUP", "Group for administartive users");
+        //Group inventoryManagerGroup = new Group("INVENTORYMANAGER_GROUP", "Group for inventory managers");
+        //groupSvc.create(adminGroup);
+        //groupSvc.create(inventoryManagerGroup);
+
+        
+        /*
+        User admin1 = new User("admin1", "admin1","admin1@gmail.com");
+        admin1.addGroup(adminGroup);
+        admin1.addGroup(inventoryManagerGroup );
+        admin1.addGroup(customerGroup);
+         //admin1.addGroup(salesManagerGroup);
+        userSvc.create(admin1);
+
+        User admin2 = new User("admin2", "admin2","admin2@gmail.com");
+        admin2.addGroup(adminGroup);
+        admin2.addGroup(inventoryManagerGroup );
+        userSvc.create(admin2);
+        */
+
+        /*
+        User invManager1 = new User("inventoryManager1", "inventoryManager1","im1@gmail.com");
+        invManager1.addGroup(inventoryManagerGroup);
+        invManager1.addGroup(adminGroup);
+        userSvc.create(invManager1);
+
+        User invManager2 = new User("inventoryManager2", "inventoryManager2","im2@gmail.com");
+        invManager2.addGroup(inventoryManagerGroup);
+        userSvc.create(invManager2);
+        */
+        
         // End Security Realm intialization
 
         
@@ -130,12 +137,12 @@ public class StartupDbInitializer {
         supplierServic.create(s2);
        s2.addBeverage(b2);
 
-        Customer c1 = new Customer("marry", "MaaryMe@gmail.com");
+        Customer c1 = new Customer("customer1", "MaaryMe@gmail.com");
         c1.setUser(customer1);
         CustomerSvc.create(c1);
         
         
-        Customer c2 = new Customer("John", "Johnlly@gmail.com");
+        Customer c2 = new Customer("customer2", "Johnlly@gmail.com");
         c2.setUser(customer2);
         CustomerSvc.create(c2);
 
