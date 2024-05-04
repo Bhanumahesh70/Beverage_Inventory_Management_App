@@ -167,15 +167,8 @@ Orders Associated with the supplier:
 Customer Portal:
 ![image](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/5e12c724-bfcb-46e0-95d5-dec245c6539d)
 
-
-
-
-
-
-
-
-
-
+Customer can view the order details:
+![image](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/c5803735-2008-4509-986f-13c0eba93b5a)
  
 ## Enter User Credentials
 
