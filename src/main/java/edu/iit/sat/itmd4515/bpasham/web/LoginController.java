@@ -37,6 +37,9 @@ public class LoginController {
     @Inject
     FacesContext facesContext;
     
+    /**
+     *
+     */
     public LoginController() {
     }
     
@@ -54,25 +57,54 @@ public class LoginController {
     }
     
     //helper methods
+
+    /**
+     *
+     * @return
+     */
     public String getAuthenticatedUser(){
         
         return securityContext.getCallerPrincipal().getName();
     }
     
+    /**
+     *
+     * @return
+     */
     public boolean isAdmin(){
         return securityContext.isCallerInRole("ADMIN_ROLE");
     }
+
+    /**
+     *
+     * @return
+     */
     public boolean isCustomer(){
         return securityContext.isCallerInRole("CUSTOMER_ROLE");
     }
+
+    /**
+     *
+     * @return
+     */
     public boolean isSalesManager(){
         return securityContext.isCallerInRole("SUPPLIER_ROLE");
     }
+
+    /**
+     *
+     * @return
+     */
     public boolean isInventoryManager(){
         return securityContext.isCallerInRole("INVENTORY_MANAGER_ROLE");
     }
    
     //action methods
+
+    /**
+     *
+     * @return
+     */
     public String doLogin(){
         LOG.info("LoginController.doLogin");
         HttpServletRequest request = (HttpServletRequest)facesContext.getExternalContext().getRequest();
@@ -103,6 +135,10 @@ public class LoginController {
        return "/welcome.xhtml?faces-redirect=true";
     }
     
+    /**
+     *
+     * @return
+     */
     public String doLogout(){
         LOG.info("LoginController.doLogout");
         try {

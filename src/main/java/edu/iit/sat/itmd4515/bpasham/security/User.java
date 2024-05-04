@@ -37,13 +37,18 @@ public class User {
     @NotBlank
     private String email;
     
+    /**
+     *
+     */
     public User() {
     }
     
-
-    
-
-
+    /**
+     *
+     * @param userName
+     * @param password
+     * @param email
+     */
     public User(String userName, String password, String email) {
         this.userName = userName;
         this.password = password;
@@ -57,11 +62,19 @@ public class User {
             inverseJoinColumns = @JoinColumn(name="GROUPNAME"))
        private List<Group> groups = new ArrayList<>();
     
+    /**
+     *
+     * @param g
+     */
     public void addGroup(Group g ){
         this.groups.add(g);
         g.getUsers().add(this);
     }
 
+    /**
+     *
+     * @param g
+     */
     public void removeGroup(Group g ){
         this.groups.remove(g);
         g.getUsers().remove(this);
@@ -139,6 +152,11 @@ public class User {
     }
     
     //To String Method
+
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
         return "User{" +  "name=" + userName + "Email ="+email + '}';

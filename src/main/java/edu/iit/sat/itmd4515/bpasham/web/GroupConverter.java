@@ -26,6 +26,13 @@ public class GroupConverter implements Converter<Group> {
     @EJB
     GroupService groupService;
 
+    /**
+     *
+     * @param context
+     * @param component
+     * @param value
+     * @return
+     */
     @Override
     public Group getAsObject(FacesContext context, UIComponent component, String value) {
         LOG.info("Attempting to convert string to Group: " + value);
@@ -34,6 +41,13 @@ public class GroupConverter implements Converter<Group> {
         return group;
     }
 
+    /**
+     *
+     * @param context
+     * @param component
+     * @param value
+     * @return
+     */
     @Override
     public String getAsString(FacesContext context, UIComponent component, Group value) {
         String groupName = value != null ? value.getGroupName() : "";

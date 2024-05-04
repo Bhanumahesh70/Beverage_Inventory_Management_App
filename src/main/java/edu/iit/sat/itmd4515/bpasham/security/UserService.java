@@ -18,14 +18,25 @@ public class UserService extends AbstractService<User> {
 
     private static final Logger LOG = Logger.getLogger(UserService.class.getName());
 
+    /**
+     *
+     */
     public UserService() {
         super(User.class);
     }
 
+    /**
+     *
+     * @return
+     */
     public List<User> findAll() {
         return super.findAll("User.findAll");
     }
 
+    /**
+     *
+     * @param user
+     */
     public void create(User user) {
         LOG.info("UserService.createUser");
         LOG.info("Creating a new user: " + user.getUserName());

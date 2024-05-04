@@ -34,11 +34,17 @@ public class BeverageJPATest {
     private EntityManager em;
     private EntityTransaction tx;
 
+    /**
+     *
+     */
     @BeforeAll
     public static void beforeAll() {
         emf = Persistence.createEntityManagerFactory("itmd4515testPU");
     }
 
+    /**
+     *
+     */
     @BeforeEach
     public void beforeEach() {
         em = emf.createEntityManager();
@@ -50,6 +56,9 @@ public class BeverageJPATest {
         tx.commit();
     }
 
+    /**
+     *Test method to check for crate an entity
+     */
     @Test
     public void createTest() {
         Beverage b2 = new Beverage("pepsi", LocalDate.of(2025, 9, 5), "true", BeverageType.SODA);
@@ -61,6 +70,9 @@ public class BeverageJPATest {
         assertEquals(b2.getId(), readBackFromDatabaseForAssertion.getId());
     }
 
+    /**
+     *Test method to check for read an entity
+     */
     @Test
     public void readTest() {
 
@@ -76,6 +88,9 @@ public class BeverageJPATest {
 
     }
 
+    /**
+     *Test method to check for update an entity
+     */
     @Test
     public void updateTest() {
         //working with before Each sample data
@@ -97,6 +112,9 @@ public class BeverageJPATest {
         assertEquals(newExpiryDate, readBackFromDatabaseForAssertion.getExpiryDate());
     }
 
+    /**
+     *Test method to check for delete an entity
+     */
     @Test
     public void deleteTest() {
         try {
@@ -125,6 +143,10 @@ public class BeverageJPATest {
     }
 
     //Unidirectional Many to one test method
+
+    /**
+     *Test method to check to create Order With Customer
+     */
     @Test
     public void createOrderWithCustomerTest() {
         try {
@@ -154,7 +176,9 @@ public class BeverageJPATest {
         }
     }
 
-
+    /**
+     *
+     */
     @AfterEach
     public void afterEach() {
 
@@ -171,6 +195,9 @@ public class BeverageJPATest {
         }
     }
 
+    /**
+     *
+     */
     @AfterAll
     public static void afterAll() {
         emf.close();

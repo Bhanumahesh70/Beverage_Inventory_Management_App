@@ -20,38 +20,79 @@ public class SupplierService {
     
     @PersistenceContext(name = "itmd4515PU")
     private EntityManager em;
+
+    /**
+     *
+     */
     protected Class<Supplier> entityClass;
     
+    /**
+     *No arg constructor
+     */
     public SupplierService(){
         
     }
     
+    /**
+     *Method to create a supplier to database
+     * @param s
+     */
     public void create(Supplier s){
         em.persist(s);
     }
+
+    /**
+     *Method to read a supplier from database
+     * @param id
+     * @return
+     */
     public Supplier read(long id){
         return em.find(Supplier.class,id);
     }
+
+    /**
+     *Method to update a supplier from database
+     * @param s
+     */
     public void update(Supplier s){
         
         em.merge(s);
     }
+
+    /**
+     *Method to delete a supplier from database
+     * @param s
+     */
     public void delete(Supplier s){
         
         em.remove(em.merge(s));
     }
     
+    /**
+     *Method to find all available suppliers
+     * @return
+     */
     public List<Supplier> findAll(){
         
         return em.createNamedQuery("Supplier.findAll",Supplier.class).getResultList();
          //return em.createNamedQuery(namedQueryName,entityClass).getResultList();
     }
     
+    /**
+     *
+     * @param username
+     * @return
+     */
     public Supplier findByUsername(String username){
         
         return em.createNamedQuery("Supplier.findByUsername",Supplier.class).setParameter("uname", username).getSingleResult();
     }
 
+    /**
+     *
+     * @param supplier
+     * @param beverage
+     */
     public void createBeverageForSupplier(Supplier supplier, Beverage beverage) {
         //just like database initializer
         //create non-owing entities first

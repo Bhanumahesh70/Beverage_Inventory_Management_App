@@ -17,11 +17,18 @@ import org.junit.jupiter.api.Test;
 public class BeanValidationBeverageTest {
     private static Validator validator;
 
+    /**
+     *
+     */
     @BeforeAll
     public static void beforeAll() {
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         validator = factory.getValidator();
     }
+
+    /**
+     *
+     */
     @Test
     public void validateNameNotBlank() {
         Beverage beverage = new Beverage("", LocalDate.of(2025, 3, 5), "true", BeverageType.SODA);
@@ -29,6 +36,9 @@ public class BeanValidationBeverageTest {
         assertEquals(1, violations.size(), "Expected one violation for blank name");
     }
 
+    /**
+     *
+     */
     @Test
     public void validateExpiryDateNotNull() {
         Beverage beverage = new Beverage("Coca Cola", null, "true", BeverageType.SODA);
@@ -36,6 +46,9 @@ public class BeanValidationBeverageTest {
         assertEquals(1, violations.size(), "Expected one violation for null expiry date");
     }
 
+    /**
+     *
+     */
     @Test
     public void validateIsNonAlcoholicPattern() {
         Beverage beverage = new Beverage("Coca Cola", LocalDate.of(2025, 3, 5), "yes", BeverageType.SODA);
@@ -43,6 +56,9 @@ public class BeanValidationBeverageTest {
         assertEquals(1, violations.size(), "Expected one violation for invalid isNonAlcoholic value");
     }
 
+    /**
+     *
+     */
     @Test
     public void validateBeverageTypeNotNull() {
         Beverage beverage = new Beverage("Coca Cola", LocalDate.of(2025, 3, 5), "true", null);
@@ -50,6 +66,9 @@ public class BeanValidationBeverageTest {
         assertEquals(1, violations.size(), "Expected one violation for null beverage type");
     }
 
+    /**
+     *
+     */
     @Test
     public void validateValidBeverage() {
         Beverage beverage = new Beverage("Coca Cola", LocalDate.of(2025, 3, 5), "true", BeverageType.SODA);

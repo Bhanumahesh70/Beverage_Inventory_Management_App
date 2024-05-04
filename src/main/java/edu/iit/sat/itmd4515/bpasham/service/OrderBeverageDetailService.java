@@ -16,11 +16,18 @@ import java.util.List;
 @Named
 @Stateless
 public class OrderBeverageDetailService extends AbstractService<edu.iit.sat.itmd4515.bpasham.domain.OrderBeverageDetail>{
-   public OrderBeverageDetailService() {
+
+    /**
+     *
+     */
+    public OrderBeverageDetailService() {
         super(OrderBeverageDetail.class);
     }
     
-    
+    /**
+     *
+     * @return
+     */
     public List<OrderBeverageDetail> findAll(){
         return super.findAll("OrderBeverageDetail.findAll");
     } 

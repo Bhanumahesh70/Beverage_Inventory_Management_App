@@ -19,15 +19,25 @@ import java.util.List;
 @Stateless
 public class BeverageService extends AbstractService<Beverage>{
 
+    /**
+     *
+     */
     public BeverageService() {
         super(Beverage.class);
     }
     
-    
+    /**
+     *
+     * @return
+     */
     public List<Beverage> findAll(){
         return super.findAll("Beverage.findAll");
     }
     
+    /**
+     *
+     * @param b
+     */
     public void editBeverageForExistingSupplier(Beverage b){
        /**
         * step-1 make sure we have a managed entity to work with
@@ -49,6 +59,10 @@ public class BeverageService extends AbstractService<Beverage>{
        em.merge(managedRef);
    }
     
+    /**
+     *
+     * @param b
+     */
     public void markBeverageAsDeletedNonDeleted(Beverage b) {
         Beverage beverage = em.find(Beverage.class, b.getId());
         if (beverage != null) {
@@ -64,6 +78,10 @@ public class BeverageService extends AbstractService<Beverage>{
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public List<Beverage> findAllNonDeleted() {
         return em.createQuery("SELECT b FROM Beverage b WHERE b.isDeleted = false", Beverage.class)
                  .getResultList();

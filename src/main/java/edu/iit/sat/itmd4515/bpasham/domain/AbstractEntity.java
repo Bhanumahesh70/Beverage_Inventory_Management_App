@@ -22,6 +22,9 @@ import java.util.Objects;
 @MappedSuperclass
 public class AbstractEntity {
 
+    /**
+     *
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     //@Column(name = "BEVERAGE_ID")
@@ -34,12 +37,18 @@ public class AbstractEntity {
 
     private LocalDateTime modifiedTimeStamp;
 
+    /**
+     *
+     */
     @PrePersist
     public void initializeCreatedtimestamp(){
         
         this.createdTimeStamp = LocalDateTime.now();
     }
     
+    /**
+     *
+     */
     @PreUpdate
     public void initializeModifiedTimestamp(){
         this.modifiedTimeStamp= LocalDateTime.now();
@@ -83,6 +92,10 @@ public class AbstractEntity {
         this.createdTimeStamp = createdTimeStamp;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int hashCode() {
         int hash = 3;
@@ -90,6 +103,11 @@ public class AbstractEntity {
         return hash;
     }
 
+    /**
+     *
+     * @param obj
+     * @return
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -108,6 +126,10 @@ public class AbstractEntity {
         return Objects.equals(this.id, other.id);
     }
 
+    /**
+     *
+     * @return
+     */
     public Long getId() {
         return id;
     }

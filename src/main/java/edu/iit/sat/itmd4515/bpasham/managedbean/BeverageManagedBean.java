@@ -20,6 +20,11 @@ public class BeverageManagedBean {
     private BeverageService beverageService;
 
     // Fetch all beverages
+
+    /**
+     *
+     * @return
+     */
     public List<Beverage> getAvailableBeverages() {
         return beverageService.findAll();
     }

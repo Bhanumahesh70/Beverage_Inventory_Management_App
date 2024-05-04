@@ -29,13 +29,21 @@ public class BeverageResource {
      @EJB
     BeverageService BeverageSvc;
      
-     @GET
+    /**
+     *
+     * @return
+     */
+    @GET
      @Produces({MediaType.APPLICATION_XML,MediaType.APPLICATION_JSON})
      public List<Beverage> getAllBeverages(){
          return BeverageSvc.findAll();
      }
      
-     @POST
+    /**
+     *
+     * @param b
+     */
+    @POST
      @Consumes(MediaType.APPLICATION_JSON)
      public void createANewBeverage(Beverage b){
          LOG.info("createANewBeverae with "+b.toString());

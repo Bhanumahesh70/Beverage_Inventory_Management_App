@@ -16,7 +16,15 @@ import jakarta.faces.convert.FacesConverter;
  */
 @FacesConverter("integerConverter")
 public class StringToIntegerConverter implements Converter  {
-     @Override
+
+    /**
+     *
+     * @param context
+     * @param component
+     * @param value
+     * @return
+     */
+    @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
         if (value == null || value.isEmpty()) {
             return null;
@@ -28,6 +36,13 @@ public class StringToIntegerConverter implements Converter  {
         }
     }
 
+    /**
+     *
+     * @param context
+     * @param component
+     * @param value
+     * @return
+     */
     @Override
     public String getAsString(FacesContext context, UIComponent component, Object value) {
         if (value == null) {

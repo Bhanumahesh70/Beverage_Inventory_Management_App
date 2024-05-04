@@ -61,7 +61,7 @@ public class Beverage extends AbstractEntity{
     /**
      * Get the value of isDeleted
      *
-     * @return the value of isDeleted
+     * 
      */
     
 
@@ -87,13 +87,20 @@ public class Beverage extends AbstractEntity{
     @ManyToMany(mappedBy = "s_beverage")
     private List<Supplier> suppliers = new ArrayList<>();
     
-    
-    
-
-    
+    /**
+     *
+     */
     public Beverage() {
     }
-      public Beverage(String name, LocalDate expiryDate, String isNonAlcoholic, BeverageType type) {
+
+    /**
+     *
+     * @param name
+     * @param expiryDate
+     * @param isNonAlcoholic
+     * @param type
+     */
+    public Beverage(String name, LocalDate expiryDate, String isNonAlcoholic, BeverageType type) {
         this.name = name;
         this.expiryDate = expiryDate;
         this.isNonAlcoholic = isNonAlcoholic;
@@ -174,10 +181,18 @@ public class Beverage extends AbstractEntity{
         this.expiryDate = expiryDate;
     }
     
+    /**
+     *
+     * @return
+     */
     public List<Order> getOrders() {
         return orders;
     }
 
+    /**
+     *
+     * @param orders
+     */
     public void setOrders(List<Order> orders) {
         this.orders = orders;
     }
@@ -238,6 +253,11 @@ public class Beverage extends AbstractEntity{
 
 
     //To String Method
+
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
         return "Beverage{" + "id=" + id + ", name=" + name + ", expiryDate=" + expiryDate + ", isNonAlcoholic=" + isNonAlcoholic + ", type=" + type + '}';

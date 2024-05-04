@@ -31,6 +31,9 @@ public class CustomerWelcomeController {
     //the model
     private Customer customer;
 
+    /**
+     *
+     */
     public CustomerWelcomeController() {
     }
 
@@ -56,6 +59,10 @@ public class CustomerWelcomeController {
     }
 
     //utility or helper methods
+
+    /**
+     *
+     */
     public void refreshCustomerModel() {
         LOG.info("CustomerWelcomeController.refreshCustomerModel()");
         customer = customerSvc.findByUsername(loginController.getAuthenticatedUser());

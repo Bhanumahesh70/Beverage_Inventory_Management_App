@@ -17,6 +17,10 @@ import java.time.LocalDate;
  */
 public class Lab4Main {
 
+    /**
+     *
+     * @param args
+     */
     public static void main(String... args) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("itmd4515testPU");
         EntityManager em = emf.createEntityManager();

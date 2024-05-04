@@ -54,14 +54,26 @@ public class Customer extends AbstractEntity {
 
     private static final Logger LOG = Logger.getLogger(Customer.class.getName());
 
+    /**
+     *
+     */
     public Customer() {
     }
 
+    /**
+     *
+     * @param name
+     * @param email
+     */
     public Customer(String name, String email) {
         this.name = name;
         this.email = email;
     }
 
+    /**
+     *
+     * @param o
+     */
     public void addOrder(Order o) {
         LOG.info("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%orders before added: " + orders);
         // Check if orders list is null, initialize it if necessary
@@ -77,18 +89,35 @@ public class Customer extends AbstractEntity {
     }
 
     //Getter and Setter Methods
+
+    /**
+     *
+     * @return
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     *
+     * @param name
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getEmail() {
         return email;
     }
 
+    /**
+     *
+     * @param email
+     */
     public void setEmail(String email) {
         this.email = email;
     }
@@ -130,6 +159,10 @@ public class Customer extends AbstractEntity {
         this.orders = orders;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
         return "Customer{" + "customerId=" + id + ", name=" + name + ", email=" + email + ", " + "orders" + orders + '}';

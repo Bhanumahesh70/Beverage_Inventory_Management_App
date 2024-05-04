@@ -41,6 +41,9 @@ public class UserController {
 
     private List<Group> groups;
 
+    /**
+     *
+     */
     public UserController() {
     }
 
@@ -52,6 +55,10 @@ public class UserController {
 
     }
 
+    /**
+     *
+     * @return
+     */
     public String register() {
         LOG.info("inside UserController.register()");
         newUser.addGroup(selectedRole);
@@ -75,6 +82,10 @@ public class UserController {
         return "/login.xhtml?faces-redirect=true"; // Navigate to login after successful registration
     }
 
+    /**
+     *
+     * @return
+     */
     public String cancel() {
         return "/login.xhtml?faces-redirect=true";
     }
@@ -98,18 +109,35 @@ public class UserController {
     }
 
     // Getters and Setters
+
+    /**
+     *
+     * @return
+     */
     public User getNewUser() {
         return newUser;
     }
 
+    /**
+     *
+     * @param newUser
+     */
     public void setNewUser(User newUser) {
         this.newUser = newUser;
     }
 
+    /**
+     *
+     * @return
+     */
     public Group getSelectedRole() {
         return selectedRole;
     }
 
+    /**
+     *
+     * @param selectedRole
+     */
     public void setSelectedRole(Group selectedRole) {
         this.selectedRole = selectedRole;
     }

@@ -17,20 +17,37 @@ import java.util.List;
  */
 @Stateless
 public class CustomerService extends AbstractService<Customer>{
+
+    /**
+     *
+     */
     public CustomerService() {
         super(Customer.class);
     }
     
-    
+    /**
+     *
+     * @return
+     */
     public List<Customer> findAll(){
         return super.findAll("Customer.findAll");
     }
     
+    /**
+     *
+     * @param username
+     * @return
+     */
     public Customer findByUsername(String username){
         
         return em.createNamedQuery("Customer.findByUsername",Customer.class).setParameter("uname", username).getSingleResult();
     }
     
+    /**
+     *
+     * @param customer
+     * @param order
+     */
     public void createOrderForCustomer(Customer customer, Order order) {
         //just like database initializer
         //create non-owing entities first

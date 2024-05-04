@@ -64,25 +64,39 @@ public class Order extends AbstractEntity {
     @JoinColumn(name = "status")
     private String status = "Placed";
     
-
-
+    /**
+     *No arg constructor
+     */
     public Order() {
     }
     
-
-    
-
+    /**
+     *constructor
+     * @param orderDate
+     * @param quantity
+     */
     public Order(LocalDate orderDate, Integer quantity) {
         this.orderDate = orderDate;
         this.quantity = quantity;
     }
 
     //helper methods to manage jpa relationships
+
+    /**
+     *Method to place an order
+     * @param c
+     * @param b
+     * @param s
+     */
     public void placeOrder(Customer c, Beverage b, Supplier s) {
         this.customer = c;
 
     }
 
+    /**
+     *Method to add a Beverage to the order
+     * @param b
+     */
     public void addBeverage(Beverage b) {
         // Check if beverages list is null, initialize it if necessary
         if (this.beverages == null) {
@@ -104,6 +118,10 @@ public class Order extends AbstractEntity {
 
     }
 
+    /**
+     *Method to remove a beverage from order
+     * @param b
+     */
     public void removeBeverage(Beverage b) {
         if (!this.beverages.contains(b)) {
             this.beverages.remove(b);
@@ -115,6 +133,13 @@ public class Order extends AbstractEntity {
     }
     
     //helper methods to manage JPA relationships
+
+    /**
+     *place order with customer, beverage and supplier paramaters
+     * @param c
+     * @param b
+     * @param s
+     */
     public void placeOrder(Customer c, List<Beverage> b, Supplier s){
         this.customer=c;
         this.beverages=b;
@@ -126,6 +151,11 @@ public class Order extends AbstractEntity {
         
     }
     
+    /**
+     *Method to add OrderBeverageDetails to Order
+     * @param beverage
+     * @param quantity
+     */
     public void addOrderBeverageDetails(Beverage beverage, Integer quantity) {
         OrderBeverageDetail orderBeverage = new OrderBeverageDetail();
         orderBeverage.setOrder(this);
@@ -135,6 +165,10 @@ public class Order extends AbstractEntity {
         beverage.getOrderBeverageDetails().add(orderBeverage);
     }
 
+    /**
+     *method to removeOrderBeverage from order
+     * @param orderBeverage 
+     */
     public void removeOrderBeverage(OrderBeverageDetail orderBeverage) {
         orderBeverageDetails.remove(orderBeverage);
         orderBeverage.getBeverage().getOrderBeverageDetails().remove(orderBeverage);
@@ -143,26 +177,51 @@ public class Order extends AbstractEntity {
     }
 
     //Getter and Setter Methods
+
+    /**
+     *get OrderDate
+     * @return
+     */
     public LocalDate getOrderDate() {
         return orderDate;
     }
 
+    /**
+     *set OrderDate
+     * @param orderDate
+     */
     public void setOrderDate(LocalDate orderDate) {
         this.orderDate = orderDate;
     }
 
+    /**
+     *get Quantity
+     * @return
+     */
     public Integer getQuantity() {
         return quantity;
     }
 
+    /**
+     *set Quantity
+     * @param quantity
+     */
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
 
+    /**
+     *get Customer
+     * @return
+     */
     public Customer getCustomer() {
         return customer;
     }
 
+    /**
+     *set Customer
+     * @param customer
+     */
     public void setCustomer(Customer customer) {
         // Only set the customer if it's different from the current one
         if (this.customer != customer) {
@@ -174,10 +233,18 @@ public class Order extends AbstractEntity {
 
     }
 
+    /**
+     *Get the value of Beverages
+     * @return
+     */
     public List<Beverage> getBeverages() {
         return beverages;
     }
 
+    /**
+     *set Beverages
+     * @param beverages
+     */
     public void setBeverages(List<Beverage> beverages) {
         this.beverages = beverages;
     }
@@ -217,6 +284,7 @@ public class Order extends AbstractEntity {
     /**
      * Set the value of orderBeverageDetail
      *
+     * @param orderBeverageDetails
      * @param orderBeverageDetail new value of orderBeverageDetail
      */
     public void setOrderBeverageDetails(List<OrderBeverageDetail> orderBeverageDetails) {
@@ -240,12 +308,19 @@ public class Order extends AbstractEntity {
         this.status = status;
     }
 
-
-    @Override
+    /**
+     *To string method of order
+     * @return
+     */
+    @Override 
     public String toString() {
         return "Order{" + "orderId=" + id + ", orderDate=" + orderDate + ", quantity=" + quantity + ", status= "+status+"}";
     }
     
+    /**
+     *To string method of getOrderBeverageDetails
+     * @return
+     */
     public String getOrderBeverageDetailstoString() {
         return "getOrderBeverageDetails: "+orderBeverageDetails;
 }

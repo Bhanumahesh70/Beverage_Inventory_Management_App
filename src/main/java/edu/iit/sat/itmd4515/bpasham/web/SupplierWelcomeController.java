@@ -29,7 +29,9 @@ public class SupplierWelcomeController {
     //the model
     private Supplier supplier;
 
-    
+    /**
+     *
+     */
     public SupplierWelcomeController() {
     }
     
@@ -44,6 +46,10 @@ public class SupplierWelcomeController {
     }
     
     //utility or helper methods
+
+    /**
+     *
+     */
     public void refreshSupplierModel(){
         LOG.info("SupplierWelcomeController.refreshSupplierModel");
         supplier = supplierSvc.findByUsername(loginController.getAuthenticatedUser());

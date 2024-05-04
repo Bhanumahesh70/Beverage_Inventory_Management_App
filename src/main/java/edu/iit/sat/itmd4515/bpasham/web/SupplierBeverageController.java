@@ -42,6 +42,9 @@ public class SupplierBeverageController {
 
     private Order order;
 
+    /**
+     *
+     */
     public SupplierBeverageController() {
     }
 
@@ -62,6 +65,8 @@ public class SupplierBeverageController {
      * effectively mean handling the click from the JSF view in step 2, in order
      * to perform the operation the user is trying to accomplish
      *
+     * @param b
+     * @return 
      */
     public String displayViewBeveragePage(Beverage b) {
         //step-1
@@ -72,6 +77,11 @@ public class SupplierBeverageController {
         return "/supplier/viewBeverage.xhtml";
     }
 
+    /**
+     *
+     * @param b
+     * @return
+     */
     public String displayEditBeveragePage(Beverage b) {
         //step-1
         this.beverage = b;
@@ -81,6 +91,11 @@ public class SupplierBeverageController {
         return "/supplier/editBeverage.xhtml";
     }
 
+    /**
+     *
+     * @param b
+     * @return
+     */
     public String displayDeleteBeveragePage(Beverage b) {
         //step-1
         this.beverage = b;
@@ -90,6 +105,11 @@ public class SupplierBeverageController {
         return "/supplier/deleteBeverage.xhtml";
     }
 
+    /**
+     *
+     * @param o
+     * @return
+     */
     public String displayViewOrderPage(Order o) {
         //step-1
         this.order = o;
@@ -99,6 +119,11 @@ public class SupplierBeverageController {
         return "/supplier/viewOrder.xhtml";
     }
 
+    /**
+     *
+     * @param o
+     * @return
+     */
     public String displayCompleteOrCancelOrderPage(Order o) {
         //step-1
         this.order = o;
@@ -131,6 +156,10 @@ public class SupplierBeverageController {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public String editBeverage() {
         LOG.info("SupplierBeverageController.editBeverage() editBeverage has been invoked with model: " + this.beverage.toString());
         beverageSvc.editBeverageForExistingSupplier(beverage);
@@ -138,6 +167,10 @@ public class SupplierBeverageController {
         return "/supplier/welcome.xhtml";
     }
 
+    /**
+     *
+     * @return
+     */
     public String deleteBeverage() {
         LOG.info("SupplierBeverageController.deleteBeverage() deleteBeverage has been invoked with model: " + this.beverage.toString());
         beverageSvc.markBeverageAsDeletedNonDeleted(beverage);
@@ -145,6 +178,11 @@ public class SupplierBeverageController {
         return "/supplier/welcome.xhtml";
     }
 
+    /**
+     *
+     * @param order
+     * @return
+     */
     public String completeOrder(Order order) {
         //LOG.info("SuuplierBeverageController.completeOrder has been invoked with model: " + this.order.toString());
         orderSvc.completeOrder(order);
@@ -153,6 +191,11 @@ public class SupplierBeverageController {
         return "/supplier/welcome.xhtml";
     }
 
+    /**
+     *
+     * @param orderId
+     * @return
+     */
     public String cancelOrder(Long orderId) {
         //LOG.info("SuuplierBeverageController.cancelOrder has been invoked with model: " + this.order.toString());
         orderSvc.cancelOrder(orderId);
@@ -162,6 +205,11 @@ public class SupplierBeverageController {
     }
 
     //helper methods
+
+    /**
+     *
+     * @return
+     */
     public BeverageType[] getAllBeverageTypesForForm() {
         return BeverageType.values();
     }

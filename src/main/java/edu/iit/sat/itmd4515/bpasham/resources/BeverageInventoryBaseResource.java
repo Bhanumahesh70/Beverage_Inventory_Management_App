@@ -11,6 +11,10 @@ import jakarta.ws.rs.core.Response;
 @Path("/beverageinventory")
 public class BeverageInventoryBaseResource {
     
+    /**
+     *
+     * @return
+     */
     @GET
     public Response ping(){
         return Response
@@ -18,6 +22,10 @@ public class BeverageInventoryBaseResource {
                 .build();
     }
     
+    /**
+     *
+     * @return
+     */
     @GET
     @Path("/version")
     public Response version(){
