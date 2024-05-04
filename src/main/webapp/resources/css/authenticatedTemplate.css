@@ -95,3 +95,55 @@ body {
 .dataTable tr:nth-child(even) {
     background-color: #fff;
 }
+
+
+/* Navigation Bar Customization */
+.navbar {
+    background-color: #fff; /* Light background for the navbar */
+    color: #333;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    color: #5a6268 !important;
+}
+
+.nav-item.nav-link {
+    color: #5a6268 !important;
+    margin-right: 15px; /* More spacing between nav items */
+}
+
+.nav-item.nav-link:hover, .nav-item.nav-link.active {
+    color: #000 !important; /* Darker color on hover/active */
+}
+
+.btn-outline-danger {
+    color: #dc3545;
+    border-color: #dc3545;
+}
+
+.btn-outline-danger:hover {
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+/* Main content area styling */
+main {
+    margin-top: 90px; /* Adjusted for fixed navbar height */
+    padding-top: 20px;
+}
+
+.bg-white {
+    background-color: #fff; /* White background for content area */
+    padding: 2rem;
+    border-radius: 0.25rem;
+}
+
+.shadow-sm {
+    box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.075);
+}
+
+.shadow {
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15);
+}
