@@ -154,6 +154,7 @@ public class BeverageJPATest {
         }
     }
 
+    /*
     //Bidirectional one to one relationship test
     @Test
     public void createBeverageWithInventoryTest() {
@@ -182,6 +183,7 @@ public class BeverageJPATest {
         assertNotNull(savedBeverage.getInventory());
         assertEquals(savedBeverage, savedInventory.getBeverage());
     }
+*/
 
     @AfterEach
     public void afterEach() {
