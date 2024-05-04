@@ -13,7 +13,7 @@ import jakarta.faces.convert.Converter;
 import jakarta.faces.convert.FacesConverter;
 
 /**
- *
+ *Method to covert beverage object to string and from string to beverage object
  * @author bhanu
  */
 @FacesConverter(value="beverageConverter", managed=true)
@@ -22,7 +22,7 @@ public class BeverageConverter implements Converter<Beverage> {
     @EJB BeverageService beverageSvc;
 
     /**
-     *
+     **Method to covert beverage object to string 
      * @param context
      * @param component
      * @param value
@@ -35,7 +35,7 @@ public class BeverageConverter implements Converter<Beverage> {
     }
 
     /**
-     *
+     *Method to covert from string to beverage object
      * @param context
      * @param component
      * @param value

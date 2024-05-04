@@ -42,6 +42,9 @@ public class CustomerOrderController {
     private Order order;
     private List<OrderBeverageDetail> orderDetails;
 
+    /**
+     *
+     */
     public CustomerOrderController() {
     }
 
@@ -52,7 +55,9 @@ public class CustomerOrderController {
         LOG.info("Inside CustomerOrderController.postConstruct");
     }
 
-
+    /**
+     *MEthod to add beverage to order
+     */
     public void addBeverageToOrder() {
         OrderBeverageDetail detail = new OrderBeverageDetail();
         detail.setOrder(order);
@@ -60,6 +65,10 @@ public class CustomerOrderController {
         orderDetails.add(detail);
     }
 
+    /**
+     *MEthod to remove beverage from order
+     * @param detail
+     */
     public void removeBeverage(OrderBeverageDetail detail) {
         orderDetails.remove(detail);
     }

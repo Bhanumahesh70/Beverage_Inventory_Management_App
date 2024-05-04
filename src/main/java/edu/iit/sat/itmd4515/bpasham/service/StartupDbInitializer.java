@@ -50,6 +50,9 @@ public class StartupDbInitializer {
     @EJB
     GroupService groupSvc;
 
+    /**
+     *No arg constructor
+     */
     public StartupDbInitializer() {
 
     }

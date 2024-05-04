@@ -19,12 +19,27 @@ import jakarta.faces.convert.FacesConverter;
 @FacesConverter(value="customerConverter", managed=true)
 public class CustomerConverter implements Converter<Customer> {
     @EJB CustomerService customerSvc;
+
+    /**
+     *Method to covert customer object to string 
+     * @param context
+     * @param component
+     * @param value
+     * @return
+     */
     @Override
     public Customer  getAsObject(FacesContext context, UIComponent component, String value) {
         //if we pass ID as string parameter, we need to get correct object for that ID
         return customerSvc.read(Long.valueOf(value));
     }
 
+    /**
+     *Method to covert from string to customer object
+     * @param context
+     * @param component
+     * @param value
+     * @return
+     */
     @Override
     public String getAsString(FacesContext context, UIComponent component, Customer value) {
         //if we pass object as parameter, we need to get cstring id for that object

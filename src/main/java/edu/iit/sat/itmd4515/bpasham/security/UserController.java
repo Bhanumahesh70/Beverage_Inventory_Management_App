@@ -42,7 +42,7 @@ public class UserController {
     private List<Group> groups;
 
     /**
-     *
+     *No arg constructor
      */
     public UserController() {
     }
@@ -56,7 +56,7 @@ public class UserController {
     }
 
     /**
-     *
+     *=constructor
      * @return
      */
     public String register() {
@@ -83,7 +83,7 @@ public class UserController {
     }
 
     /**
-     *
+     *Method to return to home page from signup page when customer clicks back
      * @return
      */
     public String cancel() {
@@ -111,7 +111,7 @@ public class UserController {
     // Getters and Setters
 
     /**
-     *
+     *get the value of NewUser
      * @return
      */
     public User getNewUser() {
@@ -119,7 +119,7 @@ public class UserController {
     }
 
     /**
-     *
+     *set the value ofNewUser
      * @param newUser
      */
     public void setNewUser(User newUser) {
@@ -127,7 +127,7 @@ public class UserController {
     }
 
     /**
-     *
+     *get the value of SelectedRole
      * @return
      */
     public Group getSelectedRole() {
@@ -135,7 +135,7 @@ public class UserController {
     }
 
     /**
-     *
+     *set the value of SelectedRole
      * @param selectedRole
      */
     public void setSelectedRole(Group selectedRole) {

@@ -16,16 +16,30 @@ import java.util.logging.Logger;
 public class GroupService extends AbstractService<Group> {
  
      private static final Logger LOG = Logger.getLogger(GroupService.class.getName());
+
+    /**
+     *
+     */
     public GroupService() {
         super(Group.class);
     }
     
-     public List<Group> findAll(){
+    /**
+     *Method to find all available groups
+     * @return
+     */
+    public List<Group> findAll(){
          LOG.info("Inside GroupService.findAll()");
          List<Group> groups = super.findAll("Group.findAll");
     LOG.info("Fetched " + groups.size() + " groups.");
     return groups;
     }
+
+    /**
+     *Method to find a group by its name
+     * @param groupName
+     * @return
+     */
     public Group findByName(String groupName) {
         LOG.info("Inside GroupService.findByName");
     return em.createNamedQuery("Group.findByName", Group.class)

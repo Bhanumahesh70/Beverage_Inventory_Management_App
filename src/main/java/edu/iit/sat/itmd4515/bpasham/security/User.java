@@ -38,13 +38,13 @@ public class User {
     private String email;
     
     /**
-     *
+     *No arg constructor
      */
     public User() {
     }
     
     /**
-     *
+     *constructor
      * @param userName
      * @param password
      * @param email
@@ -63,7 +63,7 @@ public class User {
        private List<Group> groups = new ArrayList<>();
     
     /**
-     *
+     *Method to add user to a group
      * @param g
      */
     public void addGroup(Group g ){
@@ -72,7 +72,7 @@ public class User {
     }
 
     /**
-     *
+     *Method to remove user from a group
      * @param g
      */
     public void removeGroup(Group g ){
@@ -154,7 +154,7 @@ public class User {
     //To String Method
 
     /**
-     *
+     *Group To String Method
      * @return
      */
     @Override

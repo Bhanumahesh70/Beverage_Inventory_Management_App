@@ -30,7 +30,7 @@ import java.util.Objects;
 import java.util.logging.Logger;
 
 /**
- *
+ *Customer Entity
  * @author bhanu
  */
 @Entity
@@ -55,13 +55,13 @@ public class Customer extends AbstractEntity {
     private static final Logger LOG = Logger.getLogger(Customer.class.getName());
 
     /**
-     *
+     *NoArg Constructor
      */
     public Customer() {
     }
 
     /**
-     *
+     *Constructor
      * @param name
      * @param email
      */
@@ -71,7 +71,7 @@ public class Customer extends AbstractEntity {
     }
 
     /**
-     *
+     *Method to add order to customer
      * @param o
      */
     public void addOrder(Order o) {
@@ -91,7 +91,7 @@ public class Customer extends AbstractEntity {
     //Getter and Setter Methods
 
     /**
-     *
+     *get name of customer
      * @return
      */
     public String getName() {
@@ -99,7 +99,7 @@ public class Customer extends AbstractEntity {
     }
 
     /**
-     *
+     *set name of customer
      * @param name
      */
     public void setName(String name) {
@@ -107,7 +107,7 @@ public class Customer extends AbstractEntity {
     }
 
     /**
-     *
+     *get email of customer
      * @return
      */
     public String getEmail() {
@@ -115,7 +115,7 @@ public class Customer extends AbstractEntity {
     }
 
     /**
-     *
+     *set email of customer
      * @param email
      */
     public void setEmail(String email) {
@@ -160,7 +160,7 @@ public class Customer extends AbstractEntity {
     }
 
     /**
-     *
+     *To string method
      * @return
      */
     @Override

@@ -14,7 +14,7 @@ import jakarta.inject.Named;
 import java.util.logging.Logger;
 
 /**
- *
+ *Customer Welcome controller gets the logged in customer and displays the customer portal
  * @author bhanu
  */
 @Named
@@ -61,7 +61,7 @@ public class CustomerWelcomeController {
     //utility or helper methods
 
     /**
-     *
+     *Refresh the customer page
      */
     public void refreshCustomerModel() {
         LOG.info("CustomerWelcomeController.refreshCustomerModel()");

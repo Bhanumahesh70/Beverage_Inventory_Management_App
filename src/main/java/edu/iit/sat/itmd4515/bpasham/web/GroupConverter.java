@@ -27,7 +27,7 @@ public class GroupConverter implements Converter<Group> {
     GroupService groupService;
 
     /**
-     *
+     *Method to covert group object to string 
      * @param context
      * @param component
      * @param value
@@ -42,7 +42,7 @@ public class GroupConverter implements Converter<Group> {
     }
 
     /**
-     *
+     *Method to covert from string to group object
      * @param context
      * @param component
      * @param value

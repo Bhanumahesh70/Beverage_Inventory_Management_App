@@ -25,7 +25,7 @@ public class OrderBeverageDetailService extends AbstractService<edu.iit.sat.itmd
     }
     
     /**
-     *
+     *Method to find all available OrderBeverage Details
      * @return
      */
     public List<OrderBeverageDetail> findAll(){

@@ -26,7 +26,7 @@ public class CustomerService extends AbstractService<Customer>{
     }
     
     /**
-     *
+     *Method to find all avaliable customers
      * @return
      */
     public List<Customer> findAll(){
@@ -34,7 +34,7 @@ public class CustomerService extends AbstractService<Customer>{
     }
     
     /**
-     *
+     *Method to find customers by Username
      * @param username
      * @return
      */
@@ -44,7 +44,7 @@ public class CustomerService extends AbstractService<Customer>{
     }
     
     /**
-     *
+     *Method to create an order by customer
      * @param customer
      * @param order
      */

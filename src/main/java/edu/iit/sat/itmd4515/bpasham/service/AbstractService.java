@@ -17,13 +17,13 @@ import java.util.List;
 public abstract class AbstractService<T> {
 
     /**
-     *
+     *EntityManager
      */
     @PersistenceContext(name = "itmd4515PU")
     protected EntityManager em;
     
     /**
-     *
+     *entityClass
      */
     protected Class<T> entityClass;
 
@@ -36,7 +36,7 @@ public abstract class AbstractService<T> {
     }
     
     /**
-     *
+     *Method to create an entity
      * @param entity
      */
     public void create(T entity){
@@ -44,7 +44,7 @@ public abstract class AbstractService<T> {
     }
 
     /**
-     *
+     *Method to read an entity
      * @param id
      * @return
      */
@@ -53,7 +53,7 @@ public abstract class AbstractService<T> {
     }
 
     /**
-     *
+     *Method to update an entity
      * @param entity
      */
     public void update(T entity){
@@ -62,7 +62,7 @@ public abstract class AbstractService<T> {
     }
 
     /**
-     *
+     *Method to delete an entity
      * @param entity
      */
     public void delete(T entity){
@@ -71,7 +71,7 @@ public abstract class AbstractService<T> {
     }
     
     /**
-     *
+     *Method to find all available entities
      * @param namedQueryName
      * @return
      */

@@ -22,7 +22,7 @@ public class BeverageManagedBean {
     // Fetch all beverages
 
     /**
-     *
+     *Get the value of AvailableBeverages
      * @return
      */
     public List<Beverage> getAvailableBeverages() {

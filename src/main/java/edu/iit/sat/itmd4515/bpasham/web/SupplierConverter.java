@@ -22,7 +22,7 @@ public class SupplierConverter implements Converter<Supplier> {
     @EJB SupplierService supplierSvc;
 
     /**
-     *
+     *Method to covert supplier object to string 
      * @param context
      * @param component
      * @param value
@@ -35,7 +35,7 @@ public class SupplierConverter implements Converter<Supplier> {
     }
 
     /**
-     *
+     *Method to covert from string to supplier object
      * @param context
      * @param component
      * @param value

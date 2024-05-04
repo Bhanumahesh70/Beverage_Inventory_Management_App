@@ -19,14 +19,14 @@ public class UserService extends AbstractService<User> {
     private static final Logger LOG = Logger.getLogger(UserService.class.getName());
 
     /**
-     *
+     *No arg constructor
      */
     public UserService() {
         super(User.class);
     }
 
     /**
-     *
+     *Method to find all available Users
      * @return
      */
     public List<User> findAll() {
@@ -34,7 +34,7 @@ public class UserService extends AbstractService<User> {
     }
 
     /**
-     *
+     * method to create a new user 
      * @param user
      */
     public void create(User user) {

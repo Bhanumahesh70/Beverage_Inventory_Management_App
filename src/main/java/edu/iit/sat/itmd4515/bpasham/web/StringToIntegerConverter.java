@@ -18,7 +18,7 @@ import jakarta.faces.convert.FacesConverter;
 public class StringToIntegerConverter implements Converter  {
 
     /**
-     *
+     *Method to covert Integer object to string 
      * @param context
      * @param component
      * @param value
@@ -37,7 +37,7 @@ public class StringToIntegerConverter implements Converter  {
     }
 
     /**
-     *
+     *Method to covert from string to Ineteger object
      * @param context
      * @param component
      * @param value

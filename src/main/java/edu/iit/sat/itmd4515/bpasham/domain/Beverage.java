@@ -61,11 +61,10 @@ public class Beverage extends AbstractEntity{
     /**
      * Get the value of isDeleted
      *
+     * @param isDeleted
      * 
      */
     
-
-
     public void setDeleted(boolean isDeleted) {
         this.isDeleted = isDeleted;
     }
@@ -88,7 +87,7 @@ public class Beverage extends AbstractEntity{
     private List<Supplier> suppliers = new ArrayList<>();
     
     /**
-     *
+     * No arg constructor
      */
     public Beverage() {
     }
@@ -182,7 +181,7 @@ public class Beverage extends AbstractEntity{
     }
     
     /**
-     *
+     *get the orders
      * @return
      */
     public List<Order> getOrders() {
@@ -190,7 +189,7 @@ public class Beverage extends AbstractEntity{
     }
 
     /**
-     *
+     *Set the orders for beverage
      * @param orders
      */
     public void setOrders(List<Order> orders) {
@@ -255,7 +254,7 @@ public class Beverage extends AbstractEntity{
     //To String Method
 
     /**
-     *
+     * Beveraage to String method
      * @return
      */
     @Override

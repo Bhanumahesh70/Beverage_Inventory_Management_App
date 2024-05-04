@@ -30,7 +30,8 @@ import jakarta.faces.view.ViewScoped;
 import java.io.Serializable;
 
 /**
- *
+ *Place order controller to place orders by customers, and delete them.
+ * Displays the pages to view order details, and order form page.
  * @author bhanu
  */
 @Named
@@ -67,9 +68,15 @@ public class PlaceOrderController {
 
     private List<OrderBeverageDetail> orderBeverageDetail;
 
+    /**
+     *
+     */
     public PlaceOrderController() {
     }
 
+    /**
+     *
+     */
     @PostConstruct
     public void postConstruct() {
         LOG.info("Inside PlaceOrderController.postConstruct");
@@ -82,6 +89,11 @@ public class PlaceOrderController {
         order = new Order();
     }
 
+    /**
+     *Method to display the order details page
+     * @param o
+     * @return
+     */
     public String displayViewOrderPage(Order o) {
         //step-1
         this.order = o;
@@ -101,8 +113,10 @@ public class PlaceOrderController {
         return "/customer/viewOrder.xhtml";
     }
 
-    
-
+    /**
+     *Method to display the form place to place an order
+     * @return
+     */
     public String placeOrder() {
         LOG.info("Starting to place an order");
         try {
@@ -149,6 +163,11 @@ public class PlaceOrderController {
         }
     }
 
+    /**
+     *Method to display the  page to delete order
+     * @param order
+     * @return
+     */
     public String deleteOrder(Order order) {
         //order= orderService.findOrderById(orderID);
         LOG.info("Inside PlaceOrderController.deleteOrder()");
@@ -225,60 +244,119 @@ public class PlaceOrderController {
     }
 
     // Customer-related fields
+
+    /**
+     *Get the value of SelectedCustomer
+     * @return
+     */
     public Customer getSelectedCustomer() {
         return selectedCustomer;
     }
 
+    /**
+     *set the value of SelectedCustomer
+     * @param selectedCustomer
+     */
     public void setSelectedCustomer(Customer selectedCustomer) {
         this.selectedCustomer = selectedCustomer;
     }
 
+    /**
+     *Get the value of Customer
+     * @return
+     */
     public List<Customer> getCustomers() {
         return customers;
     }
 
+    /**
+     *set the value of Customer
+     * @param customers
+     */
     public void setCustomers(List<Customer> customers) {
         this.customers = customers;
     }
 
 // Supplier-related fields
+
+    /**
+     *Get the value of Selected supplier
+     * @return
+     */
     public Supplier getSelectedSupplier() {
         return selectedSupplier;
     }
 
+    /**
+     *set the value of Selected supplier
+     * @param selectedSupplier
+     */
     public void setSelectedSupplier(Supplier selectedSupplier) {
         this.selectedSupplier = selectedSupplier;
     }
 
+    /**
+     *Get the value of all suppliers
+     * @return
+     */
     public List<Supplier> getSuppliers() {
         return suppliers;
     }
 
+    /**
+     *set the value of all suppliers
+     * @param suppliers
+     */
     public void setSuppliers(List<Supplier> suppliers) {
         this.suppliers = suppliers;
     }
 
 // Beverage-related fields
+
+    /**
+     *Get the value of all SelectedBeverages
+     * @return
+     */
     public Map<Beverage, Boolean> getSelectedBeverages() {
         return selectedBeverages;
     }
 
+    /**
+     *set the value of all SelectedBeverages
+     * @param selectedBeverages
+     */
     public void setSelectedBeverages(Map<Beverage, Boolean> selectedBeverages) {
         this.selectedBeverages = selectedBeverages;
     }
 
+    /**
+     *Get the value of all BeverageQuantities
+     * @return
+     */
     public Map<Beverage, Integer> getBeverageQuantities() {
         return beverageQuantities;
     }
 
+    /**
+     *set the value of all BeverageQuantities
+     * @param beverageQuantities
+     */
     public void setBeverageQuantities(Map<Beverage, Integer> beverageQuantities) {
         this.beverageQuantities = beverageQuantities;
     }
 
+    /**
+     *Get the value of all Beverage
+     * @return
+     */
     public List<Beverage> getBeverages() {
         return beverages;
     }
 
+    /**
+     *get the value of all Beverage
+     * @param beverages
+     */
     public void setBeverages(List<Beverage> beverages) {
         this.beverages = beverages;
     }

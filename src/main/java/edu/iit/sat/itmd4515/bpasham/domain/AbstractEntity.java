@@ -23,7 +23,7 @@ import java.util.Objects;
 public class AbstractEntity {
 
     /**
-     *
+     * ID Field for the entity
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,7 +38,7 @@ public class AbstractEntity {
     private LocalDateTime modifiedTimeStamp;
 
     /**
-     *
+     * Field to set the time when the entity is created
      */
     @PrePersist
     public void initializeCreatedtimestamp(){
@@ -47,7 +47,7 @@ public class AbstractEntity {
     }
     
     /**
-     *
+     * Field set to to record when the entity is modified 
      */
     @PreUpdate
     public void initializeModifiedTimestamp(){
@@ -93,7 +93,7 @@ public class AbstractEntity {
     }
 
     /**
-     *
+     *Hash coding the primary key ID
      * @return
      */
     @Override
@@ -104,7 +104,7 @@ public class AbstractEntity {
     }
 
     /**
-     *
+     *Checking the equals object to comapare given data from database
      * @param obj
      * @return
      */
@@ -127,7 +127,7 @@ public class AbstractEntity {
     }
 
     /**
-     *
+     *Get the value of ID
      * @return
      */
     public Long getId() {

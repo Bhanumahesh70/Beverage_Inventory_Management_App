@@ -5,33 +5,33 @@
 package edu.iit.sat.itmd4515.bpasham.domain;
 
 /**
- *
+ *Types of Beverage Entity
  * @author bhanu
  */
 public enum BeverageType {
 
     /**
-     *
+     * SODA type
      */
     SODA("Cool Soda"),
 
     /**
-     *
+     *Water Beverage
      */
     WATER("Chill Water"),
 
     /**
-     *
+     * Wine types beverage
      */
     WINE("Old Wine"),
 
     /**
-     *
+     *Liquor type
      */
     LIQOUR("Hard Liqour"),
 
     /**
-     *
+     *Juice type
      */
     JUICE("Tasty Juice");
     

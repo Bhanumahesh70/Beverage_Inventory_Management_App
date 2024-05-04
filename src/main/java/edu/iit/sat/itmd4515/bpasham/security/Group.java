@@ -28,9 +28,17 @@ public class Group {
 
     private String groupDescription;
 
+    /**
+     *No arg constructor
+     */
     public Group() {
     }
 
+    /**
+     * constructor
+     * @param groupName
+     * @param groupDescription
+     */
     public Group(String groupName, String groupDescription) {
         this.groupName = groupName;
         this.groupDescription = groupDescription;
@@ -39,6 +47,11 @@ public class Group {
     @ManyToMany(mappedBy = "groups")
     private List<User> users = new ArrayList<>();
 
+    /**
+     *Equals method to check the Group object from database
+     * @param obj
+     * @return
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -51,6 +64,10 @@ public class Group {
         return groupName != null ? groupName.equals(group.groupName) : group.groupName == null;
     }
 
+    /**
+     *MEthod for hashcoding
+     * @return
+     */
     @Override
     public int hashCode() {
         return groupName != null ? groupName.hashCode() : 0;

@@ -27,14 +27,26 @@ public class OrderService extends AbstractService<Order> {
 
     private static final Logger LOG = Logger.getLogger(OrderService.class.getName());
 
+    /**
+     *
+     */
     public OrderService() {
         super(Order.class);
     }
 
+    /**
+     *Method to find all available orders
+     * @return
+     */
     public List<Order> findAll() {
         return super.findAll("Order.findAll");
     }
 
+    /**
+     *Method to find order by id
+     * @param orderId
+     * @return
+     */
     public Order findOrderById(Long orderId) {
         LOG.info("Fetching order with ID: " + orderId);
         try {
@@ -47,6 +59,10 @@ public class OrderService extends AbstractService<Order> {
         }
     }
 
+    /**
+     *Method to complete an order by supplier
+     * @param o
+     */
     public void completeOrder(Order o) {
         Order order = em.find(Order.class, o.getId());
         LOG.info("OrderService.completeOrder");
@@ -61,6 +77,10 @@ public class OrderService extends AbstractService<Order> {
         }
     }
 
+    /**
+     *Method to  cancel an order by supplier
+     * @param orderId
+     */
     public void cancelOrder(Long orderId) {
         Order order = em.find(Order.class, orderId);
         LOG.info("OrderService.cancelOrder");
@@ -75,6 +95,10 @@ public class OrderService extends AbstractService<Order> {
         }
     }
 
+    /**
+     *Method to delete an order by customer
+     * @param orderId
+     */
     public void deleteOrder(Long orderId) {
         Order order = em.find(Order.class, orderId);
         LOG.info("OrderService.deleteOrder");
@@ -89,6 +113,11 @@ public class OrderService extends AbstractService<Order> {
         }
     }
 
+    /**
+     *Method to create an order by customer
+     * @param order
+     * @return
+     */
     @Transactional
     public boolean createOrder(Order order) {
         try {
@@ -126,6 +155,11 @@ public class OrderService extends AbstractService<Order> {
         }
     }
 
+    /**
+     *Method to update an order by customer
+     * @param order
+     * @return
+     */
     
     @Transactional
     public boolean updateOrder(Order order) {
@@ -168,6 +202,11 @@ public class OrderService extends AbstractService<Order> {
         }
     }
 
+    /**
+     *Method to place an order by customer
+     * @param order
+     * @param selectedBeverages
+     */
     public void placeNewOrder(Order order, List<Beverage> selectedBeverages) {
         // Create a new order entity
         Order newOrder = new Order(order.getOrderDate(), order.getQuantity());

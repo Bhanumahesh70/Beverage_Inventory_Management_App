@@ -61,9 +61,17 @@ public class Supplier extends AbstractEntity {
             inverseJoinColumns = @JoinColumn(name = "beverage_id"))
     private List<Beverage> s_beverage;
 
+    /**
+     *No arg constructor
+     */
     public Supplier() {
     }
 
+    /**
+     *constructor
+     * @param name
+     * @param email
+     */
     public Supplier(String name, String email) {
         this.name = name;
         this.email = email;
@@ -71,6 +79,11 @@ public class Supplier extends AbstractEntity {
     }
 
     //helper methods
+
+    /**
+     *Method for supplier to add beverages
+     * @param b
+     */
     public void addBeverage(Beverage b) {
         // Check if beverages list is null, initialize it if necessary
         if (this.s_beverage == null) {
@@ -92,6 +105,10 @@ public class Supplier extends AbstractEntity {
 
     }
 
+    /**
+     *Method for supplier to remove beverages
+     * @param b
+     */
     public void removeBeverage(Beverage b) {
         if (this.s_beverage.contains(b)) {
             this.s_beverage.remove(b);
@@ -102,6 +119,10 @@ public class Supplier extends AbstractEntity {
 
     }
 
+    /**
+     *Method to add order to supplier
+     * @param o
+     */
     public void addOrder(Order o) {
         // Check if orderss list is null, initialize it if necessary
         if (this.orders == null) {
@@ -115,6 +136,10 @@ public class Supplier extends AbstractEntity {
 
     }
 
+    /**
+     *Method to remove order to supplier
+     * @param o
+     */
     public void removeOrder(Order o) {
         if (this.orders.contains(o)) {
             this.orders.remove(o);
@@ -124,26 +149,51 @@ public class Supplier extends AbstractEntity {
 
 
     //Getter and Setter Methods
+
+    /**
+     *Get the value of name
+     * @return
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     *set the value of name
+     * @param name
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     *Get the value of email
+     * @return
+     */
     public String getEmail() {
         return email;
     }
 
+    /**
+     *set the value of 
+     * @param email
+     */
     public void setEmail(String email) {
         this.email = email;
     }
 
+    /**
+     *Get the value of Beverage
+     * @return
+     */
     public List<Beverage> getBeverage() {
         return s_beverage;
     }
 
+    /**
+     *set the value of beverage
+     * @param beverage
+     */
     public void setBeverage(List<Beverage> beverage) {
         this.s_beverage = beverage;
     }
@@ -184,7 +234,10 @@ public class Supplier extends AbstractEntity {
         this.orders = orders;
     }
 
-
+    /**
+     *Supplier To string method
+     * @return
+     */
     @Override
     public String toString() {
         return "Supplier{" + "supplierId=" + id + ", name=" + name + ", email=" + email + '}';

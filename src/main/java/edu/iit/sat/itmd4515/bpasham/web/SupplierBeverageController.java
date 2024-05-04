@@ -20,7 +20,7 @@ import jakarta.inject.Named;
 import java.util.logging.Logger;
 
 /**
- *
+ * entity to display supplier portal to add/ remove beverages and see the orders and their details place by customers.
  * @author bhanu
  */
 @Named
@@ -65,6 +65,8 @@ public class SupplierBeverageController {
      * effectively mean handling the click from the JSF view in step 2, in order
      * to perform the operation the user is trying to accomplish
      *
+     * 
+     * Method to display ViewBeverage Page
      * @param b
      * @return 
      */
@@ -78,7 +80,7 @@ public class SupplierBeverageController {
     }
 
     /**
-     *
+     *Method to display edit Beverage Page
      * @param b
      * @return
      */
@@ -92,7 +94,7 @@ public class SupplierBeverageController {
     }
 
     /**
-     *
+     *Method to display delete Beverage Page
      * @param b
      * @return
      */
@@ -106,7 +108,7 @@ public class SupplierBeverageController {
     }
 
     /**
-     *
+     *Method to display View Order Page
      * @param o
      * @return
      */
@@ -120,7 +122,7 @@ public class SupplierBeverageController {
     }
 
     /**
-     *
+     *Method to mark an order complete or cancel by supplier
      * @param o
      * @return
      */
@@ -139,8 +141,10 @@ public class SupplierBeverageController {
      * composite componentent on that page In other words these methods handle
      * the action click
      *
+     * Method to save a beverage
      * @return
      */
+    
     public String saveBeverage() {
         LOG.info("SupplierBeverageController.saveBeverage() has been invoked with model: " + this.beverage.toString());
         try {
@@ -157,7 +161,7 @@ public class SupplierBeverageController {
     }
 
     /**
-     *
+     *Method to edit a beverage
      * @return
      */
     public String editBeverage() {
@@ -168,7 +172,7 @@ public class SupplierBeverageController {
     }
 
     /**
-     *
+     *Method to delete a beverage
      * @return
      */
     public String deleteBeverage() {
@@ -179,7 +183,7 @@ public class SupplierBeverageController {
     }
 
     /**
-     *
+     *Method to mark an order compelte 
      * @param order
      * @return
      */
@@ -192,7 +196,7 @@ public class SupplierBeverageController {
     }
 
     /**
-     *
+     *Method to mark an order cancel
      * @param orderId
      * @return
      */
@@ -207,7 +211,7 @@ public class SupplierBeverageController {
     //helper methods
 
     /**
-     *
+     *et the value of AllBeverageTypesForForm
      * @return
      */
     public BeverageType[] getAllBeverageTypesForForm() {

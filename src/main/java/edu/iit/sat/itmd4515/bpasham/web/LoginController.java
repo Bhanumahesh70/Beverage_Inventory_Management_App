@@ -23,7 +23,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * Login controller to check user authentication and have login and logout functionalities
  * @author bhanu
  */
 @Named
@@ -59,7 +59,7 @@ public class LoginController {
     //helper methods
 
     /**
-     *
+     *Method to get check and get the AuthenticatedUser
      * @return
      */
     public String getAuthenticatedUser(){
@@ -68,7 +68,7 @@ public class LoginController {
     }
     
     /**
-     *
+     *Method to check if the logged in user is admin
      * @return
      */
     public boolean isAdmin(){
@@ -76,7 +76,7 @@ public class LoginController {
     }
 
     /**
-     *
+     *Method to check if the logged in user is customer
      * @return
      */
     public boolean isCustomer(){
@@ -84,7 +84,7 @@ public class LoginController {
     }
 
     /**
-     *
+     *Method to check if the logged in user is manager
      * @return
      */
     public boolean isSalesManager(){
@@ -92,7 +92,7 @@ public class LoginController {
     }
 
     /**
-     *
+     *Method to check if the logged in user is InventoryManager
      * @return
      */
     public boolean isInventoryManager(){
@@ -102,7 +102,7 @@ public class LoginController {
     //action methods
 
     /**
-     *
+     *Method to login into the page
      * @return
      */
     public String doLogin(){
@@ -136,7 +136,7 @@ public class LoginController {
     }
     
     /**
-     *
+     *Method to logout of the page
      * @return
      */
     public String doLogout(){

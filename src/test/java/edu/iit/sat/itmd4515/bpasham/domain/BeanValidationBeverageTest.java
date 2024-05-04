@@ -27,7 +27,7 @@ public class BeanValidationBeverageTest {
     }
 
     /**
-     *
+     *Validation method to check if name field is blank
      */
     @Test
     public void validateNameNotBlank() {
@@ -37,7 +37,7 @@ public class BeanValidationBeverageTest {
     }
 
     /**
-     *
+     *Validation method to check if ExpiryDate is NotNul
      */
     @Test
     public void validateExpiryDateNotNull() {
@@ -47,7 +47,7 @@ public class BeanValidationBeverageTest {
     }
 
     /**
-     *
+     *Validation method to check if IsNonAlcoholic is just true/false
      */
     @Test
     public void validateIsNonAlcoholicPattern() {
@@ -57,7 +57,7 @@ public class BeanValidationBeverageTest {
     }
 
     /**
-     *
+     *Validation method to check if BeverageType is NotNull
      */
     @Test
     public void validateBeverageTypeNotNull() {
@@ -67,7 +67,7 @@ public class BeanValidationBeverageTest {
     }
 
     /**
-     *
+     *Validation method to check if Beverage is valid
      */
     @Test
     public void validateValidBeverage() {

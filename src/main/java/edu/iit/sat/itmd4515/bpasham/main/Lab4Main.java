@@ -18,7 +18,7 @@ import java.time.LocalDate;
 public class Lab4Main {
 
     /**
-     *
+     *Main method
      * @param args
      */
     public static void main(String... args) {

@@ -12,7 +12,7 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.Min;
 
 /**
- *
+ * An Entity that represents the beverages and their quantities ordered by an customer
  * @author bhanu
  */
 @Entity
@@ -32,7 +32,7 @@ public class OrderBeverageDetail extends AbstractEntity {
     private Beverage beverage;
 
     /**
-     *
+     *No arg constructor
      */
     public OrderBeverageDetail() {
     }

@@ -30,7 +30,7 @@ public class SupplierWelcomeController {
     private Supplier supplier;
 
     /**
-     *
+     *Method to refresh supplier page
      */
     public SupplierWelcomeController() {
     }

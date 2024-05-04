@@ -79,7 +79,7 @@ public class SupplierService {
     }
     
     /**
-     *
+     *Method to find supplier by username
      * @param username
      * @return
      */
@@ -89,7 +89,7 @@ public class SupplierService {
     }
 
     /**
-     *
+     *Method to create a Beverage by supplier
      * @param supplier
      * @param beverage
      */

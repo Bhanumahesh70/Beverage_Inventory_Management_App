@@ -12,7 +12,7 @@ import jakarta.ws.rs.core.Response;
 public class BeverageInventoryBaseResource {
     
     /**
-     *
+     *Pining if the response is ok and then build
      * @return
      */
     @GET

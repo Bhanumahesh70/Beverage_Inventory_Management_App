@@ -32,34 +32,59 @@ public class Inventory extends AbstractEntity{
     @NotNull
     private LocalDateTime lastUpdated;
 
-    
-
-
+    /**
+     *No arg constructor
+     */
     public Inventory() {
     }
 
+    /**
+     *
+constructor
+     * @param quantity
+     * @param lastUpdated
+     */
     public Inventory(Integer quantity, LocalDateTime lastUpdated) {
         this.quantity = quantity;
         this.lastUpdated = lastUpdated;
     }
     
+    /**
+     *Get Quantity of beverage
+     * @return
+     */
     public Integer getQuantity() {
         return quantity;
     }
 
+    /**
+     * set Quantity of beverage
+     * @param quantity
+     */
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
 
+    /**
+     * Get LocalDateTime
+     * @return
+     */
     public LocalDateTime getLastUpdated() {
         return lastUpdated;
     }
 
+    /**
+     *set LocalDateTime
+     * @param lastUpdated
+     */
     public void setLastUpdated(LocalDateTime lastUpdated) {
         this.lastUpdated = lastUpdated;
     }
 
-    
+    /**
+     *To string method
+     * @return
+     */
     @Override
     public String toString() {
         return "Inventory{" + "inventoryId=" + id + ", quantity=" + quantity + ", lastUpdated=" + lastUpdated + '}';

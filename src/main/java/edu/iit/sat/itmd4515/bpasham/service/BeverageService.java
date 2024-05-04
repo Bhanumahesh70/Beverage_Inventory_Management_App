@@ -20,14 +20,14 @@ import java.util.List;
 public class BeverageService extends AbstractService<Beverage>{
 
     /**
-     *
+     *No arg constructor
      */
     public BeverageService() {
         super(Beverage.class);
     }
     
     /**
-     *
+     * constructor
      * @return
      */
     public List<Beverage> findAll(){
@@ -35,7 +35,7 @@ public class BeverageService extends AbstractService<Beverage>{
     }
     
     /**
-     *
+     *Method to edit a beverage for a supplier
      * @param b
      */
     public void editBeverageForExistingSupplier(Beverage b){
@@ -60,7 +60,8 @@ public class BeverageService extends AbstractService<Beverage>{
    }
     
     /**
-     *
+     *Method to mark an beverage as delete or non delete by supplier 
+     * so it can be hidden or shown to the customer
      * @param b
      */
     public void markBeverageAsDeletedNonDeleted(Beverage b) {
@@ -79,7 +80,8 @@ public class BeverageService extends AbstractService<Beverage>{
     }
 
     /**
-     *
+     *Method to find all non deleted beverages
+     * to be shown to customer
      * @return
      */
     public List<Beverage> findAllNonDeleted() {
