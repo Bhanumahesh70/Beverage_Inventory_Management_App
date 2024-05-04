@@ -1,62 +1,42 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 template="./WEB-INF/templates/publicTemplate.xhtml"
                 xmlns:h="jakarta.faces.html">
 
     <ui:define name="title">
-        <h:panelGroup  styleClass="container mt-5">
-            <h:panelGroup styleClass="title row d-flex justify-content-center">
+        <h:panelGroup class="container mt-5">
+            <h:panelGroup class="page-title text-center row d-flex justify-content-center">
                 Login Page
             </h:panelGroup>
-            
         </h:panelGroup>
-        
     </ui:define>
 
-
     <ui:define name="content">
-        <h:panelGroup styleClass="container mt-5">
-            <h:panelGroup styleClass="row d-flex justify-content-center">
-                
-                <h:panelGroup styleClass="col-md-6">
-                    <h:form styleClass="card px-5 py-5" id="form1">
-                        
-                        <p>
-                            <h:panelGroup styleClass="forms-inputs mb-4" layout="block">
-                               
-                                <h:inputText binding="#{uname}"
-                                             styleClass="#{uname.valid ? 'form-control': 'form-control is-valid'}"
-                                             id="userName" value="#{loginController.user.userName}" />   
-                                <h:message for="userName" errorStyle="color:red" infoStyle="color:green" />
-                                 <h:outputLabel value="User Name " for="userName" />
-                            </h:panelGroup>
+        <h:panelGroup class="container mt-5">
+            <h:panelGroup class="row d-flex justify-content-center">
+                <h:panelGroup class="col-md-6">
+                    <h:form class="card shadow p-4">
+                        <p class="form-group">
+                            <h:inputText binding="#{uname}"
+                                         class="form-control #{uname.valid ? '': 'is-invalid'}"
+                                         id="userName" value="#{loginController.user.userName}" />
+                            <h:message for="userName" styleClass="form-text text-danger" />
+                            <h:outputLabel for="userName" value="User Name" class="form-label" />
                         </p>
-                        <p>
-                            <h:panelGroup styleClass="forms-inputs mb-4" layout="block">
-                                
-                                <h:inputSecret binding="#{passwd}"
-                                               styleClass="#{passwd.valid ? 'form-control': 'form-control is-valid'}"
-                                                id="password" value="#{loginController.user.password}" />   
-                                <h:message for="password" errorStyle="color:red" infoStyle="color:green" />
-                                <h:outputLabel value="Password " for="password" />
-                            </h:panelGroup>
+                        <p class="form-group">
+                            <h:inputSecret binding="#{passwd}"
+                                           class="form-control #{passwd.valid ? '': 'is-invalid'}"
+                                           id="password" value="#{loginController.user.password}" />
+                            <h:message for="password" styleClass="form-text text-danger" />
+                            <h:outputLabel for="password" value="Password" class="form-label" />
                         </p>
-                        <p>
-                            <h:panelGroup styleClass="mb-3">
-                                <h:commandButton class="btn btn-dark w-100" value="Login" action="#{loginController.doLogin()}" />
-                            </h:panelGroup>
-                            <h:panelGroup styleClass="mb-3 text-center">
-                                <h:link value="Sign Up" outcome="/signup" styleClass="btn btn-link" />
-                            </h:panelGroup>
+                        <p class="form-group text-center">
+                            <h:commandButton class="btn btn-primary w-100" value="Login" action="#{loginController.doLogin()}" />
+                            <h:link outcome="/signup" value="Sign Up" class="btn btn-link mt-2" />
                         </p>
                     </h:form>
                 </h:panelGroup>
-
             </h:panelGroup>
-
         </h:panelGroup>
-
     </ui:define>
 </ui:composition>
