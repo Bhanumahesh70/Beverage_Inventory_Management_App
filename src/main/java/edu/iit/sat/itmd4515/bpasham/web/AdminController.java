@@ -52,6 +52,11 @@ public class AdminController {
             supplierService.create(supplier);
             LOG.info("UserController.register() created supplier " + supplier.toString());
         
-        return "refresh";  // Refresh the page or navigate as needed
+        return "/admin/welcome.xhtml";  // Refresh the page or navigate as needed
+    }
+    
+        public void refreshAdminModel(){
+        LOG.info("SupplierWelcomeController.refreshSupplierModel");
+        //supplier = supplierSvc.findByUsername(loginController.getAuthenticatedUser());
     }
 }

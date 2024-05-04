@@ -400,3 +400,20 @@ main {
 /* */
 /* */
 /* */
+
+/* Custom styling for the admin page */
+.container {
+    background-color: #f8f9fa; /* Light background for the container */
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+thead-dark {
+    background-color: #343a40;
+    color: #fff;
+}
+
+.alert-info {
+    margin-top: 20px; /* Adds spacing above the alert if it appears */
+}
