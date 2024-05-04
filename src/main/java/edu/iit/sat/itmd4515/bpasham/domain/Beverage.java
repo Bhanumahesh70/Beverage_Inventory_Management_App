@@ -90,8 +90,7 @@ public class Beverage extends AbstractEntity{
     @OneToOne(mappedBy = "beverage")
     private Inventory inventory;
     
-    @OneToMany(mappedBy = "beverage", cascade = CascadeType.ALL, orphanRemoval = true)
-        private List<SupplierInventory> inventoryList = new ArrayList<>();
+    
 
     
     public Beverage() {
@@ -226,23 +225,7 @@ public class Beverage extends AbstractEntity{
     public void setOrderBeverageDetails(List<OrderBeverageDetail> orderBeverageDetails) {
         this.orderBeverageDetails = orderBeverageDetails;
     }
-    /**
-     * Get the value of inventoryList
-     *
-     * @return the value of inventoryList
-     */
-    public List<SupplierInventory> getInventoryList() {
-        return inventoryList;
-    }
-
-    /**
-     * Set the value of inventoryList
-     *
-     * @param inventoryList new value of inventoryList
-     */
-    public void setInventoryList(List<SupplierInventory> inventoryList) {
-        this.inventoryList = inventoryList;
-    }
+   
     /**
      * Get the value of isDeleted
      *

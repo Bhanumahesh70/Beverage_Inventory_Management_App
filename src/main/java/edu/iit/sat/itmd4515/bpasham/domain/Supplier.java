@@ -50,10 +50,7 @@ public class Supplier extends AbstractEntity {
     @OneToMany(mappedBy = "supplier", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Order> orders;
 
-    @OneToMany(mappedBy = "supplier", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<SupplierInventory> inventoryList = new ArrayList<>();
-    ;
-
+    
     
 
     @ManyToMany
@@ -124,27 +121,7 @@ public class Supplier extends AbstractEntity {
         }
         ////should remove supplier in order?
     }
-// Helper methods for managing inventory
 
-    public void addInventoryItem(Beverage beverage, int quantity) {
-        SupplierInventory inventory = new SupplierInventory();
-        inventory.setBeverage(beverage);
-        inventory.setSupplier(this);
-        inventory.setQuantity(quantity);
-        inventoryList.add(inventory);
-        beverage.getInventoryList().add(inventory);
-    }
-
-    public void removeInventoryItem(Beverage beverage) {
-        SupplierInventory item = inventoryList.stream()
-                .filter(inventory -> inventory.getBeverage().equals(beverage))
-                .findFirst()
-                .orElse(null);
-        if (item != null) {
-            inventoryList.remove(item);
-            beverage.getInventoryList().remove(item);
-        }
-    }
 
     //Getter and Setter Methods
     public String getName() {
@@ -207,23 +184,6 @@ public class Supplier extends AbstractEntity {
         this.orders = orders;
     }
 
-    /**
-     * Get the value of inventoryList
-     *
-     * @return the value of inventoryList
-     */
-    public List<SupplierInventory> getInventoryList() {
-        return inventoryList;
-    }
-
-    /**
-     * Set the value of inventoryList
-     *
-     * @param inventoryList new value of inventoryList
-     */
-    public void setInventoryList(List<SupplierInventory> inventoryList) {
-        this.inventoryList = inventoryList;
-    }
 
     @Override
     public String toString() {
