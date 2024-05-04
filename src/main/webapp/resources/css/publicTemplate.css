@@ -52,13 +52,19 @@ body{
     font-size: 90px
 }
 /*login css */
-/* General page styles */
+
 .page-title {
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 20px;
+    text-align: center;
 }
-
+.text-center {
+    width: 100%; /* Ensures full width for centering content */
+    display: flex;
+    justify-content: center; /* Flexbox centering horizontally */
+    align-items: center; /* Flexbox centering vertically */
+}
 /* Card styling for form */
 .card {
     background: #f8f9fa;
@@ -109,4 +115,84 @@ body{
     }
 }
 
+
 /*login css end*/
+
+/* */
+/*Cstomer Welcome Controller css*/
+/* */
+/* Welcome header styling */
+.welcome-header {
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.welcome-header h1 {
+    margin-bottom: 20px;
+    color: #343a40;
+}
+
+.btn-primary {
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+/* Table styling for better readability */
+.table-responsive-md {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #212529;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.table-hover tbody tr:hover {
+    color: #212529;
+    background-color: rgba(0, 0, 0, 0.075);
+}
+
+/* Button styling adjustments */
+.btn-info, .btn-danger {
+    margin: 5px;
+    padding: 5px 10px;
+}
+
+.btn-info {
+    color: #fff;
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+}
+
+.btn-danger {
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+/* Ensure responsive tables */
+@media (max-width: 768px) {
+    .table-responsive-md {
+        width: 100%;
+        overflow-x: auto;
+    }
+}
+
+/*Cstomer Welcome Controller css end*/
+/* */
+/* */

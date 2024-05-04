@@ -1,5 +1,3 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 template="../WEB-INF/templates/authenticatedTemplate.xhtml"
@@ -7,40 +5,43 @@
                 xmlns:f="jakarta.faces.core">
 
     <ui:define name="title">
-        Customer
+        Customer Dashboard
     </ui:define>
 
     <ui:define name="content">
-        Welcome #{loginController.authenticatedUser}!! to the Customer section of the Beverage Inventory Application
-        <h:link outcome="/customer/placeOrder.xhtml">Place a new Order</h:link>
-        <h:dataTable
-            styleClass="table table-striped table-hover"
-            value="#{customerWelcomeController.customer.orders}" var="orders" >
+        <div class="welcome-header">
+            <h1>Welcome #{loginController.authenticatedUser}!</h1>
+            <h:link outcome="/customer/placeOrder.xhtml" class="btn btn-primary">Place a new Order</h:link>
+        </div>
+
+        <h:dataTable value="#{customerWelcomeController.customer.orders}" var="orders"
+                     styleClass="table table-responsive-md table-striped table-hover mt-4">
             <h:column>
                 <f:facet name="header">Order Id</f:facet>
-                <h:outputText value="#{orders.id}" />
+                #{orders.id}
             </h:column>
             <h:column>
-                <f:facet name="header">Order quantity</f:facet>
-                <h:outputText value="#{orders.quantity}" />
+                <f:facet name="header">Order Quantity</f:facet>
+                #{orders.quantity}
             </h:column>
             <h:column>
-                <f:facet name="header">Order date</f:facet>
-                <h:outputText value="#{orders.orderDate}" />
+                <f:facet name="header">Order Date</f:facet>
+                #{orders.orderDate}
             </h:column>
             <h:column>
                 <f:facet name="header">Status</f:facet>
-                    #{orders.status}
+                #{orders.status}
             </h:column>
             <h:column>
                 <h:form>
-                    <h:commandButton value="view" action="#{placeOrderController.displayViewOrderPage(orders)}" />
-                     <h:commandButton value="delete" action="#{placeOrderController.deleteOrder(orders)}"
+                    <h:commandButton value="View" class="btn btn-info"
+                                     action="#{placeOrderController.displayViewOrderPage(orders)}" />
+                    <h:commandButton value="Delete" class="btn btn-danger"
+                                     action="#{placeOrderController.deleteOrder(orders)}"
                                      rendered="#{orders.status eq 'Placed'}"
-                                     onclick="return confirm('Are you sure you want to delete this order?');"/>
+                                     onclick="return confirm('Are you sure you want to delete this order?');" />
                 </h:form>
             </h:column>
         </h:dataTable>
     </ui:define>
-
 </ui:composition>
