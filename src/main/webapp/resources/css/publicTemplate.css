@@ -200,7 +200,8 @@ body{
 /* */
 /*Signup css */
 /* */
-//* Container for the form to ensure it's centered and visually distinct */
+/* Container for the form to ensure it's centered and visually distinct */
+
 .signup-container {
     max-width: 500px; /* Limits the width of the form container */
     padding: 20px; /* Padding around the form */
@@ -272,4 +273,80 @@ body{
 .btn-primary, .btn-secondary {
     width: 100%; /* Ensures each button uses the full width of its container */
     margin-bottom: 10px; /* Adds space between the buttons */
+}
+
+
+.signup-container {
+    font-family: Arial, sans-serif; /* Standardizes font across the form */
+    
+}
+
+.form-heading {
+    text-align: center;
+    color: #333;
+    font-size: 24px;
+}
+
+.form-intro {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #555;
+    font-size: 16px;
+}
+
+.form-label {
+    font-weight: bold;
+    text-align: right;
+    padding-right: 10px; /* Adds spacing between labels and inputs */
+}
+
+.form-input input, .form-input .role-display {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.checkbox-group {
+    grid-column: span 2; /* Spans the checkbox and label across both columns */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-buttons {
+    grid-column: span 2; /* Aligns buttons to span both columns */
+    display: flex;
+    justify-content: space-between; /* Spaces out buttons evenly */
+}
+
+.btn-primary, .btn-cancel {
+    padding: 10px 20px;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: #007bff;
+}
+
+.btn-cancel {
+    background-color: #6c757d;
+}
+
+.role-display {
+    padding: 8px;
+    background-color: #f8f9fa; /* Light grey background for role display */
+    border-radius: 4px;
+}
+.page-title {
+    text-align: center; /* Center-align the text */
+    font-size: 28px; /* Large font size for visibility */
+    font-weight: bold; /* Makes the font bold */
+    color: #333; /* Dark grey color for the text */
+    padding: 20px 0; /* Padding above and below the title */
+    margin: 0; /* Removes default margin */
+    width: 100%; /* Ensures the div takes the full width */
+    box-sizing: border-box; /* Includes padding in width calculation */
 }

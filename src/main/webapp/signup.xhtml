@@ -6,13 +6,15 @@
                 xmlns:h="jakarta.faces.html"
                 xmlns:f="jakarta.faces.core">
 
-    <ui:define name="title">
-        SignUp Page
+     <ui:define name="title">
+        <div class="page-title">SignUp Page</div>
     </ui:define>
 
     <ui:define name="content">
         <div class="signup-container">
             <h:form styleClass="signup-form">
+                <h2 class="form-heading">Sign Up as a Customer</h2>
+                <p class="form-intro">If you wish to become a supplier, please check the box below after registering.</p>
                 <h:panelGrid columns="2" columnClasses="form-label, form-input">
                     <h:outputLabel value="Username:" for="username"/>
                     <h:inputText id="username" value="#{userController.newUser.userName}" required="true" requiredMessage="Username is required"/>
@@ -24,15 +26,15 @@
                     <h:inputText id="email" value="#{userController.newUser.email}" required="true" requiredMessage="Email is required"/>
 
                     <h:outputLabel value="Role:" for="role"/>
-                    <h:selectOneMenu id="role" value="#{userController.selectedRole}" converter="groupConverter">
-                        <f:selectItems value="#{userController.groups}" var="group" itemLabel="#{group.groupName}" itemValue="#{group}"/>                                    
-                    </h:selectOneMenu>
-                    <h:selectBooleanCheckbox value="#{userController.newUser.requestedSupplierRole}" />
-                    <h:outputLabel for="requestedSupplierRole" value="Request Supplier Access" />
+                    <h:outputText id="role" value="Customer" styleClass="role-display"/>
 
+                    <h:panelGroup layout="block" styleClass="checkbox-group">
+                        <h:selectBooleanCheckbox id="requestedSupplierRole" value="#{userController.newUser.requestedSupplierRole}" />
+                        <h:outputLabel for="requestedSupplierRole" value="Request Supplier Access" />
+                    </h:panelGroup>
 
                     <f:facet name="footer">
-                        <div class="footer">
+                        <div class="footer-buttons">
                             <h:commandButton value="Signup" action="#{userController.register()}" styleClass="btn btn-primary"/>
                             <h:commandButton value="Cancel" action="#{userController.cancel}" immediate="true" styleClass="btn btn-cancel"/>
                         </div>
