@@ -201,6 +201,7 @@ body{
 /*css for view order*/
 /* */
 /* Container and Grid System */
+/* Container and Grid System */
 .container {
     max-width: 960px; /* Adjust this as per your layout needs */
     margin: auto; /* Center the container */
@@ -225,6 +226,7 @@ body{
     padding: 20px;
 }
 
+/* Styling for Labels and Values */
 .view-order-detail-label {
     font-weight: bold;
     color: #343a40;
@@ -238,12 +240,21 @@ body{
     display: block; /* Separate line for values for clarity */
 }
 
+/* List Item Styling */
 .list-group-item {
     background-color: #f8f9fa; /* Different background for items */
     border: none;
 }
 
-/* Responsive adjustments */
+/* Title Styling for better visual integration */
+.view-order-title {
+    text-align: center;
+    font-size: 1.75rem; /* Adjust size as necessary */
+    margin-bottom: 1rem; /* Space before the content starts */
+    color: #343a40; /* Styling to match other headers */
+}
+
+/* Responsive Adjustments for better mobile experience */
 @media (max-width: 768px) {
     .container {
         width: 100%; /* Full width on smaller screens */
@@ -252,8 +263,18 @@ body{
     .view-order-card {
         margin: 20px auto; /* Ensure margin on all sides in mobile */
     }
+    .view-order-detail-label,
+    .view-order-detail-value {
+        display: block; /* Stack label on top of value on smaller screens */
+    }
 }
-
+.page-title {
+    text-align: center;
+    font-size: 2rem;
+    color: #333;
+    margin: 20px 0;
+    font-weight: bold;
+}
 /* */
 /*css for view order end*/
 /* */
