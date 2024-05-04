@@ -196,3 +196,80 @@ body{
 /*Cstomer Welcome Controller css end*/
 /* */
 /* */
+
+/* */
+/*css for view order*/
+/* */
+/* View Order - Specific Styles */
+.view-order-card {
+    margin-top: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.view-order-card-header {
+    background-color: #e9ecef;
+    border-bottom: 1px solid #dee2e6;
+    font-size: 1.25rem;
+    color: #495057;
+}
+
+.view-order-card-body {
+    background-color: #ffffff;
+    padding: 20px;
+}
+
+/* Enhancing label details for better distinction */
+.view-order-detail-label {
+    font-weight: 600; /* Bolder for better visibility */
+    color: #343a40;
+    display: inline-block; /* Ensures separation */
+    width: 150px; /* Fixed width for labels */
+}
+
+.view-order-detail-value {
+    font-weight: 400;
+    color: #6c757d;
+}
+
+.view-order-list-group-item {
+    border: 1px solid #f8f9fa;
+    background-color: #ffffff;
+}
+
+.view-order-list-group-flush .view-order-list-group-item {
+    border-right-width: 0;
+    border-left-width: 0;
+    border-radius: 0;
+}
+
+/* Specific heading for list */
+.view-order-card-title {
+    font-weight: 600;
+    color: #343a40;
+    margin-bottom: 0.5rem;
+}
+
+.list-group-item {
+    padding-left: 170px; /* Indentation to align under details */
+    background-color: #f8f9fa; /* Slightly different background for list items */
+    border: 1px solid #e9ecef;
+}
+
+/* Responsive adjustments for better mobile experience */
+@media (max-width: 768px) {
+    .view-order-card {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    .view-order-detail-label {
+        display: block; /* Stack label on top of value on smaller screens */
+        width: auto; /* Allow natural width */
+    }
+    .list-group-item {
+        padding-left: 20px; /* Less indentation on mobile */
+    }
+}
+
+/* */
+/*css for view order end*/
+/* */
