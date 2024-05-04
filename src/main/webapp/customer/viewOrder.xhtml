@@ -1,6 +1,3 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:h="jakarta.faces.html"
@@ -12,33 +9,36 @@
     </ui:define>
 
     <ui:define name="content">
-        <h:form>
-            <div class="card view-order-card">
-    <h5 class="card-header view-order-card-header">Order Details</h5>
-    <div class="card-body view-order-card-body">
-        <div class="mb-3">
-            <span class="view-order-detail-label">Order ID:</span>
-            <span class="view-order-detail-value">#{placeOrderController.order.id}</span>
+        <div class="container mt-5"> <!-- Added container to manage width and centering -->
+            <div class="row justify-content-center">
+                <div class="col-lg-8"> <!-- Limit the width of the card -->
+                    <div class="card view-order-card">
+                        <h5 class="card-header view-order-card-header">Order Details</h5>
+                        <div class="card-body view-order-card-body">
+                            <div class="mb-3">
+                                <span class="view-order-detail-label">Order ID:</span>
+                                <span class="view-order-detail-value">#{placeOrderController.order.id}</span>
+                            </div>
+                            <div class="mb-3">
+                                <span class="view-order-detail-label">Customer Name:</span>
+                                <span class="view-order-detail-value">#{placeOrderController.order.customer.name}</span>
+                            </div>
+                            <div class="mb-3">
+                                <span class="view-order-detail-label">Supplier:</span>
+                                <span class="view-order-detail-value">#{placeOrderController.order.supplier.name}</span>
+                            </div>
+                            <div class="mb-3">
+                                <span class="view-order-card-title">Beverages Ordered:</span>
+                                <ul class="list-group list-group-flush view-order-list-group-flush">
+                                    <ui:repeat value="#{placeOrderController.order.orderBeverageDetails}" var="detail">
+                                        <li class="list-group-item view-order-list-group-item">#{detail.beverage.name} - Quantity: #{detail.quantity}</li>
+                                    </ui:repeat>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="mb-3">
-            <span class="view-order-detail-label">Customer Name:</span>
-            <span class="view-order-detail-value">#{placeOrderController.order.customer.name}</span>
-        </div>
-        <div class="mb-3">
-            <span class="view-order-detail-label">Supplier:</span>
-            <span class="view-order-detail-value">#{placeOrderController.order.supplier.name}</span>
-        </div>
-        <div class="mb-3">
-            <span class="view-order-card-title">Beverages Ordered:</span>
-            <ul class="list-group list-group-flush view-order-list-group-flush">
-                <ui:repeat value="#{placeOrderController.order.orderBeverageDetails}" var="detail">
-                    <li class="list-group-item view-order-list-group-item">#{detail.beverage.name} - Quantity: #{detail.quantity}</li>
-                </ui:repeat>
-            </ul>
-        </div>
-    </div>
-</div>
-
-        </h:form>
     </ui:define>
 </ui:composition>

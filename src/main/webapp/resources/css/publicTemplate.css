@@ -200,10 +200,17 @@ body{
 /* */
 /*css for view order*/
 /* */
-/* View Order - Specific Styles */
+/* Container and Grid System */
+.container {
+    max-width: 960px; /* Adjust this as per your layout needs */
+    margin: auto; /* Center the container */
+}
+
+/* General Card Styling */
 .view-order-card {
     margin-top: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Enhance shadow for better depth */
+    border: 1px solid #dee2e6; /* Subtle border for definition */
 }
 
 .view-order-card-header {
@@ -218,55 +225,32 @@ body{
     padding: 20px;
 }
 
-/* Enhancing label details for better distinction */
 .view-order-detail-label {
-    font-weight: 600; /* Bolder for better visibility */
+    font-weight: bold;
     color: #343a40;
-    display: inline-block; /* Ensures separation */
-    width: 150px; /* Fixed width for labels */
+    display: block; /* Full width for clarity */
+    margin-bottom: 0.5rem; /* Space between label and value */
 }
 
 .view-order-detail-value {
-    font-weight: 400;
+    font-size: 16px;
     color: #6c757d;
-}
-
-.view-order-list-group-item {
-    border: 1px solid #f8f9fa;
-    background-color: #ffffff;
-}
-
-.view-order-list-group-flush .view-order-list-group-item {
-    border-right-width: 0;
-    border-left-width: 0;
-    border-radius: 0;
-}
-
-/* Specific heading for list */
-.view-order-card-title {
-    font-weight: 600;
-    color: #343a40;
-    margin-bottom: 0.5rem;
+    display: block; /* Separate line for values for clarity */
 }
 
 .list-group-item {
-    padding-left: 170px; /* Indentation to align under details */
-    background-color: #f8f9fa; /* Slightly different background for list items */
-    border: 1px solid #e9ecef;
+    background-color: #f8f9fa; /* Different background for items */
+    border: none;
 }
 
-/* Responsive adjustments for better mobile experience */
+/* Responsive adjustments */
 @media (max-width: 768px) {
+    .container {
+        width: 100%; /* Full width on smaller screens */
+        padding: 15px; /* Padding to prevent sticking to the edges */
+    }
     .view-order-card {
-        margin-left: 10px;
-        margin-right: 10px;
-    }
-    .view-order-detail-label {
-        display: block; /* Stack label on top of value on smaller screens */
-        width: auto; /* Allow natural width */
-    }
-    .list-group-item {
-        padding-left: 20px; /* Less indentation on mobile */
+        margin: 20px auto; /* Ensure margin on all sides in mobile */
     }
 }
 
