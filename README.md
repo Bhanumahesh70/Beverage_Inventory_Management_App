@@ -146,29 +146,30 @@ Once deployed, the application can be accessed via a web browser:
 - **EclipseLink JPA:** 4.0.2 (for testing)
 - **Hibernate Validator:** 8.0.1.Final (for validation in testing)
 - **Expressly:** 5.0.0 (for testing)
-
 # Screen Captures
 
-Login Page:
-![image](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/4cfc09db-f4e9-479e-ab34-53199aea44ae)
+## Login Page
+![Login Page](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/4cfc09db-f4e9-479e-ab34-53199aea44ae)
 
-Welcome Page for user which has nav bar for easy user navigation:
-![image](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/a88cb223-a0b3-4265-ac61-291f10179c02)
+## Welcome Page for User
+This page includes a navigation bar for easy user navigation.
+![Welcome Page](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/a88cb223-a0b3-4265-ac61-291f10179c02)
 
-supplier Portal:
-![image](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/92d1e01a-a5bc-4771-9d75-a6be450b4b91)
+## Supplier Portal
+![Supplier Portal](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/92d1e01a-a5bc-4771-9d75-a6be450b4b91)
 
-Create Beverage Form:
-![image](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/01ba8f38-5eaa-4928-a610-347670ed6e20)
+## Create Beverage Form
+![Create Beverage Form](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/01ba8f38-5eaa-4928-a610-347670ed6e20)
 
-Orders Associated with the supplier:
-![image](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/6330e90b-adb1-40f4-a957-cbcb87515aa1)
+## Orders Associated with the Supplier
+![Orders Associated with the Supplier](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/6330e90b-adb1-40f4-a957-cbcb87515aa1)
 
-Customer Portal:
-![image](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/5e12c724-bfcb-46e0-95d5-dec245c6539d)
+## Customer Portal
+![Customer Portal](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/5e12c724-bfcb-46e0-95d5-dec245c6539d)
 
-Customer can view the order details:
-![image](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/c5803735-2008-4509-986f-13c0eba93b5a)
+## Customer Can View the Order Details
+![Order Details](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/c5803735-2008-4509-986f-13c0eba93b5a)
+
  
 ## Enter User Credentials
 
