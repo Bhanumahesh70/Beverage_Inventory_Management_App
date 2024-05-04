@@ -42,7 +42,7 @@ public class Customer extends AbstractEntity {
     @NotBlank
     private String name;
 
-    @Email
+    @Email(message = "Enter Valid Email @")
     private String email;
 
     @OneToOne
