@@ -42,8 +42,6 @@ public class StartupDbInitializer {
 
     //Owns Relations
     @EJB
-    InventoryService InventorySvc;
-    @EJB
     OrderService OrderSvc;
 
     //Security realm srvices
