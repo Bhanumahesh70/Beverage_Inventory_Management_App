@@ -154,36 +154,6 @@ public class BeverageJPATest {
         }
     }
 
-    /*
-    //Bidirectional one to one relationship test
-    @Test
-    public void createBeverageWithInventoryTest() {
-        // Create a new beverage
-        Beverage beverage = new Beverage("Coca-Cola", LocalDate.of(2025, 3, 5), "true", BeverageType.SODA);
-        em.persist(beverage);
-
-        // Create a new inventory
-        Inventory inventory = new Inventory(100, LocalDateTime.now());
-        em.persist(inventory);
-
-        // Associate the beverage with the inventory
-        beverage.setInventory(inventory);
-        inventory.setBeverage(beverage);
-
-        tx.begin();
-        em.flush(); // Ensure that the changes are synchronized with the database
-        tx.commit();
-
-        // Retrieve the beverage and inventory from the database
-        Beverage savedBeverage = em.find(Beverage.class, beverage.getId());
-        Inventory savedInventory = em.find(Inventory.class, inventory.getId());
-
-        // Check if the association is established correctly
-        assertNotNull(savedBeverage);
-        assertNotNull(savedBeverage.getInventory());
-        assertEquals(savedBeverage, savedInventory.getBeverage());
-    }
-*/
 
     @AfterEach
     public void afterEach() {
