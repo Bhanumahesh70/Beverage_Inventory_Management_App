@@ -1,3 +1,87 @@
+# Project Summary
+
+A complete platform created to promote smooth interactions between suppliers and customers in the beverage sector is the BeverageInventory system. Customers and suppliers may effectively handle their transactions in an environment with two interfaces, each adapted to their unique responsibilities and requirements, thanks to this reliable technology.
+
+## For Customers:
+Consumers can use the internet and peruse an extensive assortment of drinks divided into categories including soda, wine, liquor, and water. Customers can use the system to order beverages of their choice, indicate how much they want to buy, and pick from a list of providers. Customers can monitor the status of their orders—which can be marked as "Placed" or "Cancelled"—after they are placed. Additionally, they can easily check comprehensive order details and remove orders as needed. To ensure that order processing is simple and consistent, once an order is placed, it cannot be changed.
+
+## For Suppliers:
+Suppliers are able to manage their beverage listings through a dedicated interface. This includes adding new drinks to the inventory, changing the details of already-existing drinks, and eliminating drinks as necessary. In order to fulfill or cancel orders depending on inventory levels or other operational factors, suppliers can monitor orders placed by customers that are linked to them. This direct communication with the orders guarantees customer pleasure and contributes to the upkeep of an effective supply chain.
+
+## System Objectives:
+The BeverageInventory system's main objective is to simplify the beverage industry's order placement and fulfillment process by cutting complexity and improving user experience for suppliers and customers alike. Through its intuitive interface and instantaneous order status updates, the system fosters efficiency and transparency, resulting in enhanced customer satisfaction and service delivery. Strong data management and user-specific features supported by the system's design guarantee that both parties can perform efficiently and promote a responsive and dependable beverage transaction marketplace. The BeverageInventory system gives suppliers wishing to increase market share and improve operational efficiency—or customers searching for a quick and simple way to stock up on beverages—the resources they need to accomplish these goals precisely and easily.
+
+# Implemented Features
+
+## User Interface for Customers:
+- **See the selection of drinks that are ready to be served:**
+  - Clients have the option to view a selection of all the drinks that are ready for purchase, organized by groups like soft drinks, alcoholic beverages, and mineral water. Suppliers offer these drinks, which are only visible if they are not labeled as deleted.
+- **Make purchases:**
+  - Customers have the option to choose beverages, indicate the amounts, and select a supplier for placing the order.
+- **Check Order Details:**
+  - Once customers have made a purchase, they have the ability to access in-depth details regarding their orders, such as the types of beverages, quantities, and total expenses.
+- **Abort Orders:**
+  - If orders are in the 'Placed' status, customers can choose to cancel them.
+
+## Interface for Suppliers:
+- **Handle Drinks:**
+  - Suppliers have the ability to add new beverages, modify information of current beverages, and remove beverages from inventory. Removed beverages can't be seen by clients but are still stored in the database.
+- **Monitor and Handle Orders:**
+  - Suppliers have the ability to see customers' orders and can update the status of these orders to either completed or cancelled based on inventory availability and other operational considerations.
+
+## Flow of Direction:
+
+### Viewing things from the customer's point of view:
+- **Main Page ➔ Browse beverages:**
+  - Clients access their dashboard and go to the beverages category to see all the items on offer.
+- **Choose Drinks ➔ Make Purchase:**
+  - Customers on the beverages page pick their preferred items, select quantities, and then choose a supplier to place the order with.
+- **Order Confirmation ➔ Check Order Details/Cancel Order:**
+  - After an order is finalized, clients have the option to either check the specific details of the order or delete it through their order history section.
+
+### Seen from the supplier's point of view:
+- **Login for Suppliers ➔ Beverage Management:**
+  - Upon entering the supplier portal, suppliers have the ability to access the beverage management section to make modifications to beverages by adding, editing, or deleting them.
+- **Changes to Drinks ➔ Managing Orders:**
+  - Suppliers transition from handling beverages to observing associated orders, allowing them to mark each order as finished or canceled.
+
+## Factors to Consider When Designing a System:
+- **Retention of data for deleted items:**
+  - The database stores information on beverages and orders even after they are deleted or cancelled, maintaining data integrity and enabling analysis of historical data.
+- **Actions are limited based on the status of the order:**
+  - Orders can solely be cancelled or removed if they are in the 'Placed' status to avoid conflicts and inconsistencies in order handling.
+- **Functionalities tailored for individual users:**
+  - The system offers customized features for both customers and suppliers, improving user experience and productivity for various user roles.
+
+.............................................................................
+#For Extra Credit
+
+# Improved Method of Managing Errors and Providing Information to Users
+
+Special focus was placed on robust error handling and interactive user feedback in the creation of the BeverageInventory system to guarantee a smooth user experience. The following information outlines how these improvements have been integrated:
+
+## Comprehensive Logging and Messaging with Specific Details
+
+### Logging Errors with JSF FacesContext
+
+In the application, especially in important areas like beverage management, JSF's FacesContext is utilized for error logging and giving instant feedback to users. This can be seen in the `saveBeverage()` function, which logs and shows errors to the user that occur while saving the beverage.
+
+This technique records in-depth error messages through Java's logging system to track and analyze encountered problems while operating.
+
+## Insights on How to Put Ideas or Plans into Action
+
+### Prompt Feedback on the Results of a Procedure
+
+By making use of `FacesContext.getCurrentInstance().addMessage()`, the system offers instant feedback on the results of operations. If there is an error caused by entering incorrect data when saving a drink, the user will be promptly notified with a detailed error message, which helps avoid confusion and assists in addressing the input problem.
+
+### Error Handling Proactively
+
+The system is created to predict and handle possible mistakes. For instance, the app looks for potential issues that might occur while making a drink and deals with them smoothly by ensuring the user stays on the same page and sees an error message. This method guarantees that users understand the causes of operational failures and can make necessary changes without having to leave their current task.
+
+
+.............................................................................
+
+
 Lab3 lab4 lab5 lab 8 readme file
 
 .............................................................................
