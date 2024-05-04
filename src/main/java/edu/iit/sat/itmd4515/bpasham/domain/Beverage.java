@@ -38,15 +38,15 @@ import java.util.Objects;
 public class Beverage extends AbstractEntity{
 
 
-    @NotBlank
+    @NotBlank(message = "Beverage name is required and cannot be blank.")
     @Column(name = "BEVERAGE_NAME", nullable=false,unique=true)
     private String name;
 
-    @NotNull
+    @NotNull(message = "Expiry date is required.")
     @Column(name = "BEVERAGE_EXPIRYDATE")
     private LocalDate expiryDate;
 
-    @NotNull
+    @NotNull(message = "Alcoholic status must be specified.")
     @Pattern(regexp = "^(true|false)$", message = "The boolean variable must be either true or false")
     @Column(name = "IS_NON_ALCOHOLIC")
     private String isNonAlcoholic;
@@ -55,22 +55,7 @@ public class Beverage extends AbstractEntity{
     private boolean isDeleted;
 
     
-
-   
-
-    /**
-     * Get the value of isDeleted
-     *
-     * @param isDeleted
-     * 
-     */
-    
-    public void setDeleted(boolean isDeleted) {
-        this.isDeleted = isDeleted;
-    }
-    
-    
-    @NotNull
+    @NotNull(message = "Beverage type is required.")
     @Enumerated(EnumType.STRING)
         private BeverageType type;
 
@@ -249,7 +234,17 @@ public class Beverage extends AbstractEntity{
     public void setIsDeleted(boolean isDeleted) {
         this.isDeleted = isDeleted;
     }
-
+/**
+     * Get the value of isDeleted
+     *
+     * @param isDeleted
+     * 
+     */
+    
+    public void setDeleted(boolean isDeleted) {
+        this.isDeleted = isDeleted;
+    }
+    
 
     //To String Method
 

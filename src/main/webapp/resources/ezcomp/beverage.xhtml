@@ -34,7 +34,8 @@
                         <h:inputText
                             rendered="#{cc.attrs.operation.equalsIgnoreCase('create') or cc.attrs.operation.equalsIgnoreCase('edit')}"
                             readonly="#{cc.attrs.operation.equalsIgnoreCase('view')or cc.attrs.operation.equalsIgnoreCase('delete')}"
-                            id="beverageName" value="#{cc.attrs.beverage.name}" />   
+                            id="beverageName" value="#{cc.attrs.beverage.name}"  required="true"
+                     requiredMessage="Beverage name is required" />   
                         <h:message for="beverageName" errorStyle="color:red" infoStyle="color:green" />
                     </h:panelGroup>
                 </p>
@@ -44,7 +45,8 @@
                         <h:outputLabel value="Expiry Date" for="expiryDate" />
                         <h:inputText
                             readonly="#{cc.attrs.operation.equalsIgnoreCase('view')or cc.attrs.operation.equalsIgnoreCase('delete')}"
-                            p:type="date" id="expiryDate" value="#{cc.attrs.beverage.expiryDate}" > 
+                            p:type="date" id="expiryDate" value="#{cc.attrs.beverage.expiryDate}" required="true"
+                     requiredMessage="Expiry date is required." > 
                             <f:convertDateTime type="localDate" pattern="yyyy-MM-dd" />
                         </h:inputText>
                         <h:message for="expiryDate" errorStyle="color:red" infoStyle="color:green"/>
@@ -56,7 +58,8 @@
                         <h:outputLabel value="Is Alcoholic(true/false)" for="isAlcoholic" />
                         <h:inputText 
                             readonly="#{cc.attrs.operation.equalsIgnoreCase('view')or cc.attrs.operation.equalsIgnoreCase('delete')}"
-                            id="isAlcoholic" value="#{cc.attrs.beverage.isNonAlcoholic}" /> 
+                            id="isAlcoholic" value="#{cc.attrs.beverage.isNonAlcoholic}" required="true"
+                     requiredMessage="Please specify if the beverage is alcoholic."/> 
                         <h:message for="isAlcoholic" errorStyle="color:red" infoStyle="color:green" />
                     </h:panelGroup>
                 </p>
@@ -73,7 +76,8 @@
                         <h:selectOneMenu 
                             readonly="#{cc.attrs.operation.equalsIgnoreCase('view')or cc.attrs.operation.equalsIgnoreCase('delete')}"
                             disabled="#{cc.attrs.operation.equalsIgnoreCase('view')or cc.attrs.operation.equalsIgnoreCase('delete')}"
-                            id="beverageType" value="#{cc.attrs.beverage.type}">
+                            id="beverageType" value="#{cc.attrs.beverage.type}" required="true"
+                         requiredMessage="Please select a beverage type">
 
                             <f:selectItems var="beverageType" 
                                            value="#{supplierBeverageController.allBeverageTypesForForm}"
