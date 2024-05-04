@@ -285,7 +285,6 @@ public class Order extends AbstractEntity {
      * Set the value of orderBeverageDetail
      *
      * @param orderBeverageDetails
-     * @param orderBeverageDetail new value of orderBeverageDetail
      */
     public void setOrderBeverageDetails(List<OrderBeverageDetail> orderBeverageDetails) {
         this.orderBeverageDetails = orderBeverageDetails;
