@@ -34,12 +34,20 @@ public class User {
     @NotBlank(message="Please enter a Password")
     private String password;
 
+    @NotBlank
+    private String email;
+    
     public User() {
     }
+    
 
-    public User(String userName, String password) {
+    
+
+
+    public User(String userName, String password, String email) {
         this.userName = userName;
         this.password = password;
+        this.email = email;
     }
     
     
@@ -111,6 +119,29 @@ public class User {
      */
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+    /**
+     * Get the value of email
+     *
+     * @return the value of email
+     */
+    public String getEmail() {
+        return email;
+    }
+
+    /**
+     * Set the value of email
+     *
+     * @param email new value of email
+     */
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
+    //To String Method
+    @Override
+    public String toString() {
+        return "User{" +  "name=" + userName + "Email ="+email + '}';
     }
 
 }

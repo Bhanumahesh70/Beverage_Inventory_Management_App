@@ -4,11 +4,13 @@
  */
 package edu.iit.sat.itmd4515.bpasham.security;
 
-import edu.iit.sat.itmd4515.bpasham.security.User;
+import edu.iit.sat.itmd4515.bpasham.domain.Customer;
+import edu.iit.sat.itmd4515.bpasham.domain.Supplier;
+import edu.iit.sat.itmd4515.bpasham.service.CustomerService;
+import edu.iit.sat.itmd4515.bpasham.service.SupplierService;
 import jakarta.annotation.PostConstruct;
 import jakarta.ejb.EJB;
 import jakarta.enterprise.context.RequestScoped;
-import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import java.util.List;
 import java.util.logging.Logger;
@@ -23,6 +25,13 @@ public class UserController {
      private static final Logger LOG = Logger.getLogger(UserController.class.getName());
     @EJB
     private UserService userService;
+    
+     @EJB
+    private CustomerService customerService;
+     
+     
+    @EJB
+    private SupplierService supplierService;
 
     @EJB
     private GroupService groupService;
@@ -45,8 +54,26 @@ public class UserController {
 
 
     public String register() {
+        LOG.info("inside UserController.register()");
         newUser.addGroup(selectedRole);
         userService.create(newUser);
+        // Check role and create corresponding entity
+        if ("CUSTOMER_GROUP".equals(selectedRole.getGroupName())) {
+            LOG.info("UserController.register creating customer");
+            Customer customer = new Customer(newUser.getUserName(), newUser.getEmail());
+            customer.setUser(newUser);
+            customerService.create(customer);
+            LOG.info("UserController created customer "+customer.toString());
+        } else if ("SALESMANAGER_GROUP".equals(selectedRole.getGroupName())) {
+            LOG.info("UserController.register creating supplier");
+            Supplier supplier = new Supplier(newUser.getUserName(), newUser.getEmail());
+            supplier.setUser(newUser);
+            supplierService.create(supplier);
+             LOG.info("UserController.register() created supplier "+supplier.toString());
+        }
+        else{
+            LOG.info("UserController.register() unable to createcustomer/supplier");
+        }
         return "/login.xhtml?faces-redirect=true"; // Navigate to login after successful registration
     }
 

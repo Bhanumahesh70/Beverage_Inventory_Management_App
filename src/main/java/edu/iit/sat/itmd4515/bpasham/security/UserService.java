@@ -7,19 +7,29 @@ package edu.iit.sat.itmd4515.bpasham.security;
 import edu.iit.sat.itmd4515.bpasham.service.AbstractService;
 import jakarta.ejb.Stateless;
 import java.util.List;
+import java.util.logging.Logger;
+
 /**
  *
  * @author bhanu
  */
 @Stateless
-public class UserService extends AbstractService<User>  {
+public class UserService extends AbstractService<User> {
+
+    private static final Logger LOG = Logger.getLogger(UserService.class.getName());
 
     public UserService() {
         super(User.class);
     }
 
-    public List<User> findAll(){
+    public List<User> findAll() {
         return super.findAll("User.findAll");
     }
-    
+
+    public void create(User user) {
+        LOG.info("UserService.createUser");
+        LOG.info("Creating a new user: " + user.getUserName());
+        em.persist(user);
+        LOG.info("User created successfully with ID: " + user.toString());
+    }
 }

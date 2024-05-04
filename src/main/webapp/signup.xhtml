@@ -18,7 +18,8 @@
 
                 Password:
                 <h:inputSecret value="#{userController.newUser.password}" required="true" requiredMessage="Password is required"/>
-
+                Email:
+                <h:inputText value="#{userController.newUser.email}" required="true" requiredMessage="Email is required"/>
                 Role:
                 <h:selectOneMenu value="#{userController.selectedRole}" converter="groupConverter">
                     <f:selectItems value="#{userController.groups}" var="group" itemLabel="#{group.groupName}" itemValue="#{group}" />

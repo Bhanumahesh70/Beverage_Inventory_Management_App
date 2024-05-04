@@ -71,40 +71,40 @@ public class StartupDbInitializer {
         groupSvc.create(customerGroup);
         
 
-        User admin1 = new User("admin1", "admin1");
+        User admin1 = new User("admin1", "admin1","admin1@gmail.com");
         admin1.addGroup(adminGroup);
         admin1.addGroup(inventoryManagerGroup );
         admin1.addGroup(customerGroup);
          //admin1.addGroup(salesManagerGroup);
         userSvc.create(admin1);
 
-        User admin2 = new User("admin2", "admin2");
+        User admin2 = new User("admin2", "admin2","admin2@gmail.com");
         admin2.addGroup(adminGroup);
         admin2.addGroup(inventoryManagerGroup );
         userSvc.create(admin2);
 
-        User invManager1 = new User("inventoryManager1", "inventoryManager1");
+        User invManager1 = new User("inventoryManager1", "inventoryManager1","im1@gmail.com");
         invManager1.addGroup(inventoryManagerGroup);
         invManager1.addGroup(adminGroup);
         userSvc.create(invManager1);
 
-        User invManager2 = new User("inventoryManager2", "inventoryManager2");
+        User invManager2 = new User("inventoryManager2", "inventoryManager2","im2@gmail.com");
         invManager2.addGroup(inventoryManagerGroup);
         userSvc.create(invManager2);
         
-        User salesManager1 = new User("salesManager1", "salesManager1");
+        User salesManager1 = new User("salesManager1", "salesManager1","salesManager1@gmail.com");
         salesManager1.addGroup(salesManagerGroup);
         userSvc.create(salesManager1);
 
-        User salesManager2 = new User("salesManager2", "salesManager2");
+        User salesManager2 = new User("salesManager2", "salesManager2","salesManager2@gmail.com");
         salesManager2.addGroup(salesManagerGroup);
         userSvc.create(salesManager2);
         
-         User customer1 = new User("customer1", "customer1");
+         User customer1 = new User("customer1", "customer1","customer1@gmail.com");
         customer1.addGroup(customerGroup);
         userSvc.create(customer1);
 
-        User customer2 = new User("customer2", "customer2");
+        User customer2 = new User("customer2", "customer2","customer2@gmail.com");
         customer2.addGroup(customerGroup);
         userSvc.create(customer2);
         // End Security Realm intialization
