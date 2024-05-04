@@ -229,3 +229,67 @@ main {
 /* */
 /*css for view order end*/
 /* */
+
+
+/* */
+/*supplierWelcome Controller css*/
+/* */
+/* Overall Page Enhancements */
+.table-heading {
+    text-align: center;
+    margin-top: 30px;
+    color: #495057;
+}
+
+/* Styling for beverage details table */
+.beverage-details {
+    margin-top: 20px;
+    background-color: #f8f9fa; /* Light grey background for distinction */
+    border: 1px solid #dee2e6;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.beverage-details th {
+    background-color: #e9ecef; /* Slightly darker header for contrast */
+    color: #495057;
+}
+
+/* Styling for order details table */
+.order-details {
+    margin-top: 30px; /* More space from the previous table */
+    background-color: #ffffff; /* White background for clean contrast */
+    border: 1px solid #dee2e6;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.order-details th {
+    background-color: #007bff; /* Blue background for header */
+    color: #ffffff;
+}
+
+/* Responsive adjustments for tables */
+@media (max-width: 768px) {
+    .beverage-details, .order-details {
+        width: 100%;
+        margin-top: 20px;
+    }
+}
+
+/* Button enhancements for actions */
+.h-form .btn {
+    margin: 5px; /* Spacing between buttons */
+    width: auto; /* Adjust width to content */
+}
+
+.h-form .btn-primary, .h-form .btn-danger {
+    padding: 5px 10px;
+}
+
+/* Confirm dialog styling */
+.h-form .btn-danger:active, .h-form .btn-primary:active {
+    box-shadow: none; /* Remove shadow when clicked for cleaner look */
+}
+
+/* */
+/*supplierWelcome Controller css */
+/* */

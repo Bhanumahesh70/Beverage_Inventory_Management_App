@@ -14,8 +14,9 @@
         Welcome #{loginController.authenticatedUser}!! to the Supplier section of the Beverage Inventory Application
 
         <h:link outcome="/supplier/createNewBeverage.xhtml">Create a New Beverage</h:link>
+        <h2 class="table-heading">Beverage Details</h2>
         <h:dataTable 
-            styleClass="table table-striped table-hover"
+            styleClass="table table-striped table-hover beverage-details"
             value="#{supplierWelcomeController.supplier.beverage}" var="beverage" >
             <h:column>
                 <f:facet name="header">Beverage Id</f:facet>
