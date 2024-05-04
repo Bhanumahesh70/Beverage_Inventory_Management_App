@@ -316,3 +316,68 @@ main {
 /* */
 /*supplierWelcome Controller css */
 /* */
+
+/* */
+/*Beverage ezcomp*/
+/* */
+/* General form styling */
+.supplier-form {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin-top: 20px;
+}
+
+/* Styling labels for better readability */
+.supplier-form label {
+    font-weight: bold;
+    color: #495057;
+    margin-bottom: 5px;
+}
+
+/* Style for input fields to make them more appealing */
+.supplier-form input, .supplier-form select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    box-sizing: border-box; /* Makes sure padding doesn't affect the width */
+}
+
+/* ReadOnly fields styling to differentiate from editable ones */
+.supplier-form input[readonly], .supplier-form select[disabled] {
+    background: #e9ecef;
+    opacity: 0.8;
+}
+
+/* Styling for action buttons */
+.supplier-form button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.supplier-form button:hover {
+    background-color: #0056b3;
+}
+
+/* Error message styling */
+.supplier-form .error {
+    color: #dc3545;
+    font-size: 0.875em;
+}
+
+/* Info message styling */
+.supplier-form .info {
+    color: #17a2b8;
+    font-size: 0.875em;
+}
+
+/* */
+/* */
+/* */
