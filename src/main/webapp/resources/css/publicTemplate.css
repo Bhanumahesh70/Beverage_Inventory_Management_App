@@ -256,3 +256,20 @@ body{
 /* */
 /*signup css end */
 /* */
+
+.btn-link {
+    display: block; /* Ensures the link fills the button area for easier clicking */
+    width: 100%; /* Full-width to match the login button */
+    text-align: center; /* Centers the text */
+    padding: 10px; /* Adds padding to increase the clickable area and aesthetics */
+    margin-top: 10px; /* Adds space above the link */
+    background-color: #f8f9fa; /* Light background to distinguish it from the login button */
+    color: #007bff; /* Keeps link color consistent with button styles */
+    text-decoration: none; /* Removes underline */
+    border-radius: 5px; /* Optional: adds rounded corners to mimic button style */
+}
+
+.btn-primary, .btn-secondary {
+    width: 100%; /* Ensures each button uses the full width of its container */
+    margin-bottom: 10px; /* Adds space between the buttons */
+}
