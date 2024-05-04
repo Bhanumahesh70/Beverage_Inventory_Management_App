@@ -101,34 +101,7 @@ public class PlaceOrderController {
         return "/customer/viewOrder.xhtml";
     }
 
-    public String displayEditOrderPage(Order o) {
-        //step-1
-        LOG.info("Inside PlaceOrderController.displayEditPage with model o.toString() " + o.toString());
-        this.order = o;
-        LOG.info("Inside PlaceOrderController.displayEditPage with model order.toString() " + o.toString());
-
-        LOG.info("Inside PlaceOrderController.displayEditOrderPage with model " + o.toString());
-        LOG.info("Order in displayEditOrderPage: " + order.toString());
-        LOG.log(java.util.logging.Level.INFO, "Oder OrderBevergaeDetail: {0}", order.getOrderBeverageDetails().toString());
-        LOG.info("Order.getCustomer(): " + order.getCustomer());
-        //LOG.info("customer: " + customer);
-        LOG.info("Order.supplier: " + order.getSupplier());
-
-        //step-2
-        return "/customer/editOrder.xhtml";
-    }
-
-    public String displayDeleteOrderPage(Order o) {
-        if (o == null || o.getId() == null) {
-            LOG.info("Attempted to navigate to delete page with invalid order data.");
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Navigation Error", "Cannot navigate to delete page, order data is incomplete."));
-            return null; // Navigate back or show an error message
-        }
-        LOG.info("Inside PlaceOrderController.DeletePage with model o.toString() " + o.toString());
-        this.order = o;
-        LOG.info("Inside PlaceOrderController.DeletePage with model Order.toString()" + order.toString());
-        return "/customer/deleteOrder.xhtml";
-    }
+    
 
     public String placeOrder() {
         LOG.info("Starting to place an order");
@@ -172,40 +145,6 @@ public class PlaceOrderController {
         } catch (Exception e) {
             LOG.info("Error placing order: {}" + e.getMessage());
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error placing order. select items and enter quantity to place an order", e.getMessage()));
-            return null; // Stay on the same page
-        }
-    }
-
-    public String updateOrder() {
-        //order= orderService.findOrderById(orderID);
-        LOG.info("Inside PlaceOrderController.updateOrder with Order ID: {}" + order.getId());
-        LOG.info("Order in PlaceOrderController.updateOrder: " + order.toString());
-        LOG.info("getOrderBeverageDetailstoString()" + order.getOrderBeverageDetailstoString());
-        LOG.log(java.util.logging.Level.INFO, "Oder OrderBevergaeDetail: {0}", order.getOrderBeverageDetails().toString());
-
-        if (order == null || order.getId() == null) {
-            LOG.info("PlaceOrderController.updateOrder: Order is null");
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Invalid order data."));
-            return null; // Stay on the same page to correct data
-        }
-        try {
-            LOG.info("PlaceOrderController.updateOrder: " + order.toString());
-            boolean isOrderUpdated = orderService.updateOrder(order);
-            if (isOrderUpdated) {
-                LOG.info("PlaceOrderController After Update");
-                LOG.info("Order: " + order.toString());
-                LOG.info("getOrderBeverageDetailstoString()" + order.getOrderBeverageDetailstoString());
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Success", "Order successfully updated."));
-                cwc.refreshCustomerModel();
-                return "/customer/welcome.xhtml?faces-redirect=true";
-
-            } else {
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Failure", "Order could not be updated"));
-                return null; // Stay on the same page
-            }
-        } catch (Exception e) {
-            LOG.info("Error updating order: {}" + e.getMessage());
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error updating order", e.getMessage()));
             return null; // Stay on the same page
         }
     }
