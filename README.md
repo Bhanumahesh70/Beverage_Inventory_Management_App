@@ -53,7 +53,8 @@ The BeverageInventory system's main objective is to simplify the beverage indust
 - **Functionalities tailored for individual users:**
   - The system offers customized features for both customers and suppliers, improving user experience and productivity for various user roles.
 
-.............................................................................
+...
+
 #For Extra Credit
 
 # Improved Method of Managing Errors and Providing Information to Users
@@ -68,8 +69,6 @@ In the application, especially in important areas like beverage management, JSF'
 
 This technique records in-depth error messages through Java's logging system to track and analyze encountered problems while operating.
 
-## Insights on How to Put Ideas or Plans into Action
-
 ### Prompt Feedback on the Results of a Procedure
 
 By making use of `FacesContext.getCurrentInstance().addMessage()`, the system offers instant feedback on the results of operations. If there is an error caused by entering incorrect data when saving a drink, the user will be promptly notified with a detailed error message, which helps avoid confusion and assists in addressing the input problem.
@@ -79,7 +78,7 @@ By making use of `FacesContext.getCurrentInstance().addMessage()`, the system of
 The system is created to predict and handle possible mistakes. For instance, the app looks for potential issues that might occur while making a drink and deals with them smoothly by ensuring the user stays on the same page and sees an error message. This method guarantees that users understand the causes of operational failures and can make necessary changes without having to leave their current task.
 
 
-.............................................................................
+...
 
 
 Lab3 lab4 lab5 lab 8 readme file
