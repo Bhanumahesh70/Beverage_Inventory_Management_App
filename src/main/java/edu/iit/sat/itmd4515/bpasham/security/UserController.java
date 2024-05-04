@@ -42,7 +42,7 @@ public class UserController {
     private List<Group> groups;
 
     /**
-     *No arg constructor
+     * No arg constructor
      */
     public UserController() {
     }
@@ -56,9 +56,11 @@ public class UserController {
     }
 
     /**
-     *=constructor
+     * =constructor
+     *
      * @return
      */
+    /*
     public String register() {
         LOG.info("inside UserController.register()");
         newUser.addGroup(selectedRole);
@@ -81,9 +83,27 @@ public class UserController {
         }
         return "/login.xhtml?faces-redirect=true"; // Navigate to login after successful registration
     }
+     */
+    public String register() {
+        LOG.info("inside UserController.register()");
+        newUser.addGroup(groupService.findByName("CUSTOMER_GROUP"));
+        LOG.info("UserController.register creating customer");
+        userService.create(newUser);
+        Customer customer = new Customer(newUser.getUserName(), newUser.getEmail());
+        customer.setUser(newUser);
+        customerService.create(customer);
+        LOG.info("UserController created customer " + customer.toString());
+        if (newUser.getRequestedSupplierRole()) {
+            // Mark the user as requesting supplier access
+            newUser.setRequestedSupplierRole(true);
+            userService.update(newUser);  // Assume there's an update method in userService
+        }
+        return "/login.xhtml?faces-redirect=true";
+    }
 
     /**
-     *Method to return to home page from signup page when customer clicks back
+     * Method to return to home page from signup page when customer clicks back
+     *
      * @return
      */
     public String cancel() {
@@ -109,9 +129,9 @@ public class UserController {
     }
 
     // Getters and Setters
-
     /**
-     *get the value of NewUser
+     * get the value of NewUser
+     *
      * @return
      */
     public User getNewUser() {
@@ -119,7 +139,8 @@ public class UserController {
     }
 
     /**
-     *set the value ofNewUser
+     * set the value ofNewUser
+     *
      * @param newUser
      */
     public void setNewUser(User newUser) {
@@ -127,7 +148,8 @@ public class UserController {
     }
 
     /**
-     *get the value of SelectedRole
+     * get the value of SelectedRole
+     *
      * @return
      */
     public Group getSelectedRole() {
@@ -135,7 +157,8 @@ public class UserController {
     }
 
     /**
-     *set the value of SelectedRole
+     * set the value of SelectedRole
+     *
      * @param selectedRole
      */
     public void setSelectedRole(Group selectedRole) {

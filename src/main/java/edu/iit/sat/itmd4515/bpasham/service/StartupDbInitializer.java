@@ -84,20 +84,21 @@ public class StartupDbInitializer {
         customer2.addGroup(customerGroup);
         userSvc.create(customer2);
         
-        //Group adminGroup = new Group("ADMIN_GROUP", "Group for administartive users");
+        Group adminGroup = new Group("ADMIN_GROUP", "Group for administartive users");
+         groupSvc.create(adminGroup);
         //Group inventoryManagerGroup = new Group("INVENTORYMANAGER_GROUP", "Group for inventory managers");
-        //groupSvc.create(adminGroup);
         //groupSvc.create(inventoryManagerGroup);
 
         
-        /*
+        
         User admin1 = new User("admin1", "admin1","admin1@gmail.com");
         admin1.addGroup(adminGroup);
-        admin1.addGroup(inventoryManagerGroup );
-        admin1.addGroup(customerGroup);
+        //admin1.addGroup(inventoryManagerGroup );
+        //admin1.addGroup(customerGroup);
          //admin1.addGroup(salesManagerGroup);
         userSvc.create(admin1);
 
+        /*
         User admin2 = new User("admin2", "admin2","admin2@gmail.com");
         admin2.addGroup(adminGroup);
         admin2.addGroup(inventoryManagerGroup );

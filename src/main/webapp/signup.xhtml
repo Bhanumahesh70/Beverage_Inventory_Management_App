@@ -27,6 +27,9 @@
                     <h:selectOneMenu id="role" value="#{userController.selectedRole}" converter="groupConverter">
                         <f:selectItems value="#{userController.groups}" var="group" itemLabel="#{group.groupName}" itemValue="#{group}"/>                                    
                     </h:selectOneMenu>
+                    <h:selectBooleanCheckbox value="#{userController.newUser.requestedSupplierRole}" />
+                    <h:outputLabel for="requestedSupplierRole" value="Request Supplier Access" />
+
 
                     <f:facet name="footer">
                         <div class="footer">
