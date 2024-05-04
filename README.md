@@ -160,7 +160,7 @@ User can signup as a customer but need to request for access to be a supplier
 
 ## Admin Portal
 Admin can view the user requests for supplier access and can arrpove them
-![image](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/0939aab2-12bf-47d5-af88-e0a239bf7c58)
+![image](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/e45470e8-8568-42c4-b880-ecf14093780a)
 
 
 ## Welcome Page for User
