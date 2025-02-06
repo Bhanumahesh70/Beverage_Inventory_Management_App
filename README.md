@@ -1,20 +1,106 @@
-# Project Summary
+# Beverage Inventory Management Application
 
 A complete platform created to promote smooth interactions between suppliers and customers in the beverage sector is the BeverageInventory system. Customers and suppliers may effectively handle their transactions in an environment with two interfaces, each adapted to their unique responsibilities and requirements, thanks to this reliable technology.
 
-## For Customers:
-Consumers can use the internet and peruse an extensive assortment of drinks divided into categories including soda, wine, liquor, and water. Customers can use the system to order beverages of their choice, indicate how much they want to buy, and pick from a list of providers. Customers can monitor the status of their orders—which can be marked as "Placed" or "Cancelled"—after they are placed. Additionally, they can easily check comprehensive order details and remove orders as needed. To ensure that order processing is simple and consistent, once an order is placed, it cannot be changed.
+---
+# Table of Contents
+1. [Project Objectives](#project-objectives)   
+2. [What's in the application](#whats-in-the-application)
+      - [For Customers](#for-customers)
+      - [For Supplier](#for-supplier)
+      - [For Admin](#for-admin)
+        
+4. [Interaction With the Application](#interaction-with-the-application)
+   - [User Interface for Customers](#user-interface-for-customers)
+   - [User Interface for Suppliers](#user-interface-for-suppliers)
+   - [Flow of Direction](#flow-of-direction)
+   
+6. [Factors Considered While Designing the System](#factors-considered-while-designing-the-system)
+7. [Other Features](#other-features)
+   - [Improved Method of Managing Errors and Providing Information to Users](#improved-method-of-managing-errors-and-providing-information-to-users)
+   - [Comprehensive Logging and Messaging with Specific Details](#comprehensive-logging-and-messaging-with-specific-details)
+8. [Requirements](#requirements)
+   - [Prerequisites](#Prerequisites)
+   - [Installation and Setup](#installation-and-setup)
+   - [Building the Project](#building-the-project)
+   - [Deploying to Payara Server](#deploying-to-payara-server)
+   - [Running the Application](#running-the-application)
+   - [Versions of Tools, Libraries, and APIs](#versions-of-tools-libraries-and-apis)
+      
+9. [Display of Fronted Ui of the Application](#display-of-fronted-ui-of-the-application)
+10. [Key Findings in Development](#key-findings-in-development)
+    - [Lessons I Gained](#lessons-i-gained)
+    - [Topics to Explore Further](#topics-to-explore-further)
+    - [Preferences and Aversions](#preferences-and-aversions)
+11. [Conclusion](#conclusion)
 
-## For Suppliers:
-Suppliers are able to manage their beverage listings through a dedicated interface. This includes adding new drinks to the inventory, changing the details of already-existing drinks, and eliminating drinks as necessary. In order to fulfill or cancel orders depending on inventory levels or other operational factors, suppliers can monitor orders placed by customers that are linked to them. This direct communication with the orders guarantees customer pleasure and contributes to the upkeep of an effective supply chain.
 
-## For Admin:
-User can signup as a customer to the portal. But needs to request access to be a supplier. These requests will be directed to admin, who is the only user who can approve these requests.
 
-## System Objectives:
+
+---
+# Project Objectives:
 The BeverageInventory system's main objective is to simplify the beverage industry's order placement and fulfillment process by cutting complexity and improving user experience for suppliers and customers alike. Through its intuitive interface and instantaneous order status updates, the system fosters efficiency and transparency, resulting in enhanced customer satisfaction and service delivery. Strong data management and user-specific features supported by the system's design guarantee that both parties can perform efficiently and promote a responsive and dependable beverage transaction marketplace. The BeverageInventory system gives suppliers wishing to increase market share and improve operational efficiency—or customers searching for a quick and simple way to stock up on beverages—the resources they need to accomplish these goals precisely and easily.
 
-# Implemented Features
+---
+# What's in the application:
+
+## For Customers:
+
+### Customer Features  
+- **Extensive Beverage Selection**  
+  - Browse a wide variety of drinks categorized as:  
+    - Soda  
+    - Wine  
+    - Liquor  
+    - Water  
+
+- **Order Management**  
+  - Place orders for beverages of choice  
+  - Specify the desired quantity  
+  - Choose from a list of available providers  
+
+- **Order Tracking**  
+  - Monitor order status:  
+    - **Placed** – Order successfully submitted  
+    - **Cancelled** – Order has been canceled  
+  - View detailed order information  
+  - Remove orders if needed  
+
+- **Order Processing Rules**  
+  - Orders cannot be modified once placed to ensure smooth processing  
+
+## For Supplier:
+
+### Supplier Features:
+- **Beverage Management**  
+  - Add new drinks to the inventory  
+  - Update details of existing drinks  
+  - Remove drinks when necessary  
+
+- **Order Management**  
+  - Monitor customer orders linked to them  
+  - Fulfill or cancel orders based on:  
+    - Inventory levels  
+    - Operational factors  
+
+- **Efficient Supply Chain Maintenance**  
+  - Ensure smooth order fulfillment  
+  - Maintain direct communication with orders for better customer satisfaction
+
+## For Admin:
+### Admin Features  
+
+- **User Management**  
+  - Customers can sign up freely  
+  - Supplier access requires approval  
+
+- **Supplier Approval**  
+  - Admin receives and reviews supplier requests  
+  - Only the admin can approve supplier access
+    
+---
+
+# Interaction With the Application
 
 ## User Interface for Customers:
 - **See the selection of drinks that are ready to be served:**
@@ -26,7 +112,7 @@ The BeverageInventory system's main objective is to simplify the beverage indust
 - **Abort Orders:**
   - If orders are in the 'Placed' status, customers can choose to cancel them.
 
-## Interface for Suppliers:
+## User Interface for Suppliers:
 - **Handle Drinks:**
   - Suppliers have the ability to add new beverages, modify information of current beverages, and remove beverages from inventory. Removed beverages can't be seen by clients but are still stored in the database.
 - **Monitor and Handle Orders:**
@@ -42,25 +128,25 @@ The BeverageInventory system's main objective is to simplify the beverage indust
 - **Order Confirmation ➔ Check Order Details/Cancel Order:**
   - After an order is finalized, clients have the option to either check the specific details of the order or delete it through their order history section.
 
-### Seen from the supplier's point of view:
+### Viewing things from the supplier's point of view:
 - **Login for Suppliers ➔ Beverage Management:**
   - Upon entering the supplier portal, suppliers have the ability to access the beverage management section to make modifications to beverages by adding, editing, or deleting them.
 - **Changes to Drinks ➔ Managing Orders:**
   - Suppliers transition from handling beverages to observing associated orders, allowing them to mark each order as finished or canceled.
-
-## Factors to Consider When Designing a System:
+    
+---
+# Factors Considered While Designing the System:
 - **Retention of data for deleted items:**
   - The database stores information on beverages and orders even after they are deleted or cancelled, maintaining data integrity and enabling analysis of historical data.
 - **Actions are limited based on the status of the order:**
   - Orders can solely be cancelled or removed if they are in the 'Placed' status to avoid conflicts and inconsistencies in order handling.
 - **Functionalities tailored for individual users:**
   - The system offers customized features for both customers and suppliers, improving user experience and productivity for various user roles.
+---
 
-...
+# Other Features
 
-#For Extra Credit
-
-# Improved Method of Managing Errors and Providing Information to Users
+## Improved Method of Managing Errors and Providing Information to Users
 
 Special focus was placed on robust error handling and interactive user feedback in the creation of the BeverageInventory system to guarantee a smooth user experience. The following information outlines how these improvements have been integrated:
 
@@ -80,12 +166,11 @@ By making use of `FacesContext.getCurrentInstance().addMessage()`, the system of
 
 The system is created to predict and handle possible mistakes. For instance, the app looks for potential issues that might occur while making a drink and deals with them smoothly by ensuring the user stays on the same page and sees an error message. This method guarantees that users understand the causes of operational failures and can make necessary changes without having to leave their current task.
 
+---
 
-
-.............................................................................
 # Requirements
 
-This section outlines the necessary steps to install, build, and run the BeverageInventory project. The project is built using Jakarta EE with Payara Server and connects to an SQL database.
+This section outlines the necessary steps to install, build, and run the BeverageInventory project. The project is built using Jakarta EE with Mavan, Payara Server and connects to an SQL database.
 
 ## Prerequisites
 
@@ -149,22 +234,28 @@ Once deployed, the application can be accessed via a web browser:
 - **EclipseLink JPA:** 4.0.2 (for testing)
 - **Hibernate Validator:** 8.0.1.Final (for validation in testing)
 - **Expressly:** 5.0.0 (for testing)
-# Screen Captures
+---
+
+# Display of Fronted Ui of the Application 
 
 ## Login Page
+
 ![Login Page](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/4cfc09db-f4e9-479e-ab34-53199aea44ae)
 
 ## Reister Page
 User can signup as a customer but need to request for access to be a supplier
+
 ![image](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/70c25898-eb53-4f38-9e3d-b9059d19b485)
 
 ## Admin Portal
 Admin can view the user requests for supplier access and can aprrove them
+
 ![image](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/e45470e8-8568-42c4-b880-ecf14093780a)
 
 
 ## Welcome Page for User
 This page includes a navigation bar for easy user navigation.
+
 ![Welcome Page](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/a88cb223-a0b3-4265-ac61-291f10179c02)
 
 ## Supplier Portal
@@ -199,6 +290,7 @@ This page includes a navigation bar for easy user navigation.
   
 - **Username:** `admin1`
 - **Password:** `admin1`
+---
 
 # Key Findings in Development
 
@@ -226,207 +318,9 @@ This part provides a firsthand account of the evolution of the BeverageInventory
 
 - **Complicated Error Management:** Despite being efficient, dealing with complex error handling situations could be difficult at times because of the detailed dependencies and the requirement for careful debugging.
 - **Improving Performance:** Difficulties in enhancing the system's performance, especially in terms of database interactions, were challenging and brought attention to areas requiring efficiency enhancements.
+---
 
-## Conclusion
+# Conclusion
 
 The creation of the BeverageInventory system provided a thorough educational journey, encountering both difficulties and successes. It offered a hands-on use of theoretical knowledge and introduced me to new technologies and methodologies which will definitely help with my upcoming projects.
 
-.............................................................
-Lab3 lab4 lab5 lab 8 readme file
-
-.............................................................................
-
-**Lab8 Screenshots**
-
-![image](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/03ccda17-382e-4904-af80-43cbfeeec678)
-
-//////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////
-
-![image](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/f3e8f9ef-5eb2-4823-98f4-9cf00deec1e5)
-
-//////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////
-
-**Inventory Manager1 has access to inventoryManager role, admin role and customer role. Screenshots of the access are added below:**
-
-//////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////
-
-![image](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/cd6b30d4-fcd5-4bb1-927f-9aee46a44990)
-
-///////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////
-
-![image](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/59906865-2abe-4672-a2ac-5bbd07259dc7)
-
-//////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////
-
-![image](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/67a4ecc0-8e77-4fdc-baf1-2d210130828b)
-
-//////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////
-
-![image](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/d6cba810-2359-4af3-86af-23ff9e1b0d7a)
-
-//////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////
-
-![image](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/d5b6d7ae-994d-4da3-a009-f60965f60c5a)
-
-//////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////
-
-
-**User names and Passwords**
-
-UserName: admin1
-
-Password: admin1 
-
-
-UserName: admin2
-
-Password: admin2
-
-
-UserName: customer1
-
-Password: customer1
-
-
-UserName: customer2
-
-Password: customer2
-
-
-UserName: inventoryManager1
-
-Password: inventoryManager1
-
-
-UserName: inventoryManager2
-
-Password: inventoryManager2
-
-
-UserName: salesManager1
-
-Password: salesManager1
-
-
-UserName: salesManager2
-
-Password: salesManager2
-
-**Users and access roles**
-
-admin1 has access to ADMIN_GROUP
-
-admin2 has access to ADMIN_GROUP
-
-inventoryManager1 has access to ADMIN_GROUP, CUSTOMER_GROUP, INVENTORYMANAGER_GROUP
-
-inventoryManager2 has access to CUSTOMER_GROUP,  INVENTORYMANAGER_GROUP
-
-salesManager1 has access to  SALESMANAGER_GROUP
-
-salesManager2 has access to  SALESMANAGER_GROUP
-
-customer1 has access to CUSTOMER_GROUP
-
-customer2 has access to CUSTOMER_GROUP
-
- 
-
-
-..............................................................................
-**Lab5 Screenshot**
-Screenshot of passing all test cases:
-![Screenshot (1651)](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/86c7d2a0-64ca-4dd2-8131-51b3e28a1276)
-
-..........................................................................................
-**lab4**
-
-**1. Paragraph that describes the business domain you have chosen to work with, and why?**
-
-The domain I have chosen to work with is managing beverage inventory. I have chosen this domain as it can be a part of a large inventory managing system in a store, where we can tackle the beverages sales, and beverage types, and can distinguish between alcohol and non-alcohol beverages. Furthermore, the domain of choice may correspond with business prospects in the food and beverage sector, where effective inventory and sales management can result in lower costs and higher levels of customer satisfaction.
-
-**2. Write a second paragraph answering the following questions: There is only one entity required for Lab 4, but what other entities from your business domain can you think of? How might they relate to one another? You can answer this in narrative form, or you can answer it with a database diagram.**
-
-The beverage business domain may also include the Supplier, Customer, Order, and Inventory entities in addition to the Beverage entity. There would be a variety of relationships between these entities like a supplier can offer a variety of beverage types, the relationship between the Supplier and Beverage entities, for instance, would be one to many. Similar to this, since customers can buy various kinds of beverages and multiple customers can buy beverages, there may be a many-to-many relationship between the Customer and Beverage entities. Customers' purchases would be connected to the Order entity, which would stand in for the beverage-related transactions. Furthermore, because it would monitor each drink's stock levels, the Inventory entity and the Beverage entity could have a one-to-one or one-to-many relationship.
-
-**OutPut Screenshots**
-
-Bean Validation and JPA test was done. In bean Vaildation test the bean constraints set as not null for data types Beverge name, isAlcoholic, Beverage type, expiry data was tested. Additionaly, the boolean datatype isNonAlcoholic beverage which was constrained to have only true|false as data types entry was tested.
-validateNameNotBlank() :verifies whether the validator finds a breach in the event that the beverage name is left blank.
-
-When the expiry date is null, validateExpiryDateNotNull() confirms that the validator has found a violation.
-
-validateIsNonAlcoholicPattern(): Verifies whether the isNonAlcoholic attribute violates the specified pattern when the validator finds a violation.
-
-When the beverage type is null, the validateBeverageTypeNotNull() function makes sure the validator notices the infraction.
-
-validateValidBeverage(): Confirms that when all of the beverage object's attributes are valid, the validator does not report any violations.
-
-![Screenshot (1649)](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/03fdd928-ab9a-46fd-9a9c-0f0cf8677c51)
-
-**Maven Terminal output**
-![Screenshot (1650)](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/4154f9f1-2b99-45d4-bcd8-1712f28cfba0)
-
-...............................................................................................................................................................................................................................
-
-**Lab3:**
-
-**Form before valid submission:**
-
-![image](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/f71432aa-4986-40de-bfad-a24f9331344c)
-
-
-
-
-**Confirmation page after valid submission:**
-
-![image](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/a56e7d4c-af57-4ae0-8fb5-78d9adb0ee6f)
-
-
-**Payars Serve console output for valid submission**
-
-![image](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/07eac57f-2607-4dc8-8041-2d1195db58d8)
-
-
-
-**Form before bad input submission**
-
-![image](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/f279c483-62f2-4107-b8f8-ed796a547e07)
-
-
-
-**Form after bad input submission displaying error messages**
-
-![image](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/99cd98f4-74d3-441f-a622-1870801c3a2d)
-
-
-
-**Parayara server console output for invalid submission**
-
-![image](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/385cc0e3-e491-42d6-bedf-ffac7bb80aa5)
-
-
-
-**1) Your understanding of the difference between the forward and redirect operations.** 
- forward:
-A request that is internally routed to another resource is an example of an internal server activity. involves just one request-response cycle, and the internal procedure is hidden from the client. The browser's URL stays the same. frequently employed for an application's internal navigation.
-Redirect:
-involves telling the client to submit a new request to a different URL through communication. involves two cycles of requests and responses, and the browser modifies the URL in accordance. frequently employed in situations when material has been transferred permanently or for external redirects.
-
-**2) How would you be validating user submissions without the Bean Validation API standard?**
-Developers must provide their own unique validation logic inside the application's codebase if the Bean Validation API is not available. This means developing custom validation techniques to make sure user submissions meet predetermined standards. This method adds more lines of code and may present maintenance issues, but it also allows for customization of validations to meet unique requirements. Code redundancy could occur in the absence of a consistent validation API, therefore careful management is essential to preserving consistency throughout the application's various components. Custom logic offers flexibility, but it also may result in code duplication and require more work during development and maintenance.
-
-**3) How do you think this approach would scale to a real application with 100's of entities?**
-Scalability issues could arise if hundreds of entities in a real application had specific validation logic implemented. Errors, redundant code, and complicated maintenance are increased when validations are created and managed manually for every entity. The effort needed to maintain efficient and consistent validation across several entities increases significantly as the program grows. By offering a uniform and declarative approach, easing the load of manual validation implementation, and improving maintainability in large-scale applications, a standardized validation API—like the Bean Validation API—offers a more scalable alternative.
-
-
-**4) Why didn't we need to include any additional dependencies (i.e. Bean Validation, JDBC) in this project?**
-It doesn't provide the exact project context, but it offers some options if you didn't want extra requirements like JDBC or Bean Validation. First off, since it doesn't call for in-depth validation or direct database interfaces, the project might be rather straightforward. As an alternative, it's possible that the project is making use of a platform or framework that manages some functions by default, reducing the need for explicit dependencies. The lack of further dependencies could also point to a purposeful design decision, like depending on language characteristics or specially made implementations that meet the demands of the project. In general, the objectives and nature of the project determine if external dependencies are required.
