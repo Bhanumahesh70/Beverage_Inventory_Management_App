@@ -8,7 +8,8 @@ Below is a walkthrough of the key UI pages and their functionalities.
 ---
 
 ## Login Page  
-![Login Page](link-to-image)  
+![Login Page](<img width="473" height="295" alt="Login Page" src="https://github.com/user-attachments/assets/303e4b63-1e73-43b9-a1d3-12660476c148" />
+)  
 
 - Allows users to **log in** with a username and password.  
 - Provides options to **sign up for a new account**.  
@@ -17,7 +18,8 @@ Below is a walkthrough of the key UI pages and their functionalities.
 ---
 
 ## Sign Up Page  
-![Sign Up Page](link-to-image)  
+![Sign Up Page](<img width="282" height="277" alt="Signup Page" src="https://github.com/user-attachments/assets/422f3a4a-52dd-45b8-a63e-c3652a42c1ce" />
+)  
 
 - Users can **register as a Customer** by default.  
 - Option to **request supplier access** during registration.  
@@ -26,7 +28,8 @@ Below is a walkthrough of the key UI pages and their functionalities.
 ---
 
 ## Admin Portal  
-![Admin Portal](link-to-image)  
+![Admin Portal](<img width="817" height="323" alt="Admin Portal" src="https://github.com/user-attachments/assets/7395eef6-41ac-4967-a423-c20fc3bafd05" />
+)  
 
 - Admin can **review and approve supplier access requests**.  
 - Displays a list of pending requests with an **Approve button**.  
@@ -35,7 +38,8 @@ Below is a walkthrough of the key UI pages and their functionalities.
 ---
 
 ## Supplier Dashboard  
-![Supplier Dashboard](link-to-image)  
+![Supplier Dashboard](<img width="819" height="375" alt="Supplier Page" src="https://github.com/user-attachments/assets/a258cbcb-2e87-4783-b4b9-3fc7894c9a47" />
+)  
 
 - Supplier users see a **welcome page with navigation bar** for quick access.  
 - Can view their **inventory of beverages** and manage details.  
