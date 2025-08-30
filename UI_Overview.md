@@ -1,7 +1,8 @@
-# Beverage Inventory Management System – UI Overview  
+# Quick Read- AI Book Summary Android App – UI Overview  
 
-This application is designed to manage beverage inventory with **multi-role access (Admin, Supplier, Customer)**.  
-It is built using **Jakarta EE, Java 11, JSF, and Payara Server** for backend and provides a responsive UI for seamless user interaction.  
+This application is designed to search, explore, and save books while generating **AI-powered summaries** using **Gemini AI API**.
+
+Built with **Java**, **Andriod Studios**, **Google Books API**, **Firebase Authentication & Realtime Database**, **Gemini AI API**, and **Material Design**.
 
 Below is a walkthrough of the key UI pages and their functionalities.  
 
