@@ -241,6 +241,9 @@ Once deployed, the application can be accessed via a web browser:
 ## Login Page
 
 ![Login Page](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/4cfc09db-f4e9-479e-ab34-53199aea44ae)
+<img width="473" height="295" alt="Login Page" src="https://github.com/user-attachments/assets/6b245037-0e0a-4453-9e9f-b405ff9c758c" />
+
+
 
 ## Reister Page
 User can signup as a customer but need to request for access to be a supplier
