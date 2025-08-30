@@ -8,7 +8,7 @@ Below is a walkthrough of the key UI pages and their functionalities.
 ---
 
 ## Login Page  
-![Login Page](UI Images/Login Page.png)  
+![Login Page](UI_Images/Login_Page.png)  
 
 - Allows users to **log in** with a username and password.  
 - Provides options to **sign up for a new account**.  
@@ -17,8 +17,7 @@ Below is a walkthrough of the key UI pages and their functionalities.
 ---
 
 ## Sign Up Page  
-![Sign Up Page](<img width="282" height="277" alt="Signup Page" src="https://github.com/user-attachments/assets/422f3a4a-52dd-45b8-a63e-c3652a42c1ce" />
-)  
+![Sign Up Page](UI_Images/Signup_Page.png)  
 
 - Users can **register as a Customer** by default.  
 - Option to **request supplier access** during registration.  
@@ -27,8 +26,7 @@ Below is a walkthrough of the key UI pages and their functionalities.
 ---
 
 ## Admin Portal  
-![Admin Portal](<img width="817" height="323" alt="Admin Portal" src="https://github.com/user-attachments/assets/7395eef6-41ac-4967-a423-c20fc3bafd05" />
-)  
+![Admin Portal](UI_Images/Admin_Portal.png)  
 
 - Admin can **review and approve supplier access requests**.  
 - Displays a list of pending requests with an **Approve button**.  
@@ -37,8 +35,7 @@ Below is a walkthrough of the key UI pages and their functionalities.
 ---
 
 ## Supplier Dashboard  
-![Supplier Dashboard](<img width="819" height="375" alt="Supplier Page" src="https://github.com/user-attachments/assets/a258cbcb-2e87-4783-b4b9-3fc7894c9a47" />
-)  
+![Supplier Dashboard](UI_Images/Supplier_Portal.png)  
 
 - Supplier users see a **welcome page with navigation bar** for quick access.  
 - Can view their **inventory of beverages** and manage details.  
@@ -47,7 +44,7 @@ Below is a walkthrough of the key UI pages and their functionalities.
 ---
 
 ## Create Beverage Form  
-![Create Beverage Form](link-to-image)  
+![Create Beverage Form](UI_Images/Create_Beverage.png)  
 
 - Enables Suppliers to **add new beverages** to the system.  
 - Input fields: **Beverage Name, Expiry Date, Alcoholic/Non-Alcoholic flag, Status, Beverage Type**.  
@@ -56,7 +53,7 @@ Below is a walkthrough of the key UI pages and their functionalities.
 ---
 
 ## Supplier Orders View  
-![Orders Associated with Supplier](link-to-image)  
+![Orders Associated with Supplier](UI_Images/Orders_Associated_With_supplier.png)  
 
 - Suppliers can track **orders placed by customers** for their beverages.  
 - Each order includes: **Order ID, Date, Customer, Quantity, and Status**.  
@@ -65,7 +62,7 @@ Below is a walkthrough of the key UI pages and their functionalities.
 ---
 
 ## Customer Dashboard  
-![Customer Dashboard](link-to-image)  
+![Customer Dashboard](UI_Images/Customer_Dashboard.png)  
 
 - Customers view their **personal dashboard** showing all orders.  
 - Options to **place new orders, view order details, and delete/cancel orders**.  
@@ -74,7 +71,7 @@ Below is a walkthrough of the key UI pages and their functionalities.
 ---
 
 ## View Order Page  
-![View Order](link-to-image)  
+![View Order](UI_Images/View_Order.png)  
 
 - Shows **full order details**: Order ID, Customer Name, Supplier, and Beverages Ordered.  
 - Provides a quick transaction summary for Customers and Suppliers.  
