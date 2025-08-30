@@ -237,44 +237,9 @@ Once deployed, the application can be accessed via a web browser:
 ---
 
 # Display of Fronted Ui of the Application 
+For an in-depth overview of the application's user interface — including core screens, layout design, navigation structure, and key visual components — refer to the following file:
 
-## Login Page
-
-![Login Page](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/4cfc09db-f4e9-479e-ab34-53199aea44ae)
-<img width="473" height="295" alt="Login Page" src="https://github.com/user-attachments/assets/6b245037-0e0a-4453-9e9f-b405ff9c758c" />
-
-
-
-## Reister Page
-User can signup as a customer but need to request for access to be a supplier
-
-![image](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/70c25898-eb53-4f38-9e3d-b9059d19b485)
-
-## Admin Portal
-Admin can view the user requests for supplier access and can aprrove them
-
-![image](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/e45470e8-8568-42c4-b880-ecf14093780a)
-
-
-## Welcome Page for User
-This page includes a navigation bar for easy user navigation.
-
-![Welcome Page](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/a88cb223-a0b3-4265-ac61-291f10179c02)
-
-## Supplier Portal
-![Supplier Portal](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/92d1e01a-a5bc-4771-9d75-a6be450b4b91)
-
-## Create Beverage Form
-![Create Beverage Form](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/01ba8f38-5eaa-4928-a610-347670ed6e20)
-
-## Orders Associated with the Supplier
-![Orders Associated with the Supplier](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/6330e90b-adb1-40f4-a957-cbcb87515aa1)
-
-## Customer Portal
-![Customer Portal](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/5e12c724-bfcb-46e0-95d5-dec245c6539d)
-
-## Customer Can View the Order Details
-![Order Details](https://github.com/itmd4515/itmd4515-s24-fp-Bhanumahesh70/assets/144741762/c5803735-2008-4509-986f-13c0eba93b5a)
+- [`UI_OVERVIEW.md`](UI_OVERVIEW.md)
 
  
 ## Enter User Credentials
