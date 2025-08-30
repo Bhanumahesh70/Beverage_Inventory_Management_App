@@ -8,9 +8,7 @@ Below is a walkthrough of the key UI pages and their functionalities.
 ---
 
 ## Login Page  
-![Login Page](<img width="473" height="295" alt="Login Page" src="https://github.com/user-attachments/assets/303e4b63-1e73-43b9-a1d3-12660476c148" />
-)  
-<img width="473" height="295" alt="Login Page" src="https://github.com/user-attachments/assets/4dab983b-9e76-4362-b093-4345e2269212" />
+![Login Page](UI Images/Login Page.png)  
 
 - Allows users to **log in** with a username and password.  
 - Provides options to **sign up for a new account**.  
